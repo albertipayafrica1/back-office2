@@ -21,8 +21,8 @@ export const createAccount = yup.object().shape({
     .string()
     .required("Password is required")
     .matches(
-      /^(?=\P{Ll}*\p{Ll})(?=\P{Lu}*\p{Lu})(?=\P{N}*\p{N})(?=[\p{L}\p{N}]*[^\p{L}\p{N}])[\s\S]{8,}$/,
-      "Password should be 8 character long, at lest 1 special character, at least one lower case, at least one Upper case, at least a number"
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+      "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
     ),
   confirmPassword: yup
     .string()
