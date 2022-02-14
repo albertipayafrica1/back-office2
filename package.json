@@ -8,11 +8,13 @@
         "lint": "next lint",
         "lint:write": "next lint --cache --fix",
         "prepare": "husky install",
-        "storybook": "start-storybook -p 6006 -s ./icons",
-        "build-storybook": "build-storybook -s icons"
+        "storybook": "start-storybook -p 6006 -s ./public",
+        "build-storybook": "build-storybook -s public"
     },
     "dependencies": {
+        "@emotion/cache": "^11.7.1",
         "@emotion/react": "^11.7.1",
+        "@emotion/server": "^11.4.0",
         "@emotion/styled": "^11.6.0",
         "@mui/icons-material": "^5.4.1",
         "@mui/lab": "^5.0.0-alpha.68",
@@ -38,7 +40,8 @@
         "eslint-config-prettier": "^8.3.0",
         "husky": "^7.0.4",
         "lint-staged": "^12.3.4",
-        "prettier": "2.5.1"
+        "prettier": "2.5.1",
+        "storybook-addon-material-ui": "^0.9.0-alpha.24"
     },
     "lint-staged": {
         "*.{js,jsx,ts,tsx,css,md}": "prettier --write"
