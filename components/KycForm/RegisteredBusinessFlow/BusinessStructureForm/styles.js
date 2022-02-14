@@ -14,18 +14,9 @@ export const divider = {
   background: "black",
 };
 
-export const submitButton = {
+export const saveAndNextButton = {
   width: "100%",
   mt: 5,
   color: (theme) => theme.colors.mono2,
   backgroundColor: (theme) => theme.colors.blue,
-};
-
-export const checkbox = {
-  "&.MuiCheckbox-root": {
-    "&.Mui-checked": {
-      color: (theme) => theme.colors.blue,
-    },
-  },
-  "& .MuiSvgIcon-root": { fontSize: 22 },
 };

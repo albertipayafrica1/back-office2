@@ -1,8 +1,6 @@
 import PropTypes from "prop-types";
 
-import { Field } from "formik";
 import {
-  Box,
   FormControl,
   FormGroup,
   FormLabel,
@@ -12,6 +10,8 @@ import {
   Typography,
 } from "@mui/material";
 
+import { Field, ErrorMessage, getIn } from "formik";
+
 import * as styles from "./styles";
 
 const FormikCheckboxGroup = ({ label, options, name, onChange, onBlur }) => {
@@ -19,7 +19,11 @@ const FormikCheckboxGroup = ({ label, options, name, onChange, onBlur }) => {
     <Field name={name}>
       {({ field, form }) => {
         return (
-          <FormControl error={!!form.errors[name]}>
+          <FormControl
+            error={Boolean(
+              getIn(form.touched, name) && getIn(form.errors, name)
+            )}
+          >
             {label !== "" && <FormLabel>{label}</FormLabel>}
             {options.map((option) => {
               return (
@@ -47,7 +51,7 @@ const FormikCheckboxGroup = ({ label, options, name, onChange, onBlur }) => {
               );
             })}
             <FormHelperText sx={styles.helperText}>
-              {form.errors[name] ? form.errors[name] : ""}
+              <ErrorMessage name={name} />
             </FormHelperText>
           </FormControl>
         );
