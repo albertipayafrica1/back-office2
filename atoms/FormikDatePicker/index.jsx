@@ -41,7 +41,7 @@ const FormikDatePicker = ({
                   required={required}
                   onChange={onChange !== "" ? onChange : form.handleChange}
                   onBlur={onBlur !== "" ? onBlur : form.handleBlur}
-                  renderInput={(params) => <TextField {...params} />}
+                  renderInput={(params) => <TextField {...params} {...field} />}
                 />
               </LocalizationProvider>
             </FormGroup>
