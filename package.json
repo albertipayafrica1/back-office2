@@ -1,19 +1,46 @@
 {
-  "name": "mr",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "next": "12.0.10",
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
-  },
-  "devDependencies": {
-    "eslint": "8.9.0",
-    "eslint-config-next": "12.0.10"
-  }
+    "name": "mr",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "lint:write": "next lint --cache --fix",
+        "prepare": "husky install",
+        "storybook": "start-storybook -p 6006 -s ./icons",
+        "build-storybook": "build-storybook -s icons"
+    },
+    "dependencies": {
+        "@emotion/react": "^11.7.1",
+        "@emotion/styled": "^11.6.0",
+        "@mui/icons-material": "^5.4.1",
+        "@mui/lab": "^5.0.0-alpha.68",
+        "@mui/material": "^5.4.1",
+        "@mui/styles": "^5.4.1",
+        "next": "12.0.10",
+        "react": "17.0.2",
+        "react-dom": "17.0.2"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.17.2",
+        "@storybook/addon-actions": "^6.4.19",
+        "@storybook/addon-essentials": "^6.4.19",
+        "@storybook/addon-interactions": "^6.4.19",
+        "@storybook/addon-links": "^6.4.19",
+        "@storybook/builder-webpack5": "^6.4.19",
+        "@storybook/manager-webpack5": "^6.4.19",
+        "@storybook/react": "^6.4.19",
+        "@storybook/testing-library": "^0.0.9",
+        "babel-loader": "^8.2.3",
+        "eslint": "8.9.0",
+        "eslint-config-next": "12.0.10",
+        "eslint-config-prettier": "^8.3.0",
+        "husky": "^7.0.4",
+        "lint-staged": "^12.3.4",
+        "prettier": "2.5.1"
+    },
+    "lint-staged": {
+        "*.{js,jsx,ts,tsx,css,md}": "prettier --write"
+    }
 }
