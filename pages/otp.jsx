@@ -1,9 +1,9 @@
 import Carousel from "../components/Carousel";
-import LoginForm from "../components/LoginForm";
+import OTPInput from "../components/OTPInput";
 import Auth from "../components/Layouts/Auth";
 
 const Login = () => {
-    return <Auth left={<Carousel />} right={<LoginForm />} />;
+    return <Auth left={<Carousel />} right={<OTPInput />} />;
 };
 
 export default Login;

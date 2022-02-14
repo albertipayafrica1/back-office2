@@ -23,6 +23,7 @@ const CustomInput = ({
     haveTooltip,
     tooltipText,
     multiline,
+    required,
     ...restProps
 }) => {
     const [visibility, setVisibility] = useState(false);
@@ -94,6 +95,7 @@ CustomInput.defaultProps = {
     haveTooltip: false,
     multiline: false,
     variant: "outlined",
+    required: false,
 };
 
 CustomInput.propTypes = {
@@ -107,6 +109,7 @@ CustomInput.propTypes = {
     multiline: PropTypes.bool,
     pClass: PropTypes.string,
     variant: PropTypes.string,
+    required: PropTypes.bool,
 };
 
 export default CustomInput;

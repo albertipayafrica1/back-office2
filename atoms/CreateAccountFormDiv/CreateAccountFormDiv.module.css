@@ -1,0 +1,19 @@
+.formGroup {
+    padding: 10px;
+    border: 2px solid;
+    margin: 10px;
+    position: relative;
+    background-color: #f9f4f4;
+    border-radius: 10px;
+}
+
+.formGroup > label {
+    position: absolute;
+    top: -20px;
+    left: 50px;
+    background-color: white;
+}
+
+.formGroup > div {
+    border: none;
+}
