@@ -2,10 +2,15 @@ import { useState } from "react";
 
 import PropTypes from "prop-types";
 
-import TextField from "@mui/material/TextField";
-import IconButton from "@mui/material/IconButton";
-import InputAdornment from "@mui/material/InputAdornment";
-import Tooltip from "@mui/material/Tooltip";
+import {
+    TextField,
+    IconButton,
+    InputAdornment,
+    Tooltip,
+    Stack,
+    MenuItem,
+} from "@mui/material";
+
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
@@ -24,6 +29,10 @@ const CustomInput = ({
     tooltipText,
     multiline,
     required,
+    error,
+    helperText,
+    select,
+    selectItem,
     ...restProps
 }) => {
     const [visibility, setVisibility] = useState(false);
@@ -34,7 +43,7 @@ const CustomInput = ({
     };
 
     return (
-        <>
+        <Stack direction="row" spacing={2}>
             <TextField
                 label={label}
                 id={label}
@@ -50,12 +59,16 @@ const CustomInput = ({
                 onChange={onChange}
                 value={value}
                 name={name}
+                required={required}
+                helperText={helperText}
+                error={error}
                 size="medium"
                 fullWidth
                 multiline={multiline}
+                select={select}
                 InputProps={{
                     endAdornment: (
-                        <InputAdornment position="end">
+                        <InputAdornment position="start">
                             {type === "password" ? (
                                 <IconButton
                                     aria-label="toggle password visibility"
@@ -74,8 +87,15 @@ const CustomInput = ({
                                         arrow
                                         className={classes.tooltip}
                                     >
-                                        <IconButton>
-                                            <InfoOutlinedIcon />
+                                        <IconButton
+                                            className={classes.infoIcon}
+                                        >
+                                            <InfoOutlinedIcon
+                                                sx={{
+                                                    color: (theme) =>
+                                                        theme.colors.orange,
+                                                }}
+                                            />
                                         </IconButton>
                                     </Tooltip>
                                 )
@@ -84,8 +104,15 @@ const CustomInput = ({
                     ),
                 }}
                 {...restProps}
-            />
-        </>
+            >
+                {select &&
+                    selectItem.map((option) => (
+                        <MenuItem key={option} value={option}>
+                            {option}
+                        </MenuItem>
+                    ))}
+            </TextField>
+        </Stack>
     );
 };
 
@@ -96,6 +123,10 @@ CustomInput.defaultProps = {
     multiline: false,
     variant: "outlined",
     required: false,
+    error: false,
+    helperText: "",
+    select: false,
+    selectItem: [],
 };
 
 CustomInput.propTypes = {
@@ -110,6 +141,10 @@ CustomInput.propTypes = {
     pClass: PropTypes.string,
     variant: PropTypes.string,
     required: PropTypes.bool,
+    error: PropTypes.bool,
+    helperText: PropTypes.string,
+    select: PropTypes.bool,
+    selectItem: PropTypes.array,
 };
 
 export default CustomInput;
