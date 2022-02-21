@@ -9,6 +9,7 @@ import {
     Tooltip,
     Stack,
     MenuItem,
+    Typography,
 } from "@mui/material";
 
 import Visibility from "@mui/icons-material/Visibility";
@@ -45,7 +46,7 @@ const CustomInput = ({
     return (
         <Stack direction="row" spacing={2}>
             <TextField
-                label={label}
+                label={<Typography variant="subtitle3">{label}</Typography>}
                 id={label}
                 variant={variant}
                 className={[classes.input, pClass].join(" ")}

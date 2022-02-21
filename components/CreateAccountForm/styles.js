@@ -1,5 +1,9 @@
 import colors from "../../styles/colors";
 
+export const topContainer = { padding: "2.5rem 0 0 2.5rem" };
+
+export const formContainer = { padding: "2rem" };
+
 export const blueText = {
     color: colors.blue,
 };
@@ -19,17 +23,23 @@ export const submitButton = {
     backgroundColor: colors.blue,
 };
 
-export const alert = {
-    width: "100%",
-};
-
-export const otp = {
-    background: colors.orange,
-    color: colors.mono2,
-    padding: "2px 6px",
-    borderRadius: "7px",
-};
-
 export const contactUs = {
     color: colors.orange,
+};
+
+export const privacyControlLabel = {
+    paddingLeft: "1.3rem",
+};
+
+export const recaptchaText = {
+    paddingLeft: "2rem",
+};
+
+export const checkbox = {
+    "&.MuiCheckbox-root": {
+        "&.Mui-checked": {
+            color: (theme) => theme.colors.blue,
+        },
+    },
+    "& .MuiSvgIcon-root": { fontSize: 22 },
 };

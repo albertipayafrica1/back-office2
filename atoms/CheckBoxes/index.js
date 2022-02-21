@@ -7,7 +7,10 @@ import {
     FormControlLabel,
     FormHelperText,
     Checkbox,
+    Typography,
 } from "@mui/material";
+
+import * as styles from "./styles";
 
 export default function CheckboxesGroup({
     label,
@@ -45,9 +48,14 @@ export default function CheckboxesGroup({
                                     onChange={onChange}
                                     name={fieldName}
                                     value={field}
+                                    sx={styles.checkbox}
                                 />
                             }
-                            label={field}
+                            label={
+                                <Typography variant="subtitle3">
+                                    {field}
+                                </Typography>
+                            }
                         />
                     ))}
                 </FormGroup>

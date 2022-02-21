@@ -1,9 +1,16 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
 
-import { Stack, Typography, Divider, Box } from "@mui/material";
+import {
+    Stack,
+    Typography,
+    Divider,
+    Box,
+    FormControlLabel,
+    Checkbox,
+} from "@mui/material";
 
 import { LoadingButton } from "@mui/lab";
 
@@ -13,7 +20,10 @@ import CreateAccountFormDiv from "../../atoms/CreateAccountFormDiv";
 import CustomInput from "../../atoms/CustomInput";
 import CheckBoxes from "../../atoms/CheckBoxes";
 
+import ReCAPTCHA from "react-google-recaptcha";
+
 import * as styles from "./styles";
+
 import {
     revenue,
     business,
@@ -26,7 +36,7 @@ import {
 
 const CreateAccountForm = () => {
     const router = useRouter();
-    const [formData, handleFormChange, setCheckboxChange] = useForm({
+    const [formData, handleFormChange, handleCheckboxChange] = useForm({
         surname: "",
         firstName: "",
         middleName: "",
@@ -41,7 +51,10 @@ const CreateAccountForm = () => {
         ipayProducts: [],
         otp: [],
         aboutUs: [],
+        privacy: [],
     });
+
+    const [captchaToken, setCaptchaToken] = useState("");
 
     const error = {};
     const loading = false;
@@ -57,7 +70,7 @@ const CreateAccountForm = () => {
 
     return (
         <>
-            <Stack sx={{ padding: "2rem" }} spacing={1}>
+            <Stack sx={styles.topContainer} spacing={1}>
                 <Box>
                     <Image
                         src="/iPay-logo.svg"
@@ -66,7 +79,7 @@ const CreateAccountForm = () => {
                         height={39}
                     />
                 </Box>
-                <Stack direction="row" alignItems="center" spacing={1}>
+                <Stack direction="row" alignItems="center" spacing={3}>
                     <Typography variant="title6">Create Account</Typography>
                     <Divider
                         orientation="vertical"
@@ -83,7 +96,7 @@ const CreateAccountForm = () => {
                 </Stack>
             </Stack>
             <Stack
-                sx={{ padding: "2rem" }}
+                sx={styles.formContainer}
                 component="form"
                 onSubmit={handleSubmit}
                 spacing={8}
@@ -238,34 +251,60 @@ const CreateAccountForm = () => {
                             formFields={ipayProducts}
                             fieldChecked={formData.ipayProducts}
                             helperText=""
-                            onChange={setCheckboxChange}
+                            onChange={handleCheckboxChange}
                             label="Choose iPay Products"
                             fieldName="ipayProducts"
                         />
                     </Stack>
                 </CreateAccountFormDiv>
-                {/* <CreateAccountFormDiv topLabel="How would you want to receive the OTP (Verification Code) ?">
+                <CreateAccountFormDiv topLabel="How would you want to receive the OTP (Verification Code) ?">
                     <CheckBoxes
                         formFields={otp}
+                        fieldChecked={formData.otp}
                         helperText=""
-                        onChange={setFormChange}
+                        onChange={handleCheckboxChange}
+                        fieldName="otp"
                     />
                 </CreateAccountFormDiv>
                 <CreateAccountFormDiv topLabel="How did you know about us?">
                     <CheckBoxes
                         formFields={aboutUs}
+                        fieldChecked={formData.aboutUs}
                         helperText=""
-                        onChange={setFormChange}
+                        onChange={handleCheckboxChange}
+                        fieldName="aboutUs"
                     />
                 </CreateAccountFormDiv>
-                <Box>
-                    <CheckBoxes
-                        formFields={ipayProducts}
-                        helperText=""
-                        onChange={setFormChange}
-                    />
-                </Box> */}
-
+                <FormControlLabel
+                    control={<Checkbox defaultChecked sx={styles.checkbox} />}
+                    label={
+                        <Typography variant="subtitle3">
+                            By clicking on submit you agree to share your
+                            information with iPay who agrees to use it as per
+                            their
+                            <Link href="/privacypolicy">
+                                <a style={styles.linkStyle}> privacy policy</a>
+                            </Link>
+                        </Typography>
+                    }
+                    sx={styles.privacyControlLabel}
+                />
+                <CreateAccountFormDiv>
+                    <Stack direction="row" justifyContent="center">
+                        <ReCAPTCHA
+                            sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                            onChange={(token) => setCaptchaToken(token)}
+                            onExpired={(e) => setCaptchaToken(token)}
+                        />
+                    </Stack>
+                </CreateAccountFormDiv>
+                <Typography variant="subtitle3" sx={styles.recaptchaText}>
+                    This page is protected by Google <b>recaptcha</b> to ensure
+                    you’re not a bot.
+                    <Link href="/">
+                        <a style={styles.linkStyle}> Learn more</a>
+                    </Link>
+                </Typography>
                 <LoadingButton
                     loading={loading}
                     variant="contained"
