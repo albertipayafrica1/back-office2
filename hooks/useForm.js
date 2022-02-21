@@ -10,11 +10,28 @@ const useForm = (initialValues) => {
         });
     };
 
-    const setValue = (name, value) => {
-        setValues({
-            ...values,
-            [name]: value,
-        });
+    // setValue is only for checkboxes group
+    const setValue = (e) => {
+        if (e.target.checked) {
+            const eventName = [e.target.name];
+            const newArr = values[eventName];
+            newArr.push(e.target.value);
+            setValues({
+                ...values,
+                [e.target.name]: newArr,
+            });
+        } else {
+            const eventName = [e.target.name];
+            const newArr = values[eventName];
+            const index = newArr.indexOf(e.target.value);
+            if (index > -1) {
+                newArr.splice(index, 1);
+            }
+            setValues({
+                ...values,
+                [e.target.name]: newArr,
+            });
+        }
     };
 
     return [values, handleValueChange, setValue];
