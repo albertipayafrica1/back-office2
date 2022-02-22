@@ -7,4 +7,5 @@ export default {
     orange: "#F29103",
     blue: "#124AA1",
     pink: "#F9F4F4",
+    errorRed: "#d32f2f",
 };

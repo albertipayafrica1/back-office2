@@ -73,7 +73,7 @@ const CreateAccountForm = () => {
         privacy: "",
     });
 
-    const [captchaToken, setCaptchaToken] = useState("");
+    const [captchaToken, setCaptchaToken] = useState("token");
 
     const loading = false;
 
@@ -83,20 +83,21 @@ const CreateAccountForm = () => {
             abortEarly: false,
         });
         if (isValid) {
-            // If form is valid, continue submission.
-            console.log("Form is legit");
+            if (captchaToken) {
+                console.log("Form is legit");
+                //send from data
+            }
         } else {
             createAccountFormValidation
                 .validate(formData, { abortEarly: false })
                 .catch((err) => {
-                    const errrs = err.inner.reduce((acc, error) => {
+                    const errs = err.inner.reduce((acc, error) => {
                         return {
                             ...acc,
                             [error.path]: error.message,
                         };
                     }, {});
-                    console.log(errrs, "brres");
-                    setErrors(errrs);
+                    setErrors(errs);
                 });
         }
     };
@@ -299,6 +300,7 @@ const CreateAccountForm = () => {
                         <CheckBoxes
                             formFields={ipayProducts}
                             fieldChecked={formData.ipayProducts}
+                            error={errors.ipayProducts ? true : false}
                             helperText={errors.ipayProducts}
                             onChange={handleCheckboxChange}
                             label="Choose iPay Products"
@@ -324,33 +326,57 @@ const CreateAccountForm = () => {
                         fieldName="aboutUs"
                     />
                 </CreateAccountFormDiv>
-                <FormControlLabel
-                    control={
-                        <Checkbox
-                            defaultChecked
-                            sx={styles.checkbox}
-                            helperText={errors.privacy}
-                        />
-                    }
-                    label={
-                        <Typography variant="subtitle3">
-                            By clicking on submit you agree to share your
-                            information with iPay who agrees to use it as per
-                            their
-                            <Link href="/privacypolicy">
-                                <a style={styles.linkStyle}> privacy policy</a>
-                            </Link>
+                <Box>
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                sx={styles.checkbox}
+                                helperText={errors.privacy}
+                            />
+                        }
+                        label={
+                            <Typography variant="subtitle3">
+                                By clicking on submit you agree to share your
+                                information with iPay who agrees to use it as
+                                per their
+                                <Link href="/privacypolicy">
+                                    <a style={styles.linkStyle}>
+                                        privacy policy
+                                    </a>
+                                </Link>
+                            </Typography>
+                        }
+                        sx={styles.privacyControlLabel}
+                    />
+                    {errors.privacy && (
+                        <Typography
+                            variant="subtitle3"
+                            sx={styles.privacyControlErrorLabel}
+                        >
+                            {errors.privacy}
                         </Typography>
-                    }
-                    sx={styles.privacyControlLabel}
-                />
+                    )}
+                </Box>
                 <CreateAccountFormDiv>
-                    <Stack direction="row" justifyContent="center">
+                    <Stack
+                        direction="column"
+                        justifyContent="center"
+                        alignItems="center"
+                        spacing={2}
+                    >
                         <ReCAPTCHA
                             sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
                             onChange={(token) => setCaptchaToken(token)}
                             onExpired={(e) => setCaptchaToken(token)}
                         />
+                        {!captchaToken && (
+                            <Typography
+                                variant="subtitle3"
+                                sx={styles.recaptchaErrorLabel}
+                            >
+                                kindly do the reCAPTCHA
+                            </Typography>
+                        )}
                     </Stack>
                 </CreateAccountFormDiv>
                 <Typography variant="subtitle3" sx={styles.recaptchaText}>

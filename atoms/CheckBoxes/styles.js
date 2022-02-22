@@ -6,3 +6,7 @@ export const checkbox = {
     },
     "& .MuiSvgIcon-root": { fontSize: 22 },
 };
+
+export const helperText = {
+    color: (theme) => theme.colors.errorRed,
+};

@@ -11,8 +11,8 @@ export const createAccountFormValidation = yup.object().shape({
     contactNumber: yup
         .number("Enter your contact number")
         .required("Contact Number is required")
-        .positive()
-        .integer(),
+        .positive("Enter your contact number")
+        .integer("Enter your contact number"),
     email: yup
         .string()
         .email("Please Enter a valid Email")
@@ -50,6 +50,6 @@ export const createAccountFormValidation = yup.object().shape({
         .required("Select atleast 1 item"),
     privacy: yup
         .array()
-        .min(1, "Select atleast 1 item")
-        .required("Select atleast 1 item"),
+        .min(1, "Kindly accept the privacy policy")
+        .required("Kindly accept the privacy policy"),
 });

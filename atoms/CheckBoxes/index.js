@@ -59,7 +59,9 @@ export default function CheckboxesGroup({
                         />
                     ))}
                 </FormGroup>
-                <FormHelperText> {helperText} </FormHelperText>
+                <FormHelperText sx={styles.helperText}>
+                    {helperText}
+                </FormHelperText>
             </FormControl>
         </Box>
     );
