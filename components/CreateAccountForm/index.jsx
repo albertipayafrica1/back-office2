@@ -15,6 +15,7 @@ import {
 import { LoadingButton } from "@mui/lab";
 
 import useForm from "../../hooks/useForm";
+import { createAccountFormValidation } from "../../utils/createAccountFormValidation";
 
 import CreateAccountFormDiv from "../../atoms/CreateAccountFormDiv";
 import CustomInput from "../../atoms/CustomInput";
@@ -54,19 +55,55 @@ const CreateAccountForm = () => {
         privacy: [],
     });
 
+    const [errors, setErrors] = useState({
+        surname: "",
+        firstName: "",
+        middleName: "",
+        contactNumber: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        countryOfOperation: "",
+        registrationDetails: "",
+        revenue: "",
+        businessType: "",
+        ipayProducts: "",
+        otp: "",
+        aboutUs: "",
+        privacy: "",
+    });
+
     const [captchaToken, setCaptchaToken] = useState("");
 
-    const error = {};
     const loading = false;
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        router.push("/");
+        const isValid = await createAccountFormValidation.isValid(formData, {
+            abortEarly: false,
+        });
+        if (isValid) {
+            // If form is valid, continue submission.
+            console.log("Form is legit");
+        } else {
+            createAccountFormValidation
+                .validate(formData, { abortEarly: false })
+                .catch((err) => {
+                    const errrs = err.inner.reduce((acc, error) => {
+                        return {
+                            ...acc,
+                            [error.path]: error.message,
+                        };
+                    }, {});
+                    console.log(errrs, "brres");
+                    setErrors(errrs);
+                });
+        }
     };
 
-    useEffect(() => {
-        console.log(formData);
-    }, [formData]);
+    // useEffect(() => {
+    //     console.log(formData);
+    // }, [formData]);
 
     return (
         <>
@@ -116,8 +153,8 @@ const CreateAccountForm = () => {
                                 id="surname"
                                 value={formData.surname}
                                 onChange={handleFormChange}
-                                error={error.surname}
-                                helperText="hi this is helper text"
+                                error={errors.surname ? true : false}
+                                helperText={errors.surname}
                                 required
                             />
                             <CustomInput
@@ -128,8 +165,8 @@ const CreateAccountForm = () => {
                                 id="firstName"
                                 value={formData.firstName}
                                 onChange={handleFormChange}
-                                error={error.firstName}
-                                helperText=""
+                                error={errors.firstName ? true : false}
+                                helperText={errors.firstName}
                                 required
                             />
                             <CustomInput
@@ -140,8 +177,8 @@ const CreateAccountForm = () => {
                                 id="middleName"
                                 value={formData.middleName}
                                 onChange={handleFormChange}
-                                error={error.middleName}
-                                helperText=""
+                                error={errors.middleName ? true : false}
+                                helperText={errors.middleName}
                             />
                         </Stack>
 
@@ -153,8 +190,8 @@ const CreateAccountForm = () => {
                             id="contactNumber"
                             value={formData.contactNumber}
                             onChange={handleFormChange}
-                            error={error.contactNumber}
-                            helperText=""
+                            error={errors.contactNumber ? true : false}
+                            helperText={errors.contactNumber}
                             required
                         />
 
@@ -166,8 +203,8 @@ const CreateAccountForm = () => {
                             id="email"
                             value={formData.email}
                             onChange={handleFormChange}
-                            error={error.email}
-                            helperText=""
+                            error={errors.email ? true : false}
+                            helperText={errors.email}
                             required
                             haveTooltip
                             tooltipText="Enter Your Email"
@@ -180,6 +217,8 @@ const CreateAccountForm = () => {
                             id="password"
                             value={formData.password}
                             onChange={handleFormChange}
+                            error={errors.password ? true : false}
+                            helperText={errors.password}
                             required
                         />
                         <CustomInput
@@ -190,6 +229,8 @@ const CreateAccountForm = () => {
                             id="confirmPassword"
                             value={formData.confirmPassword}
                             onChange={handleFormChange}
+                            error={errors.confirmPassword ? true : false}
+                            helperText={errors.confirmPassword}
                             required
                         />
                         <CustomInput
@@ -201,6 +242,8 @@ const CreateAccountForm = () => {
                             id="countryOfOperation"
                             value={formData.countryOfOperation}
                             onChange={handleFormChange}
+                            error={errors.countryOfOperation ? true : false}
+                            helperText={errors.countryOfOperation}
                             required
                             haveTooltip
                             tooltipText="Select Your Country Of Operation"
@@ -218,6 +261,8 @@ const CreateAccountForm = () => {
                             id="registrationDetails"
                             value={formData.registrationDetails}
                             onChange={handleFormChange}
+                            error={errors.registrationDetails ? true : false}
+                            helperText={errors.registrationDetails}
                             required
                         />
 
@@ -230,6 +275,8 @@ const CreateAccountForm = () => {
                             id="revenue"
                             value={formData.revenue}
                             onChange={handleFormChange}
+                            error={errors.revenue ? true : false}
+                            helperText={errors.revenue}
                             required
                             haveTooltip
                             tooltipText="What is your monthly estimated revenue?"
@@ -244,13 +291,15 @@ const CreateAccountForm = () => {
                             id="businessType"
                             value={formData.businessType}
                             onChange={handleFormChange}
+                            error={errors.businessType ? true : false}
+                            helperText={errors.businessType}
                             required
                         />
 
                         <CheckBoxes
                             formFields={ipayProducts}
                             fieldChecked={formData.ipayProducts}
-                            helperText=""
+                            helperText={errors.ipayProducts}
                             onChange={handleCheckboxChange}
                             label="Choose iPay Products"
                             fieldName="ipayProducts"
@@ -261,7 +310,7 @@ const CreateAccountForm = () => {
                     <CheckBoxes
                         formFields={otp}
                         fieldChecked={formData.otp}
-                        helperText=""
+                        helperText={errors.otp}
                         onChange={handleCheckboxChange}
                         fieldName="otp"
                     />
@@ -270,13 +319,19 @@ const CreateAccountForm = () => {
                     <CheckBoxes
                         formFields={aboutUs}
                         fieldChecked={formData.aboutUs}
-                        helperText=""
+                        helperText={errors.aboutUs}
                         onChange={handleCheckboxChange}
                         fieldName="aboutUs"
                     />
                 </CreateAccountFormDiv>
                 <FormControlLabel
-                    control={<Checkbox defaultChecked sx={styles.checkbox} />}
+                    control={
+                        <Checkbox
+                            defaultChecked
+                            sx={styles.checkbox}
+                            helperText={errors.privacy}
+                        />
+                    }
                     label={
                         <Typography variant="subtitle3">
                             By clicking on submit you agree to share your

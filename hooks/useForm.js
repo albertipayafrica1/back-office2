@@ -10,8 +10,8 @@ const useForm = (initialValues) => {
         });
     };
 
-    // setValue is only for checkboxes group
-    const setValue = (e) => {
+    // handleCheckboxValueChange is only for checkboxes group
+    const handleCheckboxValueChange = (e) => {
         if (e.target.checked) {
             const eventName = [e.target.name];
             const newArr = values[eventName];
@@ -34,7 +34,7 @@ const useForm = (initialValues) => {
         }
     };
 
-    return [values, handleValueChange, setValue];
+    return [values, handleValueChange, handleCheckboxValueChange];
 };
 
 export default useForm;
