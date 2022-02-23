@@ -20,8 +20,7 @@ import { createAccountFormValidation } from "../../utils/createAccountFormValida
 import CreateAccountFormDiv from "../../atoms/CreateAccountFormDiv";
 import CustomInput from "../../atoms/CustomInput";
 import CheckBoxes from "../../atoms/CheckBoxes";
-
-import ReCAPTCHA from "react-google-recaptcha";
+import Recaptcha from "../../atoms/Recaptcha";
 
 import * as styles from "./styles";
 
@@ -71,9 +70,14 @@ const CreateAccountForm = () => {
         otp: "",
         aboutUs: "",
         privacy: "",
+        captcha: "",
     });
 
-    const [captchaToken, setCaptchaToken] = useState("token");
+    const [captchaToken, setCaptchaToken] = useState("");
+
+    const handleCaptchaToken = (token) => {
+        setCaptchaToken(token);
+    };
 
     const loading = false;
 
@@ -82,13 +86,15 @@ const CreateAccountForm = () => {
         const isValid = await createAccountFormValidation.isValid(formData, {
             abortEarly: false,
         });
-        if (isValid) {
-            if (captchaToken) {
-                console.log("Form is legit");
-                //send from data
-            }
+        if (isValid && captchaToken !== "") {
+            // submit form
+        } else if (isValid && captchaToken === "") {
+            setErrors({
+                ...errors,
+                captcha: "kindly verify the captcha",
+            });
         } else {
-            createAccountFormValidation
+            await createAccountFormValidation
                 .validate(formData, { abortEarly: false })
                 .catch((err) => {
                     const errs = err.inner.reduce((acc, error) => {
@@ -99,6 +105,17 @@ const CreateAccountForm = () => {
                     }, {});
                     setErrors(errs);
                 });
+            if (captchaToken === "") {
+                setErrors({
+                    ...errors,
+                    captcha: "kindly verify the captcha",
+                });
+            } else if (captchaToken) {
+                setErrors({
+                    ...errors,
+                    captcha: "",
+                });
+            }
         }
     };
 
@@ -238,6 +255,7 @@ const CreateAccountForm = () => {
                             variant="outlined"
                             name="countryOfOperation"
                             label="Country Of Operation"
+                            type="text"
                             select
                             selectItem={country}
                             id="countryOfOperation"
@@ -257,6 +275,7 @@ const CreateAccountForm = () => {
                             variant="outlined"
                             name="registrationDetails"
                             label="Registration Details"
+                            type="text"
                             select
                             selectItem={registration}
                             id="registrationDetails"
@@ -271,6 +290,7 @@ const CreateAccountForm = () => {
                             variant="outlined"
                             name="revenue"
                             label="Your monthly estimated revenue"
+                            type="text"
                             select
                             selectItem={revenue}
                             id="revenue"
@@ -287,6 +307,7 @@ const CreateAccountForm = () => {
                             variant="outlined"
                             name="businessType"
                             label="Business Type"
+                            type="text"
                             select
                             selectItem={business}
                             id="businessType"
@@ -332,6 +353,8 @@ const CreateAccountForm = () => {
                             <Checkbox
                                 sx={styles.checkbox}
                                 helperText={errors.privacy}
+                                onChange={handleCheckboxChange}
+                                name="privacy"
                             />
                         }
                         label={
@@ -341,6 +364,7 @@ const CreateAccountForm = () => {
                                 per their
                                 <Link href="/privacypolicy">
                                     <a style={styles.linkStyle}>
+                                        {" "}
                                         privacy policy
                                     </a>
                                 </Link>
@@ -358,26 +382,10 @@ const CreateAccountForm = () => {
                     )}
                 </Box>
                 <CreateAccountFormDiv>
-                    <Stack
-                        direction="column"
-                        justifyContent="center"
-                        alignItems="center"
-                        spacing={2}
-                    >
-                        <ReCAPTCHA
-                            sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
-                            onChange={(token) => setCaptchaToken(token)}
-                            onExpired={(e) => setCaptchaToken(token)}
-                        />
-                        {!captchaToken && (
-                            <Typography
-                                variant="subtitle3"
-                                sx={styles.recaptchaErrorLabel}
-                            >
-                                kindly do the reCAPTCHA
-                            </Typography>
-                        )}
-                    </Stack>
+                    <Recaptcha
+                        captchaError={errors.captcha}
+                        handleCaptchaToken={handleCaptchaToken}
+                    />
                 </CreateAccountFormDiv>
                 <Typography variant="subtitle3" sx={styles.recaptchaText}>
                     This page is protected by Google <b>recaptcha</b> to ensure

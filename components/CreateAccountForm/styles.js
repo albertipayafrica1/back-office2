@@ -40,11 +40,6 @@ export const privacyControlErrorLabel = {
 export const recaptchaText = {
     paddingLeft: "2rem",
 };
-export const recaptchaErrorLabel = {
-    color: (theme) => theme.colors.errorRed,
-    fontSize: "0.75rem",
-    fontWeight: 400,
-};
 
 export const checkbox = {
     "&.MuiCheckbox-root": {
