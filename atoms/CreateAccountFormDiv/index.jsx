@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 import styles from "./CreateAccountFormDiv.module.css";
 
 const CreateAccountFormDiv = ({ topLabel, children }) => {
@@ -10,3 +12,12 @@ const CreateAccountFormDiv = ({ topLabel, children }) => {
 };
 
 export default CreateAccountFormDiv;
+
+CreateAccountFormDiv.defaultProps = {
+    label: "",
+};
+
+CreateAccountFormDiv.propTypes = {
+    label: PropTypes.string,
+    children: PropTypes.node.isRequired,
+};

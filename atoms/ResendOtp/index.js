@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import PropTypes from "prop-types";
+
 import { Stack, Typography, Button } from "@mui/material";
 
 import * as styles from "./styles";
@@ -34,3 +36,8 @@ const ResendOtp = ({ seconds, handleResendOtp }) => {
 };
 
 export default ResendOtp;
+
+CreateAccountFormDiv.propTypes = {
+    seconds: PropTypes.number.isRequired,
+    handleResendOtp: PropTypes.func.isRequired,
+};

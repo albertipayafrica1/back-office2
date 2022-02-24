@@ -1,5 +1,7 @@
 import PropTypes from "prop-types";
+
 import { Stack, Typography } from "@mui/material";
+
 import ReCAPTCHA from "react-google-recaptcha";
 
 import * as styles from "./styles";
