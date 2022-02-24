@@ -1,19 +1,22 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/Link";
+import { useRouter } from "next/router";
 
-import { Stack, Typography, Button, Box } from "@mui/material";
+import { Stack, Typography, Box } from "@mui/material";
 
 import { LoadingButton } from "@mui/lab";
 
 import MuiAlert from "../../atoms/MuiAlert";
+import ResendOtp from "../../atoms/ResendOtp";
 
 import * as styles from "./styles";
 
 const OTPInput = () => {
+    const router = useRouter();
     const [otp, setOtp] = useState(new Array(5).fill(""));
-    const error = true;
-    const loading = false;
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const handleChange = (element, index) => {
         if (isNaN(element.value)) return false;
@@ -31,11 +34,13 @@ const OTPInput = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setLoading(true);
         const joinedOtp = otp.join("");
-        console.log(joinedOtp);
     };
 
-    const handleResendOtp = () => {};
+    const handleResendOtp = () => {
+        console.log("resetotpclicked");
+    };
 
     return (
         <Box sx={styles.formContainer}>
@@ -52,7 +57,7 @@ const OTPInput = () => {
                         height={39}
                     />
 
-                    <Typography variant="title6" sx={styles.otp}>
+                    <Typography variant="title6" sx={styles.otpText}>
                         One Time Password (OTP) is sent to your email
                     </Typography>
                 </Stack>
@@ -65,13 +70,7 @@ const OTPInput = () => {
                     {otp.map((data, index) => {
                         return (
                             <input
-                                style={{
-                                    maxWidth: "3rem",
-                                    height: "3.5rem",
-                                    fontSize: "2rem",
-                                    borderRadius: "0.5rem",
-                                    borderColor: "gray",
-                                }}
+                                style={styles.otpField}
                                 onPaste="return false;"
                                 className="otp-field"
                                 type="text"
@@ -85,12 +84,7 @@ const OTPInput = () => {
                         );
                     })}
                 </Stack>
-                <Stack direction="row" alignItems="center">
-                    <Typography variant="body2">Didnt Receive OTP?</Typography>
-                    <Button sx={{ color: "#124AA1" }} onClick={handleResendOtp}>
-                        Resend OTP
-                    </Button>
-                </Stack>
+                <ResendOtp seconds={120} handleResendOtp={handleResendOtp} />
                 <LoadingButton
                     loading={loading}
                     variant="contained"
@@ -102,14 +96,14 @@ const OTPInput = () => {
                 >
                     Verify
                 </LoadingButton>
-                <Stack spacing={2} sx={{ mt: 4 }}>
+                <Stack spacing={2} mt={4}>
                     <Stack
                         direction="row"
                         justifyContent="flex-end"
                         alignItems="flex-end"
-                        sx={{ mr: 4 }}
+                        mr={4}
                     >
-                        <Typography variant="title6" sx={{ mr: 2 }}>
+                        <Typography variant="title6" mr={2}>
                             Need help?
                         </Typography>
                         <Link href="/">
@@ -127,7 +121,7 @@ const OTPInput = () => {
                         direction="row"
                         justifyContent="center"
                         alignItems="center"
-                        sx={{ mr: 4 }}
+                        mr={4}
                     >
                         <Typography variant="subtitle3">
                             Authorised Payment Services Provider Regulated by
@@ -136,7 +130,7 @@ const OTPInput = () => {
                     </Stack>
                 </Stack>
 
-                {error && <MuiAlert variant="success" message="Success" />}
+                {error && <MuiAlert variant="error" message={error} />}
             </Stack>
         </Box>
     );

@@ -1,11 +1,9 @@
-import colors from "../../styles/colors";
-
 export const topContainer = { padding: "2.5rem 0 0 2.5rem" };
 
 export const formContainer = { padding: "2rem" };
 
 export const blueText = {
-    color: colors.blue,
+    color: (theme) => theme.colors.blue,
 };
 
 export const linkStyle = {
@@ -19,12 +17,12 @@ export const divider = {
 export const submitButton = {
     width: "100%",
     mt: 5,
-    color: colors.mono2,
-    backgroundColor: colors.blue,
+    color: (theme) => theme.colors.mono2,
+    backgroundColor: (theme) => theme.colors.blue,
 };
 
 export const contactUs = {
-    color: colors.orange,
+    color: (theme) => theme.colors.orange,
 };
 
 export const privacyControlLabel = {

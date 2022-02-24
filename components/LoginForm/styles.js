@@ -1,5 +1,3 @@
-import colors from "../../styles/colors";
-
 export const form = {
     mt: 8,
     gap: 2,
@@ -23,8 +21,8 @@ export const textField = {
 export const submitButton = {
     width: "100%",
     mt: 5,
-    color: colors.mono2,
-    backgroundColor: colors.blue,
+    color: (theme) => theme.colors.mono2,
+    backgroundColor: (theme) => theme.colors.blue,
 };
 
 export const alert = {
@@ -32,16 +30,16 @@ export const alert = {
 };
 
 export const otp = {
-    background: colors.orange,
-    color: colors.mono2,
+    background: (theme) => theme.colors.orange,
+    color: (theme) => theme.colors.mono2,
     padding: "2px 6px",
     borderRadius: "7px",
 };
 
 export const contactUs = {
-    color: colors.orange,
+    color: (theme) => theme.colors.orange,
 };
 
 export const blueText = {
-    color: colors.blue,
+    color: (theme) => theme.colors.blue,
 };

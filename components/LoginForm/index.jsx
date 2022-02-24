@@ -1,14 +1,17 @@
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/Link";
 import { useRouter } from "next/router";
 
-import { Alert, Stack, Box, Typography } from "@mui/material";
+import { Stack, Box, Typography } from "@mui/material";
 
 import { LoadingButton } from "@mui/lab";
 
 import useForm from "../../hooks/useForm";
+import { loginFormValidation } from "../../utils/loginFormValidation";
 
 import CustomInput from "../../atoms/CustomInput";
+import MuiAlert from "../../atoms/MuiAlert";
 
 import * as styles from "./styles";
 
@@ -17,15 +20,38 @@ const LoginForm = () => {
     const [formData, handleFormChange] = useForm({
         email: "",
         password: "",
-        showPassword: false,
     });
+    const [errors, setErrors] = useState({
+        email: "",
+        password: "",
+        generic: "",
+    });
+    const [loading, setLoading] = useState(false);
 
-    const error = null;
-    const loading = false;
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        router.push("/otp");
+        setLoading(true);
+        const isValid = await loginFormValidation.isValid(formData, {
+            abortEarly: false,
+        });
+        if (isValid) {
+            setLoading(false);
+            setErrors({ ...errors, generic: "this is a generic error" });
+            router.push("/otp");
+        } else {
+            await loginFormValidation
+                .validate(formData, { abortEarly: false })
+                .catch((err) => {
+                    const errs = err.inner.reduce((acc, error) => {
+                        return {
+                            ...acc,
+                            [error.path]: error.message,
+                        };
+                    }, {});
+                    setErrors(errs);
+                    setLoading(false);
+                });
+        }
     };
 
     return (
@@ -57,6 +83,8 @@ const LoginForm = () => {
                     label="Your Email"
                     name="email"
                     autoFocus
+                    error={errors.email ? true : false}
+                    helperText={errors.email}
                     value={formData.email}
                     onChange={handleFormChange}
                     sx={styles.textField}
@@ -65,7 +93,7 @@ const LoginForm = () => {
                     direction="row"
                     justifyContent="flex-end"
                     alignItems="flex-end"
-                    sx={{ mr: 4 }}
+                    mr={4}
                 >
                     <Link href="/">
                         <a>
@@ -84,6 +112,8 @@ const LoginForm = () => {
                     label="Password"
                     type="password"
                     id="password"
+                    error={errors.password ? true : false}
+                    helperText={errors.password}
                     value={formData.password}
                     onChange={handleFormChange}
                     sx={styles.textField}
@@ -98,8 +128,8 @@ const LoginForm = () => {
                 >
                     Log In
                 </LoadingButton>
-                <Stack spacing={2} sx={{ mt: 4 }}>
-                    <Link href="/">
+                <Stack spacing={2} mt={4}>
+                    <Link href="/createAccount">
                         <a>
                             <Typography variant="title6" sx={styles.blueText}>
                                 Dont have iPay Merchant account? Register here.
@@ -110,9 +140,9 @@ const LoginForm = () => {
                         direction="row"
                         justifyContent="flex-end"
                         alignItems="flex-end"
-                        sx={{ mr: 4 }}
+                        mr={4}
                     >
-                        <Typography variant="title6" sx={{ mr: 2 }}>
+                        <Typography variant="title6" mr={2}>
                             Need help?
                         </Typography>
                         <Link href="/">
@@ -130,7 +160,7 @@ const LoginForm = () => {
                         direction="row"
                         justifyContent="center"
                         alignItems="center"
-                        sx={{ mr: 4 }}
+                        mr={4}
                     >
                         <Typography variant="subtitle3">
                             Authorised Payment Services Provider Regulated by
@@ -138,13 +168,10 @@ const LoginForm = () => {
                         </Typography>
                     </Stack>
                 </Stack>
-
-                {error && (
-                    <Alert severity="error" sx={styles.alert}>
-                        {error.message}
-                    </Alert>
-                )}
             </Stack>
+            {errors.generic !== "" && errors.generic && (
+                <MuiAlert variant="error" message={errors.generic} />
+            )}
         </Box>
     );
 };

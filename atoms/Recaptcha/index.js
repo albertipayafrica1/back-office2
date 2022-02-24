@@ -5,7 +5,6 @@ import ReCAPTCHA from "react-google-recaptcha";
 import * as styles from "./styles";
 
 const Recaptcha = ({ captchaError, handleCaptchaToken }) => {
-    console.log(captchaError, "recpatchs rendered");
     return (
         <Stack
             direction="column"
