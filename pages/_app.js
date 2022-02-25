@@ -5,11 +5,12 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { CacheProvider } from "@emotion/react";
 import theme from "../styles/theme";
 import createEmotionCache from "../config/createEmotionCache";
+import { wrapper } from "../redux/store";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
-export default function MyApp(props) {
+const MyApp = (props) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
   return (
@@ -23,10 +24,12 @@ export default function MyApp(props) {
       </ThemeProvider>
     </CacheProvider>
   );
-}
+};
 
 MyApp.propTypes = {
   Component: PropTypes.elementType.isRequired,
   emotionCache: PropTypes.shape({}).isRequired,
   pageProps: PropTypes.shape({}).isRequired,
 };
+
+export default wrapper.withRedux(MyApp);
