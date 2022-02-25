@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+import axios from "axios";
+
 import { Stack, Typography, Box } from "@mui/material";
 
 import { LoadingButton } from "@mui/lab";
@@ -39,6 +41,34 @@ const OTPInput = () => {
     e.preventDefault();
     setLoading(true);
     const joinedOtp = otp.join("");
+    const credentials = JSON.parse(localStorage.getItem("ipay"));
+    const otpObject = {
+      otp: joinedOtp,
+      uuid: credentials.id,
+      login_otp_token: credentials.ipay1,
+    };
+    const config = {
+      method: "post",
+      url: `https://merchantregistration.ipayprojects.com/otp-login`,
+      headers: {
+        Authorization: `Bearer ${credentials.ipay2}`,
+        "Content-Type": "application/json",
+      },
+      data: JSON.stringify(otpObject),
+    };
+
+    axios(config)
+      .then((response) => {
+        if (response.success === true) {
+          setLoading(false);
+          router.push("/");
+        } else {
+          setError("Invalid Otp");
+        }
+      })
+      .catch((err) => {
+        setError("Invalid Otp");
+      });
   };
 
   return (
@@ -52,7 +82,7 @@ const OTPInput = () => {
           <Image src="/iPay-logo.svg" alt="iPay Logo" width={78} height={39} />
 
           <Typography variant="title6" sx={styles.otpText}>
-            One Time Password (OTP) is sent to your email
+            One Time Password (OTP) is sent to your mobile
           </Typography>
         </Stack>
 

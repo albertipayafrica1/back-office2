@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+import axios from "axios";
+
 import { Stack, Box, Typography } from "@mui/material";
 
 import { LoadingButton } from "@mui/lab";
@@ -35,9 +37,35 @@ const LoginForm = () => {
       abortEarly: false,
     });
     if (isValid) {
-      setLoading(false);
+      const config = {
+        method: "post",
+        url: `https://merchantregistration.ipayprojects.com/auth/login`,
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+        data: JSON.stringify(formData),
+      };
+      axios(config)
+        .then((response) => {
+          if (response.success === true) {
+            setLoading(false);
+            const storedObject = {
+              id: response.uuid,
+              ipay1: response.login_otp_token,
+              ipay2: response.response,
+            };
+            localStorage.setItem("ipay", JSON.stringify(storedObject));
+            router.push("/otp");
+          } else {
+            setErrors({ generic: response.response });
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
       setErrors({ ...errors, generic: "this is a generic error" });
-      router.push("/otp");
     } else {
       await loginFormValidation
         .validate(formData, { abortEarly: false })
@@ -66,7 +94,7 @@ const LoginForm = () => {
           <Image src="/iPay-logo.svg" alt="iPay Logo" width={78} height={39} />
 
           <Typography variant="title6" sx={styles.otp}>
-            One Time Password (OTP) will be sent to your email
+            One Time Password (OTP) will be sent to your mobile
           </Typography>
         </Stack>
 
