@@ -9,6 +9,7 @@ import { Stack, Box, Typography } from "@mui/material";
 
 import { LoadingButton } from "@mui/lab";
 
+import Cookies from "js-cookie";
 import useForm from "../../hooks/useForm";
 import { loginFormValidation } from "../../utils/loginFormValidation";
 
@@ -37,6 +38,7 @@ const LoginForm = () => {
       abortEarly: false,
     });
     if (isValid) {
+      Cookies.set("name", "value", { path: "/" });
       const config = {
         method: "post",
         url: `https://merchantregistration.ipayprojects.com/auth/login`,
