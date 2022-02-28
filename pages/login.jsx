@@ -33,7 +33,7 @@ const Login = () => {
       Cookies.set("name", "value", { path: "/" });
       const config = {
         method: "post",
-        url: `${process.env.NEXT_PUBLIC_BACKED_BASE_URL}auth/login`,
+        url: ` https://d9a3-41-80-146-140.ngrok.io/auth/login`,
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",

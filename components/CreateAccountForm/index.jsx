@@ -14,6 +14,7 @@ import {
 
 import { LoadingButton } from "@mui/lab";
 
+import PasswordStrengthBar from "react-password-strength-bar";
 import useForm from "../../hooks/useForm";
 import { createAccountFormValidation } from "../../utils/createAccountFormValidation";
 
@@ -216,6 +217,10 @@ const CreateAccountForm = () => {
               error={!!errors.password}
               helperText={errors.password}
               required
+            />
+            <PasswordStrengthBar
+              password={formData.password}
+              barColors={["#ddd", "#ef4836", "#f6b44d", "#2b90ef", "#15A112"]}
             />
             <CustomInput
               variant="outlined"

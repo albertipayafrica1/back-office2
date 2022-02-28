@@ -49,7 +49,7 @@ const CustomInput = ({
         label={<Typography variant="subtitle3">{label}</Typography>}
         id={label}
         variant={variant}
-        className={[classes.input, pClass].join(" ")}
+        className={[classes.root, pClass].join(" ")}
         type={type !== "password" ? type : visibility ? "text" : "password"}
         onChange={onChange}
         value={value}
@@ -61,6 +61,21 @@ const CustomInput = ({
         fullWidth
         multiline={multiline}
         select={select}
+        // sx={{
+        //   "& .MuiOutlinedInput-root:hover": {
+        //     "& > fieldset": {
+        //       borderColor: "#C4C4C4",
+        //     },
+        //   },
+        //   "& .MuiOutlinedInput-root": {
+        //     "& .Mui-focused": {
+        //       borderColor: "#C4C4C4",
+        //     },
+        //   },
+        //   "& .MuiFormLabel-root": {
+        //     color: (theme) => theme.colors.blue,
+        //   },
+        // }}
         InputProps={{
           endAdornment: (
             <InputAdornment position="start">
