@@ -7,16 +7,31 @@ import { Stack, Typography, Button } from "@mui/material";
 import * as styles from "./styles";
 
 const ResendOtp = ({ seconds }) => {
-  const [counter, setCounter] = useState(seconds);
+  const [counter, setCounter] = useState();
 
   const handleResendOtp = () => {
+    if (counter > 0) return;
+    localStorage.removeItem("timer");
     setCounter(seconds);
   };
 
   useEffect(() => {
-    const timer =
-      counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
-    return () => clearInterval(timer);
+    const timer = localStorage.getItem("timer");
+    if (timer === null) {
+      localStorage.setItem("timer", seconds);
+      setCounter(1);
+    } else {
+      setCounter(localStorage.getItem("timer"));
+      const timer1 =
+        counter > 0 &&
+        setInterval(() => {
+          localStorage.getItem(timer);
+          setCounter(timer - 1);
+          localStorage.setItem("timer", timer - 1);
+        }, 1000);
+      return () => clearInterval(timer1);
+    }
+    return null;
   }, [counter]);
 
   return (

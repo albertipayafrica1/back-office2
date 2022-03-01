@@ -106,7 +106,7 @@ const OTPInput = () => {
             />
           ))}
         </Stack>
-        <ResendOtp seconds={120} />
+        <ResendOtp seconds={130} />
         <LoadingButton
           loading={loading}
           variant="contained"

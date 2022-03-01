@@ -3,5 +3,5 @@ export const resendOtpButton = {
 };
 
 export const timer = {
-  color: (theme) => theme.colors.orange,
+  color: (theme) => theme.colors.errorRed,
 };

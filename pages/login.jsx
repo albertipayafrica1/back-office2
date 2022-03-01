@@ -33,16 +33,12 @@ const Login = () => {
       Cookies.set("name", "value", { path: "/" });
       const config = {
         method: "post",
-        url: ` https://d9a3-41-80-146-140.ngrok.io/auth/login`,
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Credentials": true,
-        },
+        url: ` https://4812-41-242-3-169.ngrok.io/auth/login`,
         data: JSON.stringify(formData),
       };
       axios(config)
         .then((response) => {
+          console.log(response, "response");
           if (response.success === true) {
             setLoading(false);
             const storedObject = {
