@@ -46,7 +46,7 @@ const ResendOtp = ({ seconds }) => {
       </Button>
       {counter > 0 && (
         <Typography variant="subtitle3" sx={styles.timer}>
-          {counter} {" secs"}
+          {counter} {" secs "}
         </Typography>
       )}
     </Stack>
