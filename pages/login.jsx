@@ -9,6 +9,8 @@ import Auth from "../components/Layouts/Auth";
 import useForm from "../hooks/useForm";
 import { loginFormValidation } from "../utils/loginFormValidation";
 
+axios.defaults.withCredentials = true;
+
 const Login = () => {
   const router = useRouter();
   const [formData, handleFormChange] = useForm({
@@ -30,16 +32,22 @@ const Login = () => {
       abortEarly: false,
     });
     if (isValid) {
-      Cookies.set("name", "value", { path: "/" });
+      Cookies.set("foo", "bar");
       const config = {
         method: "post",
-        url: ` https://4812-41-242-3-169.ngrok.io/auth/login`,
+        url: `https://4812-41-242-3-169.ngrok.io/auth/login`,
         data: JSON.stringify(formData),
+        withCredentials: true,
       };
-      axios(config)
+      axios
+        .post(
+          "https://2347-41-242-3-169.ngrok.io/auth/login",
+          JSON.stringify(formData),
+          { withCredentials: true }
+        )
         .then((response) => {
           console.log(response, "response");
-          if (response.success === true) {
+          if (response.data.success === true) {
             setLoading(false);
             const storedObject = {
               id: response.uuid,

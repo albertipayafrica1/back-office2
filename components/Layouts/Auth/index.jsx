@@ -13,10 +13,10 @@ const Account = ({ left, right, loading }) => {
         <Loader />
       ) : (
         <Grid container className={classes.content}>
-          <Grid item md={6}>
+          <Grid item sm={6}>
             {left}
           </Grid>
-          <Grid item md={6}>
+          <Grid item sm={6} className={classes.left}>
             {right}
           </Grid>
         </Grid>

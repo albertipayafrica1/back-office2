@@ -1,6 +1,6 @@
 export const imageContainer = {
   height: "100vh",
-  width: "50vw",
+  width: "100%",
   position: "sticky",
   top: 0,
   margin: 0,
