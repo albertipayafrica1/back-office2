@@ -6,7 +6,7 @@ import { Stack, Typography, Button } from "@mui/material";
 
 import * as styles from "./styles";
 
-const ResendOtp = ({ seconds }) => {
+const ResendOtp = ({ seconds, clearTimer }) => {
   const [counter, setCounter] = useState();
 
   const handleResendOtp = () => {
@@ -17,6 +17,9 @@ const ResendOtp = ({ seconds }) => {
 
   useEffect(() => {
     const timer = localStorage.getItem("timer");
+    if (timer !== null && clearTimer) {
+      localStorage.removeItem("timer");
+    }
     if (timer === null) {
       localStorage.setItem("timer", seconds);
       setCounter(1);
@@ -55,6 +58,7 @@ const ResendOtp = ({ seconds }) => {
 
 ResendOtp.propTypes = {
   seconds: PropTypes.number.isRequired,
+  clearTimer: PropTypes.bool.isRequired,
 };
 
 export default ResendOtp;

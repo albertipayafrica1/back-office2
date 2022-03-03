@@ -25,18 +25,16 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
-    console.log(process.env.NEXT_PUBLIC_BACKED_BASE_URL);
-    Cookies.set("key", "value", { secure: true, httpOnly: true });
     e.preventDefault();
     setLoading(true);
+    setErrors({ ...errors, generic: "" });
     const isValid = await loginFormValidation.isValid(formData, {
       abortEarly: false,
     });
     if (isValid) {
-      router.push("/otp");
       const config = {
         method: "post",
-        url: `https://4812-41-242-3-169.ngrok.io/auth/login`,
+        url: `https://a80e-41-242-3-169.ngrok.io/auth/login`,
         data: JSON.stringify(formData),
         withCredentials: true,
       };
@@ -45,22 +43,22 @@ const Login = () => {
           console.log(response, "response");
           if (response.data.success === true) {
             setLoading(false);
-            const storedObject = {
-              id: response.uuid,
-              ipay1: response.login_otp_token,
-              ipay2: response.response,
-            };
-            localStorage.setItem("ipay", JSON.stringify(storedObject));
+
+            Cookies.set("AccessToken", response.data.token, {
+              secure: true,
+            });
             router.push("/otp");
           } else {
-            setErrors({ generic: response.response });
+            console.log(response, "response0");
+            setErrors({ ...errors, generic: "Invalid username or Password" });
+            setLoading(false);
           }
         })
         .catch((error) => {
-          console.log(error);
+          console.log(error, "response");
+          setErrors({ ...errors, generic: "Invalid username or Password" });
+          setLoading(false);
         });
-
-      setErrors({ ...errors, generic: "this is a generic error" });
     } else {
       await loginFormValidation
         .validate(formData, { abortEarly: false })

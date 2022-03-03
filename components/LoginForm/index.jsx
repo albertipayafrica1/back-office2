@@ -30,7 +30,7 @@ const LoginForm = ({
           <Image src="/iPay-logo.svg" alt="iPay Logo" width={78} height={39} />
 
           <Typography variant="title6" sx={styles.otp}>
-            One Time Password (OTP) will be sent to your mobile
+            One Time Password (OTP) will be sent to your Email
           </Typography>
         </Stack>
 

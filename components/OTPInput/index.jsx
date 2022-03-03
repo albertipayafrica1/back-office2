@@ -1,3 +1,4 @@
+/*eslint quote-props: ["error", "as-needed"]*/
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,6 +20,7 @@ const OTPInput = () => {
   const [otp, setOtp] = useState(new Array(5).fill(""));
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [clearTimer, setClearTimer] = useState(false);
 
   const handleChange = (element, index) => {
     if (Number.isNaN(element.value)) return false;
@@ -39,35 +41,43 @@ const OTPInput = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setClearTimer(true);
     setLoading(true);
     const joinedOtp = otp.join("");
-    const credentials = JSON.parse(localStorage.getItem("ipay"));
+    const credentials = document.cookie;
     const otpObject = {
       otp: joinedOtp,
-      uuid: credentials.id,
-      login_otp_token: credentials.ipay1,
+      login_otp_token: credentials,
     };
+
     const config = {
       method: "post",
-      url: `https://merchantregistration.ipayprojects.com/otp-login`,
+      url: `https://a80e-41-242-3-169.ngrok.io/otp-login`,
       headers: {
-        Authorization: `Bearer ${credentials.ipay2}`,
-        "Content-Type": "application/json",
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `Bearer ${credentials}`,
       },
       data: JSON.stringify(otpObject),
     };
 
-    axios(config)
+    axios
+      .post(config)
       .then((response) => {
-        if (response.success === true) {
+        if (response.data.success === true) {
           setLoading(false);
+          setClearTimer(true);
           router.push("/");
         } else {
           setError("Invalid Otp");
+          setClearTimer(true);
+          setLoading(false);
         }
       })
       .catch((err) => {
+        console.log(err, "erro");
         setError("Invalid Otp");
+        setClearTimer(true);
+        setLoading(false);
       });
   };
 
@@ -106,7 +116,7 @@ const OTPInput = () => {
             />
           ))}
         </Stack>
-        <ResendOtp seconds={130} />
+        <ResendOtp seconds={130} clearTimer={clearTimer} />
         <LoadingButton
           loading={loading}
           variant="contained"

@@ -30,7 +30,7 @@ const Account = ({ left, right, loading, alert, nameOnAlert }) => {
             </Box>
           )}
           <Grid container>
-            <Grid item sm={6} className={classes.left}>
+            <Grid item sm={6} xs={0} className={classes.left}>
               {left}
             </Grid>
             <Grid item sm={6}>

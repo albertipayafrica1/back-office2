@@ -54,6 +54,7 @@ const CreateAccount = () => {
   const [loading, setLoading] = useState(false);
 
   const handleCaptchaToken = (token) => {
+    console.log(token, "captchatoken");
     setCaptchaToken(token);
   };
 
