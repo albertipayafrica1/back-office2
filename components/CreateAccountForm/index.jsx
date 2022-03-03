@@ -52,8 +52,8 @@ const CreateAccountForm = () => {
     businessType: "",
     ipayProducts: [],
     aboutUs: "",
-    referral: "",
-    ads: "",
+    referral: "RC0007",
+    ads: "GDN",
     privacy: [],
   });
 
@@ -87,11 +87,20 @@ const CreateAccountForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (formData.aboutUs === "social Media" || formData.aboutUs === "website") {
+      formData.referral = "None";
+      formData.ads = "None";
+    }
+
+    console.log(formData, "dsf");
+
     const isValid = await createAccountFormValidation.isValid(formData, {
       abortEarly: false,
     });
+    console.log(captchaToken, "ct");
     if (isValid && captchaToken !== "") {
-      // submit form
+      console.log("netered here");
+      router.push("/login");
     } else if (isValid && captchaToken === "") {
       setErrors({
         ...errors,
@@ -114,6 +123,7 @@ const CreateAccountForm = () => {
             };
           }
           setErrors(errs);
+          console.log(errs, "errors");
         });
     }
   };
@@ -357,6 +367,7 @@ const CreateAccountForm = () => {
                 onChange={handleFormChange}
                 error={!!errors.ads}
                 helperText={errors.ads}
+                defaultValue={ads[0]}
                 required
               />
             )}

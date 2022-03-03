@@ -32,6 +32,7 @@ const CustomInput = ({
   required,
   error,
   helperText,
+  defaultValue,
   select,
   selectItem,
   ...restProps
@@ -47,6 +48,7 @@ const CustomInput = ({
     <Stack direction="row" spacing={2}>
       <TextField
         label={<Typography variant="subtitle3">{label}</Typography>}
+        defaultValue={defaultValue}
         id={label}
         variant={variant}
         className={[classes.root, pClass].join(" ")}
@@ -130,6 +132,7 @@ CustomInput.defaultProps = {
   helperText: "",
   select: false,
   selectItem: [],
+  defaultValue: "",
 };
 
 CustomInput.propTypes = {
@@ -148,6 +151,7 @@ CustomInput.propTypes = {
   helperText: PropTypes.string,
   select: PropTypes.bool,
   selectItem: PropTypes.arrayOf(PropTypes.string),
+  defaultValue: PropTypes.string,
 };
 
 export default CustomInput;

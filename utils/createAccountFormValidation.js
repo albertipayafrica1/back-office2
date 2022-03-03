@@ -40,10 +40,6 @@ export const createAccountFormValidation = yup.object().shape({
     .array()
     .min(1, "Select atleast 1 item")
     .required("Select atleast 1 item"),
-  otp: yup
-    .array()
-    .min(1, "Select atleast 1 item")
-    .required("Select atleast 1 item"),
   aboutUs: yup.string(),
   referral: yup.string().required("Kindly enter the referral code"),
   ads: yup.string().required("Kindly select where you've seen the ad"),

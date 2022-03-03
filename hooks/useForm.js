@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 const useForm = (initialValues) => {
+  console.log(initialValues, "IV");
   const [values, setValues] = useState(initialValues);
 
   const handleValueChange = (e) => {
