@@ -16,3 +16,4 @@ export const ipayProducts = [
 ];
 export const aboutUs = ["Referral", "Ads", "Social Media", "Website"];
 export const otp = ["sms", "email"];
+export const ads = ["Radio", "Tv", "GDN", "BillBoards"];

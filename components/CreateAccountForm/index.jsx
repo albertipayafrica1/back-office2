@@ -33,6 +33,7 @@ import {
   ipayProducts,
   aboutUs,
   otp,
+  ads,
 } from "./data";
 
 const CreateAccountForm = () => {
@@ -50,8 +51,9 @@ const CreateAccountForm = () => {
     revenue: "",
     businessType: "",
     ipayProducts: [],
-    otp: [],
-    aboutUs: [],
+    aboutUs: "",
+    referral: "",
+    ads: "",
     privacy: [],
   });
 
@@ -68,8 +70,9 @@ const CreateAccountForm = () => {
     revenue: "",
     businessType: "",
     ipayProducts: "",
-    otp: "",
     aboutUs: "",
+    referral: "",
+    ads: "",
     privacy: "",
     captcha: "",
   });
@@ -312,23 +315,52 @@ const CreateAccountForm = () => {
             />
           </Stack>
         </CreateAccountFormDiv>
-        <CreateAccountFormDiv topLabel="How would you want to receive the OTP (Verification Code) ?">
-          <CheckBoxes
-            formFields={otp}
-            fieldChecked={formData.otp}
-            helperText={errors.otp}
-            onChange={handleCheckboxChange}
-            fieldName="otp"
-          />
-        </CreateAccountFormDiv>
         <CreateAccountFormDiv topLabel="How did you know about us?">
-          <CheckBoxes
-            formFields={aboutUs}
-            fieldChecked={formData.aboutUs}
-            helperText={errors.aboutUs}
-            onChange={handleCheckboxChange}
-            fieldName="aboutUs"
-          />
+          <Stack direction="column" spacing={2}>
+            <CustomInput
+              variant="outlined"
+              name="aboutUs"
+              label="About Us"
+              type="text"
+              select
+              selectItem={aboutUs}
+              id="businessType"
+              value={formData.aboutUs}
+              onChange={handleFormChange}
+              error={!!errors.aboutUs}
+              helperText={errors.aboutUs}
+            />
+            {formData.aboutUs === "Referral" && (
+              <CustomInput
+                variant="outlined"
+                name="referral"
+                label="Referral Code"
+                type="text"
+                id="referralCode"
+                value={formData.referral}
+                onChange={handleFormChange}
+                error={!!errors.referral}
+                helperText={errors.referral}
+                required
+              />
+            )}
+            {formData.aboutUs === "Ads" && (
+              <CustomInput
+                variant="outlined"
+                name="ads"
+                label="Where did you see the Ad"
+                type="text"
+                select
+                selectItem={ads}
+                id="businessType"
+                value={formData.ads}
+                onChange={handleFormChange}
+                error={!!errors.ads}
+                helperText={errors.ads}
+                required
+              />
+            )}
+          </Stack>
         </CreateAccountFormDiv>
         <Box>
           <FormControlLabel

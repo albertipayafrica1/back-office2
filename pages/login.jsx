@@ -32,7 +32,6 @@ const Login = () => {
       abortEarly: false,
     });
     if (isValid) {
-      Cookies.set("foo", "bar");
       const config = {
         method: "post",
         url: `https://4812-41-242-3-169.ngrok.io/auth/login`,
