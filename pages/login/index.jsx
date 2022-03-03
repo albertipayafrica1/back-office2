@@ -3,11 +3,11 @@ import { useRouter } from "next/router";
 import Cookies from "js-cookie";
 
 import axios from "axios";
-import Carousel from "../components/Carousel";
-import LoginForm from "../components/LoginForm";
-import Auth from "../components/Layouts/Auth";
-import useForm from "../hooks/useForm";
-import { loginFormValidation } from "../utils/loginFormValidation";
+import Carousel from "../../components/Carousel";
+import LoginForm from "../../components/LoginForm";
+import Auth from "../../components/Layouts/Auth";
+import useForm from "../../hooks/useForm";
+import { loginFormValidation } from "../../utils/loginFormValidation";
 
 axios.defaults.withCredentials = true;
 
@@ -26,24 +26,21 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     console.log(process.env.NEXT_PUBLIC_BACKED_BASE_URL);
+    Cookies.set("key", "value", { secure: true, httpOnly: true });
     e.preventDefault();
     setLoading(true);
     const isValid = await loginFormValidation.isValid(formData, {
       abortEarly: false,
     });
     if (isValid) {
+      router.push("/otp");
       const config = {
         method: "post",
         url: `https://4812-41-242-3-169.ngrok.io/auth/login`,
         data: JSON.stringify(formData),
         withCredentials: true,
       };
-      axios
-        .post(
-          "https://2347-41-242-3-169.ngrok.io/auth/login",
-          JSON.stringify(formData),
-          { withCredentials: true }
-        )
+      axios(config)
         .then((response) => {
           console.log(response, "response");
           if (response.data.success === true) {

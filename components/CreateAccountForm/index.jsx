@@ -1,7 +1,8 @@
-import { useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
+
+import PropTypes from "prop-types";
 
 import {
   Stack,
@@ -15,8 +16,6 @@ import {
 import { LoadingButton } from "@mui/lab";
 
 import PasswordStrengthBar from "react-password-strength-bar";
-import useForm from "../../hooks/useForm";
-import { createAccountFormValidation } from "../../utils/createAccountFormValidation";
 
 import CreateAccountFormDiv from "../../atoms/CreateAccountFormDiv";
 import CustomInput from "../../atoms/CustomInput";
@@ -36,97 +35,16 @@ import {
   ads,
 } from "./data";
 
-const CreateAccountForm = () => {
+const CreateAccountForm = ({
+  formData,
+  handleFormChange,
+  handleCheckboxChange,
+  errors,
+  handleSubmit,
+  handleCaptchaToken,
+  loading,
+}) => {
   const router = useRouter();
-  const [formData, handleFormChange, handleCheckboxChange] = useForm({
-    surname: "",
-    firstName: "",
-    middleName: "",
-    contactNumber: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    countryOfOperation: "",
-    registrationDetails: "",
-    revenue: "",
-    businessType: "",
-    ipayProducts: [],
-    aboutUs: "",
-    referral: "RC0007",
-    ads: "GDN",
-    privacy: [],
-  });
-
-  const [errors, setErrors] = useState({
-    surname: "",
-    firstName: "",
-    middleName: "",
-    contactNumber: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    countryOfOperation: "",
-    registrationDetails: "",
-    revenue: "",
-    businessType: "",
-    ipayProducts: "",
-    aboutUs: "",
-    referral: "",
-    ads: "",
-    privacy: "",
-    captcha: "",
-  });
-
-  const [captchaToken, setCaptchaToken] = useState("");
-
-  const handleCaptchaToken = (token) => {
-    setCaptchaToken(token);
-  };
-
-  const loading = false;
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (formData.aboutUs === "social Media" || formData.aboutUs === "website") {
-      formData.referral = "None";
-      formData.ads = "None";
-    }
-
-    console.log(formData, "dsf");
-
-    const isValid = await createAccountFormValidation.isValid(formData, {
-      abortEarly: false,
-    });
-    console.log(captchaToken, "ct");
-    if (isValid && captchaToken !== "") {
-      console.log("netered here");
-      router.push("/login");
-    } else if (isValid && captchaToken === "") {
-      setErrors({
-        ...errors,
-        captcha: "kindly verify the captcha",
-      });
-    } else {
-      await createAccountFormValidation
-        .validate(formData, { abortEarly: false })
-        .catch((err) => {
-          let errs = err.inner.reduce((acc, error) => {
-            return {
-              ...acc,
-              [error.path]: error.message,
-            };
-          }, {});
-          if (captchaToken === "") {
-            errs = {
-              ...errs,
-              captcha: "kindly Verify the captcha",
-            };
-          }
-          setErrors(errs);
-          console.log(errs, "errors");
-        });
-    }
-  };
 
   return (
     <>
@@ -461,4 +379,48 @@ const CreateAccountForm = () => {
   );
 };
 
+CreateAccountForm.propTypes = {
+  formData: PropTypes.shape({
+    surname: PropTypes.string.isRequired,
+    firstName: PropTypes.string.isRequired,
+    middleName: PropTypes.string.isRequired,
+    contactNumber: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+    confirmPassword: PropTypes.string.isRequired,
+    countryOfOperation: PropTypes.string.isRequired,
+    registrationDetails: PropTypes.string.isRequired,
+    revenue: PropTypes.string.isRequired,
+    businessType: PropTypes.string.isRequired,
+    ipayProducts: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    aboutUs: PropTypes.string.isRequired,
+    referral: PropTypes.string.isRequired,
+    ads: PropTypes.string.isRequired,
+    privacy: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  }).isRequired,
+  handleFormChange: PropTypes.func.isRequired,
+  handleCheckboxChange: PropTypes.func.isRequired,
+  errors: PropTypes.shape({
+    surname: PropTypes.string.isRequired,
+    firstName: PropTypes.string.isRequired,
+    middleName: PropTypes.string.isRequired,
+    contactNumber: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+    confirmPassword: PropTypes.string.isRequired,
+    countryOfOperation: PropTypes.string.isRequired,
+    registrationDetails: PropTypes.string.isRequired,
+    revenue: PropTypes.string.isRequired,
+    businessType: PropTypes.string.isRequired,
+    ipayProducts: PropTypes.string.isRequired,
+    aboutUs: PropTypes.string.isRequired,
+    referral: PropTypes.string.isRequired,
+    ads: PropTypes.string.isRequired,
+    privacy: PropTypes.string.isRequired,
+    captcha: PropTypes.string.isRequired,
+  }).isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  handleCaptchaToken: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+};
 export default CreateAccountForm;
