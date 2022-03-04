@@ -62,6 +62,7 @@ const OTPInput = () => {
 
     axios(config)
       .then((response) => {
+        console.log(response, "otp response");
         if (response.data.success === true) {
           setLoading(false);
           setClearTimer(true);
@@ -73,13 +74,14 @@ const OTPInput = () => {
         }
       })
       .catch((err) => {
-        console.log(err.response, "erro");
+        console.log(err, "erro");
 
-        if (err.response !== null || err.response !== undefined) {
-          setError(err.response);
-        } else {
-          setError("Something went wrong");
-        }
+        // if (err.response !== null || err.response !== undefined) {
+        //   setError(err.response);
+        // } else {
+        //   setError("Something went wrong");
+        // }
+        setError("Something went wrong");
         setClearTimer(true);
         setLoading(false);
       });

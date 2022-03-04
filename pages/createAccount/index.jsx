@@ -14,8 +14,8 @@ import Carousel from "../../components/Carousel";
 import CreateAccountForm from "../../components/CreateAccountForm";
 import Auth from "../../components/Layouts/Auth";
 
-const CreateAccount = ({ data }) => {
-  console.log(data, "data from gssp");
+const CreateAccount = ({ country, rc }) => {
+  // console.log(data, "data from gssp");
   const router = useRouter();
 
   const [formData, handleFormChange, handleCheckboxChange] = useForm({
@@ -26,13 +26,13 @@ const CreateAccount = ({ data }) => {
     email: "",
     password: "",
     confirmPassword: "",
-    countryOfOperation: data.country,
+    countryOfOperation: country,
     registrationDetails: "",
     revenue: "",
     businessType: "",
     ipayProducts: [],
     aboutUs: "",
-    referral: data.rc,
+    referral: rc,
     ads: "GDN",
     privacy: [],
   });
@@ -143,10 +143,8 @@ const CreateAccount = ({ data }) => {
 };
 
 CreateAccount.propTypes = {
-  data: PropTypes.shape({
-    country: PropTypes.string.isRequired,
-    rc: PropTypes.string.isRequired,
-  }).isRequired,
+  country: PropTypes.string.isRequired,
+  rc: PropTypes.string.isRequired,
 };
 
 export default CreateAccount;
@@ -155,37 +153,60 @@ export const getServerSideProps = async (context) => {
   const { country, rc } = context.query;
   console.log(context.query);
 
-  const givenCountryCode = country;
-  const givenrc = rc;
+  var givenCountryCode = country;
+  var givenrc = rc;
   // console.log(givenrc, "givenrc");
   // var url = "";
 
-  // if (givenCountryCode === undefined) {
-  //   // url = `/createAccount?country=ke&rc=RC0007`;
-  //   givenCountryCode = "ke";
-  // }
+  if (givenCountryCode === undefined && givenrc === undefined) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: `/createAccount?country=ke&rc=RC007`,
+      },
+    };
+  }
+  if (
+    givenCountryCode !== "ke" &&
+    givenCountryCode !== "ug" &&
+    givenCountryCode !== "tz" &&
+    givenCountryCode !== "tg" &&
+    givenrc !== undefined
+  ) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: `/createAccount?country=ke&rc=${givenrc}`,
+      },
+    };
+  }
+  if (
+    givenCountryCode !== undefined &&
+    givenCountryCode !== "ke" &&
+    givenCountryCode !== "ug" &&
+    givenCountryCode !== "tz" &&
+    givenCountryCode !== "tg" &&
+    givenrc === undefined
+  ) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: `/createAccount?country=ke&rc=RC007`,
+      },
+    };
+  }
+  if (givenCountryCode !== undefined && givenrc === undefined) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: `/createAccount?country=${givenCountryCode}&rc=RC007`,
+      },
+    };
+  }
 
-  // if (givenrc === undefined) {
-  //   // url = `/createAccount?country=ke&rc=RC0007`;
-  //   givenCountryCode = "RC007";
-  // }
-
-  // if (
-  //   givenCountryCode !== "ke" &&
-  //   givenCountryCode !== "ug" &&
-  //   givenCountryCode !== "tz" &&
-  //   givenCountryCode !== "tg"
-  // ) {
-  //   givenCountryCode = "ke";
-  // }
-
-  // return {
-  //   redirect: {
-  //     permanent: false,
-  //     destination: `/createAccount?country=${givenCountryCode}&rc=${givenrc}`,
-  //   },
-  // };
-
+  if (givenCountryCode === undefined) {
+    givenCountryCode = "ke";
+  }
   const givenCountry = countryOfOperation(givenCountryCode);
 
   const data = {
@@ -194,6 +215,9 @@ export const getServerSideProps = async (context) => {
   };
 
   return {
-    props: { data },
+    props: {
+      country: givenCountry,
+      rc: givenrc,
+    },
   };
 };
