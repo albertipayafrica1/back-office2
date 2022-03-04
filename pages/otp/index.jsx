@@ -10,6 +10,16 @@ const Otp = () => {
     console.log(document.cookie, "got cookie");
   }, []);
 
+  if (typeof window !== "undefined") {
+    window.addEventListener(
+      "beforeunload",
+      function (e) {
+        this.localStorage.removeItem("timer");
+      },
+      false
+    );
+  }
+
   return <Auth left={<Carousel />} right={<OTPInput />} />;
 };
 

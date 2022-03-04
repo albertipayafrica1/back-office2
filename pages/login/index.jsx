@@ -39,7 +39,10 @@ const Login = () => {
         data: JSON.stringify(formData),
         withCredentials: true,
       };
-
+      Cookies.set("AccessToken", "csvs", {
+        secure: true,
+      });
+      router.replace("/otp");
       axios(config)
         .then((response) => {
           console.log(response, "response");
