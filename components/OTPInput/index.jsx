@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 import axios from "axios";
+import Cookies from "js-cookie";
 
 import { Stack, Typography, Box } from "@mui/material";
 
@@ -44,7 +45,7 @@ const OTPInput = () => {
     setClearTimer(true);
     setLoading(true);
     const joinedOtp = otp.join("");
-    const credentials = document.cookie.value;
+    const credentials = Cookies.get("AccessToken");
     console.log(credentials);
     const otpObject = {
       otp: joinedOtp,
