@@ -153,8 +153,8 @@ export const getServerSideProps = async (context) => {
   const { country, rc } = context.query;
   console.log(context.query);
 
-  var givenCountryCode = country;
-  var givenrc = rc;
+  let givenCountryCode = country;
+  let givenrc = rc;
   // console.log(givenrc, "givenrc");
   // var url = "";
 
