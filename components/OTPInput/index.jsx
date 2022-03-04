@@ -44,7 +44,8 @@ const OTPInput = () => {
     setClearTimer(true);
     setLoading(true);
     const joinedOtp = otp.join("");
-    const credentials = document.cookie;
+    const credentials = document.cookie.value;
+    console.log(credentials);
     const otpObject = {
       otp: joinedOtp,
       login_otp_token: credentials,
