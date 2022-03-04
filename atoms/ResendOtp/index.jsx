@@ -17,12 +17,12 @@ const ResendOtp = ({ seconds, clearTimer }) => {
 
   useEffect(() => {
     const timer = localStorage.getItem("timer");
-    if (timer !== null && clearTimer) {
-      localStorage.removeItem("timer");
-    }
+    // if (timer !== null && clearTimer) {
+    //   localStorage.removeItem("timer");
+    // }
     if (timer === null) {
       localStorage.setItem("timer", seconds);
-      setCounter(1);
+      setCounter(seconds);
     } else {
       setCounter(localStorage.getItem("timer"));
       const timer1 =

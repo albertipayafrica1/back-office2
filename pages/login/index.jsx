@@ -46,7 +46,7 @@ const Login = () => {
             Cookies.set("AccessToken", response.data.token, {
               secure: true,
             });
-            router.push("/otp");
+            router.replace("/otp");
           } else {
             console.log(response, "response0");
             setErrors({ ...errors, generic: "Invalid username or Password" });
