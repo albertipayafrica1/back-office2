@@ -15,7 +15,7 @@ const Recaptcha = ({ captchaError, handleCaptchaToken }) => {
       spacing={2}
     >
       <ReCAPTCHA
-        sitekey={process.env.NEXT_PUBLIC_CAPTCHA_KEY}
+        sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
         onChange={(token) => handleCaptchaToken(token)}
         onExpired={(e) => handleCaptchaToken("")}
       />

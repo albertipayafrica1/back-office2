@@ -43,8 +43,6 @@ const Login = () => {
         .then((response) => {
           console.log(response, "response");
           if (response.data.success === true) {
-            setLoading(false);
-
             Cookies.set("AccessToken", response.data.token, {
               secure: true,
             });

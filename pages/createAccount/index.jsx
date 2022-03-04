@@ -5,10 +5,7 @@ import PropTypes from "prop-types";
 
 import useForm from "../../hooks/useForm";
 import { createAccountFormValidation } from "../../utils/createAccountFormValidation";
-import {
-  countryOfOperation,
-  countryOfOperationCode,
-} from "../../utils/countryOfOperation";
+import { countryOfOperation } from "../../utils/countryOfOperation";
 
 import Carousel from "../../components/Carousel";
 import CreateAccountForm from "../../components/CreateAccountForm";
@@ -31,23 +28,11 @@ const CreateAccount = ({ country, rc }) => {
     revenue: "",
     businessType: "",
     ipayProducts: [],
-    aboutUs: "",
+    aboutUs: "Referral",
     referral: rc,
     ads: "GDN",
     privacy: [],
   });
-
-  // useEffect(() => {
-  //   if (
-  //     formData.countryOfOperation === "" ||
-  //     formData.countryOfOperation === undefined
-  //   ) {
-  //     return null;
-  //   }
-  //   const countryCode = countryOfOperationCode(formData.countryOfOperation);
-
-  //   return router.replace(`/${countryCode}/createAccount`);
-  // }, [formData.countryOfOperation]);
 
   const [errors, setErrors] = useState({
     surname: "",
@@ -72,6 +57,20 @@ const CreateAccount = ({ country, rc }) => {
   const [captchaToken, setCaptchaToken] = useState("");
   const [emailAlert, setEmailAlert] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  // useEffect(() => {
+  //   if (
+  //     formData.countryOfOperation === "" ||
+  //     formData.countryOfOperation === undefined
+  //   ) {
+  //     return null;
+  //   }
+  //   const countryCode = countryOfOperationCode(formData.countryOfOperation);
+
+  //   return router.replace(
+  //     `/createAccount?country=${countryCode}&rc=${formData.referral}`
+  //   );
+  // }, [formData.countryOfOperation, formData.referral]);
 
   const handleCaptchaToken = (token) => {
     console.log(token, "captchatoken");
@@ -141,13 +140,6 @@ const CreateAccount = ({ country, rc }) => {
     />
   );
 };
-
-CreateAccount.propTypes = {
-  country: PropTypes.string.isRequired,
-  rc: PropTypes.string.isRequired,
-};
-
-export default CreateAccount;
 
 export const getServerSideProps = async (context) => {
   const { country, rc } = context.query;
@@ -221,3 +213,10 @@ export const getServerSideProps = async (context) => {
     },
   };
 };
+
+CreateAccount.propTypes = {
+  country: PropTypes.string.isRequired,
+  rc: PropTypes.string.isRequired,
+};
+
+export default CreateAccount;
