@@ -12,8 +12,16 @@ const ResendOtp = ({ seconds, clearTimer }) => {
   const handleResendOtp = () => {
     if (counter > 0) return;
     localStorage.removeItem("timer");
+    console.log(counter);
     setCounter(seconds);
   };
+
+  useEffect(() => {
+    const timer = localStorage.getItem("timer");
+    if (timer !== null && clearTimer) {
+      localStorage.removeItem("timer");
+    }
+  }, [clearTimer]);
 
   useEffect(() => {
     const timer = localStorage.getItem("timer");
@@ -22,7 +30,7 @@ const ResendOtp = ({ seconds, clearTimer }) => {
     // }
     if (timer === null) {
       localStorage.setItem("timer", seconds);
-      setCounter(seconds);
+      setCounter(seconds - 1);
     } else {
       setCounter(localStorage.getItem("timer"));
       const timer1 =

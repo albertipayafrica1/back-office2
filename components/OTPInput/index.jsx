@@ -44,6 +44,7 @@ const OTPInput = () => {
     e.preventDefault();
     setClearTimer(true);
     setLoading(true);
+    setError(null);
     const joinedOtp = otp.join("");
     const credentials = Cookies.get("AccessToken");
     console.log(credentials);
@@ -86,6 +87,7 @@ const OTPInput = () => {
         setError("Something went wrong");
         setClearTimer(true);
         setLoading(false);
+        // router.replace("/login");
       });
   };
 
