@@ -14,6 +14,7 @@ const useForm = (initialValues) => {
   const handleCheckboxValueChange = (e) => {
     const eventName = [e.target.name];
     const newArr = values[eventName];
+    console.log(newArr, "newArr");
     if (e.target.checked) {
       newArr.push(e.target.value);
       setValues({

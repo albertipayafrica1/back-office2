@@ -34,7 +34,7 @@ const Login = () => {
     if (isValid) {
       const config = {
         method: "post",
-        url: `https://29e1-41-242-3-169.ngrok.io/auth/login`,
+        url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/login`,
         data: JSON.stringify(formData),
         withCredentials: true,
       };

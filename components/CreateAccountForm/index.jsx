@@ -182,7 +182,7 @@ const CreateAccountForm = ({
               required
               haveTooltip
               tooltipText="Select Your Country Of Operation"
-              defaultValue="Kenya"
+              defaultValue={formData.countryOfOperation}
             />
           </Stack>
         </CreateAccountFormDiv>

@@ -52,7 +52,7 @@ const OTPInput = () => {
 
     const config = {
       method: "post",
-      url: "https://29e1-41-242-3-169.ngrok.io/otp-login",
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/otp-login`,
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
         Authorization: `Bearer ${credentials}`,
@@ -75,8 +75,8 @@ const OTPInput = () => {
       .catch((err) => {
         console.log(err.response, "erro");
 
-        if (error.response) {
-          setError(error.response.data.response);
+        if (err.response !== null || err.response !== undefined) {
+          setError(err.response);
         } else {
           setError("Something went wrong");
         }
