@@ -29,9 +29,11 @@ import {
   business,
   country,
   registration,
-  ipayProducts,
+  kenyaIpayProducts,
+  togoIpayProducts,
+  tanzaniaIpayProducts,
+  ugandaIpayProducts,
   aboutUs,
-  otp,
   ads,
 } from "./data";
 
@@ -180,6 +182,7 @@ const CreateAccountForm = ({
               required
               haveTooltip
               tooltipText="Select Your Country Of Operation"
+              defaultValue="Kenya"
             />
           </Stack>
         </CreateAccountFormDiv>
@@ -233,7 +236,16 @@ const CreateAccountForm = ({
             />
 
             <CheckBoxes
-              formFields={ipayProducts}
+              formFields={
+                (formData.countryOfOperation === "Togo" && togoIpayProducts) ||
+                (formData.countryOfOperation === "Kenya" &&
+                  kenyaIpayProducts) ||
+                (formData.countryOfOperation === "Uganda" &&
+                  ugandaIpayProducts) ||
+                (formData.countryOfOperation === "Tanzania" &&
+                  tanzaniaIpayProducts) ||
+                kenyaIpayProducts
+              }
               fieldChecked={formData.ipayProducts}
               error={!!errors.ipayProducts}
               helperText={errors.ipayProducts}

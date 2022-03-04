@@ -18,7 +18,7 @@ const CreateAccount = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    countryOfOperation: "",
+    countryOfOperation: "Kenya",
     registrationDetails: "",
     revenue: "",
     businessType: "",
@@ -98,6 +98,7 @@ const CreateAccount = () => {
             };
           }
           setErrors(errs);
+          setLoading(false);
           console.log(errs, "errors");
         });
     }

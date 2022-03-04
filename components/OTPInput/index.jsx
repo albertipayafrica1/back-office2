@@ -1,4 +1,4 @@
-/*eslint quote-props: ["error", "as-needed"]*/
+/* eslint quote-props: ["error", "as-needed"] */
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -52,7 +52,7 @@ const OTPInput = () => {
 
     const config = {
       method: "post",
-      url: `https://a80e-41-242-3-169.ngrok.io/otp-login`,
+      url: "https://29e1-41-242-3-169.ngrok.io/otp-login",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
         Authorization: `Bearer ${credentials}`,
@@ -60,8 +60,7 @@ const OTPInput = () => {
       data: JSON.stringify(otpObject),
     };
 
-    axios
-      .post(config)
+    axios(config)
       .then((response) => {
         if (response.data.success === true) {
           setLoading(false);
@@ -74,8 +73,13 @@ const OTPInput = () => {
         }
       })
       .catch((err) => {
-        console.log(err, "erro");
-        setError("Invalid Otp");
+        console.log(err.response, "erro");
+
+        if (error.response) {
+          setError(error.response.data.response);
+        } else {
+          setError("Something went wrong");
+        }
         setClearTimer(true);
         setLoading(false);
       });

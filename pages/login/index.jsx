@@ -34,7 +34,7 @@ const Login = () => {
     if (isValid) {
       const config = {
         method: "post",
-        url: `https://a80e-41-242-3-169.ngrok.io/auth/login`,
+        url: `https://29e1-41-242-3-169.ngrok.io/auth/login`,
         data: JSON.stringify(formData),
         withCredentials: true,
       };
@@ -55,8 +55,13 @@ const Login = () => {
           }
         })
         .catch((error) => {
-          console.log(error, "response");
-          setErrors({ ...errors, generic: "Invalid username or Password" });
+          console.log(error.response, "response");
+          if (error.response) {
+            setErrors({ ...errors, generic: error.response.data.response });
+          } else {
+            setErrors({ ...errors, generic: "Something went wrong" });
+          }
+
           setLoading(false);
         });
     } else {
