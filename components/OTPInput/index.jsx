@@ -54,7 +54,7 @@ const OTPInput = () => {
       method: "post",
       url: `https://merchantregistration.ipayprojects.com/otp-login`,
       headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
+        "Content-Type": "application/json",
         Authorization: `Bearer ${credentials}`,
       },
       data: JSON.stringify(otpObject),

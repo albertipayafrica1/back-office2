@@ -35,6 +35,7 @@ const Login = () => {
       const config = {
         method: "post",
         url: `https://merchantregistration.ipayprojects.com/auth/login`,
+        headers: { "Content-Type": "application/json" },
         data: JSON.stringify(formData),
         withCredentials: true,
       };
