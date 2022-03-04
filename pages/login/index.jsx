@@ -34,7 +34,7 @@ const Login = () => {
     if (isValid) {
       const config = {
         method: "post",
-        url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/login`,
+        url: `https://merchantregistration.ipayprojects.com/auth/login`,
         data: JSON.stringify(formData),
         withCredentials: true,
       };

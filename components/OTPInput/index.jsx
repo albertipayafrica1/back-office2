@@ -52,7 +52,7 @@ const OTPInput = () => {
 
     const config = {
       method: "post",
-      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/otp-login`,
+      url: `https://merchantregistration.ipayprojects.com/otp-login`,
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
         Authorization: `Bearer ${credentials}`,
