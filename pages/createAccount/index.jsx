@@ -52,6 +52,11 @@ const CreateAccount = ({ country, rc }) => {
     ads: "",
     privacy: "",
     captcha: "",
+    generic: "",
+  });
+
+  const [success, setSuccess] = useState({
+    message: "",
   });
 
   const [captchaToken, setCaptchaToken] = useState("");
@@ -73,13 +78,14 @@ const CreateAccount = ({ country, rc }) => {
   // }, [formData.countryOfOperation, formData.referral]);
 
   const handleCaptchaToken = (token) => {
-    console.log(token, "captchatoken");
     setCaptchaToken(token);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setErrors({ ...errors, generic: "" });
+
     if (formData.aboutUs === "social Media" || formData.aboutUs === "website") {
       formData.referral = "None";
       formData.ads = "None";
@@ -88,9 +94,10 @@ const CreateAccount = ({ country, rc }) => {
     const isValid = await createAccount.isValid(formData, {
       abortEarly: false,
     });
-    console.log(captchaToken, "ct");
+
     if (isValid && captchaToken !== "") {
       setEmailAlert(true);
+      setSuccess({ message: "Success!" });
       // router.push("/login");
       setLoading(false);
     } else if (isValid && captchaToken === "") {
@@ -98,6 +105,7 @@ const CreateAccount = ({ country, rc }) => {
         ...errors,
         captcha: "kindly verify the captcha",
       });
+      setLoading(false);
     } else {
       await createAccount
         .validate(formData, { abortEarly: false })
@@ -130,6 +138,7 @@ const CreateAccount = ({ country, rc }) => {
           handleFormChange={handleFormChange}
           handleCheckboxChange={handleCheckboxChange}
           errors={errors}
+          success={success}
           handleSubmit={handleSubmit}
           handleCaptchaToken={handleCaptchaToken}
           loading={loading}

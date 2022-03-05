@@ -22,12 +22,16 @@ const Login = () => {
     password: "",
     generic: "",
   });
+  const [success, setSuccess] = useState({
+    message: "",
+  });
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setErrors({ ...errors, generic: "" });
+    setSuccess({ message: "" });
     const isValid = await login.isValid(formData, {
       abortEarly: false,
     });
@@ -43,6 +47,7 @@ const Login = () => {
         .then((response) => {
           console.log(response, "response");
           if (response.data.success === true) {
+            setSuccess({ message: "Signed In Successfully" });
             Cookies.set("AccessToken", response.data.token, {
               secure: true,
             });
@@ -88,6 +93,7 @@ const Login = () => {
           formData={formData}
           handleFormChange={handleFormChange}
           errors={errors}
+          success={success}
         />
       }
     />

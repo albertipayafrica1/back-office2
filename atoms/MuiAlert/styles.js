@@ -1,5 +1,5 @@
 export const AlertContainer = {
   position: "fixed",
-  top: 0,
+  top: 20,
   right: 10,
 };

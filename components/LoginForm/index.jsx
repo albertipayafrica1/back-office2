@@ -18,6 +18,7 @@ const LoginForm = ({
   formData,
   handleFormChange,
   errors,
+  success,
 }) => {
   return (
     <Box sx={styles.formContainer}>
@@ -126,6 +127,9 @@ const LoginForm = ({
       {errors.generic !== "" && errors.generic && (
         <MuiAlert variant="error" message={errors.generic} />
       )}
+      {success.message !== "" && success.message && (
+        <MuiAlert variant="success" message={success.message} />
+      )}
     </Box>
   );
 };
@@ -142,6 +146,9 @@ LoginForm.propTypes = {
     email: PropTypes.string,
     password: PropTypes.string,
     generic: PropTypes.string,
+  }).isRequired,
+  success: PropTypes.shape({
+    message: PropTypes.string,
   }).isRequired,
 };
 export default LoginForm;

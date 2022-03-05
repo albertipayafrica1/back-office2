@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -21,6 +20,7 @@ import CreateAccountFormDiv from "../../atoms/CreateAccountFormDiv";
 import CustomInput from "../../atoms/CustomInput";
 import CheckBoxes from "../../atoms/CheckBoxes";
 import Recaptcha from "../../atoms/Recaptcha";
+import MuiAlert from "../../atoms/MuiAlert";
 
 import * as styles from "./styles";
 
@@ -42,12 +42,11 @@ const CreateAccountForm = ({
   handleFormChange,
   handleCheckboxChange,
   errors,
+  success,
   handleSubmit,
   handleCaptchaToken,
   loading,
 }) => {
-  const router = useRouter();
-
   return (
     <>
       <Stack sx={styles.topContainer} spacing={1}>
@@ -387,6 +386,12 @@ const CreateAccountForm = ({
           </Stack>
         </Stack>
       </Stack>
+      {errors.generic !== "" && errors.generic && (
+        <MuiAlert variant="error" message={errors.generic} />
+      )}
+      {success.message !== "" && success.message && (
+        <MuiAlert variant="success" message={success.message} />
+      )}
     </>
   );
 };
@@ -430,6 +435,10 @@ CreateAccountForm.propTypes = {
     ads: PropTypes.string.isRequired,
     privacy: PropTypes.string.isRequired,
     captcha: PropTypes.string.isRequired,
+    generic: PropTypes.string.isRequired,
+  }).isRequired,
+  success: PropTypes.shape({
+    message: PropTypes.string,
   }).isRequired,
   handleSubmit: PropTypes.func.isRequired,
   handleCaptchaToken: PropTypes.func.isRequired,
