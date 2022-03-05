@@ -11,34 +11,34 @@ const ResendOtp = ({ seconds, clearTimer }) => {
 
   const handleResendOtp = () => {
     if (counter > 0) return;
-    localStorage.removeItem("timer");
+    sessionStorage.removeItem("timer");
     console.log(counter);
     setCounter(seconds);
   };
 
   useEffect(() => {
-    const timer = localStorage.getItem("timer");
+    const timer = sessionStorage.getItem("timer");
     if (timer !== null && clearTimer) {
-      localStorage.removeItem("timer");
+      sessionStorage.removeItem("timer");
     }
   }, [clearTimer]);
 
   useEffect(() => {
-    const timer = localStorage.getItem("timer");
+    const timer = sessionStorage.getItem("timer");
     // if (timer !== null && clearTimer) {
-    //   localStorage.removeItem("timer");
+    //   sessionStorage.removeItem("timer");
     // }
     if (timer === null) {
-      localStorage.setItem("timer", seconds);
+      sessionStorage.setItem("timer", seconds);
       setCounter(seconds - 1);
     } else {
-      setCounter(localStorage.getItem("timer"));
+      setCounter(sessionStorage.getItem("timer"));
       const timer1 =
         counter > 0 &&
         setInterval(() => {
-          localStorage.getItem(timer);
+          sessionStorage.getItem(timer);
           setCounter(timer - 1);
-          localStorage.setItem("timer", timer - 1);
+          sessionStorage.setItem("timer", timer - 1);
         }, 1000);
       return () => clearInterval(timer1);
     }
