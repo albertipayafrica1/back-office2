@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-export const createAccountFormValidation = yup.object().shape({
+export const createAccount = yup.object().shape({
   surname: yup
     .string("Surname must be a string")
     .required("Surname is required"),

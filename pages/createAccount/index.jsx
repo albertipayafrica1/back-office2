@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 
 import useForm from "../../hooks/useForm";
-import { createAccountFormValidation } from "../../utils/createAccountFormValidation";
+import { createAccount } from "../../utils/formValidations/createAccount";
 import { countryOfOperation } from "../../utils/countryOfOperation";
 
 import Carousel from "../../components/Carousel";
@@ -85,7 +85,7 @@ const CreateAccount = ({ country, rc }) => {
       formData.ads = "None";
     }
 
-    const isValid = await createAccountFormValidation.isValid(formData, {
+    const isValid = await createAccount.isValid(formData, {
       abortEarly: false,
     });
     console.log(captchaToken, "ct");
@@ -99,7 +99,7 @@ const CreateAccount = ({ country, rc }) => {
         captcha: "kindly verify the captcha",
       });
     } else {
-      await createAccountFormValidation
+      await createAccount
         .validate(formData, { abortEarly: false })
         .catch((err) => {
           let errs = err.inner.reduce((acc, error) => {

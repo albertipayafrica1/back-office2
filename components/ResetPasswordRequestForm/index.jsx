@@ -12,7 +12,7 @@ import MuiAlert from "../../atoms/MuiAlert";
 
 import * as styles from "./styles";
 
-const LoginForm = ({
+const ResetPasswordRequestForm = ({
   handleSubmit,
   loading,
   formData,
@@ -28,13 +28,9 @@ const LoginForm = ({
           alignItems="center"
         >
           <Image src="/iPay-logo.svg" alt="iPay Logo" width={78} height={39} />
-
-          <Typography variant="title6" sx={styles.otp}>
-            One Time Password (OTP) will be sent to your Email
-          </Typography>
         </Stack>
 
-        <Typography variant="title6">Login</Typography>
+        <Typography variant="title6">Reset Request</Typography>
 
         <CustomInput
           variant="outlined"
@@ -49,32 +45,7 @@ const LoginForm = ({
           onChange={handleFormChange}
           sx={styles.textField}
         />
-        <Stack
-          direction="row"
-          justifyContent="flex-end"
-          alignItems="flex-end"
-          mr={4}
-        >
-          <Link href="/resetPasswordRequest">
-            <a>
-              <Typography variant="subtitle2" sx={styles.blueText}>
-                Forgot Password?
-              </Typography>
-            </a>
-          </Link>
-        </Stack>
-        <CustomInput
-          variant="outlined"
-          name="password"
-          label="Password"
-          type="password"
-          id="password"
-          error={!!errors.password}
-          helperText={errors.password}
-          value={formData.password}
-          onChange={handleFormChange}
-          sx={styles.textField}
-        />
+
         <LoadingButton
           loading={loading}
           variant="contained"
@@ -83,7 +54,7 @@ const LoginForm = ({
           sx={styles.submitButton}
           onClick={handleSubmit}
         >
-          Log In
+          Request Reset
         </LoadingButton>
         <Stack spacing={2} mt={4}>
           <Link href="/createAccount">
@@ -130,18 +101,16 @@ const LoginForm = ({
   );
 };
 
-LoginForm.propTypes = {
+ResetPasswordRequestForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   formData: PropTypes.shape({
     email: PropTypes.string,
-    password: PropTypes.string,
   }).isRequired,
   handleFormChange: PropTypes.func.isRequired,
   errors: PropTypes.shape({
     email: PropTypes.string,
-    password: PropTypes.string,
     generic: PropTypes.string,
   }).isRequired,
 };
-export default LoginForm;
+export default ResetPasswordRequestForm;

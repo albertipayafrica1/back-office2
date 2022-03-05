@@ -12,7 +12,7 @@ import MuiAlert from "../../atoms/MuiAlert";
 
 import * as styles from "./styles";
 
-const LoginForm = ({
+const ResetPasswordForm = ({
   handleSubmit,
   loading,
   formData,
@@ -28,50 +28,31 @@ const LoginForm = ({
           alignItems="center"
         >
           <Image src="/iPay-logo.svg" alt="iPay Logo" width={78} height={39} />
-
-          <Typography variant="title6" sx={styles.otp}>
-            One Time Password (OTP) will be sent to your Email
-          </Typography>
         </Stack>
 
-        <Typography variant="title6">Login</Typography>
+        <Typography variant="title6">Reset Password</Typography>
 
         <CustomInput
           variant="outlined"
-          id="email"
-          type="email"
-          label="Your Email"
-          name="email"
-          autoFocus
-          error={!!errors.email}
-          helperText={errors.email}
-          value={formData.email}
+          name="newPassword"
+          label="New Password"
+          type="password"
+          id="newPassword"
+          error={!!errors.newPassword}
+          helperText={errors.newPassword}
+          value={formData.newPassword}
           onChange={handleFormChange}
           sx={styles.textField}
         />
-        <Stack
-          direction="row"
-          justifyContent="flex-end"
-          alignItems="flex-end"
-          mr={4}
-        >
-          <Link href="/resetPasswordRequest">
-            <a>
-              <Typography variant="subtitle2" sx={styles.blueText}>
-                Forgot Password?
-              </Typography>
-            </a>
-          </Link>
-        </Stack>
         <CustomInput
           variant="outlined"
-          name="password"
-          label="Password"
+          name="confirmPassword"
+          label="Confirm Password"
           type="password"
-          id="password"
-          error={!!errors.password}
-          helperText={errors.password}
-          value={formData.password}
+          id="confirmPassword"
+          error={!!errors.confirmPassword}
+          helperText={errors.confirmPassword}
+          value={formData.confirmPassword}
           onChange={handleFormChange}
           sx={styles.textField}
         />
@@ -83,7 +64,7 @@ const LoginForm = ({
           sx={styles.submitButton}
           onClick={handleSubmit}
         >
-          Log In
+          Reset Password
         </LoadingButton>
         <Stack spacing={2} mt={4}>
           <Link href="/createAccount">
@@ -130,18 +111,18 @@ const LoginForm = ({
   );
 };
 
-LoginForm.propTypes = {
+ResetPasswordForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   formData: PropTypes.shape({
-    email: PropTypes.string,
-    password: PropTypes.string,
+    newPassword: PropTypes.string,
+    confirmPassword: PropTypes.string,
   }).isRequired,
   handleFormChange: PropTypes.func.isRequired,
   errors: PropTypes.shape({
-    email: PropTypes.string,
-    password: PropTypes.string,
+    newPassword: PropTypes.string,
+    confirmPassword: PropTypes.string,
     generic: PropTypes.string,
   }).isRequired,
 };
-export default LoginForm;
+export default ResetPasswordForm;

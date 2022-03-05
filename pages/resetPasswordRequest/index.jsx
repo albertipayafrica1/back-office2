@@ -1,25 +1,24 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import Cookies from "js-cookie";
 
 import axios from "axios";
+
 import Carousel from "../../components/Carousel";
-import LoginForm from "../../components/LoginForm";
+import ResetPasswordRequestForm from "../../components/ResetPasswordRequestForm";
 import Auth from "../../components/Layouts/Auth";
+
 import useForm from "../../hooks/useForm";
-import { login } from "../../utils/formValidations/login";
+import { resetPasswordRequest } from "../../utils/formValidations/resetPasswordRequest";
 
 axios.defaults.withCredentials = true;
 
-const Login = () => {
+const ResetPasswordRequest = () => {
   const router = useRouter();
   const [formData, handleFormChange] = useForm({
     email: "",
-    password: "",
   });
   const [errors, setErrors] = useState({
     email: "",
-    password: "",
     generic: "",
   });
   const [loading, setLoading] = useState(false);
@@ -28,13 +27,13 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     setErrors({ ...errors, generic: "" });
-    const isValid = await login.isValid(formData, {
+    const isValid = await resetPasswordRequest.isValid(formData, {
       abortEarly: false,
     });
     if (isValid) {
       const config = {
         method: "post",
-        url: `https://merchantregistration.ipayprojects.com/auth/login`,
+        url: `https://merchantregistration.ipayprojects.com/auth/resetPasswordRequest`,
         headers: { "Content-Type": "application/json" },
         data: JSON.stringify(formData),
         withCredentials: true,
@@ -43,13 +42,9 @@ const Login = () => {
         .then((response) => {
           console.log(response, "response");
           if (response.data.success === true) {
-            Cookies.set("AccessToken", response.data.token, {
-              secure: true,
-            });
-            router.replace("/otp");
+            console.log("success");
           } else {
-            console.log(response, "response0");
-            setErrors({ ...errors, generic: "Invalid username or Password" });
+            setErrors({ ...errors, generic: "Something went wrong" });
             setLoading(false);
           }
         })
@@ -64,17 +59,19 @@ const Login = () => {
           setLoading(false);
         });
     } else {
-      await login.validate(formData, { abortEarly: false }).catch((err) => {
-        const errs = err.inner.reduce(
-          (acc, error) => ({
-            ...acc,
-            [error.path]: error.message,
-          }),
-          {}
-        );
-        setErrors(errs);
-        setLoading(false);
-      });
+      await resetPasswordRequest
+        .validate(formData, { abortEarly: false })
+        .catch((err) => {
+          const errs = err.inner.reduce(
+            (acc, error) => ({
+              ...acc,
+              [error.path]: error.message,
+            }),
+            {}
+          );
+          setErrors(errs);
+          setLoading(false);
+        });
     }
   };
 
@@ -82,7 +79,7 @@ const Login = () => {
     <Auth
       left={<Carousel />}
       right={
-        <LoginForm
+        <ResetPasswordRequestForm
           handleSubmit={handleSubmit}
           loading={loading}
           formData={formData}
@@ -94,4 +91,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ResetPasswordRequest;
