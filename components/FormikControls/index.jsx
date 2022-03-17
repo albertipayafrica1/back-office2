@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import FormikCustomInput from "../../atoms/FormikCustomInput";
 import FormikCheckboxGroup from "../../atoms/FormikCheckboxGroup";
 import FormikRadioGroup from "../../atoms/FormikRadioGroup";
+import FormikDatePicker from "../../atoms/FormikDatePicker";
 
 const FormikControl = ({ control, ...rest }) => {
   switch (control) {
@@ -16,6 +17,8 @@ const FormikControl = ({ control, ...rest }) => {
       return <FormikCheckboxGroup {...rest} />;
     case "radio":
       return <FormikRadioGroup {...rest} />;
+    case "datePicker":
+      return <FormikDatePicker {...rest} />;
     default:
       return null;
   }
