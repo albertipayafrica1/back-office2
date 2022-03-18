@@ -1,16 +1,19 @@
 import PropTypes from "prop-types";
 
+import { DesktopDatePicker, LocalizationProvider } from "@mui/lab";
+
+// import DateAdapter from "@mui/lab/AdapterMoment";
+
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+
 import {
-  DesktopDatePicker,
-  LocalizationProvider,
-  AdapterMoment,
-} from "@mui/lab";
+  FormControl,
+  FormGroup,
+  FormHelperText,
+  TextField,
+} from "@mui/material";
 
-import DateAdapter from "@mui/lab/AdapterMoment";
-
-import { TextField } from "@mui/material";
-
-import { Field, ErrorMessage } from "formik";
+import { Field } from "formik";
 
 const FormikDatePicker = ({
   name,
@@ -24,18 +27,25 @@ const FormikDatePicker = ({
     <Field name={name}>
       {({ field, form }) => {
         return (
-          <LocalizationProvider dateAdapter={DateAdapter}>
-            <DesktopDatePicker
-              {...field}
-              {...restProps}
-              label="Date desktop"
-              inputFormat="MM/dd/yyyy"
-              required={required}
-              onChange={onChange !== "" ? onChange : form.handleChange}
-              onBlur={onBlur !== "" ? onBlur : form.handleBlur}
-              renderInput={(params) => <TextField {...params} />}
-            />
-          </LocalizationProvider>
+          <FormControl error={!!form.errors[name]}>
+            <FormGroup>
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DesktopDatePicker
+                  {...field}
+                  {...restProps}
+                  label="Date desktop"
+                  inputFormat="dd/MM/yyyy"
+                  required={required}
+                  onChange={onChange !== "" ? onChange : form.handleChange}
+                  onBlur={onBlur !== "" ? onBlur : form.handleBlur}
+                  renderInput={(params) => <TextField {...params} />}
+                />
+              </LocalizationProvider>
+            </FormGroup>
+            <FormHelperText>
+              {form.errors[name] ? form.errors[name] : ""}
+            </FormHelperText>
+          </FormControl>
         );
       }}
     </Field>

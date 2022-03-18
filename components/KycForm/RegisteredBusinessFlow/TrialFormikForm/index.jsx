@@ -44,7 +44,7 @@ const TrialFormikForm = () => {
     countryOfOperation: "",
     radioOption: "",
     checkboxOption: [],
-    dateOfBirth: new Date(""),
+    dateOfBirth: null,
   };
 
   const apiValues = {
@@ -69,7 +69,7 @@ const TrialFormikForm = () => {
     radioOption: Yup.string().required("Required"),
     // ipayProducts: Yup.array().required("Required"),
     // birthDate: Yup.date().required("Required").nullable(),
-    dateOfBirth: Yup.date().required("Required"),
+    dateOfBirth: Yup.date("select a valid date").required("Required"),
   });
   const onSubmit = (values, formikHelpers) => {
     // console.log("Form data", values);
