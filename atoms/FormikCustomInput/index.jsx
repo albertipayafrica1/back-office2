@@ -47,8 +47,6 @@ const CustomInput = ({
   return (
     <Field name={name}>
       {({ field, form }) => {
-        // console.log(field, "field");
-        // console.log(form, "form");
         return (
           <TextField
             {...field}

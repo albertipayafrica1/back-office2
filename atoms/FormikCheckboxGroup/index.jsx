@@ -18,8 +18,6 @@ const FormikCheckboxGroup = ({ label, options, name, onChange, onBlur }) => {
   return (
     <Field name={name}>
       {({ field, form }) => {
-        console.log(field, "field in checkbox");
-        console.log(form, "form in checkbox");
         return (
           <FormControl error={!!form.errors[name]}>
             {label !== "" && <FormLabel>{label}</FormLabel>}

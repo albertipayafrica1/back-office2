@@ -44,7 +44,7 @@ const TrialFormikForm = () => {
     countryOfOperation: "",
     radioOption: "",
     checkboxOption: [],
-    birthDate: null,
+    dateOfBirth: null,
   };
 
   const apiValues = {
@@ -69,6 +69,7 @@ const TrialFormikForm = () => {
     radioOption: Yup.string().required("Required"),
     // ipayProducts: Yup.array().required("Required"),
     // birthDate: Yup.date().required("Required").nullable(),
+    dateOfBirth: Yup.date("select a valid date").required("Required"),
   });
   const onSubmit = (values, formikHelpers) => {
     // console.log("Form data", values);
@@ -94,6 +95,16 @@ const TrialFormikForm = () => {
       {(formik) => {
         return (
           <Form>
+            <FormikControl
+              control="datePicker"
+              label="Date Of Birth"
+              name="dateOfBirth"
+              required
+              onChange={(val) => {
+                console.log("___", val);
+                formik.setFieldValue("dateOfBirth", val);
+              }}
+            />
             <FormikControl
               control="input"
               label="Email"
@@ -165,6 +176,7 @@ const TrialFormikForm = () => {
               haveTooltip
               tooltipText="Select Your Country Of Operation"
             />
+
             <FormikControl
               control="checkbox"
               label="Checkbox topics"
@@ -177,6 +189,7 @@ const TrialFormikForm = () => {
               options={radioOptions}
               name="radioOption"
             />
+
             <button type="submit" disabled={!formik.isValid}>
               Submit
             </button>
