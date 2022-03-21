@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Field, ErrorMessage } from "formik";
+import { Field, ErrorMessage, getIn } from "formik";
 import PropTypes from "prop-types";
 
 import {
@@ -8,7 +8,6 @@ import {
   IconButton,
   InputAdornment,
   Tooltip,
-  Stack,
   MenuItem,
   Typography,
 } from "@mui/material";
@@ -60,7 +59,9 @@ const CustomInput = ({
             onBlur={onBlur !== "" ? onBlur : form.handleBlur}
             required={required}
             helperText={<ErrorMessage name={name} />}
-            error={form.errors[name] && form.touched[name]}
+            error={Boolean(
+              getIn(form.touched, name) && getIn(form.errors, name)
+            )}
             size="medium"
             fullWidth
             multiline={multiline}

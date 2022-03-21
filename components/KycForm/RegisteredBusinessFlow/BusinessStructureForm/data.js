@@ -25,6 +25,13 @@ export const businessSubCategoryOptions = [
   { key: "Electronics", value: "2" },
 ];
 
+export const shareHolderTypeOptions = [
+  { key: "ShareHolder", value: "1" },
+  { key: "Director", value: "2" },
+  { key: "Partner", value: "3" },
+  { key: "Others", value: "4" },
+];
+
 export const businessCurrencyOptions = [
   { key: "USD", value: "1" },
   { key: "KES", value: "2" },

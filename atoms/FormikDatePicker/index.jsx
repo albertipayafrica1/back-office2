@@ -2,8 +2,6 @@ import PropTypes from "prop-types";
 
 import { DesktopDatePicker, LocalizationProvider } from "@mui/lab";
 
-// import DateAdapter from "@mui/lab/AdapterMoment";
-
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 
 import {
@@ -13,7 +11,7 @@ import {
   TextField,
 } from "@mui/material";
 
-import { Field } from "formik";
+import { Field, ErrorMessage, getIn } from "formik";
 
 const FormikDatePicker = ({
   name,
@@ -27,13 +25,18 @@ const FormikDatePicker = ({
     <Field name={name}>
       {({ field, form }) => {
         return (
-          <FormControl error={!!form.errors[name]}>
+          <FormControl
+            error={Boolean(
+              getIn(form.touched, name) && getIn(form.errors, name)
+            )}
+            sx={{ width: "100%" }}
+          >
             <FormGroup>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DesktopDatePicker
                   {...field}
                   {...restProps}
-                  label="Date desktop"
+                  label={label}
                   inputFormat="dd/MM/yyyy"
                   required={required}
                   onChange={onChange !== "" ? onChange : form.handleChange}
@@ -43,7 +46,7 @@ const FormikDatePicker = ({
               </LocalizationProvider>
             </FormGroup>
             <FormHelperText>
-              {form.errors[name] ? form.errors[name] : ""}
+              <ErrorMessage name={name} />
             </FormHelperText>
           </FormControl>
         );

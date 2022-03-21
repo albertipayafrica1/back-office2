@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
 import { Formik, Form, FieldArray } from "formik";
 import * as Yup from "yup";
 import FormikControl from "../../../FormikControls";
-import { checkbox } from "../BusinessStructureForm/styles";
 
 const TrialFormikForm = () => {
   const dropdownOptions = [
@@ -72,9 +70,9 @@ const TrialFormikForm = () => {
     dateOfBirth: Yup.date("select a valid date").required("Required"),
   });
   const onSubmit = (values, formikHelpers) => {
-    // console.log("Form data", values);
-    // console.log("Saved data", formikHelpers);
-    formikHelpers.setErrors({ email: "is the karine" });
+    console.log("Form data", values);
+    console.log("Saved data", formikHelpers);
+    // formikHelpers.setErrors({ email: "is the karine" });
   };
 
   // const formik1 = useFormik({ initialValues });
@@ -89,7 +87,7 @@ const TrialFormikForm = () => {
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={validationSchema}
+      // validationSchema={validationSchema}
       onSubmit={onSubmit}
       enableReinitialize
     >

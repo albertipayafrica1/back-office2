@@ -11,7 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 
-import { Field } from "formik";
+import { Field, ErrorMessage, getIn } from "formik";
 
 import * as styles from "./styles";
 
@@ -20,7 +20,11 @@ const FormikRadioGroup = ({ label, name, options, onChange, onBlur }) => {
     <Field name={name}>
       {({ field, form }) => {
         return (
-          <FormControl error={!!form.errors[name]}>
+          <FormControl
+            error={Boolean(
+              getIn(form.touched, name) && getIn(form.errors, name)
+            )}
+          >
             {label !== "" && (
               <FormLabel id="radio-buttons-group-label">{label}</FormLabel>
             )}
@@ -53,7 +57,7 @@ const FormikRadioGroup = ({ label, name, options, onChange, onBlur }) => {
               );
             })}
             <FormHelperText sx={styles.helperText}>
-              {form.errors[name] ? form.errors[name] : ""}
+              <ErrorMessage name={name} />
             </FormHelperText>
           </FormControl>
         );
