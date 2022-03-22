@@ -44,7 +44,7 @@ const Otp = () => {
     setError(null);
     setResendOtpSuccess(false);
     const joinedOtp = otp.join("");
-    const credentials = Cookies.get("AccessToken");
+    const credentials = Cookies.get("iPayT");
     console.log(credentials);
     const otpObject = {
       otp: joinedOtp,
@@ -65,6 +65,9 @@ const Otp = () => {
       .then((response) => {
         console.log(response, "otp response");
         if (response.data.success === true) {
+          Cookies.set("iPayT", response.data.token, {
+            secure: true,
+          });
           setLoading(false);
           setClearTimer(true);
           router.replace("/dashboard");
@@ -92,7 +95,7 @@ const Otp = () => {
     setError(null);
     setResendOtpSuccess(false);
 
-    const credentials = Cookies.get("AccessToken");
+    const credentials = Cookies.get("iPayT");
 
     const config = {
       method: "post",

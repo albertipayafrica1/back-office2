@@ -17,10 +17,10 @@ axios.defaults.withCredentials = true;
 const Login = ({ country }) => {
   const router = useRouter();
 
-  const credentials = Cookies.get("AccessToken");
+  const credentials = Cookies.get("iPayT");
 
   if (credentials !== undefined) {
-    Cookies.set("AccessToken", "", { expires: -1 });
+    Cookies.set("iPayT", "", { expires: -1 });
   }
 
   const [formData, handleFormChange] = useForm({
@@ -52,7 +52,7 @@ const Login = ({ country }) => {
       axios(config)
         .then((response) => {
           if (response.data.success === true) {
-            Cookies.set("AccessToken", response.data.token, {
+            Cookies.set("iPayT", response.data.token, {
               secure: true,
             });
             router.replace(`/otp?country=${country}`);

@@ -35,7 +35,7 @@ const PasswordExpired = () => {
     setErrors({});
     setSuccess({});
 
-    const credentials = Cookies.get("AccessToken");
+    const credentials = Cookies.get("iPayT");
 
     const isValid = await resetPassword.isValid(formData, {
       abortEarly: false,
@@ -61,7 +61,7 @@ const PasswordExpired = () => {
           console.log(response, "response");
           if (response.data.success === true) {
             setSuccess({ status: true, message: response.data.response });
-            Cookies.set("AccessToken", "", { expires: -1 });
+            Cookies.set("iPayT", "", { expires: -1 });
             router.replace("/login");
           } else {
             setErrors({ generic: "Something Went wrong" });
