@@ -85,5 +85,41 @@ export default {
         letterSpacing: "0.4px",
       },
     },
+    {
+      props: {
+        variant: "title1",
+      },
+      style: {
+        fontSize: "10px",
+        lineHeight: "70px",
+        letterSpacing: "0.4px",
+      },
+    },
+    {
+      props: {
+        variant: "title7",
+      },
+      style: {
+        color: "#124AA1",
+        fontWeight: 500,
+        fontSize: "15px",
+        lineHeight: "28px",
+        letterSpacing: "0.15px",
+      },
+    },
+
+    {
+      props: {
+        variant: "title8",
+      },
+      style: {
+        color: "orange",
+        padding: "10px",
+        fontWeight: "400",
+        fontSize: "15px",
+        lineHeight: "28px",
+        letterSpacing: "0.15px",
+      },
+    },
   ],
 };
