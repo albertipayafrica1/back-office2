@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 import { useState } from "react";
 import Link from "next/link";
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { Formik, Form } from "formik";
 import axios from "axios";

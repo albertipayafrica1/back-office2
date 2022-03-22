@@ -6,7 +6,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import Carousel from "../atoms/Curousel";
 import BookDemoDialog from "../components/BookDemoDialog";
 import CallMeDialog from "../components/CallMeDialog";
-import SelectContryDialog from "../components/SelectContryDialog";
+import SelectContryDialog from "../components/SelectCountryDialog";
 
 import { homedata, SocialMediaLinks } from "../homedata";
 import { styles } from "../styles/Home";
