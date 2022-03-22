@@ -103,7 +103,7 @@ const BusinessStructureForm = (data) => {
             <Stack sx={styles.formContainer} spacing={8}>
               <CreateAccountFormDiv topLabel="Business Representative">
                 <Stack direction="column" spacing={2}>
-                  <Stack direction="row" spacing={3}>
+                  <Stack direction={{ xs: "column", md: "row" }} spacing={3}>
                     <FormikControl
                       control="select"
                       variant="outlined"
@@ -142,7 +142,7 @@ const BusinessStructureForm = (data) => {
                       id="middleName"
                     />
                   </Stack>
-                  <Stack direction="row" spacing={3}>
+                  <Stack direction={{ xs: "column", md: "row" }} spacing={3}>
                     <FormikControl
                       control="input"
                       variant="outlined"
@@ -165,7 +165,7 @@ const BusinessStructureForm = (data) => {
                     />
                   </Stack>
                   <Stack
-                    direction="row"
+                    direction={{ xs: "column", md: "row" }}
                     spacing={3}
                     justifyContent="space-between"
                   >
@@ -192,7 +192,7 @@ const BusinessStructureForm = (data) => {
                       required
                     />
                   </Stack>
-                  <Stack direction="row" spacing={3}>
+                  <Stack direction={{ xs: "column", md: "row" }} spacing={3}>
                     <FormikControl
                       control="datePicker"
                       label="Date Of Birth"
@@ -220,7 +220,7 @@ const BusinessStructureForm = (data) => {
               </CreateAccountFormDiv>
               <CreateAccountFormDiv topLabel="Registered Business Details">
                 <Stack direction="column" spacing={2}>
-                  <Stack direction="row" spacing={3}>
+                  <Stack direction={{ xs: "column", md: "row" }} spacing={3}>
                     <FormikControl
                       control="input"
                       variant="outlined"
@@ -240,7 +240,7 @@ const BusinessStructureForm = (data) => {
                       required
                     />
                   </Stack>
-                  <Stack direction="row" spacing={3}>
+                  <Stack direction={{ xs: "column", md: "row" }} spacing={3}>
                     <FormikControl
                       control="input"
                       variant="outlined"
@@ -264,7 +264,7 @@ const BusinessStructureForm = (data) => {
                       required
                     />
                   </Stack>
-                  <Stack direction="row" spacing={3}>
+                  <Stack direction={{ xs: "column", md: "row" }} spacing={3}>
                     <FormikControl
                       control="input"
                       variant="outlined"
@@ -284,7 +284,7 @@ const BusinessStructureForm = (data) => {
                       required
                     />
                   </Stack>
-                  <Stack direction="row" spacing={3}>
+                  <Stack direction={{ xs: "column", md: "row" }} spacing={3}>
                     <FormikControl
                       control="input"
                       variant="outlined"
@@ -320,7 +320,7 @@ const BusinessStructureForm = (data) => {
               </CreateAccountFormDiv>
               <CreateAccountFormDiv topLabel="Business Location">
                 <Stack direction="column" spacing={2}>
-                  <Stack spacing={3} direction="row">
+                  <Stack spacing={3} direction={{ xs: "column", md: "row" }}>
                     <FormikControl
                       control="input"
                       variant="outlined"
@@ -340,7 +340,7 @@ const BusinessStructureForm = (data) => {
                       required
                     />
                   </Stack>
-                  <Stack direction="row" spacing={3}>
+                  <Stack direction={{ xs: "column", md: "row" }} spacing={3}>
                     <FormikControl
                       control="input"
                       variant="outlined"
@@ -361,7 +361,7 @@ const BusinessStructureForm = (data) => {
                     />
                   </Stack>
                   <Stack
-                    direction="row"
+                    direction={{ xs: "column", md: "row" }}
                     spacing={3}
                     justifyContent="space-between"
                   >
@@ -383,7 +383,7 @@ const BusinessStructureForm = (data) => {
                       id="websiteLink"
                     />
                   </Stack>
-                  <Stack direction="row" spacing={3}>
+                  <Stack direction={{ xs: "column", md: "row" }} spacing={3}>
                     <FormikControl
                       control="input"
                       variant="outlined"
@@ -476,7 +476,10 @@ const BusinessStructureForm = (data) => {
                     topLabel={`Ultimate Beneficial Owner ${index + 1}`}
                   >
                     <Stack direction="column" spacing={2}>
-                      <Stack direction="row" spacing={3}>
+                      <Stack
+                        direction={{ xs: "column", md: "row" }}
+                        spacing={3}
+                      >
                         <FormikControl
                           control="select"
                           variant="outlined"
@@ -515,7 +518,10 @@ const BusinessStructureForm = (data) => {
                           id={`ultimateBeneficialOwners[${index}].middleName`}
                         />
                       </Stack>
-                      <Stack direction="row" spacing={3}>
+                      <Stack
+                        direction={{ xs: "column", md: "row" }}
+                        spacing={3}
+                      >
                         <FormikControl
                           control="radio"
                           label="ShareHolder Type"
@@ -526,7 +532,10 @@ const BusinessStructureForm = (data) => {
 
                       {formik.values.ultimateBeneficialOwners[index]
                         .shareHolderType === "4" && (
-                        <Stack direction="row" spacing={3}>
+                        <Stack
+                          direction={{ xs: "column", md: "row" }}
+                          spacing={3}
+                        >
                           <FormikControl
                             control="input"
                             label="Other ShareHolder Type"
@@ -539,7 +548,10 @@ const BusinessStructureForm = (data) => {
                         </Stack>
                       )}
 
-                      <Stack direction="row" spacing={3}>
+                      <Stack
+                        direction={{ xs: "column", md: "row" }}
+                        spacing={3}
+                      >
                         <FormikControl
                           control="input"
                           variant="outlined"
@@ -561,7 +573,10 @@ const BusinessStructureForm = (data) => {
                           required
                         />
                       </Stack>
-                      <Stack direction="row" spacing={3}>
+                      <Stack
+                        direction={{ xs: "column", md: "row" }}
+                        spacing={3}
+                      >
                         <FormikControl
                           control="input"
                           variant="outlined"
@@ -583,7 +598,10 @@ const BusinessStructureForm = (data) => {
                           required
                         />
                       </Stack>
-                      <Stack direction="row" spacing={3}>
+                      <Stack
+                        direction={{ xs: "column", md: "row" }}
+                        spacing={3}
+                      >
                         <FormikControl
                           control="input"
                           variant="outlined"
@@ -612,7 +630,10 @@ const BusinessStructureForm = (data) => {
                       topLabel={`Next Of Kin ${index1 + 1}`}
                     >
                       <Stack direction="column" spacing={2}>
-                        <Stack direction="row" spacing={3}>
+                        <Stack
+                          direction={{ xs: "column", md: "row" }}
+                          spacing={3}
+                        >
                           <FormikControl
                             control="select"
                             variant="outlined"
@@ -651,7 +672,10 @@ const BusinessStructureForm = (data) => {
                             id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].middleName`}
                           />
                         </Stack>
-                        <Stack direction="row" spacing={3}>
+                        <Stack
+                          direction={{ xs: "column", md: "row" }}
+                          spacing={3}
+                        >
                           <FormikControl
                             control="input"
                             variant="outlined"
@@ -673,7 +697,10 @@ const BusinessStructureForm = (data) => {
                             required
                           />
                         </Stack>
-                        <Stack direction="row" spacing={3}>
+                        <Stack
+                          direction={{ xs: "column", md: "row" }}
+                          spacing={3}
+                        >
                           <FormikControl
                             control="input"
                             variant="outlined"
