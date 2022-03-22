@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Field, ErrorMessage, getIn } from "formik";
+import { FastField, ErrorMessage, getIn } from "formik";
 import PropTypes from "prop-types";
 
 import {
@@ -44,7 +44,7 @@ const CustomInput = ({
   };
 
   return (
-    <Field name={name}>
+    <FastField name={name}>
       {({ field, form }) => {
         return (
           <TextField
@@ -107,7 +107,7 @@ const CustomInput = ({
           </TextField>
         );
       }}
-    </Field>
+    </FastField>
   );
 };
 
