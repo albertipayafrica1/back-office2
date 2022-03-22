@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Box, Grid, Typography, Button } from "@mui/material";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
-import Carousel from "../atoms/Curousel";
+import Carousel from "../atoms/Carousel";
 import BookDemoDialog from "../components/BookDemoDialog";
 import CallMeDialog from "../components/CallMeDialog";
 import SelectContryDialog from "../components/SelectCountryDialog";
@@ -47,12 +47,10 @@ const Home = () => {
       <Grid container spacing={2}>
         {/** hide background-image when on Mobile/tablet */}
         <Box sx={styles.backgroundImage}>
-          {/* {matches ? ( */}
           <Carousel
             imageArray={perPage.ArrayImage}
             onChange={HandleSelectedPage}
           />
-          {/* ) : null} */}
         </Box>
         <Grid item md={6} xs={12}>
           <Box sx={styles.gatewayContainer}>
@@ -108,7 +106,7 @@ const Home = () => {
               }}
               variant="white"
             >
-              Select country of opearation to login
+              Select country of operation to login
             </Button>
           </Box>
         </Grid>
