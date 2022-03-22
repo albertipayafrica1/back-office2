@@ -1,14 +1,14 @@
 import { Stack, Button, Box } from "@mui/material";
 import { Formik, Form } from "formik";
+import { LoadingButton } from "@mui/lab";
 import FormikControl from "../../../FormikControls/index";
 import BankDetailsContainer from "../../../../atoms/CreateAccountFormDiv";
 import { Currency, bankLocation } from "./data";
-import { LoadingButton } from "@mui/lab";
 import { bankDetails } from "../../../../utils/formValidations/kyc/registeredBusinessFlow/bankDetails";
 import { styles } from "./styles";
 
 const handleSubmit = (values, { setErrors }) => {
-  alert(JSON.stringify(values, null, 2));
+  // alert(JSON.stringify(values, null, 2));
 };
 
 const initialValues = {
@@ -27,7 +27,7 @@ const BankDetailsForm = () => {
       <Formik
         validationSchema={bankDetails}
         initialValues={initialValues}
-        onSubmit={handleSubmit} //pass this as props
+        onSubmit={handleSubmit} // pass this as props
         enableReinitialize
       >
         {(formik) => {
@@ -146,7 +146,7 @@ const BankDetailsForm = () => {
           );
         }}
       </Formik>
-      <Box></Box>
+      <Box />
     </Stack>
   );
 };
