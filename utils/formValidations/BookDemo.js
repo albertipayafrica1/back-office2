@@ -13,13 +13,9 @@ export const validationSchema = yup.object({
     .string("Enter your last name")
     .required("Last name is required"),
 
-  // yourCompanyName: yup
-  //   .string("Enter your Company name")
-  //   .required("Company name is required"),
+  yourCompanyName: yup.string().typeError("should be strings."),
 
-  // yourCompanyWebsite: yup
-  //   .string("Enter your company website")
-  //   .required("Company website is required"),
+  yourCompanyWebsite: yup.string().typeError("should be string"),
 
   mobileNumber: yup
     .string()
@@ -27,7 +23,7 @@ export const validationSchema = yup.object({
       /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
       "Phone number is not valid"
     )
-    .required("Mobile number required"),
+    .required("Mobile number is required"),
 
   subject: yup.string("Enter the subject").required("subject is required"),
 });
