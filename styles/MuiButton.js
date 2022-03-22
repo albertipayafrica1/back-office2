@@ -42,5 +42,39 @@ export default {
         },
       },
     },
+    {
+      props: {
+        variant: "white",
+      },
+
+      style: {
+        backgroundColor: "white",
+        color: "orange",
+        padding: "10px",
+        width: "70%",
+        fontSize: "mediam",
+        borderRadius: "8px",
+        "&:hover": {
+          backgroundColor: "orange",
+          color: colors.mono1,
+        },
+      },
+    },
+    {
+      props: {
+        variant: "orange-demo",
+      },
+      style: {
+        color: colors.mono1,
+        backgroundColor: colors.orange,
+        padding: "6px",
+        width: "40%",
+        fontSize: "larger",
+        borderRadius: "8px",
+        "&:hover": {
+          backgroundColor: "orange",
+        },
+      },
+    },
   ],
 };
