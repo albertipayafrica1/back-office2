@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Stack, Button, Box } from "@mui/material";
 import { Formik, Form } from "formik";
 import { LoadingButton } from "@mui/lab";
@@ -6,10 +7,6 @@ import BankDetailsContainer from "../../../../atoms/CreateAccountFormDiv";
 import { Currency, bankLocation } from "./data";
 import { bankDetails } from "../../../../utils/formValidations/kyc/registeredBusinessFlow/bankDetails";
 import { styles } from "./styles";
-
-const handleSubmit = (values, { setErrors }) => {
-  // alert(JSON.stringify(values, null, 2));
-};
 
 const initialValues = {
   banklocation: "",
@@ -21,7 +18,10 @@ const initialValues = {
   swiftcode: "",
 };
 
-const BankDetailsForm = () => {
+const BankDetailsForm = ({ handleNextStep }) => {
+  const handleSubmit = (values, { setErrors }) => {
+    handleNextStep();
+  };
   return (
     <Stack sx={styles.topContainer} spacing={1}>
       <Formik
@@ -149,6 +149,10 @@ const BankDetailsForm = () => {
       <Box />
     </Stack>
   );
+};
+
+BankDetailsForm.propTypes = {
+  handleNextStep: PropTypes.func.isRequired,
 };
 
 export default BankDetailsForm;
