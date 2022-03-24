@@ -29,7 +29,7 @@ const CallMeDialog = ({ open, handleToggleCallMeDemo }) => {
 
     const config = {
       method: "post",
-      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}call-demo`,
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/call-demo`,
       headers: {
         "Content-Type": "application/json",
       },
