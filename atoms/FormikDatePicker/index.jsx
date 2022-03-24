@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 
 import { Field, ErrorMessage, getIn } from "formik";
+import useStyles from "./styles";
 
 const FormikDatePicker = ({
   name,
@@ -21,6 +22,8 @@ const FormikDatePicker = ({
   label,
   ...restProps
 }) => {
+  const classes = useStyles();
+
   return (
     <Field name={name}>
       {({ field, form }) => {
@@ -41,7 +44,31 @@ const FormikDatePicker = ({
                   required={required}
                   onChange={onChange !== "" ? onChange : form.handleChange}
                   onBlur={onBlur !== "" ? onBlur : form.handleBlur}
-                  renderInput={(params) => <TextField {...params} {...field} />}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      {...field}
+                      className={classes.root}
+                      sx={{
+                        "& .MuiOutlinedInput-root:hover": {
+                          "& > fieldset": {
+                            borderColor: (theme) => theme.colors.blue,
+                          },
+                        },
+                        "& .MuiOutlinedInput-root": {
+                          "& .Mui-focused": {
+                            borderColor: (theme) => theme.colors.blue,
+                          },
+                        },
+                        "& .MuiFormLabel-root": {
+                          color: (theme) => theme.colors.mono4,
+                          "& .Mui-focused": {
+                            color: (theme) => theme.colors.blue,
+                          },
+                        },
+                      }}
+                    />
+                  )}
                 />
               </LocalizationProvider>
             </FormGroup>
