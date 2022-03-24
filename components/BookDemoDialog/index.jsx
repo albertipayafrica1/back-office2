@@ -25,7 +25,7 @@ const BookDemoDialog = ({ handleToggleBookDemo, open }) => {
 
     const config = {
       method: "post",
-      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}book-demo`,
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/book-demo`,
       headers: {
         "Content-Type": "application/json",
       },
