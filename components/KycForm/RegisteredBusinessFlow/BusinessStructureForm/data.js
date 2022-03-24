@@ -41,6 +41,4 @@ export const businessCurrencyOptions = [
 export const documentTypeOptions = [
   { key: "National Id", value: "1" },
   { key: "Passport", value: "2" },
-  { key: "Alien Card", value: "3" },
-  { key: "huduma Card", value: "4" },
 ];
