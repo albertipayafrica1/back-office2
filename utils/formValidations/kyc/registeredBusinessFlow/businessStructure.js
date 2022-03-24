@@ -1,4 +1,5 @@
 import * as yup from "yup";
+import { differenceInYears } from "date-fns";
 
 export const businessStructure = yup.object({
   businessRepresentative: yup.object({
@@ -19,10 +20,17 @@ export const businessStructure = yup.object({
       .required("Email is required"),
     gender: yup.string().required("kindly select gender"),
     maritalStatus: yup.string().required("kindly select your marital status"),
-    dateOfBirth: yup.date().required("kindly select your date of birth"),
+    dateOfBirth: yup
+      .date()
+      .required("kindly select your date of birth")
+      .test("dob", "Your age must be over 18 years", function (value) {
+        return differenceInYears(new Date(), new Date(value)) >= 18;
+      }),
     countryOfOperation: yup
       .string()
       .required("kindly select your country of operation"),
+    documentType: yup.string().required("kindly select a document Type"),
+    documentNumber: yup.string().required("kindly enter your document number"),
   }),
   registeredBusinessDetails: yup.object({
     businessName: yup.string().required("kindly enter your business name"),

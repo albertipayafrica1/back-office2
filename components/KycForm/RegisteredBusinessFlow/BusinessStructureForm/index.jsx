@@ -38,6 +38,8 @@ const BusinessStructureForm = (data) => {
       maritalStatus: "",
       dateOfBirth: null,
       countryOfOperation: "Kenya",
+      documentType: "",
+      documentNumber: "",
     },
     registeredBusinessDetails: {
       businessName: "",
@@ -214,6 +216,28 @@ const BusinessStructureForm = (data) => {
                       id="countryOfOperation"
                       required
                       disabled
+                    />
+                  </Stack>
+                  <Stack direction={{ xs: "column", md: "row" }} spacing={3}>
+                    <FormikControl
+                      control="input"
+                      variant="outlined"
+                      name="businessRepresentative.documentType"
+                      label="Document Type"
+                      type="text"
+                      id="documentType"
+                      required
+                      select
+                      selectItem={documentTypeOptions}
+                    />
+                    <FormikControl
+                      control="input"
+                      variant="outlined"
+                      name="businessRepresentative.documentNumber"
+                      label="Document Number"
+                      type="text"
+                      id="documentNumber"
+                      required
                     />
                   </Stack>
                 </Stack>
