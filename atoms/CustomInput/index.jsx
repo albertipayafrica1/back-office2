@@ -63,22 +63,26 @@ const CustomInput = ({
         fullWidth
         multiline={multiline}
         select={select}
-        // sx={{
-        //   "& .MuiOutlinedInput-root:hover": {
-        //     "& > fieldset": {
-        //       borderColor: "#C4C4C4",
-        //     },
-        //   },
-        //   "& .MuiOutlinedInput-root": {
-        //     "& .Mui-focused": {
-        //       borderColor: "#C4C4C4",
-        //     },
-        //   },
-        //   "& .MuiFormLabel-root": {
-        //     color: (theme) => theme.colors.blue,
-        //   },
-        // }}
+        sx={{
+          "& .MuiOutlinedInput-root:hover": {
+            "& > fieldset": {
+              borderColor: (theme) => theme.colors.blue,
+            },
+          },
+          "& .MuiOutlinedInput-root": {
+            "& .Mui-focused": {
+              borderColor: (theme) => theme.colors.blue,
+            },
+          },
+          "& .MuiFormLabel-root": {
+            color: (theme) => theme.colors.mono4,
+            "& .Mui-focused": {
+              color: (theme) => theme.colors.blue,
+            },
+          },
+        }}
         InputProps={{
+          className: classes.input,
           endAdornment: (
             <InputAdornment position="start">
               {type === "password" ? (

@@ -4,7 +4,11 @@ export const checkbox = {
       color: (theme) => theme.colors.orange,
     },
   },
-  "& .MuiSvgIcon-root": { fontSize: 22 },
+  "& .MuiSvgIcon-root": {
+    fontSize: 22,
+    backgroundColor: "white",
+    borderRadius: 10,
+  },
 };
 
 export const helperText = {
