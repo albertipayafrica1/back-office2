@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Stack, Button, Box } from "@mui/material";
+import { Stack, Box } from "@mui/material";
 import { Formik, Form } from "formik";
 import { LoadingButton } from "@mui/lab";
 import FormikControl from "../../../FormikControls/index";
@@ -9,13 +9,13 @@ import { bankDetails } from "../../../../utils/formValidations/kyc/registeredBus
 import { styles } from "./styles";
 
 const initialValues = {
-  banklocation: "",
-  bankname: "",
-  bankbranch: "",
-  accountname: "",
-  accountnumber: "",
+  bankLocality: "",
+  bankName: "",
+  bankBranch: "",
+  accountName: "",
+  accountNumber: "",
   currency: "",
-  swiftcode: "",
+  swiftCode: "",
 };
 
 const BankDetailsForm = ({ handleNextStep }) => {
@@ -41,11 +41,11 @@ const BankDetailsForm = ({ handleNextStep }) => {
                   <FormikControl
                     control="select"
                     label="Bank Locality"
-                    name="banklocation"
+                    name=" bankLocality"
                     select
                     selectItem={bankLocation}
                     variant="outlined"
-                    id="bankdetails"
+                    id=" bank Locality"
                     required
                   />
 
@@ -53,10 +53,10 @@ const BankDetailsForm = ({ handleNextStep }) => {
                     control="input"
                     label="Bank Name"
                     placeholder="Merchant Bank Name"
-                    name="bankname"
+                    name="bankName"
                     variant="outlined"
                     type="text"
-                    id="bankname"
+                    id="bankName"
                     required
                   />
                 </Stack>
@@ -69,10 +69,10 @@ const BankDetailsForm = ({ handleNextStep }) => {
                     control="input"
                     label="Bank Branch"
                     placeholder="Merchant Bank Branch"
-                    name="bankbranch"
+                    name="bankBranch"
                     variant="outlined"
                     type="text"
-                    id="banck branch"
+                    id="banckBranch"
                     required
                   />
 
@@ -80,10 +80,10 @@ const BankDetailsForm = ({ handleNextStep }) => {
                     control="input"
                     label="Account Name"
                     placeholder="Bank Account Name"
-                    name="accountname"
+                    name="accountName"
                     variant="outlined"
                     type="text"
-                    id="account name"
+                    id="accountName"
                     required
                   />
                 </Stack>
@@ -96,10 +96,10 @@ const BankDetailsForm = ({ handleNextStep }) => {
                     control="input"
                     label="Account Number"
                     placeholder="Bank Account Number"
-                    name="accountnumber"
+                    name="accountNumber"
                     variant="outlined"
                     type="text"
-                    id="account number"
+                    id="accountNumber"
                     required
                   />
 
@@ -109,10 +109,10 @@ const BankDetailsForm = ({ handleNextStep }) => {
                     placeholder="USD | KES | TZS"
                     select
                     selectItem={Currency}
-                    name="currency"
+                    name="accountCurrency"
                     variant="outlined"
                     type="text"
-                    id="accountcurrency"
+                    id="accountCurrency"
                     required
                   />
                 </Stack>
@@ -124,10 +124,10 @@ const BankDetailsForm = ({ handleNextStep }) => {
                   <FormikControl
                     control="input"
                     label="IBAN / SWIFT Code"
-                    name="swiftcode"
+                    name="swiftCode"
                     variant="outlined"
                     type="text"
-                    id="swiftcode"
+                    id="swiftCode"
                     required
                   />
                 </Stack>
