@@ -1,25 +1,42 @@
+import { useEffect, useState } from "react";
+
 import { Stack, Typography } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 
 import { Formik, Form } from "formik";
 import FormikControl from "../../../FormikControls";
 import CreateAccountFormDiv from "../../../../atoms/CreateAccountFormDiv";
+
 import { businessSupportDetails } from "../../../../utils/formValidations/kyc/registeredBusinessFlow/businessSupportDetails";
 
 import * as styles from "./styles";
 
+const initialValues = {
+  customerSupportTelephoneNumber: "",
+  customerSupportAddress: "",
+  customerSupportEmailAddress: "",
+};
+
 const BusinessSupportDetailsForm = () => {
+  const [formValues, setFormValues] = useState(null);
+
   const handleSubmit = (values, formikHelpers) => {};
 
   const loading = false;
-  const initialValues = {
-    customerSupportTelephoneNumber: "",
-    customerSupportAddress: "",
-    customerSupportEmailAddress: "",
-  };
+
+  useEffect(() => {
+    const savedValues = {
+      // this you get it from api call
+      customerSupportTelephoneNumber: "567890",
+      customerSupportAddress: "sdadsad",
+      customerSupportEmailAddress: "dsadsa@dajjjjjj.com",
+    };
+    setFormValues(savedValues);
+  }, []);
+
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={formValues || initialValues}
       validationSchema={businessSupportDetails}
       onSubmit={handleSubmit}
       enableReinitialize
@@ -55,7 +72,7 @@ const BusinessSupportDetailsForm = () => {
                   />
                   <FormikControl
                     control="input"
-                    label="customer Support Email Address"
+                    label="Customer Support Email Address"
                     name="customerSupportEmailAddress"
                     variant="outlined"
                     type="text"

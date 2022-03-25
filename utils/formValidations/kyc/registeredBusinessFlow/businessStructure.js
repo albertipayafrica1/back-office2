@@ -6,7 +6,7 @@ export const businessStructure = yup.object({
     title: yup.string().required("kindly enter the title"),
     surname: yup.string().required("kindly enter the surname"),
     firstName: yup.string().required("kindly enter the first name"),
-    middleName: yup.string().required("kindly enter the middle name"),
+    middleName: yup.string(),
     contactNumber: yup
       .string("Enter your contact number")
       .required("Contact Number is required")
@@ -85,7 +85,7 @@ export const businessStructure = yup.object({
       title: yup.string().required("kindly enter the title"),
       surname: yup.string().required("kindly enter the surname"),
       firstName: yup.string().required("kindly enter the first name"),
-      middleName: yup.string().required("kindly enter the middle name"),
+      middleName: yup.string(),
       shareHolderType: yup
         .string()
         .required("kindly select a shareholder type"),
@@ -106,6 +106,153 @@ export const businessStructure = yup.object({
         .required("Email is required"),
       documentType: yup.string().required("kindly select document Type"),
       documentNumber: yup.string().required("kindly enter document number"),
+      // nationalIdFront: yup.string().when("documentType", {
+      //   is: "1",
+      //   then: yup
+      //     .array(
+      //       yup
+      //         .object({
+      //           url: yup.string().required("This file is required"),
+      //         })
+      //         .required("This file is required")
+      //     )
+      //     .min(1, "This file is required")
+      //     .required("This file is required"),
+      // }),
+      // nationalIdBack: yup.string().when("documentType", {
+      //   is: "1",
+      //   then: yup
+      //     .array(
+      //       yup
+      //         .object({
+      //           url: yup.string().required("This file is required"),
+      //         })
+      //         .required("This file is required")
+      //     )
+      //     .min(1, "This file is required")
+      //     .required("This file is required"),
+      // }),
+      // passport: yup.string().when("documentType", {
+      //   is: "2",
+      //   then: yup
+      //     .array(
+      //       yup
+      //         .object({
+      //           url: yup.string().required("This file is required"),
+      //         })
+      //         .required("This file is required")
+      //     )
+      //     .min(1, "This file is required")
+      //     .required("This file is required"),
+      // }),
+
+      nationalIdFront: yup
+        .array(
+          yup
+            .object({
+              url: yup.string().required("This file is required"),
+            })
+            .required("This file is required")
+        )
+        .when("documentType", (documentType) => {
+          if (documentType === "1") {
+            return yup
+              .array(
+                yup
+                  .object({
+                    url: yup.string().required("This file is required"),
+                  })
+                  .required("This file is required")
+              )
+              .min(1, "This file is required")
+              .required("This file is required");
+          }
+          return yup.array(
+            yup
+              .object({
+                url: yup.string().required("This file is required"),
+              })
+              .required("This file is required")
+          );
+        }),
+      nationalIdBack: yup
+        .array(
+          yup
+            .object({
+              url: yup.string().required("This file is required"),
+            })
+            .required("This file is required")
+        )
+        .when("documentType", (documentType) => {
+          if (documentType === "1") {
+            return yup
+              .array(
+                yup
+                  .object({
+                    url: yup.string().required("This file is required"),
+                  })
+                  .required("This file is required")
+              )
+              .min(1, "This file is required")
+              .required("This file is required");
+          }
+          return yup.array(
+            yup
+              .object({
+                url: yup.string().required("This file is required"),
+              })
+              .required("This file is required")
+          );
+        }),
+      passport: yup
+        .array(
+          yup
+            .object({
+              url: yup.string().required("This file is required"),
+            })
+            .required("This file is required")
+        )
+        .when("documentType", (documentType) => {
+          if (documentType === "2") {
+            return yup
+              .array(
+                yup
+                  .object({
+                    url: yup.string().required("This file is required"),
+                  })
+                  .required("This file is required")
+              )
+              .min(1, "This file is required")
+              .required("This file is required");
+          }
+          return yup.array(
+            yup
+              .object({
+                url: yup.string().required("This file is required"),
+              })
+              .required("This file is required")
+          );
+        }),
+      passportSizePhoto: yup
+        .array(
+          yup
+            .object({
+              url: yup.string().required("This file is required"),
+            })
+            .required("This file is required")
+        )
+        .min(1, "This file is required")
+        .required("This file is required"),
+      pinCertificate: yup
+        .array(
+          yup
+            .object({
+              url: yup.string().required("This file is required"),
+            })
+            .required("This file is required")
+        )
+        .min(1, "This file is required")
+        .required("This file is required"),
       nationality: yup.string().required("kindly select your nationality"),
       numberOfBeneficiaries: yup
         .string()
@@ -120,7 +267,7 @@ export const businessStructure = yup.object({
           title: yup.string().required("kindly enter the title"),
           surname: yup.string().required("kindly enter the surname"),
           firstName: yup.string().required("kindly enter the first name"),
-          middleName: yup.string().required("kindly enter the middle name"),
+          middleName: yup.string(),
           contactNumber: yup
             .string("Enter your contact number")
             .required("Contact Number is required")

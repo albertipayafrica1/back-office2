@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 import { Stack } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 
@@ -19,82 +21,172 @@ import {
 
 import * as styles from "./styles";
 
+const initialValues = {
+  businessRepresentative: {
+    title: "",
+    surname: "",
+    firstName: "",
+    middleName: "",
+    contactNumber: "",
+    email: "",
+    gender: "",
+    maritalStatus: "",
+    dateOfBirth: null,
+    countryOfOperation: "Kenya",
+    documentType: "",
+    documentNumber: "",
+  },
+  registeredBusinessDetails: {
+    businessName: "",
+    businessRegistrationNumber: "",
+    businessCategory: "",
+    businessSubCategory: "",
+    businessTaxPin: "",
+    BusinessTelephone: "",
+    businessEmail: "",
+    businessCurrency: "",
+    businessDescription: "",
+  },
+  businessLocation: {
+    physicalAddress: "",
+    postalAddress: "",
+    postalcode: "",
+    city: "",
+    county: "",
+    websiteLink: "",
+    appDownloadLink: "",
+  },
+  numberOfBeneficialOwners: "1",
+  ultimateBeneficialOwners: [
+    {
+      title: "",
+      surname: "",
+      firstName: "",
+      middleName: "",
+      shareHolderType: "",
+      otherShareHolderType: "",
+      contactNumber: "",
+      email: "",
+      documentType: "1",
+      documentNumber: "",
+      nationalIdFront: [],
+      nationalIdBack: [],
+      passport: [],
+      passportSizePhoto: [],
+      pinCertificate: [],
+      nationality: "",
+      numberOfBeneficiaries: "1",
+      nextOfKin: [
+        {
+          title: "",
+          surname: "",
+          firstName: "",
+          middleName: "",
+          contactNumber: "",
+          email: "",
+          relationship: "",
+          percentageBeneficiary: "100",
+        },
+      ],
+    },
+  ],
+};
+
 const BusinessStructureForm = (data) => {
+  const [formValues, setFormValues] = useState(null);
+
   const handleSubmit = (values, formikHelpers) => {
     console.log(values, "formValues");
     console.log(formikHelpers, "formikhlpers");
   };
 
-  const loading = false;
-  const initialValues = {
-    businessRepresentative: {
-      title: "",
-      surname: "",
-      firstName: "",
-      middleName: "",
-      contactNumber: "",
-      email: "",
-      gender: "",
-      maritalStatus: "",
-      dateOfBirth: null,
-      countryOfOperation: "Kenya",
-      documentType: "",
-      documentNumber: "",
-    },
-    registeredBusinessDetails: {
-      businessName: "",
-      businessRegistrationNumber: "",
-      businessCategory: "",
-      businessSubCategory: "",
-      businessTaxPin: "",
-      BusinessTelephone: "",
-      businessEmail: "",
-      businessCurrency: "",
-      businessDescription: "",
-    },
-    businessLocation: {
-      physicalAddress: "",
-      postalAddress: "",
-      postalcode: "",
-      city: "",
-      county: "",
-      websiteLink: "",
-      appDownloadLink: "",
-    },
-    numberOfBeneficialOwners: "1",
-    ultimateBeneficialOwners: [
-      {
+  useEffect(() => {
+    const savedValues = {
+      // this you get it from api call
+      businessRepresentative: {
         title: "",
         surname: "",
         firstName: "",
         middleName: "",
-        shareHolderType: "",
-        otherShareHolderType: "",
         contactNumber: "",
         email: "",
+        gender: "",
+        maritalStatus: "",
+        dateOfBirth: null,
+        countryOfOperation: "Kenya",
         documentType: "",
         documentNumber: "",
-        nationality: "",
-        numberOfBeneficiaries: "1",
-        nextOfKin: [
-          {
-            title: "",
-            surname: "",
-            firstName: "",
-            middleName: "",
-            contactNumber: "",
-            email: "",
-            relationship: "",
-            percentageBeneficiary: "100",
-          },
-        ],
       },
-    ],
-  };
+      registeredBusinessDetails: {
+        businessName: "",
+        businessRegistrationNumber: "",
+        businessCategory: "",
+        businessSubCategory: "",
+        businessTaxPin: "",
+        BusinessTelephone: "",
+        businessEmail: "",
+        businessCurrency: "",
+        businessDescription: "",
+      },
+      businessLocation: {
+        physicalAddress: "This is my physical address",
+        postalAddress: "",
+        postalcode: "",
+        city: "",
+        county: "",
+        websiteLink: "",
+        appDownloadLink: "",
+      },
+      numberOfBeneficialOwners: "1",
+      ultimateBeneficialOwners: [
+        {
+          title: "",
+          surname: "",
+          firstName: "",
+          middleName: "",
+          shareHolderType: "",
+          otherShareHolderType: "",
+          contactNumber: "",
+          email: "",
+          documentType: "1",
+          documentNumber: "",
+          nationalIdFront: [],
+          nationalIdBack: [],
+          passport: [],
+          passportSizePhoto: [
+            {
+              file: { path: "elipa-Single-logos-black.png" },
+              errors: [],
+              id: 1,
+              url: "https://res.cloudinary.com/demo/image/upload/v1648551450/docs_uploading_example/elipa-Single-logos-black_fqcxd1.png",
+            },
+          ],
+          pinCertificate: [],
+          nationality: "",
+          numberOfBeneficiaries: "1",
+          nextOfKin: [
+            {
+              title: "",
+              surname: "",
+              firstName: "",
+              middleName: "",
+              contactNumber: "",
+              email: "",
+              relationship: "",
+              percentageBeneficiary: "100",
+            },
+          ],
+        },
+      ],
+    };
+    setFormValues(savedValues);
+  }, []);
+
+  const loading = false;
 
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={formValues || initialValues}
       validationSchema={businessStructure}
       onSubmit={handleSubmit}
       enableReinitialize
@@ -461,8 +553,13 @@ const BusinessStructureForm = (data) => {
                             otherShareHolderType: "",
                             contactNumber: "",
                             email: "",
-                            documentType: "",
+                            documentType: "1",
                             documentNumber: "",
+                            nationalIdFront: [],
+                            nationalIdBack: [],
+                            passport: [],
+                            passportSizePhoto: [],
+                            pinCertificate: [],
                             nationality: "",
                             numberOfBeneficiaries: "1",
                             nextOfKin: [
@@ -621,6 +718,88 @@ const BusinessStructureForm = (data) => {
                           type="text"
                           id={`ultimateBeneficialOwners[${index}].documentNumber`}
                           required
+                        />
+                      </Stack>
+                      {formik.values.ultimateBeneficialOwners[index]
+                        .documentType === "1" && (
+                        <Stack direction={{ xs: "column" }} spacing={3}>
+                          <FormikControl
+                            control="singleFileUpload"
+                            label="National Id of Business Owner (front)"
+                            name={`ultimateBeneficialOwners[${index}].nationalIdFront`}
+                            multiple={false}
+                            required
+                            givenFile={
+                              formik.values.ultimateBeneficialOwners[index]
+                                .nationalIdFront !== undefined
+                                ? formik.values.ultimateBeneficialOwners[index]
+                                    .nationalIdFront[0]
+                                : null
+                            }
+                          />
+                          <FormikControl
+                            control="singleFileUpload"
+                            label="National Id of Business Owner (Back)"
+                            name={`ultimateBeneficialOwners[${index}].nationalIdBack`}
+                            multiple={false}
+                            required
+                            givenFile={
+                              formik.values.ultimateBeneficialOwners[index]
+                                .nationalIdBack !== undefined
+                                ? formik.values.ultimateBeneficialOwners[index]
+                                    .nationalIdBack[0]
+                                : null
+                            }
+                          />
+                        </Stack>
+                      )}
+                      {formik.values.ultimateBeneficialOwners[index]
+                        .documentType === "2" && (
+                        <Stack direction={{ xs: "column" }} spacing={3}>
+                          <FormikControl
+                            control="singleFileUpload"
+                            label="Passport of Business Owner (front)"
+                            name={`ultimateBeneficialOwners[${index}].passport]`}
+                            multiple={false}
+                            required
+                            givenFile={
+                              formik.values.ultimateBeneficialOwners[index]
+                                .passport !== undefined
+                                ? formik.values.ultimateBeneficialOwners[index]
+                                    .passport[0]
+                                : null
+                            }
+                          />
+                        </Stack>
+                      )}
+                      <Stack direction={{ xs: "column" }} spacing={3}>
+                        <FormikControl
+                          control="singleFileUpload"
+                          label="Colored Passport Size Photograph of Business Owner"
+                          name={`ultimateBeneficialOwners[${index}].passportSizePhoto`}
+                          multiple={false}
+                          required
+                          givenFile={
+                            formik.values.ultimateBeneficialOwners[index]
+                              .passportSizePhoto !== undefined
+                              ? formik.values.ultimateBeneficialOwners[index]
+                                  .passportSizePhoto[0]
+                              : null
+                          }
+                        />
+                        <FormikControl
+                          control="singleFileUpload"
+                          label="Tax PIN certificate of Business Owner (individual)"
+                          name={`ultimateBeneficialOwners[${index}].pinCertificate`}
+                          multiple={false}
+                          required
+                          givenFile={
+                            formik.values.ultimateBeneficialOwners[index]
+                              .pinCertificate !== undefined
+                              ? formik.values.ultimateBeneficialOwners[index]
+                                  .pinCertificate[0]
+                              : null
+                          }
                         />
                       </Stack>
                       <Stack

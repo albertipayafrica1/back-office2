@@ -9,6 +9,9 @@ const useStyles = makeStyles((theme) => ({
       borderRadius: 7,
       height: "65px",
     },
+    "& input::placeholder": {
+      fontSize: "20px",
+    },
   },
 }));
 

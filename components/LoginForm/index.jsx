@@ -33,6 +33,10 @@ const LoginForm = ({
   const [flashMessage, setFlashMessage] = useState(false);
 
   useEffect(() => {
+    const timer = sessionStorage.getItem("timer");
+    if (timer !== null || timer !== undefined) {
+      sessionStorage.removeItem("timer");
+    }
     setCountryIconLink(getCountryIconLink(query.country));
     if (query.status === "newAccountCreated") {
       setFlashMessage(true);

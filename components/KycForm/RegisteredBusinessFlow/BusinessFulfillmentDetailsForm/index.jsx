@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 import { Stack, Typography } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 
@@ -14,19 +16,31 @@ import {
 
 import * as styles from "./styles";
 
+const initialValues = {
+  sellPhysicalGoodsOrServices: "",
+  shipProductYourself: "",
+  fulfillmentPeriod: "",
+};
+
 const BusinessFulfillmentDetailsForm = () => {
+  const [formValues, setFormValues] = useState(null);
+
   const handleSubmit = (values, formikHelpers) => {};
 
   const loading = false;
 
-  const initialValues = {
-    sellPhysicalGoodsOrServices: "",
-    shipProductYourself: "",
-    fulfillmentPeriod: "",
-  };
+  useEffect(() => {
+    const savedValues = {
+      // this you get it from api call
+      sellPhysicalGoodsOrServices: "",
+      shipProductYourself: "1",
+      fulfillmentPeriod: "",
+    };
+    setFormValues(savedValues);
+  }, []);
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={formValues || initialValues}
       validationSchema={businessFulfillmentDetails}
       onSubmit={handleSubmit}
       enableReinitialize
