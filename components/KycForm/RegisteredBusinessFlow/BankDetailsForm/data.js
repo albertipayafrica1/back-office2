@@ -14,5 +14,4 @@ export const bankLocation = [
 export const Currency = [
   { key: "USD", value: "USD" },
   { key: "KES", value: "KES" },
-  { key: "TZS", value: "TZS" },
 ];

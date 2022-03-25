@@ -100,6 +100,7 @@ const BusinessStructureForm = (data) => {
       enableReinitialize
     >
       {(formik) => {
+        console.log(formik.errors, "fork");
         return (
           <Form>
             <Stack sx={styles.formContainer} spacing={8}>
