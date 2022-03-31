@@ -1,5 +1,8 @@
 import * as yup from "yup";
 
+const phoneUtil =
+  require("google-libphonenumber").PhoneNumberUtil.getInstance();
+
 export const createAccount = yup.object().shape({
   surname: yup
     .string("Surname must be a string")
@@ -10,11 +13,19 @@ export const createAccount = yup.object().shape({
   middleName: yup.string("Middle Name must be a string"),
   contactNumber: yup
     .string("Enter your contact number")
-    .required("Contact Number is required")
-    .matches(
-      /^((\\+[0-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
-      "Enter a valid phone number"
-    ),
+    .test("phoneNumber", "Must be a valid phone number", (val) => {
+      if (val === undefined || val === null || val === "") {
+        return false;
+      }
+      const number = phoneUtil.parseAndKeepRawInput(val, "KE");
+      console.log(phoneUtil.getRegionCodeForNumber(number));
+      return phoneUtil.isValidNumberForRegion(number, "KE");
+    })
+    .required("Contact Number is required"),
+  // .matches(
+  //   /^((\\+[0-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
+  //   "Enter a valid phone number"
+  // ),
   email: yup
     .string()
     .email("Please Enter a valid Email")

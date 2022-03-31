@@ -40,6 +40,7 @@ const FormikDatePicker = ({
                   {...field}
                   {...restProps}
                   label={label}
+                  maxDate={new Date()}
                   inputFormat="dd/MM/yyyy"
                   required={required}
                   onChange={onChange !== "" ? onChange : form.handleChange}

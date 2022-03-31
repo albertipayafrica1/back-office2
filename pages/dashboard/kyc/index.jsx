@@ -1,5 +1,5 @@
 import React from "react";
-import HorizontalLinearStepper from "../../components/Stepper";
+import HorizontalLinearStepper from "../../../components/Stepper";
 
 function stepper(props) {
   return (

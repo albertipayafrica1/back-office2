@@ -1,7 +1,11 @@
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+
 import { Stack, Box } from "@mui/material";
-import { Formik, Form } from "formik";
 import { LoadingButton } from "@mui/lab";
+
+import { Formik, Form } from "formik";
+
 import FormikControl from "../../../FormikControls/index";
 import BankDetailsContainer from "../../../../atoms/CreateAccountFormDiv";
 import { Currency, bankLocation } from "./data";
@@ -19,14 +23,30 @@ const initialValues = {
 };
 
 const BankDetailsForm = ({ handleNextStep }) => {
+  const [formValues, setFormValues] = useState(null);
+
   const handleSubmit = (values, { setErrors }) => {
     handleNextStep();
   };
+
+  useEffect(() => {
+    const savedValues = {
+      // this you get it from api call
+      bankLocality: "",
+      bankName: "KCB",
+      bankBranch: "",
+      accountName: "",
+      accountNumber: "",
+      currency: "",
+      swiftCode: "",
+    };
+    setFormValues(savedValues);
+  }, []);
   return (
     <Stack sx={styles.topContainer} spacing={1}>
       <Formik
         validationSchema={bankDetails}
-        initialValues={initialValues}
+        initialValues={formValues || initialValues}
         onSubmit={handleSubmit} // pass this as props
         enableReinitialize
       >
