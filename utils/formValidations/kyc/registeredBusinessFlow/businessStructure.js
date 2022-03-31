@@ -31,6 +31,113 @@ export const businessStructure = yup.object({
       .required("kindly select your country of operation"),
     documentType: yup.string().required("kindly select a document Type"),
     documentNumber: yup.string().required("kindly enter your document number"),
+    nationalIdFront: yup
+      .array(
+        yup
+          .object({
+            url: yup.string().required("This file is required"),
+          })
+          .required("This file is required")
+      )
+      .when("documentType", (documentType) => {
+        if (documentType === "1") {
+          return yup
+            .array(
+              yup
+                .object({
+                  url: yup.string().required("This file is required"),
+                })
+                .required("This file is required")
+            )
+            .min(1, "This file is required")
+            .required("This file is required");
+        }
+        return yup.array(
+          yup
+            .object({
+              url: yup.string().required("This file is required"),
+            })
+            .required("This file is required")
+        );
+      }),
+    nationalIdBack: yup
+      .array(
+        yup
+          .object({
+            url: yup.string().required("This file is required"),
+          })
+          .required("This file is required")
+      )
+      .when("documentType", (documentType) => {
+        if (documentType === "1") {
+          return yup
+            .array(
+              yup
+                .object({
+                  url: yup.string().required("This file is required"),
+                })
+                .required("This file is required")
+            )
+            .min(1, "This file is required")
+            .required("This file is required");
+        }
+        return yup.array(
+          yup
+            .object({
+              url: yup.string().required("This file is required"),
+            })
+            .required("This file is required")
+        );
+      }),
+    passport: yup
+      .array(
+        yup
+          .object({
+            url: yup.string().required("This file is required"),
+          })
+          .required("This file is required")
+      )
+      .when("documentType", (documentType) => {
+        if (documentType === "2") {
+          return yup
+            .array(
+              yup
+                .object({
+                  url: yup.string().required("This file is required"),
+                })
+                .required("This file is required")
+            )
+            .min(1, "This file is required")
+            .required("This file is required");
+        }
+        return yup.array(
+          yup
+            .object({
+              url: yup.string().required("This file is required"),
+            })
+            .required("This file is required")
+        );
+      }),
+    passportSizePhoto: yup
+      .array(
+        yup
+          .object({
+            url: yup.string().required("This file is required"),
+          })
+          .required("This file is required")
+      )
+      .min(1, "This file is required")
+      .required("This file is required"),
+    pinCertificate: yup
+      .array(
+        yup
+          .object({
+            url: yup.string().required("This file is required"),
+          })
+          .required("This file is required")
+      )
+      .min(1, "This file is required")
+      .required("This file is required"),
   }),
   registeredBusinessDetails: yup.object({
     businessName: yup.string().required("kindly enter your business name"),

@@ -21,6 +21,7 @@ import BankDetailsForm from "../KycForm/RegisteredBusinessFlow/BankDetailsForm";
 // import BusinessComplianceForm from "../../components/KycForm/RegisteredBusinessFlow/BusinessComplianceForm";
 import BusinessFulfillmentDetailsForm from "../KycForm/RegisteredBusinessFlow/BusinessFulfillmentDetailsForm";
 import BusinessSupportDetailsForm from "../KycForm/RegisteredBusinessFlow/BusinessSupportDetailsForm";
+import DocumentUploadForm from "../KycForm/RegisteredBusinessFlow/DocumentUploads/PrivateLimitedCompany";
 
 import { styles } from "./styles";
 
@@ -90,7 +91,7 @@ const HorizontalLinearStepper = () => {
       case 4:
         return <BusinessSupportDetailsForm handleNextStep={handleNext} />;
       case 5:
-        return BusinessStructureForm;
+        return <DocumentUploadForm handleNextStep={handleNext} />;
       default:
         return BusinessStructureForm;
     }

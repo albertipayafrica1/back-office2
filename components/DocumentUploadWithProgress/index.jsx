@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 import { Grid, Stack, Typography } from "@mui/material";
 
-import { useField } from "formik";
+import { useField, Field } from "formik";
 
 import { useDropzone } from "react-dropzone";
 import SingleFileUploadWithProgress from "./SingleFileUploadWithProgress";
@@ -33,7 +33,6 @@ const FileUploadField = ({ name, multiple, label, required, givenFile }) => {
       id: getNewId(),
     }));
     const mappedRej = rejFiles.map((r) => {
-      console.log(r, "rejected");
       return { ...r, id: getNewId() };
     });
     // if multiple is passed as a prop, only one file is allowed else multiple files are allowed to upload
@@ -45,7 +44,6 @@ const FileUploadField = ({ name, multiple, label, required, givenFile }) => {
 
   useEffect(() => {
     helpers.setValue(files);
-    // helpers.setTouched(true);
   }, [files]);
 
   const onUpload = (file, url) => {
@@ -61,7 +59,6 @@ const FileUploadField = ({ name, multiple, label, required, givenFile }) => {
 
   const onReject = (file) => {
     // This is written only so upload Error component does not re render when error is got from server
-    console.log("onreject called");
     setFiles((curr) =>
       curr.map((fw) => {
         if (fw.file === file) {
@@ -69,7 +66,6 @@ const FileUploadField = ({ name, multiple, label, required, givenFile }) => {
             type: "serverError",
             message: "This is an error from server",
           });
-          console.log(fw, "aaaaa");
           return fw;
         }
         return fw;
@@ -84,45 +80,66 @@ const FileUploadField = ({ name, multiple, label, required, givenFile }) => {
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     multiple,
-    accept: ["image/*", ".pdf"],
+    accept: [".pdf", ".jpeg", ".png", ".jpg"],
     maxSize: 5000 * 1024, // 5000KB
   });
 
   return (
     <>
       <Grid item>
-        <div {...getRootProps()}>
-          <Typography
-            variant="subtitle3"
-            sx={styles.dropzoneOuterTitle}
-            required
-          >
-            {label}
-            {required && <sup style={{ color: "red" }}>*</sup>}
-          </Typography>
-          <input {...getInputProps()} />
-
-          <Stack
-            sx={styles.dropzone}
-            direction="row"
-            alignItems="center"
-            justifyContent="space-between"
-          >
-            <Typography variant="subtitle3" sx={styles.dropzoneInnerTitle}>
-              {givenFile !== null &&
-              givenFile !== undefined &&
-              givenFile.errors.length === 0
-                ? givenFile.file.path
-                : label}
-            </Typography>
-            <Image
-              src="/cloud-computing.svg"
-              alt="cloud computing"
-              width="20"
-              height="20"
-            />
-          </Stack>
-        </div>
+        <Field name={name}>
+          {({ _, form, __ }) => {
+            return (
+              <div {...getRootProps()}>
+                <Typography
+                  variant="subtitle3"
+                  sx={styles.dropzoneOuterTitle}
+                  required
+                >
+                  {label}
+                  {required && <sup style={{ color: "red" }}>*</sup>}
+                </Typography>
+                <input
+                  {...getInputProps()}
+                  onBlur={() => {
+                    return meta.setFieldTouched(name);
+                  }}
+                />
+                <Stack
+                  sx={styles.dropzone}
+                  direction="row"
+                  alignItems="center"
+                  justifyContent="space-between"
+                >
+                  <Typography
+                    variant="subtitle3"
+                    sx={styles.dropzoneInnerTitle}
+                  >
+                    {givenFile !== null &&
+                    givenFile !== undefined &&
+                    givenFile.errors.length === 0
+                      ? givenFile.file.path
+                      : label}
+                  </Typography>
+                  <Image
+                    src="/cloud-computing.svg"
+                    alt="cloud computing"
+                    width="20"
+                    height="20"
+                  />
+                </Stack>
+                {form.dirty && meta.error && typeof meta.error === "string" && (
+                  <Typography
+                    variant="subtitle4"
+                    sx={{ color: (theme) => theme.colors.errorRed }}
+                  >
+                    {meta.error}
+                  </Typography>
+                )}
+              </div>
+            );
+          }}
+        </Field>
       </Grid>
       {givenFile !== null && // when we get file from server only show header
         givenFile !== undefined &&

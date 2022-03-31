@@ -19,6 +19,7 @@ export const styles = {
     borderRadius: "7px",
     padding: "5px",
     borderColor: "#C3BDBD",
+    background: "white",
   },
   dropzoneInnerTitle: {
     color: (theme) => theme.colors.mono6,
