@@ -6,25 +6,27 @@ import { LoadingButton } from "@mui/lab";
 
 import { Formik, Form } from "formik";
 
-import FormikControl from "../../../FormikControls/index";
-import TrustContainer from "../../../../atoms/CreateAccountFormDiv";
-import DownloadDiv from "../../../../atoms/DownloadDiv";
+import FormikControl from "../../../../FormikControls/index";
+import LearningInstitutionContainer from "../../../../../atoms/CreateAccountFormDiv";
+import DownloadDiv from "../../../../../atoms/DownloadDiv";
 
-import { trust } from "../../../../utils/formValidations/kyc/registeredBusinessFlow/documentUploads/trust";
-import { acknowledgement } from "../../../../utils/formValidations/kyc/registeredBusinessFlow/documentUploads/acknowledgement";
-import { styles } from "./styles";
+import { learningInstitution } from "../../../../../utils/formValidations/kyc/registeredBusinessFlow/documentUploads/learningInstitution";
+import { acknowledgement } from "../../../../../utils/formValidations/kyc/registeredBusinessFlow/documentUploads/acknowledgement";
+import { styles } from "../styles";
 
 const initialValues = {
   pinCertificate: [],
   certificateOfRegistration: [],
+  memorandumAndArticlesOfAssociation: [],
   businessPermit: [],
   boardResolutionLetter: [],
+  companyStatusReport: [],
   aml: [],
   termsAndConditions: [],
 };
 const initialValuesForAcknowledgement = { acknowledgmentDocument: [] };
 
-const Trust = ({ handleNextStep }) => {
+const LearningInstitution = ({ handleNextStep }) => {
   const [formValues, setFormValues] = useState(null);
   const [formValuesForAcknowledgement, setFormValuesForAcknowledgement] =
     useState(null);
@@ -36,7 +38,7 @@ const Trust = ({ handleNextStep }) => {
   // };
 
   const handleSubmit = async (values, formikHelpers) => {
-    // const isValid = awaittrust.isValid(values, {
+    // const isValid = await ;earningInstitution.isValid(values, {
     //   abortEarly: false,
     // });
     // setIndividualFieldErrors({ f1: { error: "i am an error" } });
@@ -57,8 +59,10 @@ const Trust = ({ handleNextStep }) => {
         },
       ],
       certificateOfRegistration: [],
+      memorandumAndArticlesOfAssociation: [],
       businessPermit: [],
       boardResolutionLetter: [],
+      companyStatusReport: [],
       aml: [],
       termsAndConditions: [],
     };
@@ -67,7 +71,7 @@ const Trust = ({ handleNextStep }) => {
   return (
     <Stack sx={styles.topContainer} spacing={3}>
       <Formik
-        validationSchema={trust}
+        validationSchema={learningInstitution}
         initialValues={formValues || initialValues}
         onSubmit={handleSubmit}
         enableReinitialize
@@ -75,7 +79,7 @@ const Trust = ({ handleNextStep }) => {
         {(formik) => {
           return (
             <Form>
-              <TrustContainer topLabel="Trusts">
+              <LearningInstitutionContainer topLabel="Learning Institutions">
                 <Stack direction={{ xs: "column" }} spacing={{ xs: 3 }}>
                   <FormikControl
                     control="singleFileUpload"
@@ -89,6 +93,7 @@ const Trust = ({ handleNextStep }) => {
                         : null
                     }
                   />
+
                   <FormikControl
                     control="singleFileUpload"
                     label="Certificate Of Registration"
@@ -101,7 +106,19 @@ const Trust = ({ handleNextStep }) => {
                         : null
                     }
                   />
-
+                  <FormikControl
+                    control="singleFileUpload"
+                    label="Memorandum And Articles Of Association"
+                    name="memorandumAndArticlesOfAssociation"
+                    multiple={false}
+                    required
+                    givenFile={
+                      formik.values.memorandumAndArticlesOfAssociation !==
+                      undefined
+                        ? formik.values.memorandumAndArticlesOfAssociation[0]
+                        : null
+                    }
+                  />
                   <FormikControl
                     control="singleFileUpload"
                     label="Business Permit From Government"
@@ -123,6 +140,19 @@ const Trust = ({ handleNextStep }) => {
                     givenFile={
                       formik.values.boardResolutionLetter !== undefined
                         ? formik.values.boardResolutionLetter[0]
+                        : null
+                    }
+                  />
+
+                  <FormikControl
+                    control="singleFileUpload"
+                    label="Company Status Report"
+                    name="companyStatusReport"
+                    multiple={false}
+                    required
+                    givenFile={
+                      formik.values.companyStatusReport !== undefined
+                        ? formik.values.companyStatusReport[0]
                         : null
                     }
                   />
@@ -170,7 +200,7 @@ const Trust = ({ handleNextStep }) => {
                 >
                   Save
                 </LoadingButton>
-              </TrustContainer>
+              </LearningInstitutionContainer>
             </Form>
           );
         }}
@@ -188,7 +218,7 @@ const Trust = ({ handleNextStep }) => {
           {(formik) => {
             return (
               <Form>
-                <TrustContainer topLabel="Acknowledgement Form">
+                <LearningInstitutionContainer topLabel="Acknowledgement Form">
                   <Stack direction={{ xs: "column" }} spacing={{ xs: 3 }}>
                     <DownloadDiv
                       text="Download Our Terms And Conditions Form for signature"
@@ -217,7 +247,7 @@ const Trust = ({ handleNextStep }) => {
                       Save And Next
                     </LoadingButton>
                   </Stack>
-                </TrustContainer>
+                </LearningInstitutionContainer>
               </Form>
             );
           }}
@@ -227,8 +257,8 @@ const Trust = ({ handleNextStep }) => {
   );
 };
 
-Trust.propTypes = {
+LearningInstitution.propTypes = {
   handleNextStep: PropTypes.func.isRequired,
 };
 
-export default Trust;
+export default LearningInstitution;

@@ -6,25 +6,24 @@ import { LoadingButton } from "@mui/lab";
 
 import { Formik, Form } from "formik";
 
-import FormikControl from "../../../FormikControls/index";
-import GovernmentDepartmentContainer from "../../../../atoms/CreateAccountFormDiv";
-import DownloadDiv from "../../../../atoms/DownloadDiv";
+import FormikControl from "../../../../FormikControls/index";
+import SoleProprietorshipContainer from "../../../../../atoms/CreateAccountFormDiv";
+import DownloadDiv from "../../../../../atoms/DownloadDiv";
 
-import { governmentDepartment } from "../../../../utils/formValidations/kyc/registeredBusinessFlow/documentUploads/governmentDepartment";
-import { acknowledgement } from "../../../../utils/formValidations/kyc/registeredBusinessFlow/documentUploads/acknowledgement";
-import { styles } from "./styles";
+import { soleProprietorship } from "../../../../../utils/formValidations/kyc/registeredBusinessFlow/documentUploads/soleProprietorship";
+import { acknowledgement } from "../../../../../utils/formValidations/kyc/registeredBusinessFlow/documentUploads/acknowledgement";
+import { styles } from "../styles";
 
 const initialValues = {
   pinCertificate: [],
   certificateOfRegistration: [],
   businessPermit: [],
-  boardResolutionLetter: [],
   aml: [],
   termsAndConditions: [],
 };
 const initialValuesForAcknowledgement = { acknowledgmentDocument: [] };
 
-const GovernmentDepartment = ({ handleNextStep }) => {
+const SoleProprietorship = ({ handleNextStep }) => {
   const [formValues, setFormValues] = useState(null);
   const [formValuesForAcknowledgement, setFormValuesForAcknowledgement] =
     useState(null);
@@ -36,7 +35,7 @@ const GovernmentDepartment = ({ handleNextStep }) => {
   // };
 
   const handleSubmit = async (values, formikHelpers) => {
-    // const isValid = awaitgovernmentDepartment.isValid(values, {
+    // const isValid = await soleProprietorship.isValid(values, {
     //   abortEarly: false,
     // });
     // setIndividualFieldErrors({ f1: { error: "i am an error" } });
@@ -57,8 +56,6 @@ const GovernmentDepartment = ({ handleNextStep }) => {
         },
       ],
       certificateOfRegistration: [],
-      businessPermit: [],
-      boardResolutionLetter: [],
       aml: [],
       termsAndConditions: [],
     };
@@ -67,7 +64,7 @@ const GovernmentDepartment = ({ handleNextStep }) => {
   return (
     <Stack sx={styles.topContainer} spacing={3}>
       <Formik
-        validationSchema={governmentDepartment}
+        validationSchema={soleProprietorship}
         initialValues={formValues || initialValues}
         onSubmit={handleSubmit}
         enableReinitialize
@@ -75,20 +72,20 @@ const GovernmentDepartment = ({ handleNextStep }) => {
         {(formik) => {
           return (
             <Form>
-              <GovernmentDepartmentContainer topLabel="Government Department or state corporations">
+              <SoleProprietorshipContainer topLabel="Sole Proprietorship">
                 <Stack direction={{ xs: "column" }} spacing={{ xs: 3 }}>
                   <FormikControl
                     control="singleFileUpload"
                     label="Tax PIN certificate for the company"
                     name="pinCertificate"
                     multiple={false}
-                    required
                     givenFile={
                       formik.values.pinCertificate !== undefined
                         ? formik.values.pinCertificate[0]
                         : null
                     }
                   />
+
                   <FormikControl
                     control="singleFileUpload"
                     label="Certificate Of Registration"
@@ -107,25 +104,13 @@ const GovernmentDepartment = ({ handleNextStep }) => {
                     label="Business Permit From Government"
                     name="businessPermit"
                     multiple={false}
-                    required
                     givenFile={
                       formik.values.businessPermit !== undefined
                         ? formik.values.businessPermit[0]
                         : null
                     }
                   />
-                  <FormikControl
-                    control="singleFileUpload"
-                    label="Board Resolution Letter"
-                    name="boardResolutionLetter"
-                    multiple={false}
-                    required
-                    givenFile={
-                      formik.values.boardResolutionLetter !== undefined
-                        ? formik.values.boardResolutionLetter[0]
-                        : null
-                    }
-                  />
+
                   <DownloadDiv
                     text="Download Our AML (Anti-Money Laundering)/KYC questionnaire for signature"
                     downloadUrl="https://www.irs.gov/pub/irs-pdf/fw8ben.pdf"
@@ -170,7 +155,7 @@ const GovernmentDepartment = ({ handleNextStep }) => {
                 >
                   Save
                 </LoadingButton>
-              </GovernmentDepartmentContainer>
+              </SoleProprietorshipContainer>
             </Form>
           );
         }}
@@ -188,7 +173,7 @@ const GovernmentDepartment = ({ handleNextStep }) => {
           {(formik) => {
             return (
               <Form>
-                <GovernmentDepartmentContainer topLabel="Acknowledgement Form">
+                <SoleProprietorshipContainer topLabel="Acknowledgement Form">
                   <Stack direction={{ xs: "column" }} spacing={{ xs: 3 }}>
                     <DownloadDiv
                       text="Download Our Terms And Conditions Form for signature"
@@ -217,7 +202,7 @@ const GovernmentDepartment = ({ handleNextStep }) => {
                       Save And Next
                     </LoadingButton>
                   </Stack>
-                </GovernmentDepartmentContainer>
+                </SoleProprietorshipContainer>
               </Form>
             );
           }}
@@ -227,8 +212,8 @@ const GovernmentDepartment = ({ handleNextStep }) => {
   );
 };
 
-GovernmentDepartment.propTypes = {
+SoleProprietorship.propTypes = {
   handleNextStep: PropTypes.func.isRequired,
 };
 
-export default GovernmentDepartment;
+export default SoleProprietorship;

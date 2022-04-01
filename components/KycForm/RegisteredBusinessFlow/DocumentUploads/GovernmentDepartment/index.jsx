@@ -6,13 +6,13 @@ import { LoadingButton } from "@mui/lab";
 
 import { Formik, Form } from "formik";
 
-import FormikControl from "../../../FormikControls/index";
-import WelfareGroupsContainer from "../../../../atoms/CreateAccountFormDiv";
-import DownloadDiv from "../../../../atoms/DownloadDiv";
+import FormikControl from "../../../../FormikControls/index";
+import GovernmentDepartmentContainer from "../../../../../atoms/CreateAccountFormDiv";
+import DownloadDiv from "../../../../../atoms/DownloadDiv";
 
-import { welfareGroups } from "../../../../utils/formValidations/kyc/registeredBusinessFlow/documentUploads/welfareGroups";
-import { acknowledgement } from "../../../../utils/formValidations/kyc/registeredBusinessFlow/documentUploads/acknowledgement";
-import { styles } from "./styles";
+import { governmentDepartment } from "../../../../../utils/formValidations/kyc/registeredBusinessFlow/documentUploads/governmentDepartment";
+import { acknowledgement } from "../../../../../utils/formValidations/kyc/registeredBusinessFlow/documentUploads/acknowledgement";
+import { styles } from "../styles";
 
 const initialValues = {
   pinCertificate: [],
@@ -24,7 +24,7 @@ const initialValues = {
 };
 const initialValuesForAcknowledgement = { acknowledgmentDocument: [] };
 
-const WelfareGroups = ({ handleNextStep }) => {
+const GovernmentDepartment = ({ handleNextStep }) => {
   const [formValues, setFormValues] = useState(null);
   const [formValuesForAcknowledgement, setFormValuesForAcknowledgement] =
     useState(null);
@@ -36,7 +36,7 @@ const WelfareGroups = ({ handleNextStep }) => {
   // };
 
   const handleSubmit = async (values, formikHelpers) => {
-    // const isValid = await welfareGroups.isValid(values, {
+    // const isValid = awaitgovernmentDepartment.isValid(values, {
     //   abortEarly: false,
     // });
     // setIndividualFieldErrors({ f1: { error: "i am an error" } });
@@ -67,7 +67,7 @@ const WelfareGroups = ({ handleNextStep }) => {
   return (
     <Stack sx={styles.topContainer} spacing={3}>
       <Formik
-        validationSchema={welfareGroups}
+        validationSchema={governmentDepartment}
         initialValues={formValues || initialValues}
         onSubmit={handleSubmit}
         enableReinitialize
@@ -75,7 +75,7 @@ const WelfareGroups = ({ handleNextStep }) => {
         {(formik) => {
           return (
             <Form>
-              <WelfareGroupsContainer topLabel="Chama and Welfare Groups">
+              <GovernmentDepartmentContainer topLabel="Government Department or state corporations">
                 <Stack direction={{ xs: "column" }} spacing={{ xs: 3 }}>
                   <FormikControl
                     control="singleFileUpload"
@@ -89,25 +89,6 @@ const WelfareGroups = ({ handleNextStep }) => {
                         : null
                     }
                   />
-                  {/* {Object.entries(formik.errors).length !== 0 &&
-                    formik.errors.f1 !== undefined && (
-                      <div>{formik.errors.f1}</div>
-                    )} */}
-                  {/* {Object.entries(individualFieldErrors).length !== 0 &&
-                    individualFieldErrors.f1 !== undefined && (
-                      <div>{individualFieldErrors.f1.error}</div>
-                    )} */}
-                  {/* {formik.values.f1.length !== 0 &&
-                    formik.values.f1[0].errors.length === 0 && (
-                      <FileHeader
-                        file={formik.values.f1[0].file}
-                        progress={100}
-                        onDelete={() => {
-                          formik.setFieldValue("f1", []);
-                        }}
-                      />
-                    )} */}
-
                   <FormikControl
                     control="singleFileUpload"
                     label="Certificate Of Registration"
@@ -189,11 +170,7 @@ const WelfareGroups = ({ handleNextStep }) => {
                 >
                   Save
                 </LoadingButton>
-              </WelfareGroupsContainer>
-              {/* <pre style={{ color: "black" }}>   //meant for debugging
-                {JSON.stringify(formik.values, formik.errors, null, 4)}
-              </pre>
-              <pre>{JSON.stringify(formik.errors)}</pre> */}
+              </GovernmentDepartmentContainer>
             </Form>
           );
         }}
@@ -211,7 +188,7 @@ const WelfareGroups = ({ handleNextStep }) => {
           {(formik) => {
             return (
               <Form>
-                <WelfareGroupsContainer topLabel="Acknowledgement Form">
+                <GovernmentDepartmentContainer topLabel="Acknowledgement Form">
                   <Stack direction={{ xs: "column" }} spacing={{ xs: 3 }}>
                     <DownloadDiv
                       text="Download Our Terms And Conditions Form for signature"
@@ -240,7 +217,7 @@ const WelfareGroups = ({ handleNextStep }) => {
                       Save And Next
                     </LoadingButton>
                   </Stack>
-                </WelfareGroupsContainer>
+                </GovernmentDepartmentContainer>
               </Form>
             );
           }}
@@ -250,8 +227,8 @@ const WelfareGroups = ({ handleNextStep }) => {
   );
 };
 
-WelfareGroups.propTypes = {
+GovernmentDepartment.propTypes = {
   handleNextStep: PropTypes.func.isRequired,
 };
 
-export default WelfareGroups;
+export default GovernmentDepartment;

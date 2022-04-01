@@ -6,27 +6,25 @@ import { LoadingButton } from "@mui/lab";
 
 import { Formik, Form } from "formik";
 
-import FormikControl from "../../../FormikControls/index";
-import ProfessionalEntitiesContainer from "../../../../atoms/CreateAccountFormDiv";
-import DownloadDiv from "../../../../atoms/DownloadDiv";
+import FormikControl from "../../../../FormikControls/index";
+import WelfareGroupsContainer from "../../../../../atoms/CreateAccountFormDiv";
+import DownloadDiv from "../../../../../atoms/DownloadDiv";
 
-import { professionalEntities } from "../../../../utils/formValidations/kyc/registeredBusinessFlow/documentUploads/professionalEntities";
-import { acknowledgement } from "../../../../utils/formValidations/kyc/registeredBusinessFlow/documentUploads/acknowledgement";
-import { styles } from "./styles";
+import { welfareGroups } from "../../../../../utils/formValidations/kyc/registeredBusinessFlow/documentUploads/welfareGroups";
+import { acknowledgement } from "../../../../../utils/formValidations/kyc/registeredBusinessFlow/documentUploads/acknowledgement";
+import { styles } from "../styles";
 
 const initialValues = {
   pinCertificate: [],
   certificateOfRegistration: [],
-
   businessPermit: [],
   boardResolutionLetter: [],
-  companyStatusReport: [],
   aml: [],
   termsAndConditions: [],
 };
 const initialValuesForAcknowledgement = { acknowledgmentDocument: [] };
 
-const ProfessionalEntities = ({ handleNextStep }) => {
+const WelfareGroups = ({ handleNextStep }) => {
   const [formValues, setFormValues] = useState(null);
   const [formValuesForAcknowledgement, setFormValuesForAcknowledgement] =
     useState(null);
@@ -38,7 +36,7 @@ const ProfessionalEntities = ({ handleNextStep }) => {
   // };
 
   const handleSubmit = async (values, formikHelpers) => {
-    // const isValid = await professionalEntities.isValid(values, {
+    // const isValid = await welfareGroups.isValid(values, {
     //   abortEarly: false,
     // });
     // setIndividualFieldErrors({ f1: { error: "i am an error" } });
@@ -59,10 +57,8 @@ const ProfessionalEntities = ({ handleNextStep }) => {
         },
       ],
       certificateOfRegistration: [],
-
       businessPermit: [],
       boardResolutionLetter: [],
-      companyStatusReport: [],
       aml: [],
       termsAndConditions: [],
     };
@@ -71,7 +67,7 @@ const ProfessionalEntities = ({ handleNextStep }) => {
   return (
     <Stack sx={styles.topContainer} spacing={3}>
       <Formik
-        validationSchema={professionalEntities}
+        validationSchema={welfareGroups}
         initialValues={formValues || initialValues}
         onSubmit={handleSubmit}
         enableReinitialize
@@ -79,7 +75,7 @@ const ProfessionalEntities = ({ handleNextStep }) => {
         {(formik) => {
           return (
             <Form>
-              <ProfessionalEntitiesContainer topLabel="Accounts for professionals entities (Law firms, Values, Auditors etc.)">
+              <WelfareGroupsContainer topLabel="Chama and Welfare Groups">
                 <Stack direction={{ xs: "column" }} spacing={{ xs: 3 }}>
                   <FormikControl
                     control="singleFileUpload"
@@ -93,6 +89,24 @@ const ProfessionalEntities = ({ handleNextStep }) => {
                         : null
                     }
                   />
+                  {/* {Object.entries(formik.errors).length !== 0 &&
+                    formik.errors.f1 !== undefined && (
+                      <div>{formik.errors.f1}</div>
+                    )} */}
+                  {/* {Object.entries(individualFieldErrors).length !== 0 &&
+                    individualFieldErrors.f1 !== undefined && (
+                      <div>{individualFieldErrors.f1.error}</div>
+                    )} */}
+                  {/* {formik.values.f1.length !== 0 &&
+                    formik.values.f1[0].errors.length === 0 && (
+                      <FileHeader
+                        file={formik.values.f1[0].file}
+                        progress={100}
+                        onDelete={() => {
+                          formik.setFieldValue("f1", []);
+                        }}
+                      />
+                    )} */}
 
                   <FormikControl
                     control="singleFileUpload"
@@ -106,6 +120,7 @@ const ProfessionalEntities = ({ handleNextStep }) => {
                         : null
                     }
                   />
+
                   <FormikControl
                     control="singleFileUpload"
                     label="Business Permit From Government"
@@ -127,19 +142,6 @@ const ProfessionalEntities = ({ handleNextStep }) => {
                     givenFile={
                       formik.values.boardResolutionLetter !== undefined
                         ? formik.values.boardResolutionLetter[0]
-                        : null
-                    }
-                  />
-
-                  <FormikControl
-                    control="singleFileUpload"
-                    label="Company Status Report"
-                    name="companyStatusReport"
-                    multiple={false}
-                    required
-                    givenFile={
-                      formik.values.companyStatusReport !== undefined
-                        ? formik.values.companyStatusReport[0]
                         : null
                     }
                   />
@@ -187,7 +189,11 @@ const ProfessionalEntities = ({ handleNextStep }) => {
                 >
                   Save
                 </LoadingButton>
-              </ProfessionalEntitiesContainer>
+              </WelfareGroupsContainer>
+              {/* <pre style={{ color: "black" }}>   //meant for debugging
+                {JSON.stringify(formik.values, formik.errors, null, 4)}
+              </pre>
+              <pre>{JSON.stringify(formik.errors)}</pre> */}
             </Form>
           );
         }}
@@ -205,7 +211,7 @@ const ProfessionalEntities = ({ handleNextStep }) => {
           {(formik) => {
             return (
               <Form>
-                <ProfessionalEntitiesContainer topLabel="Acknowledgement Form">
+                <WelfareGroupsContainer topLabel="Acknowledgement Form">
                   <Stack direction={{ xs: "column" }} spacing={{ xs: 3 }}>
                     <DownloadDiv
                       text="Download Our Terms And Conditions Form for signature"
@@ -234,7 +240,7 @@ const ProfessionalEntities = ({ handleNextStep }) => {
                       Save And Next
                     </LoadingButton>
                   </Stack>
-                </ProfessionalEntitiesContainer>
+                </WelfareGroupsContainer>
               </Form>
             );
           }}
@@ -244,8 +250,8 @@ const ProfessionalEntities = ({ handleNextStep }) => {
   );
 };
 
-ProfessionalEntities.propTypes = {
+WelfareGroups.propTypes = {
   handleNextStep: PropTypes.func.isRequired,
 };
 
-export default ProfessionalEntities;
+export default WelfareGroups;

@@ -6,18 +6,18 @@ import { LoadingButton } from "@mui/lab";
 
 import { Formik, Form } from "formik";
 
-import FormikControl from "../../../FormikControls/index";
-import LearningInstitutionContainer from "../../../../atoms/CreateAccountFormDiv";
-import DownloadDiv from "../../../../atoms/DownloadDiv";
+import FormikControl from "../../../../FormikControls/index";
+import ProfessionalEntitiesContainer from "../../../../../atoms/CreateAccountFormDiv";
+import DownloadDiv from "../../../../../atoms/DownloadDiv";
 
-import { learningInstitution } from "../../../../utils/formValidations/kyc/registeredBusinessFlow/documentUploads/learningInstitution";
-import { acknowledgement } from "../../../../utils/formValidations/kyc/registeredBusinessFlow/documentUploads/acknowledgement";
-import { styles } from "./styles";
+import { professionalEntities } from "../../../../../utils/formValidations/kyc/registeredBusinessFlow/documentUploads/professionalEntities";
+import { acknowledgement } from "../../../../../utils/formValidations/kyc/registeredBusinessFlow/documentUploads/acknowledgement";
+import { styles } from "../styles";
 
 const initialValues = {
   pinCertificate: [],
   certificateOfRegistration: [],
-  memorandumAndArticlesOfAssociation: [],
+
   businessPermit: [],
   boardResolutionLetter: [],
   companyStatusReport: [],
@@ -26,7 +26,7 @@ const initialValues = {
 };
 const initialValuesForAcknowledgement = { acknowledgmentDocument: [] };
 
-const LearningInstitution = ({ handleNextStep }) => {
+const ProfessionalEntities = ({ handleNextStep }) => {
   const [formValues, setFormValues] = useState(null);
   const [formValuesForAcknowledgement, setFormValuesForAcknowledgement] =
     useState(null);
@@ -38,7 +38,7 @@ const LearningInstitution = ({ handleNextStep }) => {
   // };
 
   const handleSubmit = async (values, formikHelpers) => {
-    // const isValid = await ;earningInstitution.isValid(values, {
+    // const isValid = await professionalEntities.isValid(values, {
     //   abortEarly: false,
     // });
     // setIndividualFieldErrors({ f1: { error: "i am an error" } });
@@ -59,7 +59,7 @@ const LearningInstitution = ({ handleNextStep }) => {
         },
       ],
       certificateOfRegistration: [],
-      memorandumAndArticlesOfAssociation: [],
+
       businessPermit: [],
       boardResolutionLetter: [],
       companyStatusReport: [],
@@ -71,7 +71,7 @@ const LearningInstitution = ({ handleNextStep }) => {
   return (
     <Stack sx={styles.topContainer} spacing={3}>
       <Formik
-        validationSchema={learningInstitution}
+        validationSchema={professionalEntities}
         initialValues={formValues || initialValues}
         onSubmit={handleSubmit}
         enableReinitialize
@@ -79,7 +79,7 @@ const LearningInstitution = ({ handleNextStep }) => {
         {(formik) => {
           return (
             <Form>
-              <LearningInstitutionContainer topLabel="Learning Institutions">
+              <ProfessionalEntitiesContainer topLabel="Accounts for professionals entities (Law firms, Values, Auditors etc.)">
                 <Stack direction={{ xs: "column" }} spacing={{ xs: 3 }}>
                   <FormikControl
                     control="singleFileUpload"
@@ -103,19 +103,6 @@ const LearningInstitution = ({ handleNextStep }) => {
                     givenFile={
                       formik.values.certificateOfRegistration !== undefined
                         ? formik.values.certificateOfRegistration[0]
-                        : null
-                    }
-                  />
-                  <FormikControl
-                    control="singleFileUpload"
-                    label="Memorandum And Articles Of Association"
-                    name="memorandumAndArticlesOfAssociation"
-                    multiple={false}
-                    required
-                    givenFile={
-                      formik.values.memorandumAndArticlesOfAssociation !==
-                      undefined
-                        ? formik.values.memorandumAndArticlesOfAssociation[0]
                         : null
                     }
                   />
@@ -200,7 +187,7 @@ const LearningInstitution = ({ handleNextStep }) => {
                 >
                   Save
                 </LoadingButton>
-              </LearningInstitutionContainer>
+              </ProfessionalEntitiesContainer>
             </Form>
           );
         }}
@@ -218,7 +205,7 @@ const LearningInstitution = ({ handleNextStep }) => {
           {(formik) => {
             return (
               <Form>
-                <LearningInstitutionContainer topLabel="Acknowledgement Form">
+                <ProfessionalEntitiesContainer topLabel="Acknowledgement Form">
                   <Stack direction={{ xs: "column" }} spacing={{ xs: 3 }}>
                     <DownloadDiv
                       text="Download Our Terms And Conditions Form for signature"
@@ -247,7 +234,7 @@ const LearningInstitution = ({ handleNextStep }) => {
                       Save And Next
                     </LoadingButton>
                   </Stack>
-                </LearningInstitutionContainer>
+                </ProfessionalEntitiesContainer>
               </Form>
             );
           }}
@@ -257,8 +244,8 @@ const LearningInstitution = ({ handleNextStep }) => {
   );
 };
 
-LearningInstitution.propTypes = {
+ProfessionalEntities.propTypes = {
   handleNextStep: PropTypes.func.isRequired,
 };
 
-export default LearningInstitution;
+export default ProfessionalEntities;
