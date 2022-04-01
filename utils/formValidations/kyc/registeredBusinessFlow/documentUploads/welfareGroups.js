@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-export const privateLimitedCompany = yup.object({
+export const welfareGroups = yup.object({
   pinCertificate: yup
     .array(
       yup
@@ -21,16 +21,7 @@ export const privateLimitedCompany = yup.object({
     )
     .min(1, "This file is required")
     .required("This file is required"),
-  memorandumAndArticlesOfAssociation: yup
-    .array(
-      yup
-        .object({
-          url: yup.string().required("This file is required"),
-        })
-        .required("This file is required")
-    )
-    .min(1, "This file is required")
-    .required("This file is required"),
+
   businessPermit: yup
     .array(
       yup
@@ -42,16 +33,6 @@ export const privateLimitedCompany = yup.object({
     .min(1, "This file is required")
     .required("This file is required"),
   boardResolutionLetter: yup
-    .array(
-      yup
-        .object({
-          url: yup.string().required("This file is required"),
-        })
-        .required("This file is required")
-    )
-    .min(1, "This file is required")
-    .required("This file is required"),
-  companyStatusReport: yup
     .array(
       yup
         .object({

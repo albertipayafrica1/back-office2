@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-export const privateLimitedCompany = yup.object({
+export const learningInstitution = yup.object({
   pinCertificate: yup
     .array(
       yup

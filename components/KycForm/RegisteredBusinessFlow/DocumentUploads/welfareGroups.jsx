@@ -7,26 +7,24 @@ import { LoadingButton } from "@mui/lab";
 import { Formik, Form } from "formik";
 
 import FormikControl from "../../../FormikControls/index";
-import PrivateLimitedCompanyContainer from "../../../../atoms/CreateAccountFormDiv";
+import WelfareGroupsContainer from "../../../../atoms/CreateAccountFormDiv";
 import DownloadDiv from "../../../../atoms/DownloadDiv";
 
-import { privateLimitedCompany } from "../../../../utils/formValidations/kyc/registeredBusinessFlow/documentUploads/privateLimitedCompany";
+import { welfareGroups } from "../../../../utils/formValidations/kyc/registeredBusinessFlow/documentUploads/welfareGroups";
 import { acknowledgement } from "../../../../utils/formValidations/kyc/registeredBusinessFlow/documentUploads/acknowledgement";
 import { styles } from "./styles";
 
 const initialValues = {
   pinCertificate: [],
   certificateOfRegistration: [],
-  memorandumAndArticlesOfAssociation: [],
   businessPermit: [],
   boardResolutionLetter: [],
-  companyStatusReport: [],
   aml: [],
   termsAndConditions: [],
 };
 const initialValuesForAcknowledgement = { acknowledgmentDocument: [] };
 
-const PrivateLimitedCompany = ({ handleNextStep }) => {
+const WelfareGroups = ({ handleNextStep }) => {
   const [formValues, setFormValues] = useState(null);
   const [formValuesForAcknowledgement, setFormValuesForAcknowledgement] =
     useState(null);
@@ -38,7 +36,7 @@ const PrivateLimitedCompany = ({ handleNextStep }) => {
   // };
 
   const handleSubmit = async (values, formikHelpers) => {
-    // const isValid = await privateLimitedCompany.isValid(values, {
+    // const isValid = await welfareGroups.isValid(values, {
     //   abortEarly: false,
     // });
     // setIndividualFieldErrors({ f1: { error: "i am an error" } });
@@ -59,10 +57,8 @@ const PrivateLimitedCompany = ({ handleNextStep }) => {
         },
       ],
       certificateOfRegistration: [],
-      memorandumAndArticlesOfAssociation: [],
       businessPermit: [],
       boardResolutionLetter: [],
-      companyStatusReport: [],
       aml: [],
       termsAndConditions: [],
     };
@@ -71,7 +67,7 @@ const PrivateLimitedCompany = ({ handleNextStep }) => {
   return (
     <Stack sx={styles.topContainer} spacing={3}>
       <Formik
-        validationSchema={privateLimitedCompany}
+        validationSchema={welfareGroups}
         initialValues={formValues || initialValues}
         onSubmit={handleSubmit}
         enableReinitialize
@@ -79,7 +75,7 @@ const PrivateLimitedCompany = ({ handleNextStep }) => {
         {(formik) => {
           return (
             <Form>
-              <PrivateLimitedCompanyContainer topLabel="Private Limited Company">
+              <WelfareGroupsContainer topLabel="Chama and Welfare Groups">
                 <Stack direction={{ xs: "column" }} spacing={{ xs: 3 }}>
                   <FormikControl
                     control="singleFileUpload"
@@ -124,19 +120,7 @@ const PrivateLimitedCompany = ({ handleNextStep }) => {
                         : null
                     }
                   />
-                  <FormikControl
-                    control="singleFileUpload"
-                    label="Memorandum And Articles Of Association"
-                    name="memorandumAndArticlesOfAssociation"
-                    multiple={false}
-                    required
-                    givenFile={
-                      formik.values.memorandumAndArticlesOfAssociation !==
-                      undefined
-                        ? formik.values.memorandumAndArticlesOfAssociation[0]
-                        : null
-                    }
-                  />
+
                   <FormikControl
                     control="singleFileUpload"
                     label="Business Permit From Government"
@@ -158,19 +142,6 @@ const PrivateLimitedCompany = ({ handleNextStep }) => {
                     givenFile={
                       formik.values.boardResolutionLetter !== undefined
                         ? formik.values.boardResolutionLetter[0]
-                        : null
-                    }
-                  />
-
-                  <FormikControl
-                    control="singleFileUpload"
-                    label="Company Status Report"
-                    name="companyStatusReport"
-                    multiple={false}
-                    required
-                    givenFile={
-                      formik.values.companyStatusReport !== undefined
-                        ? formik.values.companyStatusReport[0]
                         : null
                     }
                   />
@@ -218,7 +189,7 @@ const PrivateLimitedCompany = ({ handleNextStep }) => {
                 >
                   Save
                 </LoadingButton>
-              </PrivateLimitedCompanyContainer>
+              </WelfareGroupsContainer>
               {/* <pre style={{ color: "black" }}>   //meant for debugging
                 {JSON.stringify(formik.values, formik.errors, null, 4)}
               </pre>
@@ -240,7 +211,7 @@ const PrivateLimitedCompany = ({ handleNextStep }) => {
           {(formik) => {
             return (
               <Form>
-                <PrivateLimitedCompanyContainer topLabel="Acknowledgement Form">
+                <WelfareGroupsContainer topLabel="Acknowledgement Form">
                   <Stack direction={{ xs: "column" }} spacing={{ xs: 3 }}>
                     <DownloadDiv
                       text="Download Our Terms And Conditions Form for signature"
@@ -269,7 +240,7 @@ const PrivateLimitedCompany = ({ handleNextStep }) => {
                       Save And Next
                     </LoadingButton>
                   </Stack>
-                </PrivateLimitedCompanyContainer>
+                </WelfareGroupsContainer>
               </Form>
             );
           }}
@@ -279,8 +250,8 @@ const PrivateLimitedCompany = ({ handleNextStep }) => {
   );
 };
 
-PrivateLimitedCompany.propTypes = {
+WelfareGroups.propTypes = {
   handleNextStep: PropTypes.func.isRequired,
 };
 
-export default PrivateLimitedCompany;
+export default WelfareGroups;

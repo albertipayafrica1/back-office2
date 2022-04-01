@@ -33,8 +33,13 @@ const initialValues = {
     maritalStatus: "",
     dateOfBirth: null,
     countryOfOperation: "Kenya",
-    documentType: "",
+    documentType: "1",
     documentNumber: "",
+    nationalIdFront: [],
+    nationalIdBack: [],
+    passport: [],
+    passportSizePhoto: [],
+    pinCertificate: [],
   },
   registeredBusinessDetails: {
     businessName: "",
@@ -114,8 +119,13 @@ const BusinessStructureForm = (data) => {
         maritalStatus: "",
         dateOfBirth: null,
         countryOfOperation: "Kenya",
-        documentType: "",
+        documentType: "1",
         documentNumber: "",
+        nationalIdFront: [],
+        nationalIdBack: [],
+        passport: [],
+        passportSizePhoto: [],
+        pinCertificate: [],
       },
       registeredBusinessDetails: {
         businessName: "",
@@ -331,6 +341,87 @@ const BusinessStructureForm = (data) => {
                       type="text"
                       id="documentNumber"
                       required
+                    />
+                  </Stack>
+                  {formik.values.businessRepresentative.documentType ===
+                    "1" && (
+                    <Stack direction={{ xs: "column" }} spacing={3}>
+                      <FormikControl
+                        control="singleFileUpload"
+                        label="National Id of the Business Representative (front)"
+                        name="businessRepresentative.nationalIdFront"
+                        multiple={false}
+                        required
+                        givenFile={
+                          formik.values.businessRepresentative
+                            .nationalIdFront !== undefined
+                            ? formik.values.businessRepresentative
+                                .nationalIdFront[0]
+                            : null
+                        }
+                      />
+                      <FormikControl
+                        control="singleFileUpload"
+                        label="National Id of the Business Representative (Back)"
+                        name="businessRepresentative.nationalIdBack"
+                        multiple={false}
+                        required
+                        givenFile={
+                          formik.values.businessRepresentative
+                            .nationalIdBack !== undefined
+                            ? formik.values.businessRepresentative
+                                .nationalIdBack[0]
+                            : null
+                        }
+                      />
+                    </Stack>
+                  )}
+                  {formik.values.businessRepresentative.documentType ===
+                    "2" && (
+                    <Stack direction={{ xs: "column" }} spacing={3}>
+                      <FormikControl
+                        control="singleFileUpload"
+                        label="Passport of the Business Representative"
+                        name="businessRepresentative.passport"
+                        multiple={false}
+                        required
+                        givenFile={
+                          formik.values.businessRepresentative.passport !==
+                          undefined
+                            ? formik.values.businessRepresentative.passport[0]
+                            : null
+                        }
+                      />
+                    </Stack>
+                  )}
+                  <Stack direction={{ xs: "column" }} spacing={3}>
+                    <FormikControl
+                      control="singleFileUpload"
+                      label="Colored Passport Size Photograph of the Business Representative"
+                      name="businessRepresentative.passportSizePhoto"
+                      multiple={false}
+                      required
+                      givenFile={
+                        formik.values.businessRepresentative
+                          .passportSizePhoto !== undefined
+                          ? formik.values.businessRepresentative
+                              .passportSizePhoto[0]
+                          : null
+                      }
+                    />
+                    <FormikControl
+                      control="singleFileUpload"
+                      label="Tax PIN certificate of the Business Representative"
+                      name="businessRepresentative.pinCertificate"
+                      multiple={false}
+                      required
+                      givenFile={
+                        formik.values.businessRepresentative.pinCertificate !==
+                        undefined
+                          ? formik.values.businessRepresentative
+                              .pinCertificate[0]
+                          : null
+                      }
                     />
                   </Stack>
                 </Stack>
