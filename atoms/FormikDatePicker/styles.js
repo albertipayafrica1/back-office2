@@ -8,6 +8,7 @@ const useStyles = makeStyles((theme) => ({
     [`& fieldset`]: {
       borderRadius: 7,
       height: "65px",
+      borderColor: "#c4c4c4",
     },
     "& input::placeholder": {
       fontSize: "20px",

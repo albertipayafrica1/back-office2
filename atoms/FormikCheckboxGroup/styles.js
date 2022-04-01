@@ -1,4 +1,5 @@
 export const checkbox = {
+  color: "#c4c4c4",
   "&.MuiCheckbox-root": {
     "&.Mui-checked": {
       color: (theme) => theme.colors.orange,

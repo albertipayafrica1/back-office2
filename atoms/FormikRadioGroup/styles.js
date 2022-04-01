@@ -1,4 +1,5 @@
 export const radio = {
+  color: "#C4C4C4",
   "&.MuiRadio-root": {
     "&.Mui-checked": {
       color: (theme) => theme.colors.orange,
@@ -7,7 +8,7 @@ export const radio = {
   },
   "& .MuiSvgIcon-root ": {
     fontSize: 22,
-    backgroundColor: "white",
+    // backgroundColor: "white",
     borderRadius: 10,
   },
 };

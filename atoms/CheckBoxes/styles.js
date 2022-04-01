@@ -1,4 +1,5 @@
 export const checkbox = {
+  color: "#c4c4c4",
   "&.MuiCheckbox-root": {
     "&.Mui-checked": {
       color: (theme) => theme.colors.orange,
@@ -6,7 +7,7 @@ export const checkbox = {
   },
   "& .MuiSvgIcon-root": {
     fontSize: 22,
-    backgroundColor: "white",
+    // backgroundColor: "white",
     borderRadius: 10,
   },
 };
