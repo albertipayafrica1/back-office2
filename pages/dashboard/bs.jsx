@@ -54,3 +54,11 @@
 //     </Card>
 //   );
 // }
+
+import React from "react";
+
+function bs(props) {
+  return <div>hi</div>;
+}
+
+export default bs;
