@@ -55,7 +55,7 @@ const initialValues = {
   businessLocation: {
     physicalAddress: "",
     postalAddress: "",
-    postalcode: "",
+    postalCode: "",
     city: "",
     county: "",
     websiteLink: "",
@@ -141,7 +141,7 @@ const BusinessStructureForm = (data) => {
       businessLocation: {
         physicalAddress: "This is my physical address",
         postalAddress: "",
-        postalcode: "",
+        postalCode: "",
         city: "",
         county: "",
         websiteLink: "",
@@ -556,7 +556,6 @@ const BusinessStructureForm = (data) => {
                       label="Postal Code"
                       type="number"
                       id="postalCode"
-                      required
                     />
                     <FormikControl
                       control="input"
