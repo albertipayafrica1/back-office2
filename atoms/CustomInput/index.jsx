@@ -46,30 +46,31 @@ const CustomInput = ({
     setVisibility((prev) => !prev);
   };
 
-  const CssTextField = withStyles((theme) => ({
-    root: {
-      "& label.Mui-focused": {
-        color: "#124AA1",
-      },
-      "& .MuiInput-underline:after": {
-        borderBottomColor: "#124AA1",
-      },
-      "& .MuiOutlinedInput-root": {
-        "& fieldset": {
-          borderColor: "#C4C4C4",
-        },
-        "&:hover fieldset": {
-          borderColor: "#124AA1",
-        },
-        "&.Mui-focused fieldset": {
-          borderColor: "#124AA1",
-        },
-      },
-    },
-  }))(TextField);
+  // const CssTextField = withStyles((theme) => ({
+  //   root: {
+  //     "& label.Mui-focused": {
+  //       color: "#124AA1",
+  //     },
+  //     "& .MuiInput-underline:after": {
+  //       borderBottomColor: "#124AA1",
+  //     },
+  //     "& .MuiOutlinedInput-root": {
+  //       "& fieldset": {
+  //         borderColor: "#C4C4C4",
+  //       },
+  //       "&:hover fieldset": {
+  //         borderColor: "#124AA1",
+  //       },
+  //       "&.Mui-focused fieldset": {
+  //         borderColor: "#124AA1",
+  //       },
+  //     },
+  //   },
+  // }))(TextField);
 
   return (
-    <CssTextField
+    // instead of textfield use CssTextField but it doesnt work
+    <TextField
       label={<Typography variant="subtitle3">{label}</Typography>}
       defaultValue={defaultValue}
       id={label}
@@ -86,27 +87,27 @@ const CustomInput = ({
       fullWidth
       multiline={multiline}
       select={select}
-      // sx={{
-      //   "& . MuiTextField-root": {
-      //     borderColor: (theme) => theme.colors.blue,
-      //   },
-      //   "& .MuiOutlinedInput-root:hover": {
-      //     "& > fieldset": {
-      //       borderColor: (theme) => theme.colors.blue,
-      //     },
-      //   },
-      //   "& .MuiOutlinedInput-root": {
-      //     "& .Mui-focused": {
-      //       borderColor: (theme) => theme.colors.blue,
-      //     },
-      //   },
-      //   "& .MuiFormLabel-root": {
-      //     color: (theme) => theme.colors.mono4,
-      //     "& .Mui-focused": {
-      //       color: (theme) => theme.colors.blue,
-      //     },
-      //   },
-      // }}
+      sx={{
+        "& . MuiTextField-root": {
+          borderColor: (theme) => theme.colors.blue,
+        },
+        "& .MuiOutlinedInput-root:hover": {
+          "& > fieldset": {
+            borderColor: (theme) => theme.colors.blue,
+          },
+        },
+        "& .MuiOutlinedInput-root": {
+          "& .Mui-focused": {
+            borderColor: (theme) => theme.colors.blue,
+          },
+        },
+        "& .MuiFormLabel-root": {
+          color: (theme) => theme.colors.mono4,
+          "& .Mui-focused": {
+            color: (theme) => theme.colors.blue,
+          },
+        },
+      }}
       InputProps={{
         className: classes.input,
         endAdornment: (
@@ -142,7 +143,7 @@ const CustomInput = ({
             {option.key}
           </MenuItem>
         ))}
-    </CssTextField>
+    </TextField>
   );
 };
 

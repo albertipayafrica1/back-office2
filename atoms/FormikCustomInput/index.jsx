@@ -40,27 +40,27 @@ const CustomInput = ({
   const [visibility, setVisibility] = useState(false);
   const classes = useStyles();
 
-  const CssTextField = withStyles((theme) => ({
-    root: {
-      "& label.Mui-focused": {
-        color: "#124AA1",
-      },
-      "& .MuiInput-underline:after": {
-        borderBottomColor: "#124AA1",
-      },
-      "& .MuiOutlinedInput-root": {
-        "& fieldset": {
-          borderColor: "#C4C4C4",
-        },
-        "&:hover fieldset": {
-          borderColor: "#124AA1",
-        },
-        "&.Mui-focused fieldset": {
-          borderColor: "#124AA1",
-        },
-      },
-    },
-  }))(TextField);
+  // const CssTextField = withStyles((theme) => ({
+  //   root: {
+  //     "& label.Mui-focused": {
+  //       color: "#124AA1",
+  //     },
+  //     "& .MuiInput-underline:after": {
+  //       borderBottomColor: "#124AA1",
+  //     },
+  //     "& .MuiOutlinedInput-root": {
+  //       "& fieldset": {
+  //         borderColor: "#C4C4C4",
+  //       },
+  //       "&:hover fieldset": {
+  //         borderColor: "#124AA1",
+  //       },
+  //       "&.Mui-focused fieldset": {
+  //         borderColor: "#124AA1",
+  //       },
+  //     },
+  //   },
+  // }))(TextField);
 
   const typeChangeHandler = () => {
     setVisibility((prev) => !prev);
@@ -70,7 +70,7 @@ const CustomInput = ({
     <FastField name={name}>
       {({ field, form }) => {
         return (
-          <CssTextField
+          <TextField
             {...field}
             label={<Typography variant="subtitle3">{label}</Typography>}
             id={label}
@@ -146,7 +146,7 @@ const CustomInput = ({
                   {option.key}
                 </MenuItem>
               ))}
-          </CssTextField>
+          </TextField>
         );
       }}
     </FastField>
