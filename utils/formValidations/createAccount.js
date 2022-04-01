@@ -11,21 +11,47 @@ export const createAccount = yup.object().shape({
     .string("First Name must be a string")
     .required("First Name is required"),
   middleName: yup.string("Middle Name must be a string"),
+  telephoneCountryCode: yup
+    .string("Country code is required")
+    .required("Country Code is Required"),
   contactNumber: yup
     .string("Enter your contact number")
-    .test("phoneNumber", "Must be a valid phone number", (val) => {
-      if (val === undefined || val === null || val === "") {
-        return false;
+    .when("telephoneCountryCode", (telephoneCountryCode) => {
+      if (
+        telephoneCountryCode === undefined ||
+        telephoneCountryCode === null ||
+        telephoneCountryCode === ""
+      ) {
+        return yup
+          .string()
+          .test(
+            "telephoneCountryCode",
+            "Kindly enter country Code before entering contact number",
+            (val) => {
+              if (val === undefined || val === null || val === "") {
+                return false;
+              }
+              return true;
+            }
+          );
       }
-      const number = phoneUtil.parseAndKeepRawInput(val, "KE");
-      console.log(phoneUtil.getRegionCodeForNumber(number));
-      return phoneUtil.isValidNumberForRegion(number, "KE");
+      return yup
+        .string()
+        .test("phoneNumber", "Kindly enter a valid contact number", (val) => {
+          console.log(telephoneCountryCode, "tcc");
+          if (val === undefined || val === null || val === "") {
+            return false;
+          }
+          const number = phoneUtil.parseAndKeepRawInput(
+            val,
+            telephoneCountryCode
+          );
+          console.log(phoneUtil.getRegionCodeForNumber(number));
+          return phoneUtil.isValidNumberForRegion(number, telephoneCountryCode);
+        });
     })
     .required("Contact Number is required"),
-  // .matches(
-  //   /^((\\+[0-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
-  //   "Enter a valid phone number"
-  // ),
+
   email: yup
     .string()
     .email("Please Enter a valid Email")

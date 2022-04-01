@@ -43,6 +43,7 @@ import {
   ugandaIpayProducts,
   aboutUs,
   ads,
+  telephoneCodes,
 } from "./data";
 
 const CreateAccountForm = ({
@@ -172,20 +173,37 @@ const CreateAccountForm = ({
                 helperText={errors.middleName}
               />
             </Stack>
-
-            <CustomInput
-              variant="outlined"
-              name="contactNumber"
-              label="Contact Number"
-              type="number"
-              id="contactNumber"
-              value={formData.contactNumber}
-              onChange={handleFormChange}
-              error={!!errors.contactNumber}
-              helperText={errors.contactNumber}
-              required
-            />
-
+            <Stack direction="row" spacing={1}>
+              <Box sx={{ width: "100px" }}>
+                <CustomInput
+                  variant="outlined"
+                  name="telephoneCountryCode"
+                  label="Code"
+                  type="text"
+                  select
+                  selectItem={telephoneCodes}
+                  id="telephoneCountryCode"
+                  value={formData.telephoneCountryCode}
+                  onChange={handleFormChange}
+                  error={!!errors.telephoneCountryCode}
+                  helperText={errors.telephoneCountryCode}
+                  required
+                  defaultValue={formData.countryOfOperation.toUpperCase()}
+                />
+              </Box>
+              <CustomInput
+                variant="outlined"
+                name="contactNumber"
+                label="Contact Number"
+                type="number"
+                id="contactNumber"
+                value={formData.contactNumber}
+                onChange={handleFormChange}
+                error={!!errors.contactNumber}
+                helperText={errors.contactNumber}
+                required
+              />
+            </Stack>
             <CustomInput
               variant="outlined"
               name="email"
@@ -460,6 +478,7 @@ CreateAccountForm.propTypes = {
     surname: PropTypes.string.isRequired,
     firstName: PropTypes.string.isRequired,
     middleName: PropTypes.string.isRequired,
+    telephoneCountryCode: PropTypes.string.isRequired,
     contactNumber: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired,
@@ -481,6 +500,7 @@ CreateAccountForm.propTypes = {
     surname: PropTypes.string.isRequired,
     firstName: PropTypes.string.isRequired,
     middleName: PropTypes.string.isRequired,
+    telephoneCountryCode: PropTypes.string.isRequired,
     contactNumber: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired,

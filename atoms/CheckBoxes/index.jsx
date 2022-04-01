@@ -35,17 +35,17 @@ const CheckboxesGroup = ({
         <FormGroup>
           {formFields.map((field) => (
             <FormControlLabel
-              key={field.id}
+              key={field.value}
               control={
                 <Checkbox
-                  checked={!!fieldChecked.includes(field.id)}
+                  checked={!!fieldChecked.includes(field.value)}
                   onChange={onChange}
                   name={fieldName}
-                  value={field.id}
+                  value={field.value}
                   sx={styles.checkbox}
                 />
               }
-              label={<Typography variant="subtitle3">{field.value}</Typography>}
+              label={<Typography variant="subtitle3">{field.key}</Typography>}
             />
           ))}
         </FormGroup>

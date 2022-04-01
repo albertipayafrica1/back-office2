@@ -45,83 +45,77 @@ const CustomInput = ({
   };
 
   return (
-    <Stack direction="row" spacing={2}>
-      <TextField
-        label={<Typography variant="subtitle3">{label}</Typography>}
-        defaultValue={defaultValue}
-        id={label}
-        variant={variant}
-        className={[classes.root, pClass].join(" ")}
-        type={type !== "password" ? type : visibility ? "text" : "password"}
-        onChange={onChange}
-        value={value}
-        name={name}
-        required={required}
-        helperText={helperText}
-        error={error}
-        size="medium"
-        fullWidth
-        multiline={multiline}
-        select={select}
-        sx={{
-          "& .MuiOutlinedInput-root:hover": {
-            "& > fieldset": {
-              borderColor: (theme) => theme.colors.blue,
-            },
+    <TextField
+      label={<Typography variant="subtitle3">{label}</Typography>}
+      defaultValue={defaultValue}
+      id={label}
+      variant={variant}
+      className={[classes.root, pClass].join(" ")}
+      type={type !== "password" ? type : visibility ? "text" : "password"}
+      onChange={onChange}
+      value={value}
+      name={name}
+      required={required}
+      helperText={helperText}
+      error={error}
+      size="medium"
+      fullWidth
+      multiline={multiline}
+      select={select}
+      sx={{
+        "& .MuiOutlinedInput-root:hover": {
+          "& > fieldset": {
+            borderColor: (theme) => theme.colors.blue,
           },
-          "& .MuiOutlinedInput-root": {
-            "& .Mui-focused": {
-              borderColor: (theme) => theme.colors.blue,
-            },
+        },
+        "& .MuiOutlinedInput-root": {
+          "& .Mui-focused": {
+            borderColor: (theme) => theme.colors.blue,
           },
-          "& .MuiFormLabel-root": {
-            color: (theme) => theme.colors.mono4,
-            "& .Mui-focused": {
-              color: (theme) => theme.colors.blue,
-            },
+        },
+        "& .MuiFormLabel-root": {
+          color: (theme) => theme.colors.mono4,
+          "& .Mui-focused": {
+            color: (theme) => theme.colors.blue,
           },
-        }}
-        InputProps={{
-          className: classes.input,
-          endAdornment: (
-            <InputAdornment position="start">
-              {type === "password" ? (
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={typeChangeHandler}
-                >
-                  {visibility ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              ) : (
-                haveTooltip && (
-                  <Tooltip
-                    title={tooltipText}
-                    arrow
-                    className={classes.tooltip}
-                  >
-                    <IconButton className={classes.infoIcon}>
-                      <InfoOutlinedIcon
-                        sx={{
-                          color: (theme) => theme.colors.orange,
-                        }}
-                      />
-                    </IconButton>
-                  </Tooltip>
-                )
-              )}
-            </InputAdornment>
-          ),
-        }}
-        {...restProps}
-      >
-        {select &&
-          selectItem.map((option) => (
-            <MenuItem key={option.id} value={option.id}>
-              {option.value}
-            </MenuItem>
-          ))}
-      </TextField>
-    </Stack>
+        },
+      }}
+      InputProps={{
+        className: classes.input,
+        endAdornment: (
+          <InputAdornment position="start">
+            {type === "password" ? (
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={typeChangeHandler}
+              >
+                {visibility ? <Visibility /> : <VisibilityOff />}
+              </IconButton>
+            ) : (
+              haveTooltip && (
+                <Tooltip title={tooltipText} arrow className={classes.tooltip}>
+                  <IconButton className={classes.infoIcon}>
+                    <InfoOutlinedIcon
+                      sx={{
+                        color: (theme) => theme.colors.orange,
+                      }}
+                    />
+                  </IconButton>
+                </Tooltip>
+              )
+            )}
+          </InputAdornment>
+        ),
+      }}
+      {...restProps}
+    >
+      {select &&
+        selectItem.map((option) => (
+          <MenuItem key={option.key} value={option.value}>
+            {option.key}
+          </MenuItem>
+        ))}
+    </TextField>
   );
 };
 

@@ -1,42 +1,62 @@
 export const country = [
-  { id: "ke", value: "Kenya" },
-  { id: "tz", value: "Tanzania" },
-  { id: "tg", value: "Togo" },
-  { id: "ug", value: "Uganda" },
+  { value: "ke", key: "Kenya" },
+  { value: "tz", key: "Tanzania" },
+  { value: "tg", key: "Togo" },
+  { value: "ug", key: "Uganda" },
 ];
 export const revenue = [
-  { id: "1", value: "Havent started processing yet" },
-  { id: "2", value: "Less than $10000" },
+  { value: "1", key: "Havent started processing yet" },
+  { value: "2", key: "Less than $10000" },
 ];
 export const business = [
-  { id: "1", value: "NGO" },
-  { id: "2", value: "Limited Company" },
-  { id: "3", value: "Religious Organisation" },
-  { id: "4", value: "Sole Proprieter" },
+  { value: "1", key: "NGO" },
+  { value: "2", key: "Limited Company" },
+  { value: "3", key: "Religious Organisation" },
+  { value: "4", key: "Sole Proprieter" },
 ];
 export const registration = [
-  { id: "1", value: "Registered" },
-  { id: "2", value: "Non Registered" },
+  { value: "1", key: "Registered" },
+  { value: "2", key: "Non Registered" },
 ];
 export const kenyaIpayProducts = [
-  { id: "1", value: "iPay Pos/PDQ" },
-  { id: "2", value: "iPay Online" },
-  { id: "3", value: "E-invoicing" },
-  { id: "4", value: "iPay Lite" },
-  { id: "5", value: "iPay Payouts" },
+  { value: "1", key: "iPay Pos/PDQ" },
+  { value: "2", key: "iPay Online" },
+  { value: "3", key: "E-invoicing" },
+  { value: "4", key: "iPay Lite" },
+  { value: "5", key: "iPay Payouts" },
 ];
-export const tanzaniaIpayProducts = [{ id: "2", value: "iPay Online" }];
-export const ugandaIpayProducts = [{ id: "2", value: "iPay Online" }];
-export const togoIpayProducts = [{ id: "2", value: "iPay Online" }];
+export const tanzaniaIpayProducts = [{ value: "2", key: "iPay Online" }];
+export const ugandaIpayProducts = [{ value: "2", key: "iPay Online" }];
+export const togoIpayProducts = [{ value: "2", key: "iPay Online" }];
 export const aboutUs = [
-  { id: "1", value: "Ads" },
-  { id: "2", value: "Referral" },
-  { id: "3", value: "Social Media" },
-  { id: "4", value: "Website" },
+  { value: "1", key: "Ads" },
+  { value: "2", key: "Referral" },
+  { value: "3", key: "Social Media" },
+  { value: "4", key: "Website" },
 ];
 export const ads = [
-  { id: "1", value: "BillBoards" },
-  { id: "1", value: "GDN" },
-  { id: "1", value: "Radio" },
-  { id: "1", value: "Tv" },
+  { value: "1", key: "BillBoards" },
+  { value: "1", key: "GDN" },
+  { value: "1", key: "Radio" },
+  { value: "1", key: "Tv" },
+];
+
+export const telephoneCodes = [
+  { key: "93", value: "AF" },
+  {
+    key: "+358-18",
+    value: "AX",
+  },
+  {
+    key: "355",
+    value: "AL",
+  },
+  {
+    key: "213",
+    value: "DZ",
+  },
+  {
+    key: "254",
+    value: "KE",
+  },
 ];

@@ -25,6 +25,7 @@ const CreateAccount = ({ countryCode, rc }) => {
     surname: "",
     firstName: "",
     middleName: "",
+    telephoneCountryCode: "",
     contactNumber: "",
     email: "",
     password: "",
@@ -44,6 +45,7 @@ const CreateAccount = ({ countryCode, rc }) => {
     surname: "",
     firstName: "",
     middleName: "",
+    telephoneCountryCode: "",
     contactNumber: "",
     email: "",
     password: "",
@@ -82,6 +84,7 @@ const CreateAccount = ({ countryCode, rc }) => {
   };
 
   const handleSubmit = async (e) => {
+    console.log(formData, "formData on submit");
     setDisableButton(true);
     setEmailAlert(false);
     e.preventDefault();
