@@ -13,13 +13,13 @@ function stepper(props) {
 
 export default stepper;
 
-export const getServerSideProps = ProtectedRoute(
-  wrapper.getServerSideProps((store) => async (context) => {
-    const { req } = context;
-    console.log(store, "store");
+// export const getServerSideProps = ProtectedRoute(
+//   wrapper.getServerSideProps((store) => async (context) => {
+//     const { req } = context;
+//     console.log(store, "store");
 
-    return {
-      props: {},
-    };
-  })
-);
+//     return {
+//       props: {},
+//     };
+//   })
+// );

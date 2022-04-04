@@ -51,14 +51,4 @@ export const trust = yup.object({
     )
     .min(1, "This file is required")
     .required("This file is required"),
-  termsAndConditions: yup
-    .array(
-      yup
-        .object({
-          url: yup.string().required("This file is required"),
-        })
-        .required("This file is required")
-    )
-    .min(1, "This file is required")
-    .required("This file is required"),
 });

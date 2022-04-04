@@ -7,17 +7,17 @@ import { LoadingButton } from "@mui/lab";
 import { Formik, Form } from "formik";
 
 import FormikControl from "../../../../FormikControls/index";
-import MedicalContainer from "../../../../../atoms/CreateAccountFormDiv";
+import WeddingContainer from "../../../../../atoms/CreateAccountFormDiv";
 
-import { medical } from "../../../../../utils/formValidations/kyc/unRegisteredBusinessFlow/documentUploads/medical";
+import { wedding } from "../../../../../utils/formValidations/kyc/unRegisteredBusinessFlow/documentUploads/wedding";
 
 import { styles } from "../styles";
 
 const initialValues = {
-  hospitalAdmissionForm: [],
+  letterFromInstitution: [],
 };
 
-const Medical = ({ handleNextStep }) => {
+const Wedding = ({ handleNextStep }) => {
   const [formValues, setFormValues] = useState(null);
 
   // const [individualFieldErrors, setIndividualFieldErrors] = useState({});
@@ -27,18 +27,16 @@ const Medical = ({ handleNextStep }) => {
   // };
 
   const handleSubmit = async (values, formikHelpers) => {
-    // const isValid = await medical.isValid(values, {
+    // const isValid = await wedding.isValid(values, {
     //   abortEarly: false,
     // });
     // setIndividualFieldErrors({ f1: { error: "i am an error" } });
     // handleNextStep();
   };
 
-  const handleAcknowledgementSubmit = async (values, formikHelpers) => {};
-
   useEffect(() => {
     const savedValues = {
-      hospitalAdmissionForm: [
+      letterFromInstitution: [
         {
           file: { path: "elipa-Single-logos-black.png" },
           errors: [],
@@ -52,7 +50,7 @@ const Medical = ({ handleNextStep }) => {
   return (
     <Stack sx={styles.topContainer} spacing={3}>
       <Formik
-        validationSchema={medical}
+        validationSchema={wedding}
         initialValues={formValues || initialValues}
         onSubmit={handleSubmit}
         enableReinitialize
@@ -60,16 +58,16 @@ const Medical = ({ handleNextStep }) => {
         {(formik) => {
           return (
             <Form>
-              <MedicalContainer topLabel="Medical">
+              <WeddingContainer topLabel="Wedding">
                 <Stack direction={{ xs: "column" }} spacing={{ xs: 3 }}>
                   <FormikControl
                     control="singleFileUpload"
-                    label="Hospital Admission Form"
-                    name="hospitalAdmissionForm"
+                    label="	Letter from the institution that is to wed the couple stating the duration"
+                    name="letterFromInstitution"
                     multiple={false}
                     givenFile={
-                      formik.values.hospitalAdmissionForm !== undefined
-                        ? formik.values.hospitalAdmissionForm[0]
+                      formik.values.letterFromInstitution !== undefined
+                        ? formik.values.letterFromInstitution[0]
                         : null
                     }
                   />
@@ -82,13 +80,13 @@ const Medical = ({ handleNextStep }) => {
                   size="large"
                   sx={styles.submitButton}
                   disabled={
-                    formik.values.hospitalAdmissionForm.length === 0 ||
+                    formik.values.letterFromInstitution.length === 0 ||
                     formik.isSubmitting
                   }
                 >
                   Save
                 </LoadingButton>
-              </MedicalContainer>
+              </WeddingContainer>
             </Form>
           );
         }}
@@ -97,8 +95,8 @@ const Medical = ({ handleNextStep }) => {
   );
 };
 
-Medical.propTypes = {
+Wedding.propTypes = {
   handleNextStep: PropTypes.func.isRequired,
 };
 
-export default Medical;
+export default Wedding;

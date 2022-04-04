@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { Stack } from "@mui/material";
+import { Stack, Box } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 
 import { Formik, Form } from "formik";
@@ -17,6 +17,8 @@ import {
   businessCurrencyOptions,
   documentTypeOptions,
   shareHolderTypeOptions,
+  telephoneCodes,
+  documentTypeOptionsForNextOfKin,
 } from "./data";
 
 import * as styles from "./styles";
@@ -27,6 +29,7 @@ const initialValues = {
     surname: "",
     firstName: "",
     middleName: "",
+    telephoneCountryCode: "",
     contactNumber: "",
     email: "",
     gender: "",
@@ -70,6 +73,7 @@ const initialValues = {
       middleName: "",
       shareHolderType: "",
       otherShareHolderType: "",
+      telephoneCountryCode: "",
       contactNumber: "",
       email: "",
       documentType: "1",
@@ -87,9 +91,16 @@ const initialValues = {
           surname: "",
           firstName: "",
           middleName: "",
+          telephoneCountryCode: "",
           contactNumber: "",
           email: "",
           relationship: "",
+          dateOfBirth: null,
+          documentType: "1",
+          nationalIdFront: [],
+          nationalIdBack: [],
+          passport: [],
+          birthCertificate: [],
           percentageBeneficiary: "100",
         },
       ],
@@ -113,6 +124,7 @@ const BusinessStructureForm = (data) => {
         surname: "",
         firstName: "",
         middleName: "",
+        telephoneCountryCode: "",
         contactNumber: "",
         email: "",
         gender: "",
@@ -156,6 +168,7 @@ const BusinessStructureForm = (data) => {
           middleName: "",
           shareHolderType: "",
           otherShareHolderType: "",
+          telephoneCountryCode: "",
           contactNumber: "",
           email: "",
           documentType: "1",
@@ -180,9 +193,16 @@ const BusinessStructureForm = (data) => {
               surname: "",
               firstName: "",
               middleName: "",
+              telephoneCountryCode: "",
               contactNumber: "",
               email: "",
               relationship: "",
+              dateOfBirth: null,
+              documentType: "1",
+              nationalIdFront: [],
+              nationalIdBack: [],
+              passport: [],
+              birthCertificate: [],
               percentageBeneficiary: "100",
             },
           ],
@@ -209,26 +229,36 @@ const BusinessStructureForm = (data) => {
               <CreateAccountFormDiv topLabel="Business Representative">
                 <Stack direction="column" spacing={2}>
                   <Stack direction={{ xs: "column", md: "row" }} spacing={3}>
-                    <FormikControl
-                      control="select"
-                      variant="outlined"
-                      name="businessRepresentative.title"
-                      label="Title"
-                      type="text"
-                      select
-                      selectItem={titleOptions}
-                      id="title"
-                      required
-                    />
-                    <FormikControl
-                      control="input"
-                      label="Surname"
-                      name="businessRepresentative.surname"
-                      variant="outlined"
-                      type="text"
-                      id="surname"
-                      required
-                    />
+                    <Stack
+                      sx={{
+                        width: "100%",
+                      }}
+                      direction={{ xs: "row" }}
+                      spacing={3}
+                    >
+                      <Box sx={{ width: "150px" }}>
+                        <FormikControl
+                          control="select"
+                          variant="outlined"
+                          name="businessRepresentative.title"
+                          label="Title"
+                          type="text"
+                          select
+                          selectItem={titleOptions}
+                          id="title"
+                          required
+                        />
+                      </Box>
+                      <FormikControl
+                        control="input"
+                        label="Surname"
+                        name="businessRepresentative.surname"
+                        variant="outlined"
+                        type="text"
+                        id="surname"
+                        required
+                      />
+                    </Stack>
                     <FormikControl
                       control="input"
                       label="First Name"
@@ -248,17 +278,37 @@ const BusinessStructureForm = (data) => {
                     />
                   </Stack>
                   <Stack direction={{ xs: "column", md: "row" }} spacing={3}>
-                    <FormikControl
-                      control="input"
-                      variant="outlined"
-                      name="businessRepresentative.contactNumber"
-                      label="Contact Number"
-                      type="number"
-                      id="contactNumber"
-                      required
-                      haveTooltip
-                      tooltipText="Enter Your Contact number in the format 254xxxxxxxxx"
-                    />
+                    <Stack
+                      sx={{
+                        width: "100%",
+                      }}
+                      direction={{ xs: "row" }}
+                      spacing={3}
+                    >
+                      <Box sx={{ width: "130px" }}>
+                        <FormikControl
+                          control="input"
+                          name="businessRepresentative.telephoneCountryCode"
+                          label="Code"
+                          type="text"
+                          select
+                          selectItem={telephoneCodes}
+                          id="businessRepresentative.telephoneCountryCode"
+                          required
+                        />
+                      </Box>
+                      <FormikControl
+                        control="input"
+                        variant="outlined"
+                        name="businessRepresentative.contactNumber"
+                        label="Contact Number"
+                        type="number"
+                        id="contactNumber"
+                        required
+                        haveTooltip
+                        tooltipText="Enter Your Contact number in the format 254xxxxxxxxx"
+                      />
+                    </Stack>
                     <FormikControl
                       control="input"
                       label="Email"
@@ -482,15 +532,35 @@ const BusinessStructureForm = (data) => {
                       id="businessTaxPin"
                       required
                     />
-                    <FormikControl
-                      control="input"
-                      variant="outlined"
-                      name="registeredBusinessDetails.businessTelephone"
-                      label="Business Telephone"
-                      type="number"
-                      id="businessTelephone"
-                      required
-                    />
+                    <Stack
+                      sx={{
+                        width: "100%",
+                      }}
+                      direction={{ xs: "row" }}
+                      spacing={3}
+                    >
+                      <Box sx={{ width: "130px" }}>
+                        <FormikControl
+                          control="input"
+                          name="registeredBusinessDetails.telephoneCountryCode"
+                          label="Code"
+                          type="text"
+                          select
+                          selectItem={telephoneCodes}
+                          id="registeredBusinessDetails.telephoneCountryCode"
+                          required
+                        />
+                      </Box>
+                      <FormikControl
+                        control="input"
+                        variant="outlined"
+                        name="registeredBusinessDetails.businessTelephone"
+                        label="Business Telephone"
+                        type="number"
+                        id="registeredBusinessDetails.businessTelephone"
+                        required
+                      />
+                    </Stack>
                   </Stack>
                   <Stack direction={{ xs: "column", md: "row" }} spacing={3}>
                     <FormikControl
@@ -499,7 +569,7 @@ const BusinessStructureForm = (data) => {
                       name="registeredBusinessDetails.businessEmail"
                       label="Business Email"
                       type="text"
-                      id="businessEmail"
+                      id="registeredBusinessDetails.businessEmail"
                       required
                     />
                     <FormikControl
@@ -508,7 +578,7 @@ const BusinessStructureForm = (data) => {
                       name="registeredBusinessDetails.businessCurrency"
                       label="Currency Business Operates"
                       type="text"
-                      id="businessCurrency"
+                      id="registeredBusinessDetails.businessCurrency"
                       required
                       select
                       selectItem={businessCurrencyOptions}
@@ -520,7 +590,7 @@ const BusinessStructureForm = (data) => {
                     name="registeredBusinessDetails.businessDescription"
                     label="Business Description (min 150 characters)"
                     type="text"
-                    id="businessDescription"
+                    id="registeredBusinessDetails.businessDescription"
                     required
                     multiline
                   />
@@ -535,7 +605,7 @@ const BusinessStructureForm = (data) => {
                       name="businessLocation.physicalAddress"
                       label="Physical Address (Street/Road/Building)"
                       type="text"
-                      id="physicalAddress"
+                      id="businessLocation.physicalAddress"
                       required
                     />
                     <FormikControl
@@ -544,7 +614,7 @@ const BusinessStructureForm = (data) => {
                       name="businessLocation.postalAddress"
                       label="Postal Address"
                       type="text"
-                      id="postalAddress"
+                      id="businessLocation.postalAddress"
                       required
                     />
                   </Stack>
@@ -555,7 +625,7 @@ const BusinessStructureForm = (data) => {
                       name="businessLocation.postalCode"
                       label="Postal Code"
                       type="number"
-                      id="postalCode"
+                      id="businessLocation.postalCode"
                     />
                     <FormikControl
                       control="input"
@@ -563,7 +633,7 @@ const BusinessStructureForm = (data) => {
                       name="city"
                       label="City/Town"
                       type="text"
-                      id="city"
+                      id="businessLocation.city"
                       required
                     />
                   </Stack>
@@ -578,7 +648,7 @@ const BusinessStructureForm = (data) => {
                       name="businessLocation.county"
                       label="County"
                       type="text"
-                      id="county"
+                      id="businessLocation.county"
                       required
                     />
                     <FormikControl
@@ -587,7 +657,7 @@ const BusinessStructureForm = (data) => {
                       name="businessLocation.websiteLink"
                       label="Business Website Link"
                       type="text"
-                      id="websiteLink"
+                      id="businessLocation.websiteLink"
                     />
                   </Stack>
                   <Stack direction={{ xs: "column", md: "row" }} spacing={3}>
@@ -597,7 +667,7 @@ const BusinessStructureForm = (data) => {
                       name="businessLocation.appDownloadLink"
                       label="Business App Download Link"
                       type="text"
-                      id="appLink"
+                      id="businessLocation.appDownloadLink"
                     />
                   </Stack>
                 </Stack>
@@ -641,6 +711,7 @@ const BusinessStructureForm = (data) => {
                             middleName: "",
                             shareHolderType: "",
                             otherShareHolderType: "",
+                            telephoneCountryCode: "",
                             contactNumber: "",
                             email: "",
                             documentType: "1",
@@ -658,9 +729,16 @@ const BusinessStructureForm = (data) => {
                                 surname: "",
                                 firstName: "",
                                 middleName: "",
+                                telephoneCountryCode: "",
                                 contactNumber: "",
                                 email: "",
                                 relationship: "",
+                                dateOfBirth: null,
+                                documentType: "1",
+                                nationalIdFront: [],
+                                nationalIdBack: [],
+                                passport: [],
+                                birthCertificate: [],
                                 percentageBeneficiary: "100",
                               },
                             ],
@@ -764,17 +842,37 @@ const BusinessStructureForm = (data) => {
                         direction={{ xs: "column", md: "row" }}
                         spacing={3}
                       >
-                        <FormikControl
-                          control="input"
-                          variant="outlined"
-                          name={`ultimateBeneficialOwners[${index}].contactNumber`}
-                          label="Contact Number"
-                          type="number"
-                          id={`ultimateBeneficialOwners[${index}].contactNumber`}
-                          required
-                          haveTooltip
-                          tooltipText="Enter Your Contact number in the format 254xxxxxxxxx"
-                        />
+                        <Stack
+                          sx={{
+                            width: "100%",
+                          }}
+                          direction={{ xs: "row" }}
+                          spacing={3}
+                        >
+                          <Box sx={{ width: "130px" }}>
+                            <FormikControl
+                              control="input"
+                              name={`ultimateBeneficialOwners[${index}].telephoneCountryCode`}
+                              label="Code"
+                              type="text"
+                              select
+                              selectItem={telephoneCodes}
+                              id={`ultimateBeneficialOwners[${index}].telephoneCountryCode`}
+                              required
+                            />
+                          </Box>
+                          <FormikControl
+                            control="input"
+                            variant="outlined"
+                            name={`ultimateBeneficialOwners[${index}].contactNumber`}
+                            label="Contact Number"
+                            type="number"
+                            id={`ultimateBeneficialOwners[${index}].contactNumber`}
+                            required
+                            haveTooltip
+                            tooltipText="Enter Your Contact number in the format 254xxxxxxxxx"
+                          />
+                        </Stack>
                         <FormikControl
                           control="input"
                           label="Email"
@@ -928,26 +1026,36 @@ const BusinessStructureForm = (data) => {
                           direction={{ xs: "column", md: "row" }}
                           spacing={3}
                         >
-                          <FormikControl
-                            control="select"
-                            variant="outlined"
-                            name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].title`}
-                            label="Title"
-                            type="text"
-                            select
-                            selectItem={titleOptions}
-                            id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].title`}
-                            required
-                          />
-                          <FormikControl
-                            control="input"
-                            label="Surname"
-                            name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].surname`}
-                            variant="outlined"
-                            type="text"
-                            id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].surname`}
-                            required
-                          />
+                          <Stack
+                            sx={{
+                              width: "100%",
+                            }}
+                            direction={{ xs: "row" }}
+                            spacing={3}
+                          >
+                            <Box sx={{ width: "150px" }}>
+                              <FormikControl
+                                control="select"
+                                variant="outlined"
+                                name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].title`}
+                                label="Title"
+                                type="text"
+                                select
+                                selectItem={titleOptions}
+                                id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].title`}
+                                required
+                              />
+                            </Box>
+                            <FormikControl
+                              control="input"
+                              label="Surname"
+                              name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].surname`}
+                              variant="outlined"
+                              type="text"
+                              id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].surname`}
+                              required
+                            />
+                          </Stack>
                           <FormikControl
                             control="input"
                             label="First Name"
@@ -970,17 +1078,37 @@ const BusinessStructureForm = (data) => {
                           direction={{ xs: "column", md: "row" }}
                           spacing={3}
                         >
-                          <FormikControl
-                            control="input"
-                            variant="outlined"
-                            name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].contactNumber`}
-                            label="Contact Number"
-                            type="number"
-                            id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].contactNumber`}
-                            required
-                            haveTooltip
-                            tooltipText="Enter Your Contact number in the format 254xxxxxxxxx"
-                          />
+                          <Stack
+                            sx={{
+                              width: "100%",
+                            }}
+                            direction={{ xs: "row" }}
+                            spacing={3}
+                          >
+                            <Box sx={{ width: "130px" }}>
+                              <FormikControl
+                                control="input"
+                                name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].telephoneCountryCode`}
+                                label="Code"
+                                type="text"
+                                select
+                                selectItem={telephoneCodes}
+                                id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].telephoneCountryCode`}
+                                required
+                              />
+                            </Box>
+                            <FormikControl
+                              control="input"
+                              variant="outlined"
+                              name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].contactNumber`}
+                              label="Contact Number"
+                              type="number"
+                              id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].contactNumber`}
+                              required
+                              haveTooltip
+                              tooltipText="Enter Your Contact number in the format 254xxxxxxxxx"
+                            />
+                          </Stack>
                           <FormikControl
                             control="input"
                             label="Email"
@@ -988,7 +1116,6 @@ const BusinessStructureForm = (data) => {
                             variant="outlined"
                             type="text"
                             id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].email`}
-                            required
                           />
                         </Stack>
                         <Stack
@@ -1004,6 +1131,108 @@ const BusinessStructureForm = (data) => {
                             id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].relationship`}
                             required
                           />
+                          <FormikControl
+                            control="datePicker"
+                            label="Date Of Birth"
+                            name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].dateOfBirth`}
+                            required
+                            onChange={(val) => {
+                              formik.setFieldValue(
+                                `ultimateBeneficialOwners[${index}].nextOfKin[${index1}].dateOfBirth`,
+                                val
+                              );
+                            }}
+                          />
+                          <FormikControl
+                            control="input"
+                            variant="outlined"
+                            name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].documentType`}
+                            label="Document Type"
+                            type="text"
+                            id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].documentType`}
+                            required
+                            select
+                            selectItem={documentTypeOptionsForNextOfKin}
+                          />
+                        </Stack>
+                        <Stack spacing={3}>
+                          {formik.values.ultimateBeneficialOwners[index]
+                            .nextOfKin[index1].documentType === "1" && (
+                            <Stack direction={{ xs: "column" }} spacing={3}>
+                              <FormikControl
+                                control="singleFileUpload"
+                                label="National Id of Next Of Kin (front)"
+                                name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].nationalIdFront`}
+                                multiple={false}
+                                required
+                                givenFile={
+                                  formik.values.ultimateBeneficialOwners[index]
+                                    .nextOfKin[index1].nationalIdFront !==
+                                  undefined
+                                    ? formik.values.ultimateBeneficialOwners[
+                                        index
+                                      ].nextOfKin[index1].nationalIdFront[0]
+                                    : null
+                                }
+                              />
+                              <FormikControl
+                                control="singleFileUpload"
+                                label="National Id of Next Of Kin (Back)"
+                                name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].nationalIdBack`}
+                                multiple={false}
+                                required
+                                givenFile={
+                                  formik.values.ultimateBeneficialOwners[index]
+                                    .nationalIdBack !== undefined
+                                    ? formik.values.ultimateBeneficialOwners[
+                                        index
+                                      ].nationalIdBack[0]
+                                    : null
+                                }
+                              />
+                            </Stack>
+                          )}
+                          {formik.values.ultimateBeneficialOwners[index]
+                            .nextOfKin[index1].documentType === "2" && (
+                            <FormikControl
+                              control="singleFileUpload"
+                              label="Passport of  Next Of Kin"
+                              name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].passport`}
+                              multiple={false}
+                              required
+                              givenFile={
+                                formik.values.ultimateBeneficialOwners[index]
+                                  .nextOfKin[index1].documentType.passport !==
+                                undefined
+                                  ? formik.values.ultimateBeneficialOwners[
+                                      index
+                                    ].nextOfKin[index1].documentType.passport[0]
+                                  : null
+                              }
+                            />
+                          )}
+                          {formik.values.ultimateBeneficialOwners[index]
+                            .nextOfKin[index1].documentType === "3" && (
+                            <FormikControl
+                              control="singleFileUpload"
+                              label="Birth Certificate of Next Of Kin "
+                              name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].birthCertificate`}
+                              multiple={false}
+                              required
+                              givenFile={
+                                formik.values.ultimateBeneficialOwners[index]
+                                  .nextOfKin[index1].documentType
+                                  .birthCertificate !== undefined
+                                  ? formik.values.ultimateBeneficialOwners[
+                                      index
+                                    ].nextOfKin[index1].documentType
+                                      .birthCertificate[0]
+                                  : null
+                              }
+                            />
+                          )}
+                        </Stack>
+                        <Stack spacing={3}>
                           <FormikControl
                             control="input"
                             label="Percentage Beneficiary"

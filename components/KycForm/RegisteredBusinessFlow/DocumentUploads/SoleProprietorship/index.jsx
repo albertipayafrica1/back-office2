@@ -11,7 +11,7 @@ import SoleProprietorshipContainer from "../../../../../atoms/CreateAccountFormD
 import DownloadDiv from "../../../../../atoms/DownloadDiv";
 
 import { soleProprietorship } from "../../../../../utils/formValidations/kyc/registeredBusinessFlow/documentUploads/soleProprietorship";
-import { acknowledgement } from "../../../../../utils/formValidations/kyc/registeredBusinessFlow/documentUploads/acknowledgement";
+
 import { styles } from "../styles";
 
 const initialValues = {
@@ -19,16 +19,12 @@ const initialValues = {
   certificateOfRegistration: [],
   businessPermit: [],
   aml: [],
-  termsAndConditions: [],
 };
-const initialValuesForAcknowledgement = { acknowledgmentDocument: [] };
 
 const SoleProprietorship = ({ handleNextStep }) => {
   const [formValues, setFormValues] = useState(null);
-  const [formValuesForAcknowledgement, setFormValuesForAcknowledgement] =
-    useState(null);
+
   // const [individualFieldErrors, setIndividualFieldErrors] = useState({});
-  const [showAcknowledgementDiv, setShowAcknowledgementDiv] = useState(false);
 
   // const handleFieldError = (fieldName, error) => {
   //   setIndividualFieldErrors({ [fieldName]: error });
@@ -40,10 +36,7 @@ const SoleProprietorship = ({ handleNextStep }) => {
     // });
     // setIndividualFieldErrors({ f1: { error: "i am an error" } });
     // handleNextStep();
-    setShowAcknowledgementDiv(true);
   };
-
-  const handleAcknowledgementSubmit = async (values, formikHelpers) => {};
 
   useEffect(() => {
     const savedValues = {
@@ -57,7 +50,6 @@ const SoleProprietorship = ({ handleNextStep }) => {
       ],
       certificateOfRegistration: [],
       aml: [],
-      termsAndConditions: [],
     };
     setFormValues(savedValues);
   }, []);
@@ -127,22 +119,6 @@ const SoleProprietorship = ({ handleNextStep }) => {
                         : null
                     }
                   />
-                  <DownloadDiv
-                    text="Download Our Terms And Conditions Form for signature"
-                    downloadUrl="https://www.irs.gov/pub/irs-pdf/fw8ben.pdf"
-                  />
-                  <FormikControl
-                    control="singleFileUpload"
-                    label="Dully filled and signed Terms and Conditions Form"
-                    name="termsAndConditions"
-                    multiple={false}
-                    required
-                    givenFile={
-                      formik.values.termsAndConditions !== undefined
-                        ? formik.values.termsAndConditions[0]
-                        : null
-                    }
-                  />
                 </Stack>
 
                 <LoadingButton
@@ -151,7 +127,13 @@ const SoleProprietorship = ({ handleNextStep }) => {
                   type="submit"
                   size="large"
                   sx={styles.submitButton}
-                  disabled={!formik.isValid || formik.isSubmitting}
+                  disabled={
+                    formik.values.pinCertificate.length === 0 ||
+                    formik.values.certificateOfRegistration.length === 0 ||
+                    formik.values.businessPermit.length === 0 ||
+                    formik.values.aml.length === 0 ||
+                    formik.isSubmitting
+                  }
                 >
                   Save
                 </LoadingButton>
@@ -160,54 +142,6 @@ const SoleProprietorship = ({ handleNextStep }) => {
           );
         }}
       </Formik>
-
-      {showAcknowledgementDiv && (
-        <Formik
-          validationSchema={acknowledgement}
-          initialValues={
-            formValuesForAcknowledgement || initialValuesForAcknowledgement
-          }
-          onSubmit={handleAcknowledgementSubmit}
-          enableReinitialize
-        >
-          {(formik) => {
-            return (
-              <Form>
-                <SoleProprietorshipContainer topLabel="Acknowledgement Form">
-                  <Stack direction={{ xs: "column" }} spacing={{ xs: 3 }}>
-                    <DownloadDiv
-                      text="Download Our Terms And Conditions Form for signature"
-                      downloadUrl="https://www.irs.gov/pub/irs-pdf/fw8ben.pdf"
-                    />
-                    <FormikControl
-                      control="singleFileUpload"
-                      label="Upload signed acknowledgement document"
-                      name="acknowledgmentDocument"
-                      multiple={false}
-                      required
-                      givenFile={
-                        formik.values.acknowledgmentDocument !== undefined
-                          ? formik.values.acknowledgmentDocument[0]
-                          : null
-                      }
-                    />
-                    <LoadingButton
-                      loading={false}
-                      variant="contained"
-                      type="submit"
-                      size="large"
-                      sx={styles.submitButton}
-                      disabled={!formik.isValid || formik.isSubmitting}
-                    >
-                      Save And Next
-                    </LoadingButton>
-                  </Stack>
-                </SoleProprietorshipContainer>
-              </Form>
-            );
-          }}
-        </Formik>
-      )}
     </Stack>
   );
 };
