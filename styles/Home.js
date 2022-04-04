@@ -30,7 +30,7 @@ export const styles = {
     fontSize: { lg: 75, md: 75, xs: 50 },
   },
 
-  SelectContryContainer: {
+  SelectCountryContainer: {
     display: "flex",
     justifyContent: "center",
     marginTop: "10px",

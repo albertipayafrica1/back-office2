@@ -156,10 +156,10 @@ export const getServerSideProps = ProtectedRoute(
 
     if (
       country === undefined ||
-      (country !== "ke" &&
-        country !== "ug" &&
-        country !== "tz" &&
-        country !== "tg")
+      (country.toUpperCase() !== "KE" &&
+        country.toUpperCase() !== "UG" &&
+        country.toUpperCase() !== "TZ" &&
+        country.toUpperCase() !== "TG")
     ) {
       return {
         redirect: {

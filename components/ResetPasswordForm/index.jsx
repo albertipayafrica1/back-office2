@@ -12,7 +12,10 @@ import { LoadingButton } from "@mui/lab";
 import CustomInput from "../../atoms/CustomInput";
 import MuiAlert from "../../atoms/MuiAlert";
 
-import { getCountryIconLink } from "../../utils/countryOfOperation";
+import {
+  getCountryIconLink,
+  countryOfOperationFullName,
+} from "../../utils/countryOfOperation";
 
 import * as styles from "./styles";
 
@@ -30,9 +33,11 @@ const ResetPasswordForm = ({
   const [countryIconLink, setCountryIconLink] = useState(
     "https://icons.elipa.co/iPay_newlogo.svg"
   );
+  const [countryRegulator, setCountryRegulator] = useState("Kenya");
 
   useEffect(() => {
     setCountryIconLink(getCountryIconLink(query.country));
+    setCountryRegulator(countryOfOperationFullName(query.country));
   }, []);
   return (
     <Box sx={styles.formContainer}>
@@ -107,7 +112,7 @@ const ResetPasswordForm = ({
           >
             <Typography variant="subtitle3">
               Authorised Payment Services Provider Regulated by the Central Bank
-              of Kenya
+              of {countryRegulator}
             </Typography>
           </Stack>
         </Stack>

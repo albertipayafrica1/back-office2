@@ -9,11 +9,13 @@ import { Stack, Box, Typography } from "@mui/material";
 
 import { LoadingButton } from "@mui/lab";
 
-import axios from "axios";
 import CustomInput from "../../atoms/CustomInput";
 import MuiAlert from "../../atoms/MuiAlert";
 
-import { getCountryIconLink } from "../../utils/countryOfOperation";
+import {
+  getCountryIconLink,
+  countryOfOperationFullName,
+} from "../../utils/countryOfOperation";
 
 import * as styles from "./styles";
 
@@ -30,6 +32,8 @@ const LoginForm = ({
   const [countryIconLink, setCountryIconLink] = useState(
     "https://icons.elipa.co/iPay_newlogo.svg"
   );
+
+  const [countryRegulator, setCountryRegulator] = useState("Kenya");
   const [flashMessage, setFlashMessage] = useState(false);
 
   useEffect(() => {
@@ -38,6 +42,7 @@ const LoginForm = ({
       sessionStorage.removeItem("timer");
     }
     setCountryIconLink(getCountryIconLink(query.country));
+    setCountryRegulator(countryOfOperationFullName(query.country));
     if (query.status === "newAccountCreated") {
       setFlashMessage(true);
       setTimeout(() => {
@@ -147,7 +152,7 @@ const LoginForm = ({
           >
             <Typography variant="subtitle3">
               Authorised Payment Services Provider Regulated by the Central Bank
-              of Kenya
+              of {countryRegulator}
             </Typography>
           </Stack>
         </Stack>

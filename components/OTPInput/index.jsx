@@ -12,7 +12,10 @@ import { LoadingButton } from "@mui/lab";
 import MuiAlert from "../../atoms/MuiAlert";
 import ResendOtp from "../../atoms/ResendOtp";
 
-import { getCountryIconLink } from "../../utils/countryOfOperation";
+import {
+  getCountryIconLink,
+  countryOfOperationFullName,
+} from "../../utils/countryOfOperation";
 
 import * as styles from "./styles";
 
@@ -32,9 +35,11 @@ const OTPInput = ({
   const [countryIconLink, setCountryIconLink] = useState(
     "https://icons.elipa.co/iPay_newlogo.svg"
   );
+  const [countryRegulator, setCountryRegulator] = useState("Kenya");
 
   useEffect(() => {
     setCountryIconLink(getCountryIconLink(query.country));
+    setCountryRegulator(countryOfOperationFullName(query.country));
   }, []);
 
   return (
@@ -114,7 +119,7 @@ const OTPInput = ({
           >
             <Typography variant="subtitle3">
               Authorised Payment Services Provider Regulated by the Central Bank
-              of Kenya
+              of {countryRegulator}
             </Typography>
           </Stack>
         </Stack>

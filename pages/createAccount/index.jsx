@@ -244,7 +244,7 @@ const CreateAccount = ({ countryCode, rc }) => {
 export const getServerSideProps = async (context) => {
   const { country, rc } = context.query;
 
-  let givenCountryCode = country;
+  let givenCountryCode = country.toUpperCase();
   const givenrc = rc;
 
   if (givenCountryCode === undefined && givenrc === undefined) {
@@ -256,31 +256,31 @@ export const getServerSideProps = async (context) => {
     };
   }
   if (
-    givenCountryCode !== "ke" &&
-    givenCountryCode !== "ug" &&
-    givenCountryCode !== "tz" &&
-    givenCountryCode !== "tg" &&
+    givenCountryCode !== "KE" &&
+    givenCountryCode !== "UG" &&
+    givenCountryCode !== "TZ" &&
+    givenCountryCode !== "TG" &&
     givenrc !== undefined
   ) {
     return {
       redirect: {
         permanent: false,
-        destination: `/createAccount?country=ke&rc=${givenrc}`,
+        destination: `/createAccount?country=KE&rc=${givenrc}`,
       },
     };
   }
   if (
     givenCountryCode !== undefined &&
-    givenCountryCode !== "ke" &&
-    givenCountryCode !== "ug" &&
-    givenCountryCode !== "tz" &&
-    givenCountryCode !== "tg" &&
+    givenCountryCode !== "KE" &&
+    givenCountryCode !== "UG" &&
+    givenCountryCode !== "TZ" &&
+    givenCountryCode !== "TG" &&
     givenrc === undefined
   ) {
     return {
       redirect: {
         permanent: false,
-        destination: `/createAccount?country=ke&rc=RC0000`,
+        destination: `/createAccount?country=KE&rc=RC0000`,
       },
     };
   }
@@ -294,7 +294,7 @@ export const getServerSideProps = async (context) => {
   }
 
   if (givenCountryCode === undefined) {
-    givenCountryCode = "ke";
+    givenCountryCode = "KE";
   }
   const givenCountry = countryOfOperation(givenCountryCode);
 
