@@ -78,7 +78,7 @@ export const getServerSideProps = async (context) => {
     props: {
       message,
       success,
-      countryCode: country,
+      countryCode: country.toUpperCase(),
     },
   };
 };

@@ -2,16 +2,16 @@ export const countryOfOperation = (CountryCode) => {
   let givenCountry = "";
 
   switch (CountryCode) {
-    case "ke":
+    case "KE":
       givenCountry = "1";
       break;
-    case "tg":
+    case "TG":
       givenCountry = "3";
       break;
-    case "tz":
+    case "TZ":
       givenCountry = "2";
       break;
-    case "ug":
+    case "UG":
       givenCountry = "4";
       break;
     default:
@@ -25,19 +25,19 @@ export const countryOfOperationCode = (country) => {
 
   switch (country) {
     case "kenya":
-      givenCountryCode = "ke";
+      givenCountryCode = "KE";
       break;
     case "Togo":
-      givenCountryCode = "tg";
+      givenCountryCode = "TG";
       break;
     case "Tanzania":
-      givenCountryCode = "tz";
+      givenCountryCode = "TZ";
       break;
     case "Uganda":
-      givenCountryCode = "ug";
+      givenCountryCode = "UG";
       break;
     default:
-      givenCountryCode = "ke";
+      givenCountryCode = "KE";
   }
   return givenCountryCode;
 };
@@ -47,19 +47,19 @@ export const countryOfOperationCodefromId = (CountryId) => {
 
   switch (CountryId) {
     case "1":
-      givenCountry = "ke";
+      givenCountry = "KE";
       break;
     case "2":
-      givenCountry = "tz";
+      givenCountry = "TZ";
       break;
     case "3":
-      givenCountry = "tg";
+      givenCountry = "TG";
       break;
     case "4":
-      givenCountry = "ug";
+      givenCountry = "UG";
       break;
     default:
-      givenCountry = "ke";
+      givenCountry = "KE";
   }
   return givenCountry;
 };
@@ -68,20 +68,42 @@ export const getCountryIconLink = (country) => {
   let givenCountryIconLink = "";
 
   switch (country) {
-    case "ke":
+    case "KE":
       givenCountryIconLink = "https://icons.elipa.co/iPay_newlogo.svg";
       break;
-    case "tg":
+    case "TG":
       givenCountryIconLink = "https://icons.elipa.co/Togo.svg";
       break;
-    case "tz":
+    case "TZ":
       givenCountryIconLink = "https://icons.elipa.co/Tanzania.svg";
       break;
-    case "ug":
+    case "UG":
       givenCountryIconLink = "https://icons.elipa.co/Uganda.svg";
       break;
     default:
       givenCountryIconLink = "https://icons.elipa.co/iPay_newlogo.svg";
   }
   return givenCountryIconLink;
+};
+
+export const countryOfOperationFullName = (country) => {
+  let givenCountryCode = "";
+
+  switch (country) {
+    case "KE":
+      givenCountryCode = "Kenya";
+      break;
+    case "TG":
+      givenCountryCode = "Togo";
+      break;
+    case "TZ":
+      givenCountryCode = "Tanzania";
+      break;
+    case "UG":
+      givenCountryCode = "Uganda";
+      break;
+    default:
+      givenCountryCode = "Kenya";
+  }
+  return givenCountryCode;
 };

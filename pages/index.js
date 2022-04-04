@@ -6,7 +6,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import Carousel from "../atoms/Carousel";
 import BookDemoDialog from "../components/BookDemoDialog";
 import CallMeDialog from "../components/CallMeDialog";
-import SelectContryDialog from "../components/SelectCountryDialog";
+import SelectCountryDialog from "../components/SelectCountryDialog";
 
 import { homedata, SocialMediaLinks } from "../homedata";
 import { styles } from "../styles/Home";
@@ -93,11 +93,11 @@ const Home = () => {
             ))}
           </Box>
 
-          <SelectContryDialog
+          <SelectCountryDialog
             handleToggleSelectCountry={handleTogglecountrySelect}
             open={countrySelect}
           />
-          <Box sx={styles.SelectContryContainer}>
+          <Box sx={styles.SelectCountryContainer}>
             <Button
               onClick={handleTogglecountrySelect}
               style={{
