@@ -179,6 +179,20 @@ export const businessStructure = yup.object({
       )
       .required("Kindly enter your business description"),
   }),
+
+  businessLocation: yup.object({
+    physicalAddress: yup
+      .string()
+      .required("kindly enter your business physical Address"),
+    postalAddress: yup
+      .string()
+      .required("kindly enter your business postal address"),
+    postalCode: yup.string(),
+    city: yup.string().required("kindly enter your city/town "),
+    county: yup.string().required("kindly enter your county"),
+    websiteLink: yup.string().url("Enter a valid url"),
+    appDownloadLink: yup.string().url("Enter a valid url"),
+  }),
   numberOfBeneficialOwners: yup
     .string()
     .test(

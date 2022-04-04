@@ -42,12 +42,19 @@ export const createAccount = yup.object().shape({
           if (val === undefined || val === null || val === "") {
             return false;
           }
-          const number = phoneUtil.parseAndKeepRawInput(
-            val,
-            telephoneCountryCode
-          );
-          console.log(phoneUtil.getRegionCodeForNumber(number));
-          return phoneUtil.isValidNumberForRegion(number, telephoneCountryCode);
+          try {
+            const number = phoneUtil.parseAndKeepRawInput(
+              val,
+              telephoneCountryCode
+            );
+            console.log(phoneUtil.getRegionCodeForNumber(number));
+            return phoneUtil.isValidNumberForRegion(
+              number,
+              telephoneCountryCode
+            );
+          } catch (err) {
+            return false;
+          }
         });
     })
     .required("Contact Number is required"),
