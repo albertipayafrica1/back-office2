@@ -56,6 +56,7 @@ const SingleFileUploadWithProgress = ({
       // },
     };
 
+    console.log(fileToUpload, "fileToUpload");
     const formData = new FormData();
     formData.append("file", fileToUpload);
     formData.append("upload_preset", key);
@@ -64,6 +65,7 @@ const SingleFileUploadWithProgress = ({
       .post(url, formData, config)
       .then((res) => {
         // return setServerError(true);
+        console.log(res, "response");
         return res.data.secure_url;
       })
       .catch((error) => {

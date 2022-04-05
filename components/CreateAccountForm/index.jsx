@@ -318,10 +318,10 @@ const CreateAccountForm = ({
 
             <CheckBoxes
               formFields={
-                (formData.countryOfOperation === "tg" && togoIpayProducts) ||
-                (formData.countryOfOperation === "ke" && kenyaIpayProducts) ||
-                (formData.countryOfOperation === "ug" && ugandaIpayProducts) ||
-                (formData.countryOfOperation === "tz" &&
+                (formData.countryOfOperation === "TG" && togoIpayProducts) ||
+                (formData.countryOfOperation === "KE" && kenyaIpayProducts) ||
+                (formData.countryOfOperation === "UG" && ugandaIpayProducts) ||
+                (formData.countryOfOperation === "TZ" &&
                   tanzaniaIpayProducts) ||
                 kenyaIpayProducts
               }

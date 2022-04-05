@@ -1,8 +1,8 @@
 export const country = [
-  { value: "ke", key: "Kenya" },
-  { value: "tz", key: "Tanzania" },
-  { value: "tg", key: "Togo" },
-  { value: "ug", key: "Uganda" },
+  { value: "KE", key: "Kenya" },
+  { value: "TZ", key: "Tanzania" },
+  { value: "TG", key: "Togo" },
+  { value: "UG", key: "Uganda" },
 ];
 export const revenue = [
   { value: "1", key: "Havent started processing yet" },
