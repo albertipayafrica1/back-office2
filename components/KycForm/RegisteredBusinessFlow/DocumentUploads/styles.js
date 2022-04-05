@@ -1,5 +1,5 @@
 export const styles = {
-  topContainer: { padding: "2.5rem 0 0 2.5rem" },
+  topContainer: { padding: "2.5rem 0 0 0" },
   formContainer: { padding: "2rem" },
 
   submitButton: {

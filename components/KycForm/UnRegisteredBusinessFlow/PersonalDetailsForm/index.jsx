@@ -84,7 +84,14 @@ const BusinessStructureForm = (data) => {
         documentType: "1",
         documentNumber: "",
         taxPinNumber: "",
-        nationalIdFront: [],
+        nationalIdFront: [
+          {
+            file: { path: "elipa-Single-logos-black.png" },
+            errors: [],
+            id: 1,
+            url: "https://res.cloudinary.com/demo/image/upload/v1648551450/docs_uploading_example/elipa-Single-logos-black_fqcxd1.png",
+          },
+        ],
         nationalIdBack: [],
         passport: [],
         passportSizePhoto: [],
@@ -118,7 +125,7 @@ const BusinessStructureForm = (data) => {
       enableReinitialize
     >
       {(formik) => {
-        console.log(formik.errors, "fork");
+        // console.log(formik.errors,"forkss")
         return (
           <Form>
             <Stack sx={styles.formContainer} spacing={8}>

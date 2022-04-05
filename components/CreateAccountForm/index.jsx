@@ -27,7 +27,7 @@ import MuiAlert from "../../atoms/MuiAlert";
 
 import {
   getCountryIconLink,
-  countryOfOperationCodefromId,
+  countryOfOperationFullName,
 } from "../../utils/countryOfOperation";
 
 import * as styles from "./styles";
@@ -64,6 +64,7 @@ const CreateAccountForm = ({
   const [countryIconLink, setCountryIconLink] = useState(
     "https://icons.elipa.co/iPay_newlogo.svg"
   );
+  const [countryRegulator, setCountryRegulator] = useState("Kenya");
 
   const updateRouteOnReferralChange = () => {
     if (
@@ -98,7 +99,8 @@ const CreateAccountForm = ({
       { shallow: true }
     );
 
-    return setCountryIconLink(getCountryIconLink(formData.countryOfOperation));
+    setCountryIconLink(getCountryIconLink(formData.countryOfOperation));
+    return setCountryRegulator(countryOfOperationFullName(query.country));
   }, [formData.countryOfOperation]);
 
   useEffect(() => {
@@ -461,7 +463,7 @@ const CreateAccountForm = ({
           >
             <Typography variant="subtitle3">
               Authorised Payment Services Provider Regulated by the Central Bank
-              of Kenya
+              of {countryRegulator}
             </Typography>
           </Stack>
         </Stack>

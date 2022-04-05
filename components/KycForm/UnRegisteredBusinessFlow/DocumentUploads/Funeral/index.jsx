@@ -7,17 +7,16 @@ import { LoadingButton } from "@mui/lab";
 import { Formik, Form } from "formik";
 
 import FormikControl from "../../../../FormikControls/index";
-import MedicalContainer from "../../../../../atoms/CreateAccountFormDiv";
+import FuneralContainer from "../../../../../atoms/CreateAccountFormDiv";
 
-import { medical } from "../../../../../utils/formValidations/kyc/unRegisteredBusinessFlow/documentUploads/medical";
-
+import { funeral } from "../../../../../utils/formValidations/kyc/unRegisteredBusinessFlow/documentUploads/funeral";
 import { styles } from "../styles";
 
 const initialValues = {
-  hospitalAdmissionForm: [],
+  burialPermit: [],
 };
 
-const Medical = ({ handleNextStep }) => {
+const Funeral = ({ handleNextStep }) => {
   const [formValues, setFormValues] = useState(null);
 
   // const [individualFieldErrors, setIndividualFieldErrors] = useState({});
@@ -27,18 +26,16 @@ const Medical = ({ handleNextStep }) => {
   // };
 
   const handleSubmit = async (values, formikHelpers) => {
-    // const isValid = await medical.isValid(values, {
+    // const isValid = await funeral.isValid(values, {
     //   abortEarly: false,
     // });
     // setIndividualFieldErrors({ f1: { error: "i am an error" } });
     // handleNextStep();
   };
 
-  const handleAcknowledgementSubmit = async (values, formikHelpers) => {};
-
   useEffect(() => {
     const savedValues = {
-      hospitalAdmissionForm: [
+      burialPermit: [
         {
           file: { path: "elipa-Single-logos-black.png" },
           errors: [],
@@ -52,7 +49,7 @@ const Medical = ({ handleNextStep }) => {
   return (
     <Stack sx={styles.topContainer} spacing={3}>
       <Formik
-        validationSchema={medical}
+        validationSchema={funeral}
         initialValues={formValues || initialValues}
         onSubmit={handleSubmit}
         enableReinitialize
@@ -60,16 +57,16 @@ const Medical = ({ handleNextStep }) => {
         {(formik) => {
           return (
             <Form>
-              <MedicalContainer topLabel="Medical">
+              <FuneralContainer topLabel="Funeral">
                 <Stack direction={{ xs: "column" }} spacing={{ xs: 3 }}>
                   <FormikControl
                     control="singleFileUpload"
-                    label="Hospital Admission Form"
-                    name="hospitalAdmissionForm"
+                    label="Copy of burial permit or copy of death notification"
+                    name="burialPermit"
                     multiple={false}
                     givenFile={
-                      formik.values.hospitalAdmissionForm !== undefined
-                        ? formik.values.hospitalAdmissionForm[0]
+                      formik.values.burialPermit !== undefined
+                        ? formik.values.burialPermit[0]
                         : null
                     }
                   />
@@ -82,13 +79,13 @@ const Medical = ({ handleNextStep }) => {
                   size="large"
                   sx={styles.submitButton}
                   disabled={
-                    formik.values.hospitalAdmissionForm.length === 0 ||
+                    formik.values.burialPermit.length === 0 ||
                     formik.isSubmitting
                   }
                 >
                   Save
                 </LoadingButton>
-              </MedicalContainer>
+              </FuneralContainer>
             </Form>
           );
         }}
@@ -97,8 +94,8 @@ const Medical = ({ handleNextStep }) => {
   );
 };
 
-Medical.propTypes = {
+Funeral.propTypes = {
   handleNextStep: PropTypes.func.isRequired,
 };
 
-export default Medical;
+export default Funeral;
