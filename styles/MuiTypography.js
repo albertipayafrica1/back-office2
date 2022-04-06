@@ -28,7 +28,7 @@ export default {
       },
       style: {
         fontWeight: 400,
-        fontSize: "11px",
+        fontSize: "12px",
         lineHeight: "13px",
         letterSpacing: "0.1px",
       },

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { Stack, Box, Typography } from "@mui/material";
 import { Formik, Form } from "formik";
 import { LoadingButton } from "@mui/lab";
@@ -24,11 +25,11 @@ const initialValues = {
   consent: [],
 };
 
-const ComplianceForm = () => {
+const ComplianceForm = ({ handleNextStep }) => {
   const [formValues, setFormValues] = useState(null);
 
   const handleSubmit = (values, formikHelpers) => {
-    console.log(JSON.stringify(values, null, 2));
+    handleNextStep();
   };
 
   useEffect(() => {
@@ -297,6 +298,10 @@ const ComplianceForm = () => {
       <Box />
     </Stack>
   );
+};
+
+ComplianceForm.propTypes = {
+  handleNextStep: PropTypes.func.isRequired,
 };
 
 export default ComplianceForm;

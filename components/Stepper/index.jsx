@@ -18,7 +18,7 @@ import {
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import BusinessStructureForm from "../KycForm/RegisteredBusinessFlow/BusinessStructureForm";
 import BankDetailsForm from "../KycForm/RegisteredBusinessFlow/BankDetailsForm";
-// import BusinessComplianceForm from "../../components/KycForm/RegisteredBusinessFlow/BusinessComplianceForm";
+import ComplianceForm from "../KycForm/RegisteredBusinessFlow/ComplianceForm";
 import BusinessFulfillmentDetailsForm from "../KycForm/RegisteredBusinessFlow/BusinessFulfillmentDetailsForm";
 import BusinessSupportDetailsForm from "../KycForm/RegisteredBusinessFlow/BusinessSupportDetailsForm";
 import DocumentUploadForm from "../KycForm/RegisteredBusinessFlow/DocumentUploads/PrivateLimitedCompany";
@@ -85,7 +85,7 @@ const HorizontalLinearStepper = () => {
       case 1:
         return <BankDetailsForm handleNextStep={handleNext} />;
       case 2:
-        return BusinessStructureForm;
+        return <ComplianceForm handleNextStep={handleNext} />;
       case 3:
         return <BusinessFulfillmentDetailsForm handleNextStep={handleNext} />;
       case 4:
@@ -115,7 +115,7 @@ const HorizontalLinearStepper = () => {
       {
         toolTip: true,
         toolTipText:
-          "(NOTE: - This is dependant of the Document Type entered- Upload file should not exceed 195KB- Accepted file formats should be JPEG, JPG, PDF)",
+          "(NOTE: - This is dependant of the Document Type entered- Upload file should not exceed 5MB- Accepted file formats should be PNG, JPEG, JPG, PDF)",
         label: "Document Upload",
       },
     ];

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 
 import { Stack, Box } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
@@ -58,12 +59,13 @@ const initialValues = {
   },
 };
 
-const BusinessStructureForm = (data) => {
+const PersonalDetailsForm = ({ handleNextStep }) => {
   const [formValues, setFormValues] = useState(null);
 
   const handleSubmit = (values, formikHelpers) => {
     console.log(values, "formValues");
     console.log(formikHelpers, "formikhlpers");
+    handleNextStep();
   };
 
   useEffect(() => {
@@ -522,7 +524,11 @@ const BusinessStructureForm = (data) => {
   );
 };
 
-export default BusinessStructureForm;
+PersonalDetailsForm.propTypes = {
+  handleNextStep: PropTypes.func.isRequired,
+};
+
+export default PersonalDetailsForm;
 
 export const getServerSideProps = async (context) => {
   const data = "";

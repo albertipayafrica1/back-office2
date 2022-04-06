@@ -56,7 +56,6 @@ const CreateAccountForm = ({
   handleCaptchaToken,
   resetCaptcha,
   loading,
-  disableButton,
 }) => {
   const router = useRouter();
   const { query } = router;
@@ -396,9 +395,15 @@ const CreateAccountForm = ({
               <Typography variant="subtitle3">
                 By clicking on submit you agree to share your information with
                 iPay who agrees to use it as per their
-                <Link href="/privacypolicy">
-                  <a style={styles.linkStyle}> privacy policy</a>
-                </Link>
+                <a
+                  style={styles.linkStyle}
+                  href="https://www.ipayafrica.com/info/privacy-policy"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {" "}
+                  privacy policy
+                </a>
               </Typography>
             }
             sx={styles.privacyControlLabel}
@@ -433,7 +438,6 @@ const CreateAccountForm = ({
           size="large"
           sx={styles.submitButton}
           onClick={handleSubmit}
-          disabled={disableButton}
         >
           Create Account
         </LoadingButton>
@@ -522,7 +526,6 @@ CreateAccountForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   handleCaptchaToken: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
-  disableButton: PropTypes.bool.isRequired,
   resetCaptcha: PropTypes.bool.isRequired,
 };
 export default CreateAccountForm;
