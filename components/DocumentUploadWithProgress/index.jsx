@@ -130,8 +130,12 @@ const FileUploadField = ({ name, multiple, label, required, givenFile }) => {
                 </Stack>
                 {form.dirty && meta.error && typeof meta.error === "string" && (
                   <Typography
-                    variant="subtitle4"
-                    sx={{ color: (theme) => theme.colors.errorRed }}
+                    variant="subtitle2"
+                    sx={{
+                      color: (theme) => theme.colors.errorRed,
+                      ml: 4,
+                      mt: 1,
+                    }}
                   >
                     {meta.error}
                   </Typography>

@@ -28,7 +28,7 @@ const Education = ({ handleNextStep }) => {
     });
     console.log(isValid, "isvalid");
 
-    // handleNextStep();
+    handleNextStep();
   };
 
   useEffect(() => {

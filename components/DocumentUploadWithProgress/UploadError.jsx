@@ -16,7 +16,15 @@ const UploadError = ({ file, onDelete, errors }) => {
 
       {errors.map((error) => (
         <div key={error.code}>
-          <Typography color="error">{error.message}</Typography>
+          <Typography
+            variant="subtitle2"
+            sx={{
+              color: (theme) => theme.colors.errorRed,
+              mt: 1,
+            }}
+          >
+            {error.message}
+          </Typography>
         </div>
       ))}
     </>

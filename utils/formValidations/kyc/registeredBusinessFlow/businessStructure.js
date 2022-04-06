@@ -569,6 +569,7 @@ export const businessStructure = yup.object({
             .required("kindly enter you relationship with your next of Kin"),
           dateOfBirth: yup.date().required("kindly select your date of birth"),
           documentType: yup.string().required("kindly select a document Type"),
+          documentNumber: yup.string().required("kindly enter document number"),
           nationalIdFront: yup
             .array(
               yup

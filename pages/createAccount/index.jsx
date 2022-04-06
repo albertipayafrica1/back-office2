@@ -68,7 +68,6 @@ const CreateAccount = ({ countryCode, rc }) => {
   const [verifiedCaptchaToken, setVerifiedCaptchaToken] = useState(false);
   const [emailAlert, setEmailAlert] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [disableButton, setDisableButton] = useState(false);
 
   useEffect(() => {
     // this useEffect is used so that whenever other country is selected after selected ipayproducts, then ipay products get unchecked
@@ -84,15 +83,14 @@ const CreateAccount = ({ countryCode, rc }) => {
   };
 
   const handleSubmit = async (e) => {
-    console.log(formData, "formData on submit");
-    setDisableButton(true);
+    setLoading(true);
     setEmailAlert(false);
     e.preventDefault();
     setErrors({
       ...errors,
       generic: "",
     });
-    setLoading(true);
+
     if (formData.aboutUs === "social Media" || formData.aboutUs === "website") {
       formData.referral = "None";
       formData.ads = "None";
@@ -161,7 +159,6 @@ const CreateAccount = ({ countryCode, rc }) => {
             console.log(response, "response0");
             setErrors({ ...errors, generic: "Invalid username or Password" });
             setLoading(false);
-            setDisableButton(false);
             setCaptchaToken("");
             setResetCaptcha(true);
           }
@@ -169,14 +166,16 @@ const CreateAccount = ({ countryCode, rc }) => {
         .catch((error) => {
           console.log(error.response, "response");
 
-          if (error.response.status === 406) {
+          if (error.response === undefined) {
+            setErrors({ generic: "Something went wrong" });
+          } else if (error.response.status === 406) {
             setErrors({ ...error.response.data.response });
           } else if (error.response) {
             setErrors({ ...errors, generic: error.response.data.response });
           } else {
             setErrors({ generic: "Something went wrong" });
           }
-          setDisableButton(false);
+
           setLoading(false);
           setCaptchaToken("");
           setResetCaptcha(true);
@@ -189,7 +188,6 @@ const CreateAccount = ({ countryCode, rc }) => {
         captcha: "kindly verify the captcha",
       });
       setLoading(false);
-      setDisableButton(false);
       setResetCaptcha(true);
     } else {
       await createAccount
@@ -211,7 +209,6 @@ const CreateAccount = ({ countryCode, rc }) => {
           }
           setErrors(errs);
           setLoading(false);
-          setDisableButton(false);
           setResetCaptcha(true);
           console.log(errs, "errors");
         });
@@ -231,7 +228,6 @@ const CreateAccount = ({ countryCode, rc }) => {
           handleSubmit={handleSubmit}
           handleCaptchaToken={handleCaptchaToken}
           loading={loading}
-          disableButton={disableButton}
           resetCaptcha={resetCaptcha}
         />
       }

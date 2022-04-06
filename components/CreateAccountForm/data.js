@@ -36,9 +36,9 @@ export const aboutUs = [
 ];
 export const ads = [
   { value: "1", key: "BillBoards" },
-  { value: "1", key: "GDN" },
-  { value: "1", key: "Radio" },
-  { value: "1", key: "Tv" },
+  { value: "2", key: "GDN" },
+  { value: "3", key: "Radio" },
+  { value: "4", key: "Tv" },
 ];
 
 export const telephoneCodes = [

@@ -70,7 +70,7 @@ const Otp = () => {
           });
           setLoading(false);
           setClearTimer(true);
-          router.replace("/dashboard");
+          router.replace("/dashboard/kyc");
         } else {
           setError("Invalid Otp");
           setClearTimer(true);

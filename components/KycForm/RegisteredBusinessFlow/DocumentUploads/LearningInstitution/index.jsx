@@ -38,7 +38,7 @@ const LearningInstitution = ({ handleNextStep }) => {
     //   abortEarly: false,
     // });
     // setIndividualFieldErrors({ f1: { error: "i am an error" } });
-    // handleNextStep();
+    handleNextStep();
   };
 
   useEffect(() => {
