@@ -800,6 +800,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                                   relationship: "",
                                   dateOfBirth: null,
                                   documentType: "1",
+                                  documentNumber: "",
                                   nationalIdFront: [],
                                   nationalIdBack: [],
                                   passport: [],
