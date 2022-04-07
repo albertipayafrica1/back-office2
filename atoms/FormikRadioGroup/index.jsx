@@ -15,7 +15,7 @@ import { Field, ErrorMessage, getIn } from "formik";
 
 import * as styles from "./styles";
 
-const FormikRadioGroup = ({ label, name, options, onChange, onBlur }) => {
+const FormikRadioGroup = ({ label, name, options, onChange, onBlur, row }) => {
   return (
     <Field name={name}>
       {({ field, form }) => {
@@ -33,6 +33,7 @@ const FormikRadioGroup = ({ label, name, options, onChange, onBlur }) => {
                 <RadioGroup
                   aria-labelledby="radio-buttons-group-label"
                   name="radio-buttons-group"
+                  row
                 >
                   <FormControlLabel
                     value={option.value}
@@ -79,6 +80,7 @@ FormikRadioGroup.propTypes = {
   ).isRequired,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
+  row: PropTypes.bool.isRequired,
 };
 
 export default FormikRadioGroup;

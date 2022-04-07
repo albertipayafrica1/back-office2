@@ -128,6 +128,7 @@ const BusinessFulfillmentDetailsForm = ({ handleNextStep }) => {
                       label="Do You Sell Physical Goods or Services"
                       options={sellPhysicalGoodsOrServices}
                       required
+                      row
                     />
                     <FormikControl
                       control="radio"
@@ -135,6 +136,7 @@ const BusinessFulfillmentDetailsForm = ({ handleNextStep }) => {
                       label="Do you ship the product yourself"
                       options={shipProductYourself}
                       required
+                      row
                     />
                     <Typography variant="subtitle3">
                       On average, how long after paying will your customers

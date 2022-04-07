@@ -16,6 +16,7 @@ import {
 } from "@mui/material";
 
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+
 import BusinessStructureForm from "../KycForm/RegisteredBusinessFlow/BusinessStructureForm";
 import BankDetailsForm from "../KycForm/RegisteredBusinessFlow/BankDetailsForm";
 import ComplianceForm from "../KycForm/RegisteredBusinessFlow/ComplianceForm";
@@ -23,9 +24,14 @@ import BusinessFulfillmentDetailsForm from "../KycForm/RegisteredBusinessFlow/Bu
 import BusinessSupportDetailsForm from "../KycForm/RegisteredBusinessFlow/BusinessSupportDetailsForm";
 import DocumentUploadForm from "../KycForm/RegisteredBusinessFlow/DocumentUploads/PrivateLimitedCompany";
 
+import PersonalDetailsForm from "../KycForm/UnRegisteredBusinessFlow/PersonalDetailsForm";
+import BankDetailsFormUnRegistered from "../KycForm/UnRegisteredBusinessFlow/BankDetailsForm";
+import ComplianceFormUnRegistered from "../KycForm/UnRegisteredBusinessFlow/ComplianceForm";
+import DocumentUploadFormUnRegistered from "../KycForm/UnRegisteredBusinessFlow/DocumentUploads/Wedding";
+
 import { styles } from "./styles";
 
-const HorizontalLinearStepper = () => {
+const HorizontalLinearStepper = ({ flow, companyType }) => {
   const matches = useMediaQuery("(min-width:800px)");
   const [activeStep, setActiveStep] = useState(0);
   const [stepFailed, setStepFailed] = useState(new Set());
@@ -79,46 +85,84 @@ const HorizontalLinearStepper = () => {
   };
 
   const getStepContent = (step) => {
-    switch (step) {
-      case 0:
-        return <BusinessStructureForm handleNextStep={handleNext} />;
-      case 1:
-        return <BankDetailsForm handleNextStep={handleNext} />;
-      case 2:
-        return <ComplianceForm handleNextStep={handleNext} />;
-      case 3:
-        return <BusinessFulfillmentDetailsForm handleNextStep={handleNext} />;
-      case 4:
-        return <BusinessSupportDetailsForm handleNextStep={handleNext} />;
-      case 5:
-        return <DocumentUploadForm handleNextStep={handleNext} />;
-      default:
-        return BusinessStructureForm;
+    console.log(flow, "flow");
+
+    if (flow === "registered") {
+      switch (step) {
+        case 0:
+          return <BusinessStructureForm handleNextStep={handleNext} />;
+        case 1:
+          return <BankDetailsForm handleNextStep={handleNext} />;
+        case 2:
+          return <ComplianceForm handleNextStep={handleNext} />;
+        case 3:
+          return <BusinessFulfillmentDetailsForm handleNextStep={handleNext} />;
+        case 4:
+          return <BusinessSupportDetailsForm handleNextStep={handleNext} />;
+        case 5:
+          return <DocumentUploadForm handleNextStep={handleNext} />;
+        default:
+          return <BusinessStructureForm handleNextStep={handleNext} />;
+      }
+    } else if (flow === "unRegistered") {
+      switch (step) {
+        case 0:
+          return <PersonalDetailsForm handleNextStep={handleNext} />;
+        case 1:
+          return <BankDetailsFormUnRegistered handleNextStep={handleNext} />;
+        case 2:
+          return <ComplianceFormUnRegistered handleNextStep={handleNext} />;
+        case 3:
+          return <DocumentUploadFormUnRegistered handleNextStep={handleNext} />;
+        default:
+          return <PersonalDetailsForm handleNextStep={handleNext} />;
+      }
     }
+    return <BusinessStructureForm handleNextStep={handleNext} />;
   };
 
   const getSteps = () => {
-    return [
-      { toolTip: false, toolTipText: "", label: "Business Structure" },
-      { toolTip: false, toolTipText: "", label: "Business Bank Details" },
-      {
-        toolTip: true,
-        toolTipText: "I Am business compliance",
-        label: "Business Compliance",
-      },
-      {
-        toolTip: false,
-        toolTipText: "",
-        label: "Business Fulfillment Details",
-      },
-      { toolTip: false, toolTipText: "", label: "Business Support Details" },
-      {
-        toolTip: true,
-        toolTipText:
-          "(NOTE: - This is dependant of the Document Type entered- Upload file should not exceed 5MB- Accepted file formats should be PNG, JPEG, JPG, PDF)",
-        label: "Document Upload",
-      },
-    ];
+    if (flow === "registered") {
+      return [
+        { toolTip: false, toolTipText: "", label: "Business Structure" },
+        { toolTip: false, toolTipText: "", label: "Business Bank Details" },
+        {
+          toolTip: true,
+          toolTipText: "Business compliance",
+          label: "Business Compliance",
+        },
+        {
+          toolTip: false,
+          toolTipText: "",
+          label: "Business Fulfillment Details",
+        },
+        { toolTip: false, toolTipText: "", label: "Business Support Details" },
+        {
+          toolTip: true,
+          toolTipText:
+            "(NOTE: - This is dependant of the Document Type entered- Upload file should not exceed 5MB- Accepted file formats should be PNG, JPEG, JPG, PDF)",
+          label: "Document Upload",
+        },
+      ];
+    }
+    if (flow === "unRegistered") {
+      return [
+        { toolTip: false, toolTipText: "", label: "Personal Details" },
+        { toolTip: false, toolTipText: "", label: "Bank Details" },
+        {
+          toolTip: true,
+          toolTipText: "Compliance",
+          label: "Compliance",
+        },
+        {
+          toolTip: true,
+          toolTipText:
+            "(NOTE: - This is dependant of the Document Type entered- Upload file should not exceed 5MB- Accepted file formats should be PNG, JPEG, JPG, PDF)",
+          label: "Document Upload",
+        },
+      ];
+    }
+    return [];
   };
 
   const steps = getSteps();
@@ -215,8 +259,9 @@ const HorizontalLinearStepper = () => {
   );
 };
 
-// HorizontalLinearStepper.propTypes = {
-//   classes: PropTypes.object,
-// };
+HorizontalLinearStepper.propTypes = {
+  flow: PropTypes.string.isRequired,
+  companyType: PropTypes.string.isRequired,
+};
 
 export default HorizontalLinearStepper;

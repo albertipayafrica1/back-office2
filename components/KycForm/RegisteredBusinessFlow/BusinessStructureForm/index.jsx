@@ -714,7 +714,6 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                         label="County"
                         type="text"
                         id="businessLocation.county"
-                        required
                       />
                       <FormikControl
                         control="input"
@@ -723,6 +722,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                         label="Business Website Link"
                         type="text"
                         id="businessLocation.websiteLink"
+                        required
                       />
                     </Stack>
                     <Stack direction={{ xs: "column", md: "row" }} spacing={3}>
