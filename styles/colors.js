@@ -12,4 +12,6 @@ export default {
   errorRed: "#d32f2f",
   successGreen: "#2E7D32",
   pinkshade2: "#EBE7E7",
+  yellowOrange: "#FB9100",
+  TypanBlue: "#1D2D9C",
 };

@@ -1,10 +1,13 @@
 export const styles = {
-  dialogueContainer: {
-    position: "absolute",
-    top: 25,
-  },
-  CallMeContainer: {
+  BookDemoContainer: {
+    display: "flex",
+    flexDirection: "column",
+    alignItem: "center",
+    justifyContent: "center",
     padding: "40px",
+  },
+
+  CallMeContainer: {
     display: "flex",
     flexDirection: "column",
     alignItem: "center",

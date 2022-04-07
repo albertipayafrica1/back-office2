@@ -42,6 +42,39 @@ export default {
         },
       },
     },
+
+    {
+      props: {
+        variant: "yellowOrange",
+      },
+      style: {
+        color: colors.TypanBlue,
+        backgroundColor: colors.yellowOrange,
+
+        borderRadius: "4px",
+        textTransform: "none",
+        "&:hover": {
+          backgroundColor: colors.yellowOrange,
+        },
+      },
+    },
+
+    {
+      props: {
+        variant: "yellowBorder",
+      },
+      style: {
+        color: colors.yellowOrange,
+
+        border: `2px  solid ${colors.yellowOrange}`,
+        borderRadius: "4px",
+        textTransform: "none",
+        "&:hover": {
+          border: `2px  solid ${colors.yellowOrange}`,
+        },
+      },
+    },
+
     {
       props: {
         variant: "white",
@@ -57,22 +90,6 @@ export default {
         "&:hover": {
           backgroundColor: "orange",
           color: colors.mono1,
-        },
-      },
-    },
-    {
-      props: {
-        variant: "orange-demo",
-      },
-      style: {
-        color: colors.mono1,
-        backgroundColor: colors.orange,
-        padding: "6px",
-        width: "40%",
-        fontSize: "larger",
-        borderRadius: "8px",
-        "&:hover": {
-          backgroundColor: "orange",
         },
       },
     },
