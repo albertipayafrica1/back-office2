@@ -169,13 +169,20 @@ const BusinessStructureForm = ({ handleNextStep }) => {
           formikHelpers.setErrors({ ...error.response.data.response });
           setAlert({ type: "error", message: "Kindly Resolve Form Errors" });
         } else if (error.response) {
-          // setErrors({ ...errors, generic: error.response.data.response });
-
-          setAlert({ type: "error", message: "Something Went Wrong" });
+          if (error.response.data.response !== undefined) {
+            setAlert({
+              type: "error",
+              message: error.response.data.response,
+            });
+          } else {
+            setAlert({
+              type: "error",
+              message: "Something Went Wrong",
+            });
+          }
           console.log(error.response, "second if else");
         } else {
           setAlert({ type: "error", message: "Something Went Wrong" });
-          // setErrors({ generic: "Something went wrong" });
           console.log(error, "third if else");
         }
       });
@@ -287,7 +294,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
         enableReinitialize
       >
         {(formik) => {
-          console.log(formik.errors, "fork");
+          // console.log(formik.errors, "fork");
           return (
             <Form>
               <Stack sx={styles.formContainer} spacing={8}>
@@ -301,7 +308,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                         direction={{ xs: "row" }}
                         spacing={3}
                       >
-                        <Box sx={{ width: "150px" }}>
+                        <Box sx={{ width: "360px" }}>
                           <FormikControl
                             control="select"
                             variant="outlined"
@@ -323,24 +330,25 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                           id="surname"
                           required
                         />
+
+                        <FormikControl
+                          control="input"
+                          label="First Name"
+                          name="businessRepresentative.firstName"
+                          variant="outlined"
+                          type="text"
+                          id="firstName"
+                          required
+                        />
+                        <FormikControl
+                          control="input"
+                          label="Middle Name"
+                          name="businessRepresentative.middleName"
+                          variant="outlined"
+                          type="text"
+                          id="middleName"
+                        />
                       </Stack>
-                      <FormikControl
-                        control="input"
-                        label="First Name"
-                        name="businessRepresentative.firstName"
-                        variant="outlined"
-                        type="text"
-                        id="firstName"
-                        required
-                      />
-                      <FormikControl
-                        control="input"
-                        label="Middle Name"
-                        name="businessRepresentative.middleName"
-                        variant="outlined"
-                        type="text"
-                        id="middleName"
-                      />
                     </Stack>
                     <Stack direction={{ xs: "column", md: "row" }} spacing={3}>
                       <Stack
@@ -371,7 +379,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                           id="contactNumber"
                           required
                           haveTooltip
-                          tooltipText="Enter Your Contact number in the format 254xxxxxxxxx"
+                          tooltipText="Enter Your Contact number without country code"
                         />
                       </Stack>
                       <FormikControl
@@ -1263,10 +1271,11 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                                   givenFile={
                                     formik.values.ultimateBeneficialOwners[
                                       index
-                                    ].nationalIdBack !== undefined
+                                    ].nextOfKin[index1].nationalIdBack !==
+                                    undefined
                                       ? formik.values.ultimateBeneficialOwners[
                                           index
-                                        ].nationalIdBack[0]
+                                        ].nextOfKin[index1].nationalIdBack[0]
                                       : null
                                   }
                                 />
@@ -1282,12 +1291,10 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                                 required
                                 givenFile={
                                   formik.values.ultimateBeneficialOwners[index]
-                                    .nextOfKin[index1].documentType.passport !==
-                                  undefined
+                                    .nextOfKin[index1].passport !== undefined
                                     ? formik.values.ultimateBeneficialOwners[
                                         index
-                                      ].nextOfKin[index1].documentType
-                                        .passport[0]
+                                      ].nextOfKin[index1].passport[0]
                                     : null
                                 }
                               />
@@ -1302,12 +1309,11 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                                 required
                                 givenFile={
                                   formik.values.ultimateBeneficialOwners[index]
-                                    .nextOfKin[index1].documentType
-                                    .birthCertificate !== undefined
+                                    .nextOfKin[index1].birthCertificate !==
+                                  undefined
                                     ? formik.values.ultimateBeneficialOwners[
                                         index
-                                      ].nextOfKin[index1].documentType
-                                        .birthCertificate[0]
+                                      ].nextOfKin[index1].birthCertificate[0]
                                     : null
                                 }
                               />

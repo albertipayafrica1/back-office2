@@ -69,13 +69,11 @@ const BankDetailsForm = ({ handleNextStep }) => {
           setErrors({ ...error.response.data.response });
           setAlert({ type: "error", message: "Kindly Resolve Form Errors" });
         } else if (error.response) {
-          // setErrors({ ...errors, generic: error.response.data.response });
-
           setAlert({ type: "error", message: "Something Went Wrong" });
           console.log(error.response, "second if else");
         } else {
           setAlert({ type: "error", message: "Something Went Wrong" });
-          // setErrors({ generic: "Something went wrong" });
+
           console.log(error, "third if else");
         }
         setLoading(false);

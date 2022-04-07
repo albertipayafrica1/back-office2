@@ -9,9 +9,10 @@ import {
   FormGroup,
   FormHelperText,
   TextField,
+  Typography,
 } from "@mui/material";
 
-import { Field, ErrorMessage, getIn } from "formik";
+import { FastField, ErrorMessage, getIn } from "formik";
 import useStyles from "./styles";
 
 const FormikDatePicker = ({
@@ -25,7 +26,7 @@ const FormikDatePicker = ({
   const classes = useStyles();
 
   return (
-    <Field name={name}>
+    <FastField name={name}>
       {({ field, form }) => {
         return (
           <FormControl
@@ -39,16 +40,31 @@ const FormikDatePicker = ({
                 <DesktopDatePicker
                   {...field}
                   {...restProps}
-                  label={label}
                   maxDate={new Date()}
                   inputFormat="dd/MM/yyyy"
-                  required={required}
                   onChange={onChange !== "" ? onChange : form.handleChange}
                   onBlur={onBlur !== "" ? onBlur : form.handleBlur}
                   renderInput={(params) => (
                     <TextField
                       {...params}
                       {...field}
+                      error={Boolean(
+                        getIn(form.touched, name) && getIn(form.errors, name)
+                      )}
+                      label={
+                        <Typography
+                          variant="subtitle3"
+                          className={
+                            Boolean(
+                              getIn(form.touched, name) &&
+                                getIn(form.errors, name)
+                            ) && classes.error
+                          }
+                        >
+                          {label}
+                        </Typography>
+                      }
+                      required={required}
                       className={classes.root}
                       sx={{
                         "& .MuiOutlinedInput-root:hover": {
@@ -79,7 +95,7 @@ const FormikDatePicker = ({
           </FormControl>
         );
       }}
-    </Field>
+    </FastField>
   );
 };
 
