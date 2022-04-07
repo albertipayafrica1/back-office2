@@ -38,7 +38,7 @@ const ComplianceForm = ({ handleNextStep }) => {
     const credentials = Cookies.get("iPayT");
     const config = {
       method: "post",
-      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/kyc/bank-details`,
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/kyc/consent-details`,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${credentials}`,
