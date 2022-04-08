@@ -22,16 +22,26 @@ import BankDetailsForm from "../KycForm/RegisteredBusinessFlow/BankDetailsForm";
 import ComplianceForm from "../KycForm/RegisteredBusinessFlow/ComplianceForm";
 import BusinessFulfillmentDetailsForm from "../KycForm/RegisteredBusinessFlow/BusinessFulfillmentDetailsForm";
 import BusinessSupportDetailsForm from "../KycForm/RegisteredBusinessFlow/BusinessSupportDetailsForm";
-import DocumentUploadForm from "../KycForm/RegisteredBusinessFlow/DocumentUploads/PrivateLimitedCompany";
+import PrivateLimitedCompany from "../KycForm/RegisteredBusinessFlow/DocumentUploads/PrivateLimitedCompany";
+import LearningInstitution from "../KycForm/RegisteredBusinessFlow/DocumentUploads/LearningInstitution";
+import GovernmentDepartment from "../KycForm/RegisteredBusinessFlow/DocumentUploads/GovernmentDepartment";
+import ProfessionalEntities from "../KycForm/RegisteredBusinessFlow/DocumentUploads/ProfessionalEntities";
+import SoleProprietorship from "../KycForm/RegisteredBusinessFlow/DocumentUploads/SoleProprietorship";
+import Trust from "../KycForm/RegisteredBusinessFlow/DocumentUploads/Trust";
+import WelfareGroups from "../KycForm/RegisteredBusinessFlow/DocumentUploads/WelfareGroups";
 
 import PersonalDetailsForm from "../KycForm/UnRegisteredBusinessFlow/PersonalDetailsForm";
 import BankDetailsFormUnRegistered from "../KycForm/UnRegisteredBusinessFlow/BankDetailsForm";
 import ComplianceFormUnRegistered from "../KycForm/UnRegisteredBusinessFlow/ComplianceForm";
-import DocumentUploadFormUnRegistered from "../KycForm/UnRegisteredBusinessFlow/DocumentUploads/Wedding";
+import Education from "../KycForm/UnRegisteredBusinessFlow/DocumentUploads/Education";
+import FundRaising from "../KycForm/UnRegisteredBusinessFlow/DocumentUploads/FundRaising";
+import Funeral from "../KycForm/UnRegisteredBusinessFlow/DocumentUploads/Funeral";
+import Medical from "../KycForm/UnRegisteredBusinessFlow/DocumentUploads/Medical";
+import Wedding from "../KycForm/UnRegisteredBusinessFlow/DocumentUploads/Wedding";
 
-import { styles } from "./styles";
+import { styles, stepper } from "./styles";
 
-const HorizontalLinearStepper = ({ flow, companyType }) => {
+const HorizontalLinearStepper = ({ flow, companyType, duration }) => {
   const matches = useMediaQuery("(min-width:800px)");
   const [activeStep, setActiveStep] = useState(0);
   const [stepFailed, setStepFailed] = useState(new Set());
@@ -100,11 +110,32 @@ const HorizontalLinearStepper = ({ flow, companyType }) => {
         case 4:
           return <BusinessSupportDetailsForm handleNextStep={handleNext} />;
         case 5:
-          return <DocumentUploadForm handleNextStep={handleNext} />;
+          if (companyType === "privateLimitedCompany") {
+            return <PrivateLimitedCompany handleNextStep={handleNext} />;
+          }
+          if (companyType === "learningInstitution") {
+            return <LearningInstitution handleNextStep={handleNext} />;
+          }
+          if (companyType === "governmentDepartment") {
+            return <GovernmentDepartment handleNextStep={handleNext} />;
+          }
+          if (companyType === "professionalEntities") {
+            return <ProfessionalEntities handleNextStep={handleNext} />;
+          }
+          if (companyType === "soleProprietorship") {
+            return <SoleProprietorship handleNextStep={handleNext} />;
+          }
+          if (companyType === "trust") {
+            return <Trust handleNextStep={handleNext} />;
+          }
+          if (companyType === "welfareGroups") {
+            return <WelfareGroups handleNextStep={handleNext} />;
+          }
+          return <PrivateLimitedCompany handleNextStep={handleNext} />;
         default:
           return <BusinessStructureForm handleNextStep={handleNext} />;
       }
-    } else if (flow === "unRegistered") {
+    } else if (flow === "unRegistered" && duration === "shortTerm") {
       switch (step) {
         case 0:
           return <PersonalDetailsForm handleNextStep={handleNext} />;
@@ -113,12 +144,37 @@ const HorizontalLinearStepper = ({ flow, companyType }) => {
         case 2:
           return <ComplianceFormUnRegistered handleNextStep={handleNext} />;
         case 3:
-          return <DocumentUploadFormUnRegistered handleNextStep={handleNext} />;
+          if (companyType === "education") {
+            return <Education handleNextStep={handleNext} />;
+          }
+          if (companyType === "fundRaising") {
+            return <FundRaising handleNextStep={handleNext} />;
+          }
+          if (companyType === "funeral") {
+            return <Funeral handleNextStep={handleNext} />;
+          }
+          if (companyType === "medical") {
+            return <Medical handleNextStep={handleNext} />;
+          }
+          if (companyType === "wedding") {
+            return <Wedding handleNextStep={handleNext} />;
+          }
+          return <Education handleNextStep={handleNext} />;
+        default:
+          return <PersonalDetailsForm handleNextStep={handleNext} />;
+      }
+    } else {
+      switch (step) {
+        case 0:
+          return <PersonalDetailsForm handleNextStep={handleNext} />;
+        case 1:
+          return <BankDetailsFormUnRegistered handleNextStep={handleNext} />;
+        case 2:
+          return <ComplianceFormUnRegistered handleNextStep={handleNext} />;
         default:
           return <PersonalDetailsForm handleNextStep={handleNext} />;
       }
     }
-    return <BusinessStructureForm handleNextStep={handleNext} />;
   };
 
   const getSteps = () => {
@@ -145,7 +201,7 @@ const HorizontalLinearStepper = ({ flow, companyType }) => {
         },
       ];
     }
-    if (flow === "unRegistered") {
+    if (flow === "unRegistered" && duration === "shortTerm") {
       return [
         { toolTip: false, toolTipText: "", label: "Personal Details" },
         { toolTip: false, toolTipText: "", label: "Bank Details" },
@@ -162,14 +218,23 @@ const HorizontalLinearStepper = ({ flow, companyType }) => {
         },
       ];
     }
-    return [];
+
+    return [
+      { toolTip: false, toolTipText: "", label: "Personal Details" },
+      { toolTip: false, toolTipText: "", label: "Bank Details" },
+      {
+        toolTip: true,
+        toolTipText: "Compliance",
+        label: "Compliance",
+      },
+    ];
   };
 
   const steps = getSteps();
 
   return (
     <div>
-      <Stepper activeStep={activeStep} orientation="horizontal">
+      <Stepper activeStep={activeStep} orientation="horizontal" sx={stepper}>
         {steps.map((item, index) => {
           const props = {};
           const labelProps = {};
@@ -262,6 +327,7 @@ const HorizontalLinearStepper = ({ flow, companyType }) => {
 HorizontalLinearStepper.propTypes = {
   flow: PropTypes.string.isRequired,
   companyType: PropTypes.string.isRequired,
+  duration: PropTypes.string.isRequired,
 };
 
 export default HorizontalLinearStepper;
