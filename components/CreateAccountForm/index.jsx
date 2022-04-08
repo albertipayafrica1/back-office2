@@ -42,9 +42,11 @@ import {
   aboutUs,
   ads,
   telephoneCodes,
+  titleOptions,
 } from "./data";
 
 const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
+  console.log(countryCode);
   const router = useRouter();
   const { query } = router;
 
@@ -53,6 +55,7 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
   );
   const [countryRegulator, setCountryRegulator] = useState("Kenya");
   const [formValues, setFormValues] = useState({
+    title: "",
     surname: "",
     firstName: "",
     middleName: "",
@@ -83,6 +86,7 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
   };
 
   const initialValues = {
+    title: "",
     surname: "",
     firstName: "",
     middleName: "",
@@ -151,10 +155,6 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
       type: "",
       message: "",
     });
-    // if (formData.aboutUs === "social Media" || formData.aboutUs === "website") {
-    //   formData.referral = "None";
-    //   formData.ads = "None";
-    // }
 
     if (captchaToken !== "") {
       // await axios
@@ -202,7 +202,8 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
       };
       axios(config)
         .then((response) => {
-          console.log(response, "response");
+          setCaptchaError("");
+          setResetCaptcha(true);
           if (response.data.success === true) {
             emailAlertHandler(true, values.firstName);
             setTimeout(() => {
@@ -298,6 +299,19 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
                       spacing={1}
                       justifyContent="space-between"
                     >
+                      <Box sx={{ width: "150px" }}>
+                        <FormikControl
+                          control="select"
+                          variant="outlined"
+                          name="title"
+                          label="Title"
+                          type="text"
+                          select
+                          selectItem={titleOptions}
+                          id="title"
+                          required
+                        />
+                      </Box>
                       <FormikControl
                         control="input"
                         label="Surname"
@@ -307,6 +321,12 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
                         id="surname"
                         required
                       />
+                    </Stack>
+                    <Stack
+                      direction="row"
+                      spacing={1}
+                      justifyContent="space-between"
+                    >
                       <FormikControl
                         control="input"
                         label="First Name"
@@ -326,7 +346,7 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
                       />
                     </Stack>
                     <Stack direction="row" spacing={1}>
-                      <Box sx={{ width: "100px" }}>
+                      <Box sx={{ width: "150px" }}>
                         <FormikControl
                           control="input"
                           name="telephoneCountryCode"

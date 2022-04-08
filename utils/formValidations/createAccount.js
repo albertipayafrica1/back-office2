@@ -4,6 +4,7 @@ const phoneUtil =
   require("google-libphonenumber").PhoneNumberUtil.getInstance();
 
 export const createAccount = yup.object().shape({
+  title: yup.string("title must be a string").required("Title is required"),
   surname: yup
     .string("Surname must be a string")
     .required("Surname is required"),
