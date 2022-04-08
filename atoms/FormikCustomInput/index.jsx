@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { FastField, ErrorMessage, getIn } from "formik";
+import { Field, ErrorMessage, getIn, FastField } from "formik";
 import PropTypes from "prop-types";
 
 import {
@@ -16,10 +16,10 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
-import { withStyles } from "@mui/styles";
+// import { withStyles } from "@mui/styles";
 import useStyles from "./styles";
 
-const CustomInput = ({
+const FormikCustomInput = ({
   type,
   pClass,
   label,
@@ -35,6 +35,8 @@ const CustomInput = ({
   selectItem,
   onChange,
   onBlur,
+  fastField,
+  value,
   ...restProps
 }) => {
   const [visibility, setVisibility] = useState(false);
@@ -66,6 +68,96 @@ const CustomInput = ({
     setVisibility((prev) => !prev);
   };
 
+  if (fastField === false) {
+    return (
+      <Field name={name}>
+        {({ field, form }) => {
+          return (
+            <TextField
+              {...field}
+              label={<Typography variant="subtitle3">{label}</Typography>}
+              id={label}
+              variant={variant}
+              className={[classes.root, pClass].join(" ")}
+              type={
+                type !== "password" ? type : visibility ? "text" : "password"
+              }
+              name={name}
+              onChange={onChange !== "" ? onChange : form.handleChange}
+              onBlur={onBlur !== "" ? onBlur : form.handleBlur}
+              required={required}
+              helperText={<ErrorMessage name={name} />}
+              error={Boolean(
+                getIn(form.touched, name) && getIn(form.errors, name)
+              )}
+              size="medium"
+              fullWidth
+              multiline={multiline}
+              select={select}
+              sx={{
+                "& .MuiOutlinedInput-root:hover": {
+                  "& > fieldset": {
+                    borderColor: (theme) => theme.colors.blue,
+                  },
+                },
+                "& .MuiOutlinedInput-root": {
+                  "& .Mui-focused": {
+                    borderColor: (theme) => theme.colors.blue,
+                  },
+                },
+                "& .MuiFormLabel-root": {
+                  color: (theme) => theme.colors.mono4,
+                  "& .Mui-focused": {
+                    color: (theme) => theme.colors.blue,
+                  },
+                },
+              }}
+              InputProps={{
+                className: classes.input,
+                endAdornment: (
+                  <InputAdornment position="start">
+                    {type === "password" ? (
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={typeChangeHandler}
+                      >
+                        {visibility ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    ) : (
+                      haveTooltip && (
+                        <Tooltip
+                          title={tooltipText}
+                          arrow
+                          className={classes.tooltip}
+                        >
+                          <IconButton className={classes.infoIcon}>
+                            <InfoOutlinedIcon
+                              sx={{
+                                color: (theme) => theme.colors.orange,
+                              }}
+                            />
+                          </IconButton>
+                        </Tooltip>
+                      )
+                    )}
+                  </InputAdornment>
+                ),
+              }}
+              {...restProps}
+            >
+              {select &&
+                selectItem.map((option) => (
+                  <MenuItem key={option.key} value={option.value}>
+                    {option.key}
+                  </MenuItem>
+                ))}
+            </TextField>
+          );
+        }}
+      </Field>
+    );
+  }
+  // password toggle doesnt work with fastfield
   return (
     <FastField name={name}>
       {({ field, form }) => {
@@ -76,6 +168,19 @@ const CustomInput = ({
             id={label}
             variant={variant}
             className={[classes.root, pClass].join(" ")}
+            type={type !== "password" ? type : visibility ? "text" : "password"}
+            name={name}
+            onChange={onChange !== "" ? onChange : form.handleChange}
+            onBlur={onBlur !== "" ? onBlur : form.handleBlur}
+            required={required}
+            helperText={<ErrorMessage name={name} />}
+            error={Boolean(
+              getIn(form.touched, name) && getIn(form.errors, name)
+            )}
+            size="medium"
+            fullWidth
+            multiline={multiline}
+            select={select}
             sx={{
               "& .MuiOutlinedInput-root:hover": {
                 "& > fieldset": {
@@ -94,19 +199,6 @@ const CustomInput = ({
                 },
               },
             }}
-            type={type !== "password" ? type : visibility ? "text" : "password"}
-            name={name}
-            onChange={onChange !== "" ? onChange : form.handleChange}
-            onBlur={onBlur !== "" ? onBlur : form.handleBlur}
-            required={required}
-            helperText={<ErrorMessage name={name} />}
-            error={Boolean(
-              getIn(form.touched, name) && getIn(form.errors, name)
-            )}
-            size="medium"
-            fullWidth
-            multiline={multiline}
-            select={select}
             InputProps={{
               className: classes.input,
               endAdornment: (
@@ -153,7 +245,7 @@ const CustomInput = ({
   );
 };
 
-CustomInput.defaultProps = {
+FormikCustomInput.defaultProps = {
   pClass: "",
   tooltipText: "",
   haveTooltip: false,
@@ -166,9 +258,10 @@ CustomInput.defaultProps = {
   selectItem: [],
   onChange: "",
   onBlur: "",
+  fastField: true,
 };
 
-CustomInput.propTypes = {
+FormikCustomInput.propTypes = {
   type: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
@@ -185,6 +278,7 @@ CustomInput.propTypes = {
   helperText: PropTypes.string,
   select: PropTypes.bool,
   selectItem: PropTypes.arrayOf(PropTypes.string),
+  fastField: PropTypes.bool,
 };
 
-export default CustomInput;
+export default FormikCustomInput;

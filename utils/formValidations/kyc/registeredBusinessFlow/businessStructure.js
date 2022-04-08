@@ -66,6 +66,9 @@ export const businessStructure = yup.object({
       .date()
       .required("kindly select your date of birth")
       .test("dob", "Your age must be over 18 years", function (value) {
+        if (value === null || value === undefined) {
+          return false;
+        }
         return differenceInYears(new Date(), new Date(value)) >= 18;
       }),
     countryOfOperation: yup

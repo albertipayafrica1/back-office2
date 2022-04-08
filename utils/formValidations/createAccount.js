@@ -86,8 +86,17 @@ export const createAccount = yup.object().shape({
     .array()
     .min(1, "Select atleast 1 item")
     .required("Select atleast 1 item"),
-  aboutUs: yup.string(),
-  referral: yup.string().required("Kindly enter the referral code"),
-  ads: yup.string().required("Kindly select where you've seen the ad"),
-  privacy: yup.bool().oneOf([true], "Field must be checked"),
+  aboutUs: yup.string().required("Kindly select one option"),
+  referral: yup.string().when("aboutUs", {
+    is: "2",
+    then: yup.string().required("Kindly enter a referral code"),
+  }),
+  ads: yup.string().when("aboutUs", {
+    is: "1",
+    then: yup.string().required("Kindly select where you've seen the ad"),
+  }),
+  privacy: yup
+    .array()
+    .min(1, "Field must be checked")
+    .required("Field must be checked"),
 });

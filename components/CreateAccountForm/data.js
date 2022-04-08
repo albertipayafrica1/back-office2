@@ -40,6 +40,7 @@ export const ads = [
   { value: "3", key: "Radio" },
   { value: "4", key: "Tv" },
 ];
+export const privacy = [{ key: "", value: "true" }];
 
 export const telephoneCodes = [
   {

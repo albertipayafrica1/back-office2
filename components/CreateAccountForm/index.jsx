@@ -5,23 +5,20 @@ import Link from "next/link";
 
 import PropTypes from "prop-types";
 
-import {
-  Stack,
-  Typography,
-  Divider,
-  Box,
-  FormControlLabel,
-  Checkbox,
-} from "@mui/material";
+import axios from "axios";
+
+import { Stack, Typography, Divider, Box } from "@mui/material";
 
 import { LoadingButton } from "@mui/lab";
 
+import { Form, Formik } from "formik";
+
 import PasswordStrengthBar from "react-password-strength-bar";
 import debounce from "lodash/debounce";
+import FormikControl from "../FormikControls";
 
 import CreateAccountFormDiv from "../../atoms/CreateAccountFormDiv";
-import CustomInput from "../../atoms/CustomInput";
-import CheckBoxes from "../../atoms/CheckBoxes";
+
 import Recaptcha from "../../atoms/Recaptcha";
 import MuiAlert from "../../atoms/MuiAlert";
 
@@ -29,6 +26,7 @@ import {
   getCountryIconLink,
   countryOfOperationFullName,
 } from "../../utils/countryOfOperation";
+import { createAccount } from "../../utils/formValidations/createAccount";
 
 import * as styles from "./styles";
 
@@ -46,17 +44,7 @@ import {
   telephoneCodes,
 } from "./data";
 
-const CreateAccountForm = ({
-  formData,
-  handleFormChange,
-  handleCheckboxGroupChange,
-  handleCheckboxChange,
-  errors,
-  handleSubmit,
-  handleCaptchaToken,
-  resetCaptcha,
-  loading,
-}) => {
+const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
   const router = useRouter();
   const { query } = router;
 
@@ -64,16 +52,65 @@ const CreateAccountForm = ({
     "https://icons.elipa.co/iPay_newlogo.svg"
   );
   const [countryRegulator, setCountryRegulator] = useState("Kenya");
+  const [formValues, setFormValues] = useState({
+    surname: "",
+    firstName: "",
+    middleName: "",
+    telephoneCountryCode: "",
+    contactNumber: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    countryOfOperation: countryCode,
+    registrationDetails: "",
+    revenue: "",
+    businessType: "",
+    ipayProducts: [],
+    aboutUs: "2",
+    referral: rc,
+    ads: "",
+    privacy: [],
+  });
+  const [loading, setLoading] = useState(false);
+  const [alert, setAlert] = useState({ type: "", message: "" });
+
+  const [captchaToken, setCaptchaToken] = useState("");
+  const [resetCaptcha, setResetCaptcha] = useState(false);
+  const [captchaError, setCaptchaError] = useState("");
+
+  const handleCaptchaToken = (token) => {
+    setCaptchaToken(token);
+  };
+
+  const initialValues = {
+    surname: "",
+    firstName: "",
+    middleName: "",
+    telephoneCountryCode: "",
+    contactNumber: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    countryOfOperation: countryCode,
+    registrationDetails: "",
+    revenue: "",
+    businessType: "",
+    ipayProducts: [],
+    aboutUs: "2",
+    referral: rc,
+    ads: "",
+    privacy: [],
+  };
 
   const updateRouteOnReferralChange = () => {
     if (
-      formData.countryOfOperation === "" ||
-      formData.countryOfOperation === undefined
+      formValues.countryOfOperation === "" ||
+      formValues.countryOfOperation === undefined
     ) {
       return null;
     }
     return router.push(
-      `/createAccount?country=${formData.countryOfOperation}&rc=${formData.referral}`,
+      `/createAccount?country=${formValues.countryOfOperation}&rc=${formValues.referral}`,
       undefined,
       { shallow: true }
     );
@@ -81,35 +118,149 @@ const CreateAccountForm = ({
 
   const delayedQuery = useCallback(
     debounce(updateRouteOnReferralChange, 1000),
-    [formData.referral]
+    [formValues.referral]
   );
 
   useEffect(() => {
     if (
-      formData.countryOfOperation === "" ||
-      formData.countryOfOperation === undefined
+      formValues.countryOfOperation === "" ||
+      formValues.countryOfOperation === undefined
     ) {
       return null;
     }
 
     router.push(
-      `/createAccount?country=${formData.countryOfOperation}&rc=${formData.referral}`,
+      `/createAccount?country=${formValues.countryOfOperation}&rc=${formValues.referral}`,
       undefined,
       { shallow: true }
     );
 
-    setCountryIconLink(getCountryIconLink(formData.countryOfOperation));
+    setCountryIconLink(getCountryIconLink(formValues.countryOfOperation));
     return setCountryRegulator(countryOfOperationFullName(query.country));
-  }, [formData.countryOfOperation]);
+  }, [formValues.countryOfOperation]);
 
   useEffect(() => {
     delayedQuery();
     return delayedQuery.cancel;
-  }, [formData.referral, delayedQuery]);
+  }, [formValues.referral, delayedQuery]);
 
-  useEffect(() => {
-    console.log(formData, "formData");
-  }, [formData]);
+  const handleSubmit = (values, formikHelpers) => {
+    emailAlertHandler(false, "");
+    setLoading(true);
+    setAlert({
+      type: "",
+      message: "",
+    });
+    // if (formData.aboutUs === "social Media" || formData.aboutUs === "website") {
+    //   formData.referral = "None";
+    //   formData.ads = "None";
+    // }
+
+    if (captchaToken !== "") {
+      // await axios
+      //   .post(`https://merchantregistration.ipayprojects.com/auth/recaptcha`, {
+      //     token: captchaToken,
+      //   })
+      //   .then((response) => {
+      //     if (response.data.success === true) {
+      //       setVerifiedCaptchaToken(true);
+      //     } else {
+      //       setVerifiedCaptchaToken(false);
+      //     }
+      //     console.log(response, "captchaendpointreponse");
+      //   })
+      //   .catch((err) => {
+      //     console.log("in catch forrecaptcha");
+      //     setCaptchaToken("");
+      //     setResetCaptcha(true);
+      //     setDisableButton(false);
+
+      //     setVerifiedCaptchaToken(false);
+      //     setErrors({
+      //       ...errors,
+      //       captcha: "You are not a human",
+      //     });
+      //     setErrors({ ...errors, generic: "kindly resolve the errors" });
+      //   })
+      //   .finally(() => {
+      //     // reCaptcha.current.reset();
+      //     setDisableButton(false);
+      //   });
+
+      // return;
+      //   if (errors.captcha !== "" && verifiedCaptchaToken === false) {
+      //     console.log("enterd if");
+      //     return;
+      //   }
+
+      const config = {
+        method: "post",
+        url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/register`,
+        headers: { "Content-Type": "application/json" },
+        data: JSON.stringify(values),
+        withCredentials: true,
+      };
+      axios(config)
+        .then((response) => {
+          console.log(response, "response");
+          if (response.data.success === true) {
+            emailAlertHandler(true, values.firstName);
+            setTimeout(() => {
+              router.replace(
+                `/login?country=${countryCode}&status=newAccountCreated`
+              );
+            }, 3000);
+          } else {
+            console.log(response, "response0");
+            setLoading(false);
+            setCaptchaToken("");
+            setResetCaptcha(true);
+            setAlert({
+              type: "error",
+              message: "Something Went Wrong",
+            });
+          }
+        })
+        .catch((error) => {
+          console.log(error.response, "response");
+          setLoading(false);
+          setCaptchaToken("");
+          setResetCaptcha(true);
+
+          if (error.response === undefined) {
+            setAlert({ type: "error", message: "Something Went Wrong" });
+          } else if (error.response.status === 401) {
+            setAlert({ type: "error", message: error.response.data.response });
+          } else if (error.response.status === 406) {
+            formikHelpers.setErrors({ ...error.response.data.response });
+            setAlert({
+              type: "error",
+              message: "Kindly Resolve Form Errors",
+            });
+          } else if (error.response) {
+            if (error.response.data.response !== undefined) {
+              setAlert({
+                type: "error",
+                message: error.response.data.response,
+              });
+            } else {
+              setAlert({
+                type: "error",
+                message: error.response.data.response,
+              });
+            }
+            console.log(error.response, "second if else");
+          } else {
+            setAlert({ type: "error", message: "Something Went Wrong" });
+            console.log(error, "third if else");
+          }
+        });
+    } else {
+      setCaptchaError("kindly verify the captcha");
+      setLoading(false);
+      setResetCaptcha(true);
+    }
+  };
 
   return (
     <>
@@ -129,403 +280,363 @@ const CreateAccountForm = ({
           </Link>
         </Stack>
       </Stack>
-      <Stack
-        sx={styles.formContainer}
-        component="form"
+      <Formik
+        initialValues={initialValues}
+        validationSchema={createAccount}
         onSubmit={handleSubmit}
-        spacing={8}
+        enableReinitialize
       >
-        <CreateAccountFormDiv topLabel="Personal Details">
-          <Stack direction="column" spacing={2}>
-            <Stack direction="row" spacing={1} justifyContent="space-between">
-              <CustomInput
-                variant="outlined"
-                name="surname"
-                label="Surname"
-                type="text"
-                id="surname"
-                value={formData.surname}
-                onChange={handleFormChange}
-                error={!!errors.surname}
-                helperText={errors.surname}
-                required
-              />
-              <CustomInput
-                variant="outlined"
-                name="firstName"
-                label="First Name"
-                type="text"
-                id="firstName"
-                value={formData.firstName}
-                onChange={handleFormChange}
-                error={!!errors.firstName}
-                helperText={errors.firstName}
-                required
-              />
-              <CustomInput
-                variant="outlined"
-                name="middleName"
-                label="Middle Name"
-                type="text"
-                id="middleName"
-                value={formData.middleName}
-                onChange={handleFormChange}
-                error={!!errors.middleName}
-                helperText={errors.middleName}
-              />
-            </Stack>
-            <Stack direction="row" spacing={1}>
-              <Box sx={{ width: "100px" }}>
-                <CustomInput
-                  variant="outlined"
-                  name="telephoneCountryCode"
-                  label="Code"
-                  type="text"
-                  select
-                  selectItem={telephoneCodes}
-                  id="telephoneCountryCode"
-                  value={formData.telephoneCountryCode}
-                  onChange={handleFormChange}
-                  error={!!errors.telephoneCountryCode}
-                  helperText={errors.telephoneCountryCode}
-                  required
-                  defaultValue={formData.countryOfOperation.toUpperCase()}
-                />
-              </Box>
-              <CustomInput
-                variant="outlined"
-                name="contactNumber"
-                label="Contact Number"
-                type="number"
-                id="contactNumber"
-                value={formData.contactNumber}
-                onChange={handleFormChange}
-                error={!!errors.contactNumber}
-                helperText={errors.contactNumber}
-                required
-              />
-            </Stack>
-            <CustomInput
-              variant="outlined"
-              name="email"
-              label="Email"
-              type="text"
-              id="email"
-              value={formData.email}
-              onChange={handleFormChange}
-              error={!!errors.email}
-              helperText={errors.email}
-              required
-              haveTooltip
-              tooltipText="Enter Your Email"
-            />
-            <CustomInput
-              variant="outlined"
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              value={formData.password}
-              onChange={handleFormChange}
-              error={!!errors.password}
-              helperText={errors.password}
-              required
-            />
-            <PasswordStrengthBar
-              password={formData.password}
-              barColors={["#ddd", "#ef4836", "#f6b44d", "#2b90ef", "#15A112"]}
-            />
-            <CustomInput
-              variant="outlined"
-              name="confirmPassword"
-              label="Confirm Password"
-              type="password"
-              id="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleFormChange}
-              error={!!errors.confirmPassword}
-              helperText={errors.confirmPassword}
-              required
-            />
-            <CustomInput
-              variant="outlined"
-              name="countryOfOperation"
-              label="Country Of Operation"
-              type="text"
-              select
-              selectItem={country}
-              id="countryOfOperation"
-              value={formData.countryOfOperation}
-              onChange={handleFormChange}
-              error={!!errors.countryOfOperation}
-              helperText={errors.countryOfOperation}
-              required
-              haveTooltip
-              tooltipText="Select Your Country Of Operation"
-              defaultValue={formData.countryOfOperation}
-            />
-          </Stack>
-        </CreateAccountFormDiv>
-        <CreateAccountFormDiv topLabel="Tell us about your business">
-          <Stack direction="column" spacing={2}>
-            <CustomInput
-              variant="outlined"
-              name="registrationDetails"
-              label="Registration Details"
-              type="text"
-              select
-              selectItem={registration}
-              id="registrationDetails"
-              value={formData.registrationDetails}
-              onChange={handleFormChange}
-              error={!!errors.registrationDetails}
-              helperText={errors.registrationDetails}
-              required
-            />
+        {(formik) => {
+          console.log(formik.values, "fork");
+          return (
+            <Form>
+              <Stack sx={styles.formContainer} spacing={8}>
+                <CreateAccountFormDiv topLabel="Personal Details">
+                  <Stack direction="column" spacing={2}>
+                    <Stack
+                      direction="row"
+                      spacing={1}
+                      justifyContent="space-between"
+                    >
+                      <FormikControl
+                        control="input"
+                        label="Surname"
+                        name="surname"
+                        variant="outlined"
+                        type="text"
+                        id="surname"
+                        required
+                      />
+                      <FormikControl
+                        control="input"
+                        label="First Name"
+                        name="firstName"
+                        variant="outlined"
+                        type="text"
+                        id="firstName"
+                        required
+                      />
+                      <FormikControl
+                        control="input"
+                        label="Middle Name"
+                        name="middleName"
+                        variant="outlined"
+                        type="text"
+                        id="middleName"
+                      />
+                    </Stack>
+                    <Stack direction="row" spacing={1}>
+                      <Box sx={{ width: "100px" }}>
+                        <FormikControl
+                          control="input"
+                          name="telephoneCountryCode"
+                          label="Code"
+                          type="text"
+                          select
+                          selectItem={telephoneCodes}
+                          id="telephoneCountryCode"
+                          required
+                          defaultValue={formik.values.countryOfOperation}
+                        />
+                      </Box>
+                      <FormikControl
+                        control="input"
+                        variant="outlined"
+                        name="contactNumber"
+                        label="Contact Number"
+                        type="number"
+                        id="contactNumber"
+                        required
+                        haveTooltip
+                        tooltipText="Enter Your Contact number without country code"
+                      />
+                    </Stack>
+                    <FormikControl
+                      control="input"
+                      label="Email"
+                      name="email"
+                      variant="outlined"
+                      type="text"
+                      id="email"
+                      required
+                      haveTooltip
+                      tooltipText="Enter Your Email"
+                    />
+                    <FormikControl
+                      control="input"
+                      label="Password"
+                      name="password"
+                      variant="outlined"
+                      type="password"
+                      id="password"
+                      required
+                      fastField={false}
+                    />
+                    <PasswordStrengthBar
+                      password={formik.values.password}
+                      barColors={[
+                        "#ddd",
+                        "#ef4836",
+                        "#f6b44d",
+                        "#2b90ef",
+                        "#15A112",
+                      ]}
+                    />
+                    <FormikControl
+                      control="input"
+                      label="Confirm Password"
+                      name="confirmPassword"
+                      variant="outlined"
+                      type="password"
+                      id="confirmPassword"
+                      required
+                      fastField={false}
+                    />
+                    <FormikControl
+                      control="input"
+                      variant="outlined"
+                      name="countryOfOperation"
+                      label="Country Of Operation"
+                      type="text"
+                      select
+                      selectItem={country}
+                      id="countryOfOperation"
+                      required
+                      haveTooltip
+                      tooltipText="Select Your Country Of Operation"
+                      defaultValue={formik.values.countryOfOperation}
+                      onChange={(e) => {
+                        if (formik.values.ipayProducts.includes("2")) {
+                          console.log("andar ghusyo");
+                          formik.setFieldValue("ipayProducts", ["2"]);
+                        } else {
+                          formik.setFieldValue("ipayProducts", []);
+                        }
+                        formik.setFieldValue(
+                          "countryOfOperation",
+                          e.target.value
+                        );
+                        setFormValues({
+                          ...formValues,
+                          countryOfOperation: e.target.value,
+                        });
+                      }}
+                    />
+                  </Stack>
+                </CreateAccountFormDiv>
+                <CreateAccountFormDiv topLabel="Tell us about your business">
+                  <Stack direction="column" spacing={2}>
+                    <FormikControl
+                      control="input"
+                      variant="outlined"
+                      name="registrationDetails"
+                      label="Registration Details"
+                      type="text"
+                      select
+                      selectItem={registration}
+                      id="registrationDetails"
+                      required
+                    />
 
-            <CustomInput
-              variant="outlined"
-              name="revenue"
-              label="Your monthly estimated revenue"
-              type="text"
-              select
-              selectItem={revenue}
-              id="revenue"
-              value={formData.revenue}
-              onChange={handleFormChange}
-              error={!!errors.revenue}
-              helperText={errors.revenue}
-              required
-              haveTooltip
-              tooltipText="What is your monthly estimated revenue?"
-            />
+                    <FormikControl
+                      control="input"
+                      variant="outlined"
+                      name="revenue"
+                      label="Your monthly estimated revenue"
+                      type="text"
+                      select
+                      selectItem={revenue}
+                      id="revenue"
+                      required
+                      haveTooltip
+                      tooltipText="What is your monthly estimated revenue?"
+                    />
 
-            <CustomInput
-              variant="outlined"
-              name="businessType"
-              label="Business Type"
-              type="text"
-              select
-              selectItem={business}
-              id="businessType"
-              value={formData.businessType}
-              onChange={handleFormChange}
-              error={!!errors.businessType}
-              helperText={errors.businessType}
-              required
-            />
+                    <FormikControl
+                      control="input"
+                      variant="outlined"
+                      name="businessType"
+                      label="Business Type"
+                      type="text"
+                      select
+                      selectItem={business}
+                      id="businessType"
+                      required
+                    />
+                    <FormikControl
+                      control="checkbox"
+                      options={
+                        (formik.values.countryOfOperation === "TG" &&
+                          togoIpayProducts) ||
+                        (formik.values.countryOfOperation === "KE" &&
+                          kenyaIpayProducts) ||
+                        (formik.values.countryOfOperation === "UG" &&
+                          ugandaIpayProducts) ||
+                        (formik.values.countryOfOperation === "TZ" &&
+                          tanzaniaIpayProducts) ||
+                        kenyaIpayProducts
+                      }
+                      label="Choose iPay Products"
+                      name="ipayProducts"
+                    />
+                  </Stack>
+                </CreateAccountFormDiv>
+                <CreateAccountFormDiv topLabel="How did you know about us?">
+                  <Stack direction="column" spacing={2}>
+                    <FormikControl
+                      control="input"
+                      variant="outlined"
+                      name="aboutUs"
+                      label="About Us"
+                      type="text"
+                      select
+                      selectItem={aboutUs}
+                      id="aboutUs"
+                      onChange={(e) => {
+                        console.log(e.target.value, "vaaaaaa");
 
-            <CheckBoxes
-              formFields={
-                (formData.countryOfOperation === "TG" && togoIpayProducts) ||
-                (formData.countryOfOperation === "KE" && kenyaIpayProducts) ||
-                (formData.countryOfOperation === "UG" && ugandaIpayProducts) ||
-                (formData.countryOfOperation === "TZ" &&
-                  tanzaniaIpayProducts) ||
-                kenyaIpayProducts
-              }
-              fieldChecked={formData.ipayProducts}
-              error={!!errors.ipayProducts}
-              helperText={errors.ipayProducts}
-              onChange={handleCheckboxGroupChange}
-              label="Choose iPay Products"
-              fieldName="ipayProducts"
-            />
-          </Stack>
-        </CreateAccountFormDiv>
-        <CreateAccountFormDiv topLabel="How did you know about us?">
-          <Stack direction="column" spacing={2}>
-            <CustomInput
-              variant="outlined"
-              name="aboutUs"
-              label="About Us"
-              type="text"
-              select
-              selectItem={aboutUs}
-              id="businessType"
-              value={formData.aboutUs}
-              onChange={handleFormChange}
-              error={!!errors.aboutUs}
-              helperText={errors.aboutUs}
-            />
-            {formData.aboutUs === "2" && (
-              <CustomInput
-                variant="outlined"
-                name="referral"
-                label="Referral Code"
-                type="text"
-                id="referralCode"
-                value={formData.referral}
-                onChange={handleFormChange}
-                error={!!errors.referral}
-                helperText={errors.referral}
-                required
-              />
-            )}
-            {formData.aboutUs === "1" && (
-              <CustomInput
-                variant="outlined"
-                name="ads"
-                label="Where did you see the Ad"
-                type="text"
-                select
-                selectItem={ads}
-                id="businessType"
-                value={formData.ads}
-                onChange={handleFormChange}
-                error={!!errors.ads}
-                helperText={errors.ads}
-                defaultValue={ads[0]}
-                required
-              />
-            )}
-          </Stack>
-        </CreateAccountFormDiv>
-        <Box>
-          <FormControlLabel
-            control={
-              <Checkbox
-                sx={styles.checkbox}
-                helperText={errors.privacy}
-                onChange={handleCheckboxChange}
-                name="privacy"
-              />
-            }
-            label={
-              <Typography variant="subtitle3">
-                By clicking on submit you agree to share your information with
-                iPay who agrees to use it as per their
-                <a
-                  style={styles.linkStyle}
-                  href="https://www.ipayafrica.com/info/privacy-policy"
-                  target="_blank"
-                  rel="noreferrer"
+                        if (e.target.value === "1") {
+                          formik.setFieldValue("referral", "");
+                        } else if (e.target.value === "2") {
+                          formik.setFieldValue("ads", "");
+                          formik.setFieldValue("referral", rc);
+                        } else {
+                          formik.setFieldValue("ads", "");
+                          formik.setFieldValue("referral", "");
+                        }
+                        formik.setFieldValue("aboutUs", e.target.value);
+                      }}
+                    />
+                    {formik.values.aboutUs === "2" && (
+                      <FormikControl
+                        control="input"
+                        variant="outlined"
+                        name="referral"
+                        label="Referral Code"
+                        type="text"
+                        id="referralCode"
+                        onChange={(e) => {
+                          formik.setFieldValue("referral", e.target.value);
+                          setFormValues({
+                            ...formValues,
+                            referral: e.target.value,
+                          });
+                        }}
+                      />
+                    )}
+                    {formik.values.aboutUs === "1" && (
+                      <FormikControl
+                        control="input"
+                        variant="outlined"
+                        name="ads"
+                        label="Where did you see the Ad"
+                        type="text"
+                        select
+                        selectItem={ads}
+                        id="ads"
+                        required
+                      />
+                    )}
+                  </Stack>
+                </CreateAccountFormDiv>
+                <Stack direction="row">
+                  <FormikControl
+                    control="checkbox"
+                    options={[
+                      {
+                        key: (
+                          <Typography variant="subtitle3">
+                            By clicking on submit you agree to share your
+                            information with iPay who agrees to use it as per
+                            their
+                            <a
+                              style={styles.linkStyle}
+                              href="https://www.ipayafrica.com/info/privacy-policy"
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              {" "}
+                              privacy policy
+                            </a>
+                          </Typography>
+                        ),
+                        value: "true",
+                      },
+                    ]}
+                    name="privacy"
+                  />
+                </Stack>
+                <CreateAccountFormDiv>
+                  <Recaptcha
+                    captchaError={captchaError}
+                    handleCaptchaToken={handleCaptchaToken}
+                    resetCaptcha={resetCaptcha}
+                  />
+                </CreateAccountFormDiv>
+                <Stack direction="row" justifyContent="center">
+                  <Typography variant="subtitle3" sx={styles.recaptchaText}>
+                    This page is protected by Google <b>recaptcha</b> to ensure
+                    you’re not a bot.
+                    <Link href="/">
+                      <a style={styles.linkStyle}> Learn more</a>
+                    </Link>
+                  </Typography>
+                </Stack>
+                <LoadingButton
+                  loading={loading}
+                  variant="contained"
+                  type="submit"
+                  size="large"
+                  sx={styles.submitButton}
                 >
-                  {" "}
-                  privacy policy
-                </a>
-              </Typography>
-            }
-            sx={styles.privacyControlLabel}
-          />
-          {errors.privacy && (
-            <Typography
-              variant="subtitle3"
-              sx={styles.privacyControlErrorLabel}
-            >
-              {errors.privacy}
-            </Typography>
-          )}
-        </Box>
-        <CreateAccountFormDiv>
-          <Recaptcha
-            captchaError={errors.captcha}
-            handleCaptchaToken={handleCaptchaToken}
-            resetCaptcha={resetCaptcha}
-          />
-        </CreateAccountFormDiv>
-        <Typography variant="subtitle3" sx={styles.recaptchaText}>
-          This page is protected by Google <b>recaptcha</b> to ensure you’re not
-          a bot.
-          <Link href="/">
-            <a style={styles.linkStyle}> Learn more</a>
-          </Link>
-        </Typography>
-        <LoadingButton
-          loading={loading}
-          variant="contained"
-          type="submit"
-          size="large"
-          sx={styles.submitButton}
-          onClick={handleSubmit}
-        >
-          Create Account
-        </LoadingButton>
-        <Stack spacing={2} sx={{ mt: 4 }}>
-          <Stack
-            direction="row"
-            justifyContent="flex-end"
-            alignItems="flex-end"
-            sx={{ mr: 4 }}
-          >
-            <Typography variant="title6" sx={{ mr: 2 }}>
-              Need help?
-            </Typography>
-            <Link href="/">
-              <a>
-                <Typography variant="title6" sx={styles.contactUs}>
-                  Contact Us
-                </Typography>
-              </a>
-            </Link>
-          </Stack>
-          <Stack
-            direction="row"
-            justifyContent="center"
-            alignItems="center"
-            sx={{ mr: 4 }}
-          >
-            <Typography variant="subtitle3">
-              Authorised Payment Services Provider Regulated by the Central Bank
-              of {countryRegulator}
-            </Typography>
-          </Stack>
-        </Stack>
-      </Stack>
-      {errors.generic !== "" && errors.generic && (
-        <MuiAlert variant="error" message={errors.generic} />
+                  Create Account
+                </LoadingButton>
+
+                <Stack spacing={2} sx={{ mt: 4 }}>
+                  <Stack
+                    direction="row"
+                    justifyContent="flex-end"
+                    alignItems="flex-end"
+                    sx={{ mr: 4 }}
+                  >
+                    <Typography variant="title6" sx={{ mr: 2 }}>
+                      Need help?
+                    </Typography>
+                    <Link href="/">
+                      <a>
+                        <Typography variant="title6" sx={styles.contactUs}>
+                          Contact Us
+                        </Typography>
+                      </a>
+                    </Link>
+                  </Stack>
+                  <Stack
+                    direction="row"
+                    justifyContent="center"
+                    alignItems="center"
+                    sx={{ mr: 4 }}
+                  >
+                    <Typography variant="subtitle3">
+                      Authorised Payment Services Provider Regulated by the
+                      Central Bank of {countryRegulator}
+                    </Typography>
+                  </Stack>
+                </Stack>
+              </Stack>
+            </Form>
+          );
+        }}
+      </Formik>
+      {alert.type !== "" && alert.message !== "" && (
+        <MuiAlert variant={alert.type} message={alert.message} />
       )}
     </>
   );
 };
 
 CreateAccountForm.propTypes = {
-  formData: PropTypes.shape({
-    surname: PropTypes.string.isRequired,
-    firstName: PropTypes.string.isRequired,
-    middleName: PropTypes.string.isRequired,
-    telephoneCountryCode: PropTypes.string.isRequired,
-    contactNumber: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired,
-    confirmPassword: PropTypes.string.isRequired,
-    countryOfOperation: PropTypes.string.isRequired,
-    registrationDetails: PropTypes.string.isRequired,
-    revenue: PropTypes.string.isRequired,
-    businessType: PropTypes.string.isRequired,
-    ipayProducts: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    aboutUs: PropTypes.string.isRequired,
-    referral: PropTypes.string.isRequired,
-    ads: PropTypes.string.isRequired,
-    privacy: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  }).isRequired,
-  handleFormChange: PropTypes.func.isRequired,
-  handleCheckboxGroupChange: PropTypes.func.isRequired,
-  handleCheckboxChange: PropTypes.func.isRequired,
-  errors: PropTypes.shape({
-    surname: PropTypes.string.isRequired,
-    firstName: PropTypes.string.isRequired,
-    middleName: PropTypes.string.isRequired,
-    telephoneCountryCode: PropTypes.string.isRequired,
-    contactNumber: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired,
-    confirmPassword: PropTypes.string.isRequired,
-    countryOfOperation: PropTypes.string.isRequired,
-    registrationDetails: PropTypes.string.isRequired,
-    revenue: PropTypes.string.isRequired,
-    businessType: PropTypes.string.isRequired,
-    ipayProducts: PropTypes.string.isRequired,
-    aboutUs: PropTypes.string.isRequired,
-    referral: PropTypes.string.isRequired,
-    ads: PropTypes.string.isRequired,
-    privacy: PropTypes.string.isRequired,
-    captcha: PropTypes.string.isRequired,
-    generic: PropTypes.string.isRequired,
-  }).isRequired,
-  handleSubmit: PropTypes.func.isRequired,
-  handleCaptchaToken: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired,
-  resetCaptcha: PropTypes.bool.isRequired,
+  countryCode: PropTypes.string.isRequired,
+  rc: PropTypes.string.isRequired,
+  emailAlertHandler: PropTypes.func.isRequired,
 };
 export default CreateAccountForm;

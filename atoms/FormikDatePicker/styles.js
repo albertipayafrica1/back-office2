@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "20px",
     },
   },
+  error: {
+    color: theme.colors.errorRed,
+  },
 }));
 
 export default useStyles;

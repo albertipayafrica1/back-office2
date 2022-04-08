@@ -5,36 +5,88 @@ import { useRouter } from "next/router";
 
 import PropTypes from "prop-types";
 
-import { Stack, Box, Typography } from "@mui/material";
+import axios from "axios";
+import Cookies from "js-cookie";
 
+import { Stack, Box, Typography } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 
-import CustomInput from "../../atoms/CustomInput";
+import { Formik, Form } from "formik";
+import FormikControl from "../FormikControls/index";
+
 import MuiAlert from "../../atoms/MuiAlert";
 
 import {
   getCountryIconLink,
   countryOfOperationFullName,
 } from "../../utils/countryOfOperation";
+import { login } from "../../utils/formValidations/login";
 
 import * as styles from "./styles";
 
-const LoginForm = ({
-  handleSubmit,
-  loading,
-  formData,
-  handleFormChange,
-  errors,
-}) => {
+const initialValues = {
+  email: "",
+  password: "",
+};
+
+const LoginForm = ({ country }) => {
   const router = useRouter();
   const { query } = router;
 
   const [countryIconLink, setCountryIconLink] = useState(
     "https://icons.elipa.co/iPay_newlogo.svg"
   );
-
   const [countryRegulator, setCountryRegulator] = useState("Kenya");
   const [flashMessage, setFlashMessage] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [alert, setAlert] = useState({ type: "", message: "" });
+
+  const handleSubmit = (values) => {
+    setLoading(true);
+    setAlert({ type: "", message: "" });
+
+    const config = {
+      method: "post",
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/login`,
+      headers: { "Content-Type": "application/json" },
+      data: JSON.stringify(values),
+      withCredentials: true,
+    };
+    axios(config)
+      .then((response) => {
+        if (response.data.success === true) {
+          Cookies.set("iPayT", response.data.token, {
+            secure: true,
+          });
+          router.replace(`/otp?country=${country}`);
+        } else {
+          console.log(response, "response0");
+          setAlert({ type: "error", message: "Something Went Wrong" });
+          setLoading(false);
+        }
+      })
+      .catch((error) => {
+        if (error.response === undefined) {
+          setAlert({ type: "error", message: "Something Went Wrong" });
+        } else if (error.response.status === 401) {
+          setAlert({ type: "error", message: error.response.data.response });
+        } else if (error.response) {
+          if (error.response.data.response !== undefined) {
+            setAlert({
+              type: "error",
+              message: error.response.data.response,
+            });
+          } else {
+            setAlert({ type: "error", message: error.response.data.response });
+          }
+          console.log(error.response, "second if else");
+        } else {
+          setAlert({ type: "error", message: "Something Went Wrong" });
+          console.log(error, "third if else");
+        }
+        setLoading(false);
+      });
+  };
 
   useEffect(() => {
     const timer = sessionStorage.getItem("timer");
@@ -53,7 +105,7 @@ const LoginForm = ({
 
   return (
     <Box sx={styles.formContainer}>
-      <Stack component="form" sx={styles.form} onSubmit={handleSubmit}>
+      <Stack sx={styles.form}>
         <Stack
           direction="row"
           justifyContent="space-between"
@@ -62,7 +114,7 @@ const LoginForm = ({
         >
           <Image src={countryIconLink} alt="Logo" width={78} height={39} />
           {flashMessage && (
-            <Typography variant="title6" sx={styles.flashMessage}>
+            <Typography variant="subtitle1" sx={styles.flashMessage}>
               Your Account has been created, kindly verify your email to login
             </Typography>
           )}
@@ -70,55 +122,64 @@ const LoginForm = ({
 
         <Typography variant="title6">Login</Typography>
 
-        <CustomInput
-          variant="outlined"
-          id="email"
-          type="email"
-          label="Your Email"
-          name="email"
-          autoFocus
-          error={!!errors.email}
-          helperText={errors.email}
-          value={formData.email}
-          onChange={handleFormChange}
-          sx={styles.textField}
-        />
-        <Stack
-          direction="row"
-          justifyContent="flex-end"
-          alignItems="flex-end"
-          mr={4}
+        <Formik
+          validationSchema={login}
+          initialValues={initialValues}
+          onSubmit={handleSubmit}
+          enableReinitialize
         >
-          <Link href={`/resetPasswordRequest?country=${query.country}`}>
-            <a>
-              <Typography variant="subtitle2" sx={styles.blueText}>
-                Forgot Password?
-              </Typography>
-            </a>
-          </Link>
-        </Stack>
-        <CustomInput
-          variant="outlined"
-          name="password"
-          label="Password"
-          type="password"
-          id="password"
-          error={!!errors.password}
-          helperText={errors.password}
-          value={formData.password}
-          onChange={handleFormChange}
-          sx={styles.textField}
-        />
-        <LoadingButton
-          loading={loading}
-          variant="contained"
-          type="submit"
-          size="large"
-          sx={styles.submitButton}
-          onClick={handleSubmit}
-        >
-          Log In
-        </LoadingButton>
+          {(formik) => {
+            return (
+              <Form>
+                <FormikControl
+                  control="input"
+                  label="Email"
+                  name="email"
+                  variant="outlined"
+                  type="text"
+                  id="email"
+                  required
+                  sx={styles.textField}
+                />
+                <Stack
+                  direction="row"
+                  justifyContent="flex-end"
+                  alignItems="flex-end"
+                  mr={4}
+                  mb={1}
+                >
+                  <Link href={`/resetPasswordRequest?country=${query.country}`}>
+                    <a>
+                      <Typography variant="subtitle2" sx={styles.blueText}>
+                        Forgot Password?
+                      </Typography>
+                    </a>
+                  </Link>
+                </Stack>
+                <FormikControl
+                  control="input"
+                  label="Password"
+                  name="password"
+                  variant="outlined"
+                  type="password"
+                  id="password"
+                  required
+                  sx={styles.textField}
+                />
+                <LoadingButton
+                  loading={loading}
+                  variant="contained"
+                  type="submit"
+                  size="large"
+                  sx={styles.submitButton}
+                  disabled={!formik.isValid}
+                >
+                  Log In
+                </LoadingButton>
+              </Form>
+            );
+          }}
+        </Formik>
         <Stack spacing={2} mt={4}>
           <Link href={`/createAccount?country=${query.country}&rc=RC0000`}>
             <a>
@@ -157,25 +218,14 @@ const LoginForm = ({
           </Stack>
         </Stack>
       </Stack>
-      {errors.generic !== "" && errors.generic && (
-        <MuiAlert variant="error" message={errors.generic} />
+      {alert.type !== "" && alert.message !== "" && (
+        <MuiAlert variant={alert.type} message={alert.message} />
       )}
     </Box>
   );
 };
 
 LoginForm.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired,
-  formData: PropTypes.shape({
-    email: PropTypes.string,
-    password: PropTypes.string,
-  }).isRequired,
-  handleFormChange: PropTypes.func.isRequired,
-  errors: PropTypes.shape({
-    email: PropTypes.string,
-    password: PropTypes.string,
-    generic: PropTypes.string,
-  }).isRequired,
+  country: PropTypes.string.isRequired,
 };
 export default LoginForm;

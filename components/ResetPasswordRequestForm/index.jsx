@@ -3,30 +3,30 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
 
-import PropTypes from "prop-types";
+import axios from "axios";
 
 import { Stack, Box, Typography } from "@mui/material";
 
 import { LoadingButton } from "@mui/lab";
 
-import CustomInput from "../../atoms/CustomInput";
+import { Formik, Form } from "formik";
+import FormikControl from "../FormikControls/index";
+
 import MuiAlert from "../../atoms/MuiAlert";
 
 import {
   getCountryIconLink,
   countryOfOperationFullName,
 } from "../../utils/countryOfOperation";
+import { resetPasswordRequest } from "../../utils/formValidations/resetPasswordRequest";
 
 import * as styles from "./styles";
 
-const ResetPasswordRequestForm = ({
-  handleSubmit,
-  loading,
-  formData,
-  handleFormChange,
-  errors,
-  success,
-}) => {
+const initialValues = {
+  email: "",
+};
+
+const ResetPasswordRequestForm = () => {
   const router = useRouter();
   const { query } = router;
 
@@ -34,15 +34,65 @@ const ResetPasswordRequestForm = ({
     "https://icons.elipa.co/iPay_newlogo.svg"
   );
   const [countryRegulator, setCountryRegulator] = useState("Kenya");
+  const [loading, setLoading] = useState(false);
+  const [alert, setAlert] = useState({ type: "", message: "" });
 
   useEffect(() => {
     setCountryIconLink(getCountryIconLink(query.country));
     setCountryRegulator(countryOfOperationFullName(query.country));
   }, []);
 
+  const handleSubmit = (values) => {
+    setLoading(true);
+    setAlert({ type: "", message: "" });
+
+    const config = {
+      method: "post",
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/forgot-password`,
+      headers: { "Content-Type": "application/json" },
+      data: JSON.stringify(values),
+      withCredentials: true,
+    };
+    axios(config)
+      .then((response) => {
+        if (response.data.success === true) {
+          setAlert({
+            type: "success",
+            message: response.data.response,
+          });
+          setLoading(false);
+        } else {
+          console.log(response, "response0");
+          setAlert({ type: "error", message: "Something Went Wrong" });
+          setLoading(false);
+        }
+      })
+      .catch((error) => {
+        if (error.response === undefined) {
+          setAlert({ type: "error", message: "Something Went Wrong" });
+        } else if (error.response.status === 401) {
+          setAlert({ type: "error", message: error.response.data.response });
+        } else if (error.response) {
+          if (error.response.data.response !== undefined) {
+            setAlert({
+              type: "error",
+              message: error.response.data.response,
+            });
+          } else {
+            setAlert({ type: "error", message: error.response.data.response });
+          }
+          console.log(error.response, "second if else");
+        } else {
+          setAlert({ type: "error", message: "Something Went Wrong" });
+          console.log(error, "third if else");
+        }
+        setLoading(false);
+      });
+  };
+
   return (
     <Box sx={styles.formContainer}>
-      <Stack component="form" sx={styles.form} onSubmit={handleSubmit}>
+      <Stack sx={styles.form}>
         <Stack
           direction="row"
           justifyContent="space-between"
@@ -53,30 +103,40 @@ const ResetPasswordRequestForm = ({
 
         <Typography variant="title6">Reset Request</Typography>
 
-        <CustomInput
-          variant="outlined"
-          id="email"
-          type="email"
-          label="Your Email"
-          name="email"
-          autoFocus
-          error={!!errors.email}
-          helperText={errors.email}
-          value={formData.email}
-          onChange={handleFormChange}
-          sx={styles.textField}
-        />
-
-        <LoadingButton
-          loading={loading}
-          variant="contained"
-          type="submit"
-          size="large"
-          sx={styles.submitButton}
-          onClick={handleSubmit}
+        <Formik
+          validationSchema={resetPasswordRequest}
+          initialValues={initialValues}
+          onSubmit={handleSubmit}
+          enableReinitialize
         >
-          Request Reset
-        </LoadingButton>
+          {(formik) => {
+            return (
+              <Form>
+                <FormikControl
+                  control="input"
+                  label="Email"
+                  name="email"
+                  variant="outlined"
+                  type="text"
+                  id="email"
+                  required
+                  sx={styles.textField}
+                />
+
+                <LoadingButton
+                  loading={loading}
+                  variant="contained"
+                  type="submit"
+                  size="large"
+                  sx={styles.submitButton}
+                  disabled={!formik.isValid}
+                >
+                  Request Reset
+                </LoadingButton>
+              </Form>
+            );
+          }}
+        </Formik>
         <Stack spacing={2} mt={4}>
           <Stack
             direction="row"
@@ -108,30 +168,11 @@ const ResetPasswordRequestForm = ({
           </Stack>
         </Stack>
       </Stack>
-      {errors.generic !== "" && errors.generic && (
-        <MuiAlert variant="error" message={errors.generic} />
-      )}
-      {success.status === true && (
-        <MuiAlert variant="success" message={success.message} />
+      {alert.type !== "" && alert.message !== "" && (
+        <MuiAlert variant={alert.type} message={alert.message} />
       )}
     </Box>
   );
 };
 
-ResetPasswordRequestForm.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired,
-  formData: PropTypes.shape({
-    email: PropTypes.string,
-  }).isRequired,
-  handleFormChange: PropTypes.func.isRequired,
-  errors: PropTypes.shape({
-    email: PropTypes.string,
-    generic: PropTypes.string,
-  }).isRequired,
-  success: PropTypes.shape({
-    status: PropTypes.bool,
-    message: PropTypes.string,
-  }).isRequired,
-};
 export default ResetPasswordRequestForm;

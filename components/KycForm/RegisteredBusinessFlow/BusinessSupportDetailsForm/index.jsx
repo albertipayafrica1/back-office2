@@ -76,7 +76,17 @@ const BusinessSupportDetailsForm = ({ handleNextStep }) => {
           formikHelpers.setErrors({ ...error.response.data.response });
           setAlert({ type: "error", message: "Kindly Resolve Form Errors" });
         } else if (error.response) {
-          setAlert({ type: "error", message: "Something Went Wrong" });
+          if (error.response.data.response !== undefined) {
+            setAlert({
+              type: "error",
+              message: error.response.data.response,
+            });
+          } else {
+            setAlert({
+              type: "error",
+              message: "Something Went Wrong",
+            });
+          }
           console.log(error.response, "second if else");
         } else {
           setAlert({ type: "error", message: "Something Went Wrong" });
