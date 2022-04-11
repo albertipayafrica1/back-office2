@@ -322,7 +322,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                         direction={{ xs: "row" }}
                         spacing={3}
                       >
-                        <Box sx={{ width: "390px" }}>
+                        <Box sx={{ width: "360px" }}>
                           <FormikControl
                             control="select"
                             variant="outlined"
