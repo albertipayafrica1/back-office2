@@ -205,7 +205,14 @@ const BusinessStructureForm = ({ handleNextStep }) => {
         countryOfOperation: "KE",
         documentType: "1",
         documentNumber: "",
-        nationalIdFront: [],
+        nationalIdFront: [
+          {
+            file: { path: "elipa-Single-logos-black.png" },
+            errors: [],
+            id: 1,
+            url: "https://res.cloudinary.com/demo/image/upload/v1648551450/docs_uploading_example/elipa-Single-logos-black_fqcxd1.png",
+          },
+        ],
         nationalIdBack: [],
         passport: [],
         passportSizePhoto: [],
@@ -245,7 +252,14 @@ const BusinessStructureForm = ({ handleNextStep }) => {
           email: "",
           documentType: "1",
           documentNumber: "",
-          nationalIdFront: [],
+          nationalIdFront: [
+            {
+              file: { path: "elipa-Single-logos-black.png" },
+              errors: [],
+              id: 1,
+              url: "https://res.cloudinary.com/demo/image/upload/v1648551450/docs_uploading_example/elipa-Single-logos-black_fqcxd1.png",
+            },
+          ],
           nationalIdBack: [],
           passport: [],
           passportSizePhoto: [
@@ -455,6 +469,29 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                         required
                         select
                         selectItem={documentTypeOptions}
+                        onChange={(e) => {
+                          formik.setFieldValue(
+                            "businessRepresentative.documentType",
+                            e.target.value
+                          );
+                          formik.setFieldValue(
+                            "businessRepresentative.documentNumber",
+                            ""
+                          );
+                          formik.setFieldValue(
+                            "businessRepresentative.passport",
+                            []
+                          );
+
+                          formik.setFieldValue(
+                            "businessRepresentative.nationalIdFront",
+                            []
+                          );
+                          formik.setFieldValue(
+                            "businessRepresentative.nationalIdBack",
+                            []
+                          );
+                        }}
                       />
                       <FormikControl
                         control="input"
@@ -971,6 +1008,32 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                             required
                             select
                             selectItem={documentTypeOptions}
+                            onChange={(e) => {
+                              formik.setFieldValue(
+                                `ultimateBeneficialOwners[${index}].documentType`,
+                                e.target.value
+                              );
+                              formik.setFieldValue(
+                                `ultimateBeneficialOwners[${index}].documentNumber`,
+                                ""
+                              );
+                              formik.setFieldValue(
+                                `ultimateBeneficialOwners[${index}].passport`,
+                                []
+                              );
+                              formik.setFieldValue(
+                                `ultimateBeneficialOwners[${index}].nationalIdFront`,
+                                []
+                              );
+                              formik.setFieldValue(
+                                `ultimateBeneficialOwners[${index}].nationalIdBack`,
+                                []
+                              );
+                              formik.setFieldValue(
+                                `ultimateBeneficialOwners[${index}].birthCertificate`,
+                                []
+                              );
+                            }}
                           />
                           <FormikControl
                             control="input"
@@ -1230,6 +1293,32 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                               required
                               select
                               selectItem={documentTypeOptionsForNextOfKin}
+                              onChange={(e) => {
+                                formik.setFieldValue(
+                                  `ultimateBeneficialOwners[${index}].nextOfKin[${index1}].documentType`,
+                                  e.target.value
+                                );
+                                formik.setFieldValue(
+                                  `ultimateBeneficialOwners[${index}].nextOfKin[${index1}].documentNumber`,
+                                  ""
+                                );
+                                formik.setFieldValue(
+                                  `ultimateBeneficialOwners[${index}].nextOfKin[${index1}].passport`,
+                                  []
+                                );
+                                formik.setFieldValue(
+                                  `ultimateBeneficialOwners[${index}].nextOfKin[${index1}].nationalIdFront`,
+                                  []
+                                );
+                                formik.setFieldValue(
+                                  `ultimateBeneficialOwners[${index}].nextOfKin[${index1}].nationalIdBack`,
+                                  []
+                                );
+                                formik.setFieldValue(
+                                  `ultimateBeneficialOwners[${index}].nextOfKin[${index1}].birthCertificate`,
+                                  []
+                                );
+                              }}
                             />
                             <FormikControl
                               control="input"

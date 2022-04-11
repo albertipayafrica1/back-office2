@@ -154,6 +154,11 @@ const ComplianceForm = ({ handleNextStep }) => {
                       label="FATCA Status"
                       name="fatcaStatus"
                       options={ComplianceResponse}
+                      onChange={(e) => {
+                        formik.setFieldValue("fatcaStatus", e.target.value);
+                        formik.setFieldValue("W8Form", []);
+                        formik.setFieldValue("explanation", []);
+                      }}
                     />
                   </Box>
                 </Box>
