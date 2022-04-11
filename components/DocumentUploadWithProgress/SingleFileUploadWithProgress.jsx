@@ -21,7 +21,7 @@ const SingleFileUploadWithProgress = ({
     const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/kyc/document-upload`;
     const key = "docs_upload_example_us_preset";
 
-    setServerError(false);
+    setServerError("");
     setDocumentUrl("");
 
     // return new Promise((res, rej) => {
@@ -72,8 +72,11 @@ const SingleFileUploadWithProgress = ({
       })
       .catch((error) => {
         onReject(fileToUpload);
+        if (error.response === undefined) {
+          return setServerError("Something went wrong!");
+        }
         if (error.response.data.response !== undefined) {
-          return setServerError("This is a very good error");
+          return setServerError(error.response.data.response);
         }
         return setServerError("Something went wrong!");
       });
@@ -82,7 +85,12 @@ const SingleFileUploadWithProgress = ({
   useEffect(() => {
     async function upload() {
       const returnedFileDetails = await uploadFile(file, setProgress, onReject);
-      setDocumentUrl(returnedFileDetails.url);
+      console.log("retunrded file", returnedFileDetails);
+      if (returnedFileDetails !== undefined) {
+        setDocumentUrl(returnedFileDetails.url);
+      } else {
+        setDocumentUrl("");
+      }
       onUpload(file, returnedFileDetails);
     }
 
@@ -92,7 +100,7 @@ const SingleFileUploadWithProgress = ({
   return (
     <Grid item>
       {/* <FileHeader file={file} onDelete={onDelete} progress={progress} /> */}
-      {serverError !== "" && documentUrl === "" && (
+      {serverError === "" && documentUrl === "" && (
         <>
           <LinearProgress
             variant="determinate"

@@ -49,7 +49,7 @@ const FileUploadField = ({ name, multiple, label, required, givenFile }) => {
   const onUpload = (file, returnedFileDetails) => {
     setFiles((curr) =>
       curr.map((fw) => {
-        if (fw.file === file) {
+        if (fw.file === file && returnedFileDetails !== undefined) {
           return {
             ...fw,
             url: returnedFileDetails.url,

@@ -128,7 +128,6 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
         enableReinitialize
       >
         {(formik) => {
-          // console.log(formik.errors,"forkss")
           return (
             <Form>
               <Stack sx={styles.formContainer} spacing={8}>
@@ -289,6 +288,29 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                         required
                         select
                         selectItem={documentTypeOptions}
+                        onChange={(e) => {
+                          formik.setFieldValue(
+                            "personalInformation.documentType",
+                            e.target.value
+                          );
+                          formik.setFieldValue(
+                            "personalInformation.documentNumber",
+                            ""
+                          );
+                          formik.setFieldValue(
+                            "personalInformation.passport",
+                            []
+                          );
+
+                          formik.setFieldValue(
+                            "personalInformation.nationalIdFront",
+                            []
+                          );
+                          formik.setFieldValue(
+                            "personalInformation.nationalIdBack",
+                            []
+                          );
+                        }}
                       />
                       <FormikControl
                         control="input"
