@@ -293,7 +293,7 @@ const HorizontalLinearStepper = ({ flow, companyType, duration }) => {
           );
         })}
       </Stepper>
-      <div>
+      <div style={{ paddingTop: "2.5rem" }}>
         {activeStep === steps.length ? (
           <div>
             <Typography className={styles.instructions}>

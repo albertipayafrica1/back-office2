@@ -308,7 +308,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
         enableReinitialize
       >
         {(formik) => {
-          console.log(formik.values, "fork");
+          // console.log(formik.values, "fork");
           return (
             <Form>
               <Stack sx={styles.formContainer} spacing={8}>
@@ -322,7 +322,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                         direction={{ xs: "row" }}
                         spacing={3}
                       >
-                        <Box sx={{ width: "300px" }}>
+                        <Box sx={{ width: "390px" }}>
                           <FormikControl
                             control="select"
                             variant="outlined"
@@ -372,7 +372,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                         direction={{ xs: "row" }}
                         spacing={3}
                       >
-                        <Box sx={{ width: "250px" }}>
+                        <Box sx={{ width: "130px" }}>
                           <FormikControl
                             control="input"
                             name="businessRepresentative.telephoneCountryCode"
@@ -981,7 +981,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                               id={`ultimateBeneficialOwners[${index}].contactNumber`}
                               required
                               haveTooltip
-                              tooltipText="Enter Your Contact number in the format 254xxxxxxxxx"
+                              tooltipText="Enter Your Contact number without country code"
                             />
                           </Stack>
                           <FormikControl
@@ -1246,7 +1246,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                                 id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].contactNumber`}
                                 required
                                 haveTooltip
-                                tooltipText="Enter Your Contact number in the format 254xxxxxxxxx"
+                                tooltipText="Enter Your Contact number without country code"
                               />
                             </Stack>
                             <FormikControl
