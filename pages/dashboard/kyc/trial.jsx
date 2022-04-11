@@ -13,11 +13,12 @@ import Education from "../../../components/KycForm/UnRegisteredBusinessFlow/Docu
 import Wedding from "../../../components/KycForm/UnRegisteredBusinessFlow/DocumentUploads/Wedding";
 import Funeral from "../../../components/KycForm/UnRegisteredBusinessFlow/DocumentUploads/Funeral";
 import FundRaising from "../../../components/KycForm/UnRegisteredBusinessFlow/DocumentUploads/FundRaising";
+import CreateAccountOtpDialog from "../../../components/CreateAccountOtpDialog";
 
 function trial(props) {
   return (
     <div>
-      <PrivateLimitedCompany />
+      {/* <PrivateLimitedCompany />
       <SoleProprietorship />
       <GovernmentDepartment />
       <Trust />
@@ -31,7 +32,8 @@ function trial(props) {
       <Wedding />
       <Funeral />
       <FundRaising />
-      <BankDetailsForm />
+      <BankDetailsForm /> */}
+      <CreateAccountOtpDialog open />
     </div>
   );
 }

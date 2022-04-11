@@ -95,8 +95,6 @@ const HorizontalLinearStepper = ({ flow, companyType, duration }) => {
   };
 
   const getStepContent = (step) => {
-    console.log(flow, "flow");
-
     if (flow === "registered") {
       switch (step) {
         case 0:
