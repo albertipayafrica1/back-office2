@@ -4,6 +4,7 @@ export const styles = (theme) => ({
   // root: {
   //   width: "90%",
   // },
+
   button: {
     marginRight: theme.spacing.unit,
   },
@@ -21,3 +22,16 @@ export const styles = (theme) => ({
     },
   },
 });
+
+export const stepper = {
+  backgroundColor: (theme) => theme.colors.mono1,
+  color: "blue",
+  zIndex: 1,
+  display: "flex",
+  width: "100%",
+  justifyContent: "center",
+  alignItems: "center",
+  position: "fixed",
+  left: "50%",
+  transform: "translate(-50%, 0)",
+};

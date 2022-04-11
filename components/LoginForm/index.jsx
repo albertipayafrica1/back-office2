@@ -165,6 +165,7 @@ const LoginForm = ({ country }) => {
                   id="password"
                   required
                   sx={styles.textField}
+                  fastField={false}
                 />
                 <LoadingButton
                   loading={loading}

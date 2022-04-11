@@ -46,11 +46,15 @@ const FileUploadField = ({ name, multiple, label, required, givenFile }) => {
     helpers.setValue(files);
   }, [files]);
 
-  const onUpload = (file, url) => {
+  const onUpload = (file, returnedFileDetails) => {
     setFiles((curr) =>
       curr.map((fw) => {
         if (fw.file === file) {
-          return { ...fw, url };
+          return {
+            ...fw,
+            url: returnedFileDetails.url,
+            modifiedName: returnedFileDetails.modifiedName,
+          };
         }
         return fw;
       })

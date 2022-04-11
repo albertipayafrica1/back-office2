@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Grid, LinearProgress, Typography } from "@mui/material";
 
 import axios from "axios";
+import Cookies from "js-cookie";
 import UploadError from "./UploadError";
 
 const SingleFileUploadWithProgress = ({
@@ -16,7 +17,8 @@ const SingleFileUploadWithProgress = ({
   const [documentUrl, setDocumentUrl] = useState("");
 
   const uploadFile = async (fileToUpload, onProgress) => {
-    const url = "https://api.cloudinary.com/v1_1/demo/image/upload";
+    // const url = "https://api.cloudinary.com/v1_1/demo/image/upload";
+    const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/kyc/document-upload`;
     const key = "docs_upload_example_us_preset";
 
     setServerError(false);
@@ -44,16 +46,16 @@ const SingleFileUploadWithProgress = ({
 
     //   xhr.send(formData);
     // });
-
+    const credentials = Cookies.get("iPayT");
     const config = {
       onUploadProgress: (progressEvent) => {
         const { loaded, total } = progressEvent;
         const percent = Math.floor((loaded * 100) / total);
         onProgress(percent); // hook to set the value of current level that needs to be passed to the progressbar
       },
-      // headers: {
-      //   // custom headers goes here
-      // },
+      headers: {
+        Authorization: `Bearer ${credentials}`,
+      },
     };
 
     console.log(fileToUpload, "fileToUpload");
@@ -66,19 +68,22 @@ const SingleFileUploadWithProgress = ({
       .then((res) => {
         // return setServerError(true);
         console.log(res, "response");
-        return res.data.secure_url;
+        return res.data.response;
       })
       .catch((error) => {
         onReject(fileToUpload);
-        return setServerError("This is a very good error");
+        if (error.response.data.response !== undefined) {
+          return setServerError("This is a very good error");
+        }
+        return setServerError("Something went wrong!");
       });
   };
 
   useEffect(() => {
     async function upload() {
-      const url = await uploadFile(file, setProgress, onReject);
-      setDocumentUrl(url);
-      onUpload(file, url);
+      const returnedFileDetails = await uploadFile(file, setProgress, onReject);
+      setDocumentUrl(returnedFileDetails.url);
+      onUpload(file, returnedFileDetails);
     }
 
     upload();
