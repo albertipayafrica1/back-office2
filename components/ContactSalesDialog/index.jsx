@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Box, Typography } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
@@ -9,15 +9,20 @@ import axios from "axios";
 import Dialog from "../../atoms/Dialog/index";
 import Marquee from "../../atoms/Marquee/index";
 import FormikControl from "../FormikControls/index";
-import { validationSchema } from "../../utils/formValidations/BookDemo";
+import { validationSchema } from "../../utils/formValidations/ContactSales";
 import MuiAlert from "../../atoms/MuiAlert";
 import { iPayProducts } from "./data";
 import { styles } from "./styles";
 
-const BookDemoDialog = ({ handleToggleBookDemo, open }) => {
+const ContactSales = ({ toggleSales, open }) => {
   const [alert, setAlert] = useState(false);
   const [error, setError] = useState(false);
   const [Loading, SetLoading] = useState(false);
+
+  useEffect(() => {
+    setAlert(false);
+    setError(false);
+  }, [open]);
 
   const handleSubmit = (values, { setErrors }) => {
     setAlert(false);
@@ -68,7 +73,7 @@ const BookDemoDialog = ({ handleToggleBookDemo, open }) => {
     <div>
       <Dialog
         open={open}
-        onClose={handleToggleBookDemo}
+        onClose={toggleSales}
         position={styles.dialogueContainer}
       >
         {alert ? (
@@ -99,17 +104,14 @@ const BookDemoDialog = ({ handleToggleBookDemo, open }) => {
             return (
               <Form>
                 <Box sx={styles.BookDemoContainer}>
-                  <Typography>
-                    Thanks for your interest. Ready for a demo?
+                  <Typography sx={styles.salesText}>
+                    Contact our Sales team.
                   </Typography>
-                  <Typography style={styles.textIndustry}>
-                    Tell us your industry, Company, and any questions you have.
-                    We’ll arrange
-                    <span style={styles.textDemo}>
-                      {" "}
-                      a customized demo{" "}
-                    </span>{" "}
-                    with tailored insights & answers.
+                  <Typography>
+                    With iPay you can Sell online, process payments, build
+                    financial products, or use business tools designed to grow
+                    your business. Please complete the form below to connect
+                    with a member of our team.
                   </Typography>
                   <Box sx={styles.FormContainer}>
                     <Box>
@@ -186,7 +188,7 @@ const BookDemoDialog = ({ handleToggleBookDemo, open }) => {
                       <Box sx={styles.subject}>
                         <FormikControl
                           control="input"
-                          label="Subject"
+                          label="How can we help you?"
                           name="subject"
                           variant="outlined"
                           type="text"
@@ -232,9 +234,9 @@ const BookDemoDialog = ({ handleToggleBookDemo, open }) => {
                     size="large"
                     sx={styles.submitButton}
                   >
-                    BOOK DEMO NOW
+                    Send message
                   </LoadingButton>
-                  <Typography variant="title8">
+                  <Typography sx={styles.textTrusted} variant="title8">
                     TRUSTED BY HUNDREDS OF ENTERPRISES WORLDWIDE
                   </Typography>
                 </Box>
@@ -250,8 +252,8 @@ const BookDemoDialog = ({ handleToggleBookDemo, open }) => {
   );
 };
 
-export default BookDemoDialog;
-BookDemoDialog.propTypes = {
+export default ContactSales;
+ContactSales.propTypes = {
   open: PropTypes.bool.isRequired,
-  handleToggleBookDemo: PropTypes.func.isRequired,
+  toggleSales: PropTypes.func.isRequired,
 };

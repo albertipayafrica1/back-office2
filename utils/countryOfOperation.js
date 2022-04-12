@@ -86,6 +86,33 @@ export const getCountryIconLink = (country) => {
   return givenCountryIconLink;
 };
 
+export const getCountryIconLinkLandingPage = (country) => {
+  let givenCountryIconLinkLandingPage = "";
+
+  switch (country) {
+    case "KE":
+      givenCountryIconLinkLandingPage =
+        "https://icons.elipa.co/iPay_newlogo.svg";
+      break;
+    case "TG":
+      givenCountryIconLinkLandingPage =
+        "https://resources.elipa.co/elipa_logos/Togo-white.png";
+      break;
+    case "TZ":
+      givenCountryIconLinkLandingPage =
+        "https://resources.elipa.co/elipa_logos/Tanzania.png";
+      break;
+    case "UG":
+      givenCountryIconLinkLandingPage =
+        "https://resources.elipa.co/elipa_logos/Uganda.png";
+      break;
+    default:
+      givenCountryIconLinkLandingPage =
+        "https://icons.elipa.co/iPay_newlogo.svg";
+  }
+  return givenCountryIconLinkLandingPage;
+};
+
 export const countryOfOperationFullName = (country) => {
   let givenCountryCode = "";
 

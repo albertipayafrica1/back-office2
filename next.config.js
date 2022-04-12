@@ -4,6 +4,6 @@ module.exports = {
     dirs: ["pages", "utils", "components", "atoms", "styles", "hooks"],
   },
   images: {
-    domains: ["icons.elipa.co"],
+    domains: ["icons.elipa.co", "resources.elipa.co"],
   },
 };

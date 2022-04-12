@@ -12,9 +12,12 @@ export const styles = {
     padding: "40px",
   },
 
-  textIndustry: {
+  salesText: {
     color: "#124AA1",
-    marginTop: "10px",
+    letterSpacing: "0.08em",
+    fontSize: "19px",
+    marginTop: "5px",
+    marginBottom: "10px",
   },
   Textpolicy: {
     color: "orange",
@@ -72,6 +75,7 @@ export const styles = {
 
   textTrusted: {
     paddingBottom: "30px",
+    marginLeft: { lg: "10%", md: "5%", xs: "5%" },
   },
 
   MarqueeContainer: {

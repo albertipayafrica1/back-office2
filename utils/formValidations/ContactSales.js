@@ -7,7 +7,7 @@ export const validationSchema = yup.object({
     .required("Email is required"),
   firstName: yup
     .string("Enter your First name")
-    .required("first name is required"),
+    .required("First name is required"),
 
   lastName: yup
     .string("Enter your last name")

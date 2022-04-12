@@ -1,162 +1,176 @@
-import { useState } from "react";
-import Link from "next/link";
-import { Box, Grid, Typography, Button } from "@mui/material";
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import {
+  AppBar,
+  Box,
+  Typography,
+  Button,
+  Divider,
+  FormControl,
+  Select,
+  MenuItem,
+} from "@mui/material";
+import ListItemIcon from "@mui/material/ListItemIcon";
 
-import useMediaQuery from "@mui/material/useMediaQuery";
-import Carousel from "../atoms/Carousel";
-import BookDemoDialog from "../components/BookDemoDialog";
-import CallMeDialog from "../components/CallMeDialog";
-import SelectCountryDialog from "../components/SelectCountryDialog";
+import { makeStyles } from "@mui/styles";
+import backgroundImage from "../public/ipay-landing-background.png";
 
-import { homedata, SocialMediaLinks } from "../homedata";
+import WatchDemoDialog from "../components/WatchDemoDialog";
+import { getCountryIconLinkLandingPage } from "../utils/countryOfOperation";
+import ContactSalesDialog from "../components/ContactSalesDialog";
+import { Country } from "../data";
 import { styles } from "../styles/Home";
+import useForm from "../hooks/useForm";
+
+const useStyles = makeStyles(() => ({
+  icon: {
+    fill: "white",
+  },
+}));
 
 const Home = () => {
-  const [page, SetPage] = useState(0);
-  const matches = useMediaQuery("(min-width:1000px)");
-  const HandleSelectedPage = (index) => {
-    SetPage(index);
+  const [demo, setDemo] = useState(false);
+  const [sale, setSales] = useState(false);
+  const router = useRouter();
+
+  const classes = useStyles();
+
+  const [formData, handleFormChange] = useForm({ countrySelector: "KE" });
+
+  useEffect(() => {
+    handleFormChange({
+      target: { name: "countrySelector", value: router.query.country },
+    });
+  }, [router.query.country]);
+
+  const countryLink = getCountryIconLinkLandingPage(formData.countrySelector);
+
+  const handleCreateAccount = () => {
+    router.push(`/createAccount?country=${formData.countrySelector}&rc=RC0000`);
   };
 
-  const perPage = homedata[page];
-  // dialog state
-  const [bookDemo, setbookDemo] = useState(false);
-  const [callDemo, setcallMeDemo] = useState(false);
-  const [countrySelect, setCountry] = useState(false);
-
-  const handleToggleBookDemo = () => {
-    setbookDemo(!bookDemo);
+  const handleLogin = () => {
+    router.push(`login?country=${formData.countrySelector}`);
   };
 
-  const handleToggleCallMeDemo = () => {
-    setcallMeDemo(!callDemo);
+  const toggleDemo = () => {
+    setDemo(!demo);
   };
-
-  const handleTogglecountrySelect = () => {
-    setCountry(!countrySelect);
+  const toggleSale = () => {
+    setSales(!sale);
   };
 
   return (
-    <div
-      style={
-        matches
-          ? styles.backgroundImage
-          : { backgroundColor: perPage.backcolor }
-      }
-    >
-      <Grid container spacing={2}>
-        {/** hide background-image when on Mobile/tablet */}
-        <Box sx={styles.backgroundImage}>
-          <Carousel
-            imageArray={perPage.ArrayImage}
-            onChange={HandleSelectedPage}
-          />
+    <Box>
+      <AppBar sx={styles.AppBar}>
+        <Box sx={styles.logoContainer}>
+          <Image src={countryLink} alt="Logo" width={78} height={39} />
         </Box>
-        <Grid item md={6} xs={12}>
-          <Box sx={styles.gatewayContainer}>
-            {perPage.titleText.map((details) => {
-              return (
-                <>
-                  {details.id === 2 ? (
-                    <Typography
-                      key={details.id}
-                      variant="title1"
-                      style={{ color: details.color }}
-                      sx={styles.headerText}
-                    >
-                      {details.Text}
-                    </Typography>
-                  ) : (
-                    <Typography
-                      key={details.id}
-                      variant="title1"
-                      style={{ color: details.color }}
-                      sx={styles.headerText}
-                    >
-                      {details.Text}
-                    </Typography>
-                  )}
-                </>
-              );
-            })}
-
-            {perPage.title.map((title) => (
-              <Typography
-                style={{
-                  color: perPage.title[0].color,
-                  padding: " 10px 10px 10px 0px",
+        <Box sx={styles.loginContainer}>
+          <Box>
+            <FormControl sx={styles.formControler}>
+              <Select
+                className={classes.select}
+                sx={styles.select}
+                id="countrySelector"
+                name="countrySelector"
+                value={formData.countrySelector}
+                onChange={handleFormChange} // add change domain logic
+                renderValue={(value) => {
+                  return (
+                    <Box sx={{ display: "flex", gap: 3 }}>
+                      <Image
+                        src={`/${value}.svg`}
+                        alt="logo"
+                        width={20}
+                        height={20}
+                      />
+                      {value}
+                    </Box>
+                  );
                 }}
-                component="h4"
+                inputProps={{
+                  classes: {
+                    icon: classes.icon,
+                  },
+                }}
               >
-                {title.text}
-              </Typography>
-            ))}
+                {Country.map((name) => (
+                  <MenuItem
+                    sx={{ fontSize: "small" }}
+                    key={name.id}
+                    value={name.country}
+                  >
+                    <ListItemIcon>
+                      <Image src={name.src} alt="logo" width={20} height={20} />
+                    </ListItemIcon>
+
+                    {name.country}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
           </Box>
 
-          <SelectCountryDialog
-            handleToggleSelectCountry={handleTogglecountrySelect}
-            open={countrySelect}
-          />
-          <Box sx={styles.SelectCountryContainer}>
-            <Button
-              onClick={handleTogglecountrySelect}
-              style={{
-                color: perPage.bottombtn[0].color,
-                backgroundColor: perPage.bottombtn[0].backcolor,
-              }}
-              variant="white"
-            >
-              Select country of operation to login
+          <Box>
+            <Button onClick={handleLogin} sx={styles.yellowText}>
+              LOGIN
             </Button>
           </Box>
-        </Grid>
-
-        <BookDemoDialog
-          handleToggleBookDemo={handleToggleBookDemo}
-          open={bookDemo}
-        />
-        <CallMeDialog
-          handleToggleCallMeDemo={handleToggleCallMeDemo}
-          open={callDemo}
-        />
-
-        <Grid item md={6} xs={12}>
-          <Box sx={styles.battonContainer2}>
-            <Button
-              onClick={handleToggleBookDemo}
-              variant="orange-demo"
-              sx={{
-                backgroundColor: perPage.Topbutton[0].backcolor,
-                color: perPage.Topbutton[0].color,
-              }}
-            >
-              BOOK A DEMO
-            </Button>
-            <Button
-              onClick={handleToggleCallMeDemo}
-              variant="orange-demo"
-              sx={{
-                backgroundColor: perPage.Topbutton[0].backcolor,
-                color: perPage.Topbutton[0].color,
-              }}
-            >
-              CALL ME
+          <Divider sx={styles.divider} orientation="vertical" />
+          <Box>
+            <Button onClick={toggleSale} sx={styles.yellowText}>
+              CONTACT SALES
             </Button>
           </Box>
-        </Grid>
-      </Grid>
-      <Box sx={styles.IconsContainer}>
-        <Typography style={styles.icon}>Follow</Typography>
+        </Box>
+      </AppBar>
 
-        {SocialMediaLinks.map((link) => (
-          <Link key={link.id} href={link.href} passHref>
-            <a target="_blank">
-              <link.icon style={styles.icon} />
-            </a>
-          </Link>
-        ))}
+      <Box sx={styles.mainContainer}>
+        <Box sx={styles.innerContainer}>
+          <Typography sx={styles.mainText} variant="title9">
+            Accept payments and disburse funds securely accross multiple
+            channels. Explore limitless opportunities to
+            <span style={styles.expandText}> expand </span> your business today.{" "}
+          </Typography>
+
+          <WatchDemoDialog open={demo} toggleWatchDemo={toggleDemo} />
+          <ContactSalesDialog open={sale} toggleSales={toggleSale} />
+          <Box sx={styles.buttonsContainer}>
+            <Button
+              onClick={handleCreateAccount}
+              sx={styles.createAccountButton}
+              variant="yellowOrange"
+            >
+              CREATE AN ACCOUNT
+            </Button>
+            <Button
+              onClick={toggleDemo}
+              sx={styles.watchDemoButton}
+              variant="yellowBorder"
+            >
+              WATCH DEMO
+              <img
+                style={{ marginLeft: "10px" }}
+                src="/Polygon 1.svg"
+                alt="next"
+              />
+            </Button>
+          </Box>
+        </Box>
       </Box>
-    </div>
+
+      <Box sx={{ zIndex: -1 }}>
+        <Image
+          alt="backgroundimg"
+          src={backgroundImage}
+          quality={65}
+          layout="fill"
+          objectFit="cover"
+        />
+      </Box>
+    </Box>
   );
 };
 

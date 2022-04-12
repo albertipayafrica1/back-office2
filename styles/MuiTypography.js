@@ -121,5 +121,16 @@ export default {
         letterSpacing: "0.15px",
       },
     },
+
+    {
+      props: {
+        variant: "title9",
+      },
+      style: {
+        padding: "10px",
+        lineHeight: "37px",
+        letterSpacing: "0.06em",
+      },
+    },
   ],
 };
