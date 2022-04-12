@@ -14,6 +14,8 @@ import Wedding from "../../../components/KycForm/UnRegisteredBusinessFlow/Docume
 import Funeral from "../../../components/KycForm/UnRegisteredBusinessFlow/DocumentUploads/Funeral";
 import FundRaising from "../../../components/KycForm/UnRegisteredBusinessFlow/DocumentUploads/FundRaising";
 import CreateAccountOtpDialog from "../../../components/CreateAccountOtpDialog";
+import CakeContainer from "../../../components/TrialForRedux/CakeContainer";
+import UserContainer from "../../../components/TrialForRedux/UserContainer";
 
 function trial(props) {
   return (
@@ -33,7 +35,9 @@ function trial(props) {
       <Funeral />
       <FundRaising />
       <BankDetailsForm /> */}
-      <CreateAccountOtpDialog open />
+      {/* <CreateAccountOtpDialog open /> */}
+      <CakeContainer />
+      <UserContainer />
     </div>
   );
 }

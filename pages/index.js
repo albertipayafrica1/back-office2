@@ -34,6 +34,8 @@ const Home = () => {
   const [sale, setSales] = useState(false);
   const router = useRouter();
 
+  //  const { country } = router.query;
+
   const classes = useStyles();
 
   const [formData, handleFormChange] = useForm({ countrySelector: "KE" });

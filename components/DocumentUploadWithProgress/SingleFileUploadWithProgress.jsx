@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 import { Grid, LinearProgress, Typography } from "@mui/material";
 
@@ -12,6 +13,7 @@ const SingleFileUploadWithProgress = ({
   onUpload,
   onReject,
 }) => {
+  const router = useRouter();
   const [progress, setProgress] = useState(0);
   const [serverError, setServerError] = useState("");
   const [documentUrl, setDocumentUrl] = useState("");
@@ -76,7 +78,14 @@ const SingleFileUploadWithProgress = ({
           return setServerError("Something went wrong!");
         }
         if (error.response.data.response !== undefined) {
-          return setServerError(error.response.data.response);
+          if (error.response.status === 401) {
+            setServerError(error.response.data.response);
+            setTimeout(() => {
+              return router.replace("/");
+            }, 2000);
+          } else {
+            setServerError(error.response.data.response);
+          }
         }
         return setServerError("Something went wrong!");
       });

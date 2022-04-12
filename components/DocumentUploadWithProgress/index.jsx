@@ -27,11 +27,14 @@ const FileUploadField = ({ name, multiple, label, required, givenFile }) => {
 
   const [files, setFiles] = useState([]);
   const onDrop = useCallback((accFiles, rejFiles) => {
-    const mappedAcc = accFiles.map((file) => ({
-      file,
-      errors: [],
-      id: getNewId(),
-    }));
+    const mappedAcc = accFiles.map((file) => {
+      console.log(file, "fileondrop");
+      return {
+        file,
+        errors: [],
+        id: getNewId(),
+      };
+    });
     const mappedRej = rejFiles.map((r) => {
       return { ...r, id: getNewId() };
     });
@@ -47,6 +50,7 @@ const FileUploadField = ({ name, multiple, label, required, givenFile }) => {
   }, [files]);
 
   const onUpload = (file, returnedFileDetails) => {
+    console.log(returnedFileDetails, "rdf");
     setFiles((curr) =>
       curr.map((fw) => {
         if (fw.file === file && returnedFileDetails !== undefined) {
