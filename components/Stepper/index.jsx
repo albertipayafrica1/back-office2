@@ -95,8 +95,6 @@ const HorizontalLinearStepper = ({ flow, companyType, duration }) => {
   };
 
   const getStepContent = (step) => {
-    console.log(flow, "flow");
-
     if (flow === "registered") {
       switch (step) {
         case 0:
@@ -293,7 +291,7 @@ const HorizontalLinearStepper = ({ flow, companyType, duration }) => {
           );
         })}
       </Stepper>
-      <div>
+      <div style={{ paddingTop: "2.5rem" }}>
         {activeStep === steps.length ? (
           <div>
             <Typography className={styles.instructions}>
