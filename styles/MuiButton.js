@@ -74,24 +74,24 @@ export default {
         },
       },
     },
+    // used in the old landing page
+    // {
+    //   props: {
+    //     variant: "white",
+    //   },
 
-    {
-      props: {
-        variant: "white",
-      },
-
-      style: {
-        backgroundColor: "white",
-        color: "orange",
-        padding: "10px",
-        width: "70%",
-        fontSize: "mediam",
-        borderRadius: "8px",
-        "&:hover": {
-          backgroundColor: "orange",
-          color: colors.mono1,
-        },
-      },
-    },
+    //   style: {
+    //     backgroundColor: "white",
+    //     color: "orange",
+    //     padding: "10px",
+    //     width: "70%",
+    //     fontSize: "medium",
+    //     borderRadius: "8px",
+    //     "&:hover": {
+    //       backgroundColor: "orange",
+    //       color: colors.mono1,
+    //     },
+    //   },
+    // },
   ],
 };
