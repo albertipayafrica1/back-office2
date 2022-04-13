@@ -4,7 +4,13 @@ import { Dialog, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { styles } from "./styles";
 
-const DialogView = ({ onClose, open, children, paperPropsStyling }) => {
+const DialogView = ({
+  onClose,
+  open,
+  children,
+  paperPropsStyling,
+  backDropVisible,
+}) => {
   return (
     <Dialog
       PaperProps={{
@@ -13,6 +19,7 @@ const DialogView = ({ onClose, open, children, paperPropsStyling }) => {
         },
       }}
       open={open}
+      BackdropProps={{ invisible: backDropVisible }}
     >
       <IconButton sx={styles.closeIcon}>
         <CloseIcon onClick={onClose} />
@@ -26,6 +33,7 @@ export default DialogView;
 
 DialogView.defaultProps = {
   paperPropsStyling: {},
+  backDropVisible: false,
 };
 
 DialogView.propTypes = {
@@ -33,4 +41,5 @@ DialogView.propTypes = {
   open: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
   paperPropsStyling: PropTypes.shape({}),
+  backDropVisible: PropTypes.bool,
 };

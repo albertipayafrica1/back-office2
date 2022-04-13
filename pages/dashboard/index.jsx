@@ -15,6 +15,9 @@
 // import useMediaQuery from "@mui/material/useMediaQuery";
 // import { useTheme } from "@mui/material/styles";
 
+import React from "react";
+import CreateAccountOtpDialog from "../../components/CreateAccountOtpDialog";
+
 // const drawerWidth = 240;
 // const transitionDuration = 1000; // can also use theme.transitions.duration
 
@@ -138,10 +141,22 @@
 //   );
 // }
 
-import React from "react";
-
 function index(props) {
-  return <div>hello</div>;
+  const paperPropsStyling = {
+    position: "absolute",
+    m: 0,
+    top: 10,
+    left: 50,
+  };
+  return (
+    <div>
+      <CreateAccountOtpDialog
+        open
+        backDropVisible
+        paperPropsStyling={paperPropsStyling}
+      />
+    </div>
+  );
 }
 
 export default index;
