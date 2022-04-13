@@ -11,7 +11,12 @@ import MuiAlert from "../../atoms/MuiAlert";
 
 import * as styles from "./styles";
 
-const CreateAccountOtpDialog = ({ open, toggleOtpDialog }) => {
+const CreateAccountOtpDialog = ({
+  open,
+  toggleOtpDialog,
+  backDropVisible,
+  paperPropsStyling,
+}) => {
   const [alert, setAlert] = useState(false);
 
   const [otp, setOtp] = useState(new Array(5).fill(""));
@@ -120,7 +125,12 @@ const CreateAccountOtpDialog = ({ open, toggleOtpDialog }) => {
 
   return (
     <div>
-      <Dialog open={open} onClose={toggleOtpDialog}>
+      <Dialog
+        open={open}
+        onClose={toggleOtpDialog}
+        backDropVisible
+        paperPropsStyling={paperPropsStyling}
+      >
         <Box sx={styles.formContainer}>
           <Stack direction="column" spacing={2}>
             <Stack
@@ -181,9 +191,16 @@ const CreateAccountOtpDialog = ({ open, toggleOtpDialog }) => {
   );
 };
 
-export default CreateAccountOtpDialog;
+CreateAccountOtpDialog.defaultProps = {
+  paperPropsStyling: {},
+  backDropVisible: false,
+};
 
 CreateAccountOtpDialog.propTypes = {
   open: PropTypes.bool.isRequired,
   toggleOtpDialog: PropTypes.func.isRequired,
+  backDropVisible: PropTypes.bool,
+  paperPropsStyling: PropTypes.shape({}),
 };
+
+export default CreateAccountOtpDialog;

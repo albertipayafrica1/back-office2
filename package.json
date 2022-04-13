@@ -41,6 +41,7 @@
     "react-responsive-carousel": "^3.2.23",
     "redux": "^4.1.2",
     "redux-devtools-extension": "^2.13.9",
+    "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.1",
     "yup": "^0.32.11"
   },
