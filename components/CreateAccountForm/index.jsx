@@ -32,7 +32,8 @@ import * as styles from "./styles";
 
 import {
   revenue,
-  business,
+  registeredBusiness,
+  unRegisteredBusiness,
   country,
   registration,
   kenyaIpayProducts,
@@ -43,6 +44,7 @@ import {
   ads,
   telephoneCodes,
   titleOptions,
+  signUpDurationOptions,
 } from "./data";
 
 const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
@@ -66,8 +68,9 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
     confirmPassword: "",
     countryOfOperation: countryCode,
     registrationDetails: "",
-    revenue: "",
+    signUpDuration: "",
     businessType: "",
+    revenue: "",
     ipayProducts: [],
     aboutUs: "2",
     referral: rc,
@@ -97,8 +100,9 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
     confirmPassword: "",
     countryOfOperation: countryCode,
     registrationDetails: "",
-    revenue: "",
+    signUpDuration: "",
     businessType: "",
+    revenue: "",
     ipayProducts: [],
     aboutUs: "2",
     referral: rc,
@@ -288,7 +292,7 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
         enableReinitialize
       >
         {(formik) => {
-          console.log(formik.values, "fork");
+          console.log(formik.errors, "fork");
           return (
             <Form>
               <Stack sx={styles.formContainer} spacing={8}>
@@ -456,7 +460,62 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
                       selectItem={registration}
                       id="registrationDetails"
                       required
+                      onChange={(e) => {
+                        formik.setFieldValue(
+                          "registrationDetails",
+                          e.target.value
+                        );
+                        formik.setFieldValue("businessType", "");
+                        formik.setFieldValue("signUpDuration", "");
+                      }}
                     />
+                    {formik.values.registrationDetails === "2" && (
+                      <FormikControl
+                        control="input"
+                        variant="outlined"
+                        name="signUpDuration"
+                        label="Sign Up Duration"
+                        type="text"
+                        select
+                        selectItem={signUpDurationOptions}
+                        id="signUpDuration"
+                        required
+                        onChange={(e) => {
+                          formik.setFieldValue(
+                            "signUpDuration",
+                            e.target.value
+                          );
+                          formik.setFieldValue("businessType", "");
+                        }}
+                      />
+                    )}
+                    {formik.values.registrationDetails === "1" && (
+                      <FormikControl
+                        control="input"
+                        variant="outlined"
+                        name="businessType"
+                        label="Business Type"
+                        type="text"
+                        select
+                        selectItem={registeredBusiness}
+                        id="businessType"
+                        required
+                      />
+                    )}
+                    {formik.values.registrationDetails === "2" &&
+                      formik.values.signUpDuration === "1" && (
+                        <FormikControl
+                          control="input"
+                          variant="outlined"
+                          name="businessType"
+                          label="Business Type"
+                          type="text"
+                          select
+                          selectItem={unRegisteredBusiness}
+                          id="businessType"
+                          required
+                        />
+                      )}
 
                     <FormikControl
                       control="input"
@@ -473,17 +532,6 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
                     />
 
                     <FormikControl
-                      control="input"
-                      variant="outlined"
-                      name="businessType"
-                      label="Business Type"
-                      type="text"
-                      select
-                      selectItem={business}
-                      id="businessType"
-                      required
-                    />
-                    <FormikControl
                       control="checkbox"
                       options={
                         (formik.values.countryOfOperation === "TG" &&
@@ -496,7 +544,11 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
                           tanzaniaIpayProducts) ||
                         kenyaIpayProducts
                       }
-                      label="Choose iPay Products"
+                      label={
+                        formik.values.countryOfOperation === "KE"
+                          ? "Choose iPay Products"
+                          : "Choose eLipa Products"
+                      }
                       name="ipayProducts"
                     />
                   </Stack>
@@ -608,6 +660,7 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
                   type="submit"
                   size="large"
                   sx={styles.submitButton}
+                  disabled={!formik.isValid}
                 >
                   Create Account
                 </LoadingButton>

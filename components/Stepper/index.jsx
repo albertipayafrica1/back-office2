@@ -30,14 +30,15 @@ import SoleProprietorship from "../KycForm/RegisteredBusinessFlow/DocumentUpload
 import Trust from "../KycForm/RegisteredBusinessFlow/DocumentUploads/Trust";
 import WelfareGroups from "../KycForm/RegisteredBusinessFlow/DocumentUploads/WelfareGroups";
 
-import PersonalDetailsForm from "../KycForm/UnRegisteredBusinessFlow/PersonalDetailsForm";
+import LongTermPersonalDetailsForm from "../KycForm/UnRegisteredBusinessFlow/LongTermFlow/PersonalDetailsForm";
+import ShortTermPersonalDetailsForm from "../KycForm/UnRegisteredBusinessFlow/ShortTermFlow/PersonalDetailsForm";
 import BankDetailsFormUnRegistered from "../KycForm/UnRegisteredBusinessFlow/BankDetailsForm";
 import ComplianceFormUnRegistered from "../KycForm/UnRegisteredBusinessFlow/ComplianceForm";
-import Education from "../KycForm/UnRegisteredBusinessFlow/DocumentUploads/Education";
-import FundRaising from "../KycForm/UnRegisteredBusinessFlow/DocumentUploads/FundRaising";
-import Funeral from "../KycForm/UnRegisteredBusinessFlow/DocumentUploads/Funeral";
-import Medical from "../KycForm/UnRegisteredBusinessFlow/DocumentUploads/Medical";
-import Wedding from "../KycForm/UnRegisteredBusinessFlow/DocumentUploads/Wedding";
+import Education from "../KycForm/UnRegisteredBusinessFlow/ShortTermFlow/DocumentUploads/Education";
+import FundRaising from "../KycForm/UnRegisteredBusinessFlow/ShortTermFlow/DocumentUploads/FundRaising";
+import Funeral from "../KycForm/UnRegisteredBusinessFlow/ShortTermFlow/DocumentUploads/Funeral";
+import Medical from "../KycForm/UnRegisteredBusinessFlow/ShortTermFlow/DocumentUploads/Medical";
+import Wedding from "../KycForm/UnRegisteredBusinessFlow/ShortTermFlow/DocumentUploads/Wedding";
 
 import { styles, stepper } from "./styles";
 
@@ -136,7 +137,7 @@ const HorizontalLinearStepper = ({ flow, companyType, duration }) => {
     } else if (flow === "unRegistered" && duration === "shortTerm") {
       switch (step) {
         case 0:
-          return <PersonalDetailsForm handleNextStep={handleNext} />;
+          return <ShortTermPersonalDetailsForm handleNextStep={handleNext} />;
         case 1:
           return <BankDetailsFormUnRegistered handleNextStep={handleNext} />;
         case 2:
@@ -159,18 +160,18 @@ const HorizontalLinearStepper = ({ flow, companyType, duration }) => {
           }
           return <Education handleNextStep={handleNext} />;
         default:
-          return <PersonalDetailsForm handleNextStep={handleNext} />;
+          return <ShortTermPersonalDetailsForm handleNextStep={handleNext} />;
       }
     } else {
       switch (step) {
         case 0:
-          return <PersonalDetailsForm handleNextStep={handleNext} />;
+          return <LongTermPersonalDetailsForm handleNextStep={handleNext} />;
         case 1:
           return <BankDetailsFormUnRegistered handleNextStep={handleNext} />;
         case 2:
           return <ComplianceFormUnRegistered handleNextStep={handleNext} />;
         default:
-          return <PersonalDetailsForm handleNextStep={handleNext} />;
+          return <LongTermPersonalDetailsForm handleNextStep={handleNext} />;
       }
     }
   };
@@ -194,7 +195,7 @@ const HorizontalLinearStepper = ({ flow, companyType, duration }) => {
         {
           toolTip: true,
           toolTipText:
-            "(NOTE: - This is dependant of the Document Type entered- Upload file should not exceed 5MB- Accepted file formats should be PNG, JPEG, JPG, PDF)",
+            "(NOTE: - This is dependant of the Document Type entered- Upload file should not exceed 5MB- Accepted file formats are PNG, JPEG, JPG, PDF)",
           label: "Document Upload",
         },
       ];
@@ -295,7 +296,7 @@ const HorizontalLinearStepper = ({ flow, companyType, duration }) => {
         {activeStep === steps.length ? (
           <div>
             <Typography className={styles.instructions}>
-              All steps completed - you&quot;re finished
+              Congratulations! You have successfully completed your kyc
             </Typography>
             <Button onClick={handleReset} className={styles.button}>
               Reset

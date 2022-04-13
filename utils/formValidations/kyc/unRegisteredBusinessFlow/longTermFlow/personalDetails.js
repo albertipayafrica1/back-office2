@@ -183,42 +183,22 @@ export const personalDetails = yup.object({
       .required("This file is required"),
   }),
   plan: yup.object({
-    signUpDuration: yup.string().required("kindly select your signUp Duration"),
-    purpose: yup
-      .string("kindly select the purpose of your business")
-      .when("signUpDuration", (signUpDuration) => {
-        if (signUpDuration === "1") {
-          return yup
-            .string("kindly select the purpose of your business")
-            .required("kindly select the purpose of your business");
-        }
-        return yup.string("kindly select the purpose of your business");
-      }),
-
     description: yup
-      .string()
-
-      .when("signUpDuration", (signUpDuration) => {
-        if (signUpDuration === "2") {
-          return yup
-            .string("Kindly enter your business description")
-            .test(
-              "len",
-              "your description must have atleast 150 characters",
-              (val) => {
-                if (val === undefined || val === null || val === "") {
-                  return false;
-                }
-                return val.length >= 150;
-              }
-            )
-            .required("Kindly enter your business description");
+      .string("Kindly enter your business description")
+      .test(
+        "len",
+        "your description must have atleast 150 characters",
+        (val) => {
+          if (val === undefined || val === null || val === "") {
+            return false;
+          }
+          return val.length >= 150;
         }
-        return yup.string("Kindly enter your business description");
-      }),
+      )
+      .required("Kindly enter your business description"),
   }),
 
-  address: yup.object({
+  businessLocation: yup.object({
     physicalAddress: yup
       .string()
       .required("kindly enter your business physical Address"),

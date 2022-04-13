@@ -8,9 +8,9 @@ const Kyc = () => {
   return (
     <div>
       <HorizontalLinearStepper
-        flow="registered"
-        companyType="governmentDepartment"
-        duration="longTerm"
+        flow="unRegistered"
+        companyType="education"
+        duration="shortTerm"
       />
     </div>
   );
@@ -18,13 +18,12 @@ const Kyc = () => {
 
 export default Kyc;
 
-// export const getServerSideProps = ProtectedRoute(
-//   wrapper.getServerSideProps((store) => async (context) => {
-//     const { req } = context;
-//     console.log(store, "store");
+export const getServerSideProps = ProtectedRoute(
+  wrapper.getServerSideProps((store) => async (context) => {
+    const { req } = context;
 
-//     return {
-//       props: {},
-//     };
-//   })
-// );
+    return {
+      props: {},
+    };
+  })
+);
