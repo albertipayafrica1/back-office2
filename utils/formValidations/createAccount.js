@@ -81,8 +81,24 @@ export const createAccount = yup.object().shape({
   registrationDetails: yup
     .string()
     .required("kindly selection of the given options"),
+  signUpDuration: yup.string().when("registrationDetails", (details) => {
+    if (details === "2") {
+      return yup.string().required("Sign Up Duration is required");
+    }
+    return yup.string();
+  }),
+  businessType: yup.string().when("registrationDetails", (details) => {
+    if (details === "1") {
+      return yup.string().required("Business Type is required");
+    }
+    return yup.string().when("signUpDuration", (duration) => {
+      if (duration === "1") {
+        return yup.string().required("Business Type is required");
+      }
+      return yup.string();
+    });
+  }),
   revenue: yup.string().required("Kindly select your estimated revenue"),
-  businessType: yup.string().required(),
   ipayProducts: yup
     .array()
     .min(1, "Select atleast 1 item")

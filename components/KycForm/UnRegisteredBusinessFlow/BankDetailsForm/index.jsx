@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+
 import PropTypes from "prop-types";
 
 import axios from "axios";
@@ -12,6 +14,7 @@ import { Formik, Form } from "formik";
 import FormikControl from "../../../FormikControls/index";
 import BankDetailsContainer from "../../../../atoms/CreateAccountFormDiv";
 import MuiAlert from "../../../../atoms/MuiAlert";
+
 import { currency, bankLocation } from "./data";
 import { bankDetails } from "../../../../utils/formValidations/kyc/registeredBusinessFlow/bankDetails";
 import { styles } from "./styles";
@@ -27,11 +30,13 @@ const initialValues = {
 };
 
 const BankDetailsForm = ({ handleNextStep }) => {
+  const router = useRouter();
+
   const [formValues, setFormValues] = useState(null);
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState({ type: "", message: "" });
 
-  const handleSubmit = (values, { setErrors }) => {
+  const handleSubmit = (values, formikHelpers) => {
     setLoading(true);
     setAlert({ type: "", message: "" });
     const credentials = Cookies.get("iPayT");
@@ -65,15 +70,30 @@ const BankDetailsForm = ({ handleNextStep }) => {
         setLoading(false);
         if (error.response === undefined) {
           setAlert({ type: "error", message: "Something Went Wrong" });
+        } else if (error.response.status === 401) {
+          // make a request to logout route here
+          setAlert({ type: "error", message: error.response.data.response });
+          setTimeout(() => {
+            router.replace("/");
+          }, 2000);
         } else if (error.response.status === 406) {
-          setErrors({ ...error.response.data.response });
+          formikHelpers.setErrors({ ...error.response.data.response });
           setAlert({ type: "error", message: "Kindly Resolve Form Errors" });
         } else if (error.response) {
-          setAlert({ type: "error", message: "Something Went Wrong" });
+          if (error.response.data.response !== undefined) {
+            setAlert({
+              type: "error",
+              message: error.response.data.response,
+            });
+          } else {
+            setAlert({
+              type: "error",
+              message: "Something Went Wrong",
+            });
+          }
           console.log(error.response, "second if else");
         } else {
           setAlert({ type: "error", message: "Something Went Wrong" });
-
           console.log(error, "third if else");
         }
         setLoading(false);

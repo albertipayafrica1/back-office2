@@ -11,24 +11,19 @@ import { LoadingButton } from "@mui/lab";
 
 import { Formik, Form } from "formik";
 
-import FormikControl from "../../../../FormikControls/index";
-import GovernmentDepartmentContainer from "../../../../../atoms/CreateAccountFormDiv";
-import DownloadDiv from "../../../../../atoms/DownloadDiv";
-import MuiAlert from "../../../../../atoms/MuiAlert";
+import FormikControl from "../../../../../FormikControls/index";
+import WeddingContainer from "../../../../../../atoms/CreateAccountFormDiv";
+import MuiAlert from "../../../../../../atoms/MuiAlert";
 
-import { governmentDepartment } from "../../../../../utils/formValidations/kyc/registeredBusinessFlow/documentUploads/governmentDepartment";
+import { wedding } from "../../../../../../utils/formValidations/kyc/unRegisteredBusinessFlow/shortTermFlow/documentUploads/wedding";
 
 import { styles } from "../styles";
 
 const initialValues = {
-  pinCertificate: [],
-  certificateOfRegistration: [],
-  businessPermit: [],
-  boardResolutionLetter: [],
-  aml: [],
+  letterFromInstitution: [],
 };
 
-const GovernmentDepartment = ({ handleNextStep }) => {
+const Wedding = ({ handleNextStep }) => {
   const router = useRouter();
 
   const [formValues, setFormValues] = useState(null);
@@ -100,7 +95,7 @@ const GovernmentDepartment = ({ handleNextStep }) => {
 
   useEffect(() => {
     const savedValues = {
-      pinCertificate: [
+      letterFromInstitution: [
         {
           file: { path: "elipa-Single-logos-black.png" },
           errors: [],
@@ -108,10 +103,6 @@ const GovernmentDepartment = ({ handleNextStep }) => {
           url: "https://res.cloudinary.com/demo/image/upload/v1648551450/docs_uploading_example/elipa-Single-logos-black_fqcxd1.png",
         },
       ],
-      certificateOfRegistration: [],
-      businessPermit: [],
-      boardResolutionLetter: [],
-      aml: [],
     };
     setFormValues(savedValues);
   }, []);
@@ -119,7 +110,7 @@ const GovernmentDepartment = ({ handleNextStep }) => {
     <>
       <Stack sx={styles.topContainer} spacing={3}>
         <Formik
-          validationSchema={governmentDepartment}
+          validationSchema={wedding}
           initialValues={formValues || initialValues}
           onSubmit={handleSubmit}
           enableReinitialize
@@ -127,74 +118,21 @@ const GovernmentDepartment = ({ handleNextStep }) => {
           {(formik) => {
             return (
               <Form>
-                <GovernmentDepartmentContainer topLabel="Government Department or state corporations">
+                <WeddingContainer topLabel="Wedding">
                   <Stack direction={{ xs: "column" }} spacing={{ xs: 3 }}>
                     <FormikControl
                       control="singleFileUpload"
-                      label="Tax PIN certificate for the company"
-                      name="pinCertificate"
+                      label="	Letter from the institution that is to wed the couple stating the duration"
+                      name="letterFromInstitution"
                       multiple={false}
-                      required
                       givenFile={
-                        formik.values.pinCertificate !== undefined
-                          ? formik.values.pinCertificate[0]
-                          : null
-                      }
-                    />
-                    <FormikControl
-                      control="singleFileUpload"
-                      label="Certificate Of Registration"
-                      name="certificateOfRegistration"
-                      multiple={false}
-                      required
-                      givenFile={
-                        formik.values.certificateOfRegistration !== undefined
-                          ? formik.values.certificateOfRegistration[0]
-                          : null
-                      }
-                    />
-
-                    <FormikControl
-                      control="singleFileUpload"
-                      label="Business Permit From Government"
-                      name="businessPermit"
-                      multiple={false}
-                      required
-                      givenFile={
-                        formik.values.businessPermit !== undefined
-                          ? formik.values.businessPermit[0]
-                          : null
-                      }
-                    />
-                    <FormikControl
-                      control="singleFileUpload"
-                      label="Board Resolution Letter"
-                      name="boardResolutionLetter"
-                      multiple={false}
-                      required
-                      givenFile={
-                        formik.values.boardResolutionLetter !== undefined
-                          ? formik.values.boardResolutionLetter[0]
-                          : null
-                      }
-                    />
-                    <DownloadDiv
-                      text="Download Our AML (Anti-Money Laundering)/KYC questionnaire for signature"
-                      downloadUrl="https://www.irs.gov/pub/irs-pdf/fw8ben.pdf"
-                    />
-                    <FormikControl
-                      control="singleFileUpload"
-                      label="Reupload AML (Anti-Money Laundering)/KYC questionnaire"
-                      name="aml"
-                      multiple={false}
-                      required
-                      givenFile={
-                        formik.values.aml !== undefined
-                          ? formik.values.aml[0]
+                        formik.values.letterFromInstitution !== undefined
+                          ? formik.values.letterFromInstitution[0]
                           : null
                       }
                     />
                   </Stack>
+
                   <LoadingButton
                     loading={loading}
                     variant="contained"
@@ -202,17 +140,13 @@ const GovernmentDepartment = ({ handleNextStep }) => {
                     size="large"
                     sx={styles.submitButton}
                     disabled={
-                      formik.values.pinCertificate.length === 0 ||
-                      formik.values.certificateOfRegistration.length === 0 ||
-                      formik.values.businessPermit.length === 0 ||
-                      formik.values.boardResolutionLetter.length === 0 ||
-                      formik.values.aml.length === 0 ||
+                      formik.values.letterFromInstitution.length === 0 ||
                       formik.isSubmitting
                     }
                   >
                     Save
                   </LoadingButton>
-                </GovernmentDepartmentContainer>
+                </WeddingContainer>
               </Form>
             );
           }}
@@ -225,8 +159,8 @@ const GovernmentDepartment = ({ handleNextStep }) => {
   );
 };
 
-GovernmentDepartment.propTypes = {
+Wedding.propTypes = {
   handleNextStep: PropTypes.func.isRequired,
 };
 
-export default GovernmentDepartment;
+export default Wedding;
