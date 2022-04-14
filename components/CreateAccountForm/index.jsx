@@ -145,7 +145,7 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
 
     setCountryIconLink(getCountryIconLink(formValues.countryOfOperation));
     return setCountryRegulator(countryOfOperationFullName(query.country));
-  }, [formValues.countryOfOperation]);
+  }, [formValues.countryOfOperation, query.country]);
 
   useEffect(() => {
     delayedQuery();
