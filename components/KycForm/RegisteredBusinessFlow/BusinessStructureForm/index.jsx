@@ -1063,6 +1063,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                                   : null
                               }
                             />
+
                             <FormikControl
                               control="singleFileUpload"
                               label="National Id of Business Owner (Back)"

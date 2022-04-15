@@ -50,7 +50,6 @@ const FileUploadField = ({ name, multiple, label, required, givenFile }) => {
   }, [files]);
 
   const onUpload = (file, returnedFileDetails) => {
-    console.log(returnedFileDetails, "rdf");
     setFiles((curr) =>
       curr.map((fw) => {
         if (fw.file === file && returnedFileDetails !== undefined) {
@@ -58,6 +57,7 @@ const FileUploadField = ({ name, multiple, label, required, givenFile }) => {
             ...fw,
             url: returnedFileDetails.url,
             modifiedName: returnedFileDetails.modifiedName,
+            fieldName: name,
           };
         }
         return fw;

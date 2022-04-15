@@ -251,7 +251,7 @@ const ComplianceForm = ({ handleNextStep }) => {
 
                         <Box sx={styles.uploadContainer}>
                           <DownloadDiv
-                            text="Download W-8BEN form hear "
+                            text="Download W-8BEN form here"
                             downloadUrl="https://www.irs.gov/pub/irs-pdf/fw8ben.pdf"
                           />
                         </Box>

@@ -12,6 +12,7 @@ const SingleFileUploadWithProgress = ({
   onDelete,
   onUpload,
   onReject,
+  fieldName,
 }) => {
   const router = useRouter();
   const [progress, setProgress] = useState(0);
@@ -62,7 +63,12 @@ const SingleFileUploadWithProgress = ({
 
     console.log(fileToUpload, "fileToUpload");
     const formData = new FormData();
-    formData.append("file", fileToUpload);
+    let truncatedFieldName = fieldName;
+    const indexOFDot = fieldName.lastIndexOf(".");
+    if (indexOFDot !== undefined || indexOFDot !== null) {
+      truncatedFieldName = fieldName.substring(indexOFDot + 1);
+    }
+    formData.append(truncatedFieldName, fileToUpload);
     formData.append("upload_preset", key);
 
     return axios
@@ -132,6 +138,7 @@ const SingleFileUploadWithProgress = ({
 
 SingleFileUploadWithProgress.propTypes = {
   file: PropTypes.shape({}).isRequired,
+  fieldName: PropTypes.string.isRequired,
   onDelete: PropTypes.func.isRequired,
   onUpload: PropTypes.func.isRequired,
   onReject: PropTypes.func.isRequired,
