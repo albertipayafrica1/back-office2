@@ -5,7 +5,7 @@ const phoneUtil =
   require("google-libphonenumber").PhoneNumberUtil.getInstance();
 
 export const personalDetails = yup.object({
-  personalInformation: yup.object({
+  businessRepresentative: yup.object({
     title: yup.string().required("kindly enter the title"),
     surname: yup.string().required("kindly enter the surname"),
     firstName: yup.string().required("kindly enter the first name"),

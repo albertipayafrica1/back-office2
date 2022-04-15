@@ -29,7 +29,7 @@ import {
 import * as styles from "./styles";
 
 const initialValues = {
-  personalInformation: {
+  businessRepresentative: {
     title: "",
     surname: "",
     firstName: "",
@@ -40,7 +40,7 @@ const initialValues = {
     gender: "",
     maritalStatus: "",
     dateOfBirth: null,
-    countryOfOperation: "Kenya",
+    countryOfOperation: "KE",
     documentType: "1",
     documentNumber: "",
     taxPinNumber: "",
@@ -140,7 +140,7 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
   useEffect(() => {
     const savedValues = {
       // this you get it from api call
-      personalInformation: {
+      businessRepresentative: {
         title: "",
         surname: "",
         firstName: "",
@@ -151,7 +151,7 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
         gender: "",
         maritalStatus: "",
         dateOfBirth: null,
-        countryOfOperation: "Ke",
+        countryOfOperation: "KE",
         documentType: "1",
         documentNumber: "",
         taxPinNumber: "",
@@ -217,7 +217,7 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                             <FormikControl
                               control="select"
                               variant="outlined"
-                              name="personalInformation.title"
+                              name="businessRepresentative.title"
                               label="Title"
                               type="text"
                               select
@@ -229,7 +229,7 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                           <FormikControl
                             control="input"
                             label="Surname"
-                            name="personalInformation.surname"
+                            name="businessRepresentative.surname"
                             variant="outlined"
                             type="text"
                             id="surname"
@@ -239,7 +239,7 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                         <FormikControl
                           control="input"
                           label="First Name"
-                          name="personalInformation.firstName"
+                          name="businessRepresentative.firstName"
                           variant="outlined"
                           type="text"
                           id="firstName"
@@ -248,7 +248,7 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                         <FormikControl
                           control="input"
                           label="Middle Name"
-                          name="personalInformation.middleName"
+                          name="businessRepresentative.middleName"
                           variant="outlined"
                           type="text"
                           id="middleName"
@@ -268,20 +268,20 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                           <Box sx={{ width: "100px" }}>
                             <FormikControl
                               control="input"
-                              name="personalInformation.telephoneCountryCode"
+                              name="businessRepresentative.telephoneCountryCode"
                               label="Code"
                               type="text"
                               select
                               selectItem={telephoneCodes}
                               id="telephoneCountryCode"
                               required
-                              defaultValue={formik.values.personalInformation.countryOfOperation.toUpperCase()}
+                              defaultValue={formik.values.businessRepresentative.countryOfOperation.toUpperCase()}
                             />
                           </Box>
                           <FormikControl
                             control="input"
                             variant="outlined"
-                            name="personalInformation.contactNumber"
+                            name="businessRepresentative.contactNumber"
                             label="Contact Number"
                             type="number"
                             id="contactNumber"
@@ -293,7 +293,7 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                         <FormikControl
                           control="input"
                           label="Email"
-                          name="personalInformation.email"
+                          name="businessRepresentative.email"
                           variant="outlined"
                           type="text"
                           id="email"
@@ -308,7 +308,7 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                         <FormikControl
                           control="input"
                           variant="outlined"
-                          name="personalInformation.gender"
+                          name="businessRepresentative.gender"
                           label="Gender"
                           type="text"
                           id="gender"
@@ -319,7 +319,7 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                         <FormikControl
                           control="input"
                           variant="outlined"
-                          name="personalInformation.maritalStatus"
+                          name="businessRepresentative.maritalStatus"
                           label="Marital Status"
                           type="text"
                           id="marital Status"
@@ -335,11 +335,11 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                         <FormikControl
                           control="datePicker"
                           label="Date Of Birth"
-                          name="personalInformation.dateOfBirth"
+                          name="businessRepresentative.dateOfBirth"
                           required
                           onChange={(val) => {
                             formik.setFieldValue(
-                              "personalInformation.dateOfBirth",
+                              "businessRepresentative.dateOfBirth",
                               val
                             );
                           }}
@@ -347,7 +347,7 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                         <FormikControl
                           control="input"
                           variant="outlined"
-                          name="personalInformation.countryOfOperation"
+                          name="businessRepresentative.countryOfOperation"
                           label="Country Of Operation"
                           type="text"
                           id="countryOfOperation"
@@ -362,7 +362,7 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                         <FormikControl
                           control="input"
                           variant="outlined"
-                          name="personalInformation.documentType"
+                          name="businessRepresentative.documentType"
                           label="Document Type"
                           type="text"
                           id="documentType"
@@ -371,24 +371,24 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                           selectItem={documentTypeOptions}
                           onChange={(e) => {
                             formik.setFieldValue(
-                              "personalInformation.documentType",
+                              "businessRepresentative.documentType",
                               e.target.value
                             );
                             formik.setFieldValue(
-                              "personalInformation.documentNumber",
+                              "businessRepresentative.documentNumber",
                               ""
                             );
                             formik.setFieldValue(
-                              "personalInformation.passport",
+                              "businessRepresentative.passport",
                               []
                             );
 
                             formik.setFieldValue(
-                              "personalInformation.nationalIdFront",
+                              "businessRepresentative.nationalIdFront",
                               []
                             );
                             formik.setFieldValue(
-                              "personalInformation.nationalIdBack",
+                              "businessRepresentative.nationalIdBack",
                               []
                             );
                           }}
@@ -396,7 +396,7 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                         <FormikControl
                           control="input"
                           variant="outlined"
-                          name="personalInformation.documentNumber"
+                          name="businessRepresentative.documentNumber"
                           label="Document Number"
                           type="text"
                           id="documentNumber"
@@ -405,26 +405,26 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                         <FormikControl
                           control="input"
                           variant="outlined"
-                          name="personalInformation.taxPinNumber"
+                          name="businessRepresentative.taxPinNumber"
                           label="Tax PIN Number"
                           type="text"
                           id="taxPinNumber"
                           required
                         />
                       </Stack>
-                      {formik.values.personalInformation.documentType ===
+                      {formik.values.businessRepresentative.documentType ===
                         "1" && (
                         <Stack direction={{ xs: "column" }} spacing={3}>
                           <FormikControl
                             control="singleFileUpload"
                             label="National Id  (front)"
-                            name="personalInformation.nationalIdFront"
+                            name="businessRepresentative.nationalIdFront"
                             multiple={false}
                             required
                             givenFile={
-                              formik.values.personalInformation
+                              formik.values.businessRepresentative
                                 .nationalIdFront !== undefined
-                                ? formik.values.personalInformation
+                                ? formik.values.businessRepresentative
                                     .nationalIdFront[0]
                                 : null
                             }
@@ -432,32 +432,33 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                           <FormikControl
                             control="singleFileUpload"
                             label="National Id (Back)"
-                            name="personalInformation.nationalIdBack"
+                            name="businessRepresentative.nationalIdBack"
                             multiple={false}
                             required
                             givenFile={
-                              formik.values.personalInformation
+                              formik.values.businessRepresentative
                                 .nationalIdBack !== undefined
-                                ? formik.values.personalInformation
+                                ? formik.values.businessRepresentative
                                     .nationalIdBack[0]
                                 : null
                             }
                           />
                         </Stack>
                       )}
-                      {formik.values.personalInformation.documentType ===
+                      {formik.values.businessRepresentative.documentType ===
                         "2" && (
                         <Stack direction={{ xs: "column" }} spacing={3}>
                           <FormikControl
                             control="singleFileUpload"
                             label="Passport Copy"
-                            name="personalInformation.passport"
+                            name="businessRepresentative.passport"
                             multiple={false}
                             required
                             givenFile={
-                              formik.values.personalInformation.passport !==
+                              formik.values.businessRepresentative.passport !==
                               undefined
-                                ? formik.values.personalInformation.passport[0]
+                                ? formik.values.businessRepresentative
+                                    .passport[0]
                                 : null
                             }
                           />
@@ -467,13 +468,13 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                         <FormikControl
                           control="singleFileUpload"
                           label="Colored Passport Size Photograph"
-                          name="personalInformation.passportSizePhoto"
+                          name="businessRepresentative.passportSizePhoto"
                           multiple={false}
                           required
                           givenFile={
-                            formik.values.personalInformation
+                            formik.values.businessRepresentative
                               .passportSizePhoto !== undefined
-                              ? formik.values.personalInformation
+                              ? formik.values.businessRepresentative
                                   .passportSizePhoto[0]
                               : null
                           }
@@ -481,13 +482,13 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                         <FormikControl
                           control="singleFileUpload"
                           label="Tax PIN certificate"
-                          name="personalInformation.pinCertificate"
+                          name="businessRepresentative.pinCertificate"
                           multiple={false}
                           required
                           givenFile={
-                            formik.values.personalInformation.pinCertificate !==
-                            undefined
-                              ? formik.values.personalInformation
+                            formik.values.businessRepresentative
+                              .pinCertificate !== undefined
+                              ? formik.values.businessRepresentative
                                   .pinCertificate[0]
                               : null
                           }

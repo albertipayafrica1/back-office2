@@ -8,9 +8,9 @@ const Kyc = () => {
   return (
     <div>
       <HorizontalLinearStepper
-        flow="unRegistered"
-        companyType="education"
-        duration="shortTerm"
+        flow="registered"
+        companyType="wedding"
+        duration="longTerm"
       />
     </div>
   );

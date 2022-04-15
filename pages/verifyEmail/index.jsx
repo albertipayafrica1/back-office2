@@ -11,7 +11,7 @@ const VerifyEmail = ({ message, success, countryCode }) => {
 
   useEffect(() => {
     setTimeout(() => {
-      if (success) router.push(`/login?country=${countryCode}`);
+      router.push(`/login?country=${countryCode}`);
     }, 2000);
   }, []);
 

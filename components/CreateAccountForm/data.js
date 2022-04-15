@@ -13,8 +13,8 @@ export const revenue = [
   { value: "6", key: "More than $1000000" },
 ];
 export const registeredBusiness = [
-  { value: "1", key: "Private Limited Company" },
-  { value: "2", key: "Government Department" },
+  { value: "1", key: "Government Department" },
+  { value: "2", key: "Private Limited Company" },
   { value: "3", key: "Learning Institution" },
   { value: "4", key: "Professional Entities" },
   { value: "5", key: "Sole Proprietorship" },

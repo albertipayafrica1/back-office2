@@ -108,6 +108,7 @@ const SoleProprietorship = ({ handleNextStep }) => {
         },
       ],
       certificateOfRegistration: [],
+      businessPermit: [],
       aml: [],
     };
     setFormValues(savedValues);
