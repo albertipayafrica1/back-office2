@@ -134,7 +134,7 @@ const HorizontalLinearStepper = ({ flow, companyType, duration }) => {
         default:
           return <BusinessStructureForm handleNextStep={handleNext} />;
       }
-    } else if (flow === "unRegistered" && duration === "shortTerm") {
+    } else if (flow === "nonRegistered" && duration === "shortTerm") {
       switch (step) {
         case 0:
           return <ShortTermPersonalDetailsForm handleNextStep={handleNext} />;
@@ -200,7 +200,7 @@ const HorizontalLinearStepper = ({ flow, companyType, duration }) => {
         },
       ];
     }
-    if (flow === "unRegistered" && duration === "shortTerm") {
+    if (flow === "nonRegistered" && duration === "shortTerm") {
       return [
         { toolTip: false, toolTipText: "", label: "Personal Details" },
         { toolTip: false, toolTipText: "", label: "Bank Details" },
