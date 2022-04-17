@@ -31,7 +31,6 @@ export const stepper = {
   width: "100%",
   justifyContent: "center",
   alignItems: "center",
-  position: "fixed",
-  left: "50%",
-  transform: "translate(-50%, 0)",
+  position: "sticky",
+  top: 63,
 };
