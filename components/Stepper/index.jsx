@@ -298,9 +298,9 @@ const HorizontalLinearStepper = ({ flow, companyType, duration }) => {
             <Typography className={styles.instructions}>
               Congratulations! You have successfully completed your kyc
             </Typography>
-            <Button onClick={handleReset} className={styles.button}>
+            {/* <Button onClick={handleReset} className={styles.button}>
               Reset
-            </Button>
+            </Button> */}
           </div>
         ) : (
           <div>

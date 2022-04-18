@@ -60,12 +60,15 @@ const Dashboard = ({ window, children }) => {
     };
     axios(config)
       .then((response) => {
-        if (response.data.success === true) {
-          Cookies.set("iPayT", "", { expires: -1 });
+        Cookies.set("iPayT", "", { expires: -1 });
 
-          router.push(`/login/?country=${"KE"}`); // update this once we get user location from the server
-          setLoadingButton(false);
-        }
+        router.push(`/login/?country=${"KE"}`); // update this once we get user location from the server
+        setLoadingButton(false);
+        // if (response.data.success === true) {
+        //   // Cookies.set("iPayT", "", { expires: -1 });
+        //   // router.push(`/login/?country=${"KE"}`); // update this once we get user location from the server
+        //   // setLoadingButton(false);
+        // }
       })
       .catch((error) => {
         if (error.response === undefined) {
