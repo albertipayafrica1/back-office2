@@ -141,6 +141,8 @@ import CreateAccountOtpDialog from "../../components/CreateAccountOtpDialog";
 //   );
 // }
 
+// otp
+
 function index(props) {
   const paperPropsStyling = {
     position: "absolute",
