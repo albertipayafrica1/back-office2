@@ -208,7 +208,10 @@ export const personalDetails = yup.object({
     postalCode: yup.string(),
     city: yup.string().required("kindly enter your city/town "),
     county: yup.string(),
-    websiteLink: yup.string().url("Enter a valid url"),
+    websiteLink: yup
+      .string()
+      .url("Enter a valid url")
+      .required("kindly enter your website link"),
     appDownloadLink: yup.string().url("Enter a valid url"),
   }),
 });

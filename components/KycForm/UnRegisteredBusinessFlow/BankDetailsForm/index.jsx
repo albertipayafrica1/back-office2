@@ -104,7 +104,7 @@ const BankDetailsForm = ({ handleNextStep }) => {
     const savedValues = {
       // this you get it from api call
       bankLocality: "",
-      bankName: "KCB",
+      bankName: "",
       bankBranch: "",
       accountName: "",
       accountNumber: "",

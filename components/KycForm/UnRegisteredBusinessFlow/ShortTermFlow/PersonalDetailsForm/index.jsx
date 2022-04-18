@@ -56,7 +56,7 @@ const initialValues = {
   //   description: "",
   // },
   businessLocation: {
-    physicalAddress: "This is my physical address",
+    physicalAddress: "",
     postalAddress: "",
     postalcode: "",
     city: "",
@@ -155,14 +155,7 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
         documentType: "1",
         documentNumber: "",
         taxPinNumber: "",
-        nationalIdFront: [
-          {
-            file: { path: "elipa-Single-logos-black.png" },
-            errors: [],
-            id: 1,
-            url: "https://res.cloudinary.com/demo/image/upload/v1648551450/docs_uploading_example/elipa-Single-logos-black_fqcxd1.png",
-          },
-        ],
+        nationalIdFront: [],
         nationalIdBack: [],
         passport: [],
         passportSizePhoto: [],
@@ -174,7 +167,7 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
       //   description: "",
       // },
       businessLocation: {
-        physicalAddress: "This is my physical address",
+        physicalAddress: "",
         postalAddress: "",
         postalcode: "",
         city: "",
@@ -618,6 +611,7 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                           label="Business Website Link"
                           type="text"
                           id="websiteLink"
+                          required
                         />
                       </Stack>
                       <Stack

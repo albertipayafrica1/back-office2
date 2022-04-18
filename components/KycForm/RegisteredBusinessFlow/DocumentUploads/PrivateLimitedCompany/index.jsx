@@ -102,14 +102,7 @@ const PrivateLimitedCompany = ({ handleNextStep }) => {
 
   useEffect(() => {
     const savedValues = {
-      pinCertificate: [
-        {
-          file: { path: "elipa-Single-logos-black.png" },
-          errors: [],
-          id: 1,
-          url: "https://res.cloudinary.com/demo/image/upload/v1648551450/docs_uploading_example/elipa-Single-logos-black_fqcxd1.png",
-        },
-      ],
+      pinCertificate: [],
       certificateOfRegistration: [],
       memorandumAndArticlesOfAssociation: [],
       businessPermit: [],

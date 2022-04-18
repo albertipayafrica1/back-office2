@@ -99,9 +99,9 @@ const BusinessSupportDetailsForm = ({ handleNextStep }) => {
   useEffect(() => {
     const savedValues = {
       // this you get it from api call
-      customerSupportTelephoneNumber: "567890",
-      customerSupportAddress: "sdadsad",
-      customerSupportEmailAddress: "dsadsa@dajjjjjj.com",
+      customerSupportTelephoneNumber: "",
+      customerSupportAddress: "",
+      customerSupportEmailAddress: "",
     };
     setFormValues(savedValues);
   }, []);
