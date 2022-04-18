@@ -292,7 +292,7 @@ const HorizontalLinearStepper = ({ flow, companyType, duration }) => {
           );
         })}
       </Stepper>
-      <div style={{ paddingTop: "3rem" }}>
+      <div style={{ paddingTop: "1rem" }}>
         {activeStep === steps.length ? (
           <div>
             <Typography className={styles.instructions}>
@@ -306,7 +306,7 @@ const HorizontalLinearStepper = ({ flow, companyType, duration }) => {
           <div>
             <div>{getStepContent(activeStep)}</div>
 
-            <div>
+            {/* <div>
               <Button
                 variant="contained"
                 color="primary"
@@ -315,7 +315,7 @@ const HorizontalLinearStepper = ({ flow, companyType, duration }) => {
               >
                 {activeStep === steps.length - 1 ? "Finish" : "Next"}
               </Button>
-            </div>
+            </div> */}
           </div>
         )}
       </div>

@@ -1,9 +1,12 @@
 import PropTypes from "prop-types";
 import axios from "axios";
 
+import { Box } from "@mui/material";
+
 import ErrorBoundary from "../../../atoms/ErrorBoundary";
 
 import HorizontalLinearStepper from "../../../components/Stepper";
+import DashboardLayout from "../../../components/Layouts/Dashboard";
 import ProtectedRoute from "../../../components/ProtectedRoute";
 
 import { wrapper } from "../../../redux/store";
@@ -13,13 +16,13 @@ const Kyc = ({ data, error }) => {
     return <ErrorBoundary error={error} />;
   }
   return (
-    <HorizontalLinearStepper
-      // flow={data.flow}
-      // companyType={data.companyType}
-      // duration={data.duration}
-      flow="registered"
-      companyType="privateLimited"
-    />
+    <Box sx={{ backgroundColor: "white" }}>
+      <HorizontalLinearStepper
+        flow={data.flow}
+        companyType={data.companyType}
+        duration={data.duration}
+      />
+    </Box>
   );
 };
 
@@ -33,6 +36,10 @@ Kyc.propTypes = {
 };
 
 export default Kyc;
+
+Kyc.getLayout = function getLayout(page) {
+  return <DashboardLayout>{page}</DashboardLayout>;
+};
 
 export const getServerSideProps = ProtectedRoute(
   wrapper.getServerSideProps((store) => async (context) => {
