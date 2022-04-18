@@ -15,6 +15,7 @@ const clientSideEmotionCache = createEmotionCache();
 
 const MyApp = (props) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+  const getLayout = Component.getLayout || ((page) => page);
   const store = useStore((state) => state);
 
   // incase we get any issues with rehydation, remove <Provide>
@@ -30,7 +31,7 @@ const MyApp = (props) => {
           </Head>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Component {...pageProps} />
+            {getLayout(<Component {...pageProps} />)}
           </ThemeProvider>
         </CacheProvider>
       </PersistGate>
@@ -47,7 +48,7 @@ const MyApp = (props) => {
           </Head>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Component {...pageProps} />
+            {getLayout(<Component {...pageProps} />)}
           </ThemeProvider>
         </CacheProvider>
       </PersistGate>
