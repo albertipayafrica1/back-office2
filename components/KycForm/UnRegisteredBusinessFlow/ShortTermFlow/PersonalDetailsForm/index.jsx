@@ -199,7 +199,7 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
             console.log(formik.errors);
             return (
               <Form>
-                <Stack sx={styles.formContainer} spacing={8}>
+                <Stack spacing={8}>
                   <CreateAccountFormDiv topLabel="Personal Information">
                     <Stack direction="column" spacing={2}>
                       <Stack

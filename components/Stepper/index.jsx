@@ -40,7 +40,7 @@ import Funeral from "../KycForm/UnRegisteredBusinessFlow/ShortTermFlow/DocumentU
 import Medical from "../KycForm/UnRegisteredBusinessFlow/ShortTermFlow/DocumentUploads/Medical";
 import Wedding from "../KycForm/UnRegisteredBusinessFlow/ShortTermFlow/DocumentUploads/Wedding";
 
-import { styles, stepper } from "./styles";
+import { styles, stepper, container } from "./styles";
 
 const HorizontalLinearStepper = ({ flow, companyType, duration }) => {
   const matches = useMediaQuery("(min-width:800px)");
@@ -232,7 +232,7 @@ const HorizontalLinearStepper = ({ flow, companyType, duration }) => {
   const steps = getSteps();
 
   return (
-    <div>
+    <Box sx={container}>
       <Stepper activeStep={activeStep} orientation="horizontal" sx={stepper}>
         {steps.map((item, index) => {
           const props = {};
@@ -292,7 +292,7 @@ const HorizontalLinearStepper = ({ flow, companyType, duration }) => {
           );
         })}
       </Stepper>
-      <div style={{ paddingTop: "2.5rem" }}>
+      <div style={{ paddingTop: "3rem" }}>
         {activeStep === steps.length ? (
           <div>
             <Typography className={styles.instructions}>
@@ -319,7 +319,7 @@ const HorizontalLinearStepper = ({ flow, companyType, duration }) => {
           </div>
         )}
       </div>
-    </div>
+    </Box>
   );
 };
 

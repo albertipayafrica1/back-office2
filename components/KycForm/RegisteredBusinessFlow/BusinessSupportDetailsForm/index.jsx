@@ -117,7 +117,7 @@ const BusinessSupportDetailsForm = ({ handleNextStep }) => {
         {(formik) => {
           return (
             <Form>
-              <Stack sx={styles.formContainer} spacing={8}>
+              <Stack spacing={8}>
                 <Typography variant="subtitle1">
                   This information helps customers recognize your business. Your
                   support information may be visible in payment statements,

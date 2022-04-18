@@ -14,9 +14,11 @@ const Kyc = ({ data, error }) => {
   }
   return (
     <HorizontalLinearStepper
-      flow={data.flow}
-      companyType={data.companyType}
-      duration={data.duration}
+      // flow={data.flow}
+      // companyType={data.companyType}
+      // duration={data.duration}
+      flow="registered"
+      companyType="privateLimited"
     />
   );
 };

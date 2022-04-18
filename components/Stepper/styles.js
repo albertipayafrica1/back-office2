@@ -34,3 +34,7 @@ export const stepper = {
   position: "sticky",
   top: 63,
 };
+
+export const container = {
+  padding: "0 2rem 0 2rem",
+};

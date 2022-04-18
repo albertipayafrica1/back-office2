@@ -123,7 +123,7 @@ const BusinessFulfillmentDetailsForm = ({ handleNextStep }) => {
           console.log(formik.errors, "errors");
           return (
             <Form>
-              <Stack sx={styles.formContainer} spacing={8}>
+              <Stack spacing={8}>
                 <Typography variant="subtitle1">
                   Tell us how you provide products or services
                 </Typography>

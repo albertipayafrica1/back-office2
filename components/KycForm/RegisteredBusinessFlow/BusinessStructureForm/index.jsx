@@ -301,50 +301,54 @@ const BusinessStructureForm = ({ handleNextStep }) => {
 
   return (
     <>
-      <Formik
-        initialValues={formValues || initialValues}
-        validationSchema={businessStructure}
-        onSubmit={handleSubmit}
-        enableReinitialize
-      >
-        {(formik) => {
-          // console.log(formik.values, "fork");
-          return (
-            <Form>
-              <Stack sx={styles.formContainer} spacing={8}>
-                <CreateAccountFormDiv topLabel="Business Representative">
-                  <Stack direction="column" spacing={2}>
-                    <Stack direction={{ xs: "column", md: "row" }} spacing={3}>
+      <Stack sx={{ padding: "2.5rem 0 0 0" }} spacing={1}>
+        <Formik
+          initialValues={formValues || initialValues}
+          validationSchema={businessStructure}
+          onSubmit={handleSubmit}
+          enableReinitialize
+        >
+          {(formik) => {
+            // console.log(formik.values, "fork");
+            return (
+              <Form>
+                <Stack spacing={8}>
+                  <CreateAccountFormDiv topLabel="Business Representative">
+                    <Stack direction="column" spacing={2}>
                       <Stack
-                        sx={{
-                          width: "100%",
-                        }}
-                        direction={{ xs: "row" }}
+                        direction={{ xs: "column", md: "row" }}
                         spacing={3}
                       >
-                        <Box sx={{ width: "360px" }}>
+                        <Stack
+                          sx={{
+                            width: "100%",
+                          }}
+                          direction={{ xs: "row" }}
+                          spacing={3}
+                        >
+                          <Box sx={{ width: "150px" }}>
+                            <FormikControl
+                              control="select"
+                              variant="outlined"
+                              name="businessRepresentative.title"
+                              label="Title"
+                              type="text"
+                              select
+                              selectItem={titleOptions}
+                              id="title"
+                              required
+                            />
+                          </Box>
                           <FormikControl
-                            control="select"
+                            control="input"
+                            label="Surname"
+                            name="businessRepresentative.surname"
                             variant="outlined"
-                            name="businessRepresentative.title"
-                            label="Title"
                             type="text"
-                            select
-                            selectItem={titleOptions}
-                            id="title"
+                            id="surname"
                             required
                           />
-                        </Box>
-                        <FormikControl
-                          control="input"
-                          label="Surname"
-                          name="businessRepresentative.surname"
-                          variant="outlined"
-                          type="text"
-                          id="surname"
-                          required
-                        />
-
+                        </Stack>
                         <FormikControl
                           control="input"
                           label="First Name"
@@ -363,858 +367,622 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                           id="middleName"
                         />
                       </Stack>
-                    </Stack>
-                    <Stack direction={{ xs: "column", md: "row" }} spacing={3}>
                       <Stack
-                        sx={{
-                          width: "100%",
-                        }}
-                        direction={{ xs: "row" }}
+                        direction={{ xs: "column", md: "row" }}
                         spacing={3}
                       >
-                        <Box sx={{ width: "130px" }}>
-                          <FormikControl
-                            control="input"
-                            name="businessRepresentative.telephoneCountryCode"
-                            label="Code"
-                            type="text"
-                            select
-                            selectItem={telephoneCodes}
-                            id="businessRepresentative.telephoneCountryCode"
-                            required
-                          />
-                        </Box>
-                        <FormikControl
-                          control="input"
-                          variant="outlined"
-                          name="businessRepresentative.contactNumber"
-                          label="Contact Number"
-                          type="number"
-                          id="contactNumber"
-                          required
-                          haveTooltip
-                          tooltipText="Enter Your Contact number without country code"
-                        />
-                      </Stack>
-                      <FormikControl
-                        control="input"
-                        label="Email"
-                        name="businessRepresentative.email"
-                        variant="outlined"
-                        type="text"
-                        id="email"
-                        required
-                      />
-                    </Stack>
-                    <Stack
-                      direction={{ xs: "column", md: "row" }}
-                      spacing={3}
-                      justifyContent="space-between"
-                    >
-                      <FormikControl
-                        control="input"
-                        variant="outlined"
-                        name="businessRepresentative.gender"
-                        label="Gender"
-                        type="text"
-                        id="gender"
-                        select
-                        selectItem={genderOptions}
-                        required
-                      />
-                      <FormikControl
-                        control="input"
-                        variant="outlined"
-                        name="businessRepresentative.maritalStatus"
-                        label="Marital Status"
-                        type="text"
-                        id="marital Status"
-                        select
-                        selectItem={maritalStatusOptions}
-                        required
-                      />
-                    </Stack>
-                    <Stack direction={{ xs: "column", md: "row" }} spacing={3}>
-                      <FormikControl
-                        control="datePicker"
-                        label="Date Of Birth"
-                        name="businessRepresentative.dateOfBirth"
-                        required
-                        onChange={(val) => {
-                          formik.setFieldValue(
-                            "businessRepresentative.dateOfBirth",
-                            val
-                          );
-                        }}
-                      />
-                      <FormikControl
-                        control="input"
-                        variant="outlined"
-                        name="businessRepresentative.countryOfOperation"
-                        label="Country Of Operation"
-                        type="text"
-                        id="countryOfOperation"
-                        required
-                        disabled
-                      />
-                    </Stack>
-                    <Stack direction={{ xs: "column", md: "row" }} spacing={3}>
-                      <FormikControl
-                        control="input"
-                        variant="outlined"
-                        name="businessRepresentative.documentType"
-                        label="Document Type"
-                        type="text"
-                        id="documentType"
-                        required
-                        select
-                        selectItem={documentTypeOptions}
-                        onChange={(e) => {
-                          formik.setFieldValue(
-                            "businessRepresentative.documentType",
-                            e.target.value
-                          );
-                          formik.setFieldValue(
-                            "businessRepresentative.documentNumber",
-                            ""
-                          );
-                          formik.setFieldValue(
-                            "businessRepresentative.passport",
-                            []
-                          );
-
-                          formik.setFieldValue(
-                            "businessRepresentative.nationalIdFront",
-                            []
-                          );
-                          formik.setFieldValue(
-                            "businessRepresentative.nationalIdBack",
-                            []
-                          );
-                        }}
-                      />
-                      <FormikControl
-                        control="input"
-                        variant="outlined"
-                        name="businessRepresentative.documentNumber"
-                        label="Document Number"
-                        type="text"
-                        id="documentNumber"
-                        required
-                      />
-                    </Stack>
-                    {formik.values.businessRepresentative.documentType ===
-                      "1" && (
-                      <Stack direction={{ xs: "column" }} spacing={3}>
-                        <FormikControl
-                          control="singleFileUpload"
-                          label="National Id of the Business Representative (front)"
-                          name="businessRepresentative.nationalIdFront"
-                          multiple={false}
-                          required
-                          givenFile={
-                            formik.values.businessRepresentative
-                              .nationalIdFront !== undefined
-                              ? formik.values.businessRepresentative
-                                  .nationalIdFront[0]
-                              : null
-                          }
-                        />
-                        <FormikControl
-                          control="singleFileUpload"
-                          label="National Id of the Business Representative (Back)"
-                          name="businessRepresentative.nationalIdBack"
-                          multiple={false}
-                          required
-                          givenFile={
-                            formik.values.businessRepresentative
-                              .nationalIdBack !== undefined
-                              ? formik.values.businessRepresentative
-                                  .nationalIdBack[0]
-                              : null
-                          }
-                        />
-                      </Stack>
-                    )}
-                    {formik.values.businessRepresentative.documentType ===
-                      "2" && (
-                      <Stack direction={{ xs: "column" }} spacing={3}>
-                        <FormikControl
-                          control="singleFileUpload"
-                          label="Passport of the Business Representative"
-                          name="businessRepresentative.passport"
-                          multiple={false}
-                          required
-                          givenFile={
-                            formik.values.businessRepresentative.passport !==
-                            undefined
-                              ? formik.values.businessRepresentative.passport[0]
-                              : null
-                          }
-                        />
-                      </Stack>
-                    )}
-                    <Stack direction={{ xs: "column" }} spacing={3}>
-                      <FormikControl
-                        control="singleFileUpload"
-                        label="Colored Passport Size Photograph of the Business Representative"
-                        name="businessRepresentative.passportSizePhoto"
-                        multiple={false}
-                        required
-                        givenFile={
-                          formik.values.businessRepresentative
-                            .passportSizePhoto !== undefined
-                            ? formik.values.businessRepresentative
-                                .passportSizePhoto[0]
-                            : null
-                        }
-                      />
-                      <FormikControl
-                        control="singleFileUpload"
-                        label="Tax PIN certificate of the Business Representative"
-                        name="businessRepresentative.pinCertificate"
-                        multiple={false}
-                        required
-                        givenFile={
-                          formik.values.businessRepresentative
-                            .pinCertificate !== undefined
-                            ? formik.values.businessRepresentative
-                                .pinCertificate[0]
-                            : null
-                        }
-                      />
-                    </Stack>
-                  </Stack>
-                </CreateAccountFormDiv>
-                <CreateAccountFormDiv topLabel="Registered Business Details">
-                  <Stack direction="column" spacing={2}>
-                    <Stack direction={{ xs: "column", md: "row" }} spacing={3}>
-                      <FormikControl
-                        control="input"
-                        variant="outlined"
-                        name="registeredBusinessDetails.businessName"
-                        label="Business Name"
-                        type="text"
-                        id="businessName"
-                        required
-                      />
-                      <FormikControl
-                        control="input"
-                        variant="outlined"
-                        name="registeredBusinessDetails.businessRegistrationNumber"
-                        label="Business Registration Number"
-                        type="text"
-                        id="businessRegistrationNumber"
-                        required
-                      />
-                    </Stack>
-                    <Stack direction={{ xs: "column", md: "row" }} spacing={3}>
-                      <FormikControl
-                        control="input"
-                        variant="outlined"
-                        name="registeredBusinessDetails.businessCategory"
-                        label="Business Category"
-                        type="text"
-                        id="businessCategory"
-                        select
-                        selectItem={businessCategoryOptions}
-                        required
-                      />
-                      <FormikControl
-                        control="input"
-                        variant="outlined"
-                        name="registeredBusinessDetails.businessSubCategory"
-                        label="Business SubCategory"
-                        type="text"
-                        id="businessSubCategory"
-                        select
-                        selectItem={businessSubCategoryOptions}
-                        required
-                      />
-                    </Stack>
-                    <Stack direction={{ xs: "column", md: "row" }} spacing={3}>
-                      <FormikControl
-                        control="input"
-                        variant="outlined"
-                        name="registeredBusinessDetails.businessTaxPin"
-                        label="Business Tax Pin"
-                        type="text"
-                        id="businessTaxPin"
-                        required
-                      />
-                      <Stack
-                        sx={{
-                          width: "100%",
-                        }}
-                        direction={{ xs: "row" }}
-                        spacing={3}
-                      >
-                        <Box sx={{ width: "130px" }}>
-                          <FormikControl
-                            control="input"
-                            name="registeredBusinessDetails.telephoneCountryCode"
-                            label="Code"
-                            type="text"
-                            select
-                            selectItem={telephoneCodes}
-                            id="registeredBusinessDetails.telephoneCountryCode"
-                            required
-                          />
-                        </Box>
-                        <FormikControl
-                          control="input"
-                          variant="outlined"
-                          name="registeredBusinessDetails.businessTelephone"
-                          label="Business Telephone"
-                          type="number"
-                          id="registeredBusinessDetails.businessTelephone"
-                          required
-                        />
-                      </Stack>
-                    </Stack>
-                    <Stack direction={{ xs: "column", md: "row" }} spacing={3}>
-                      <FormikControl
-                        control="input"
-                        variant="outlined"
-                        name="registeredBusinessDetails.businessEmail"
-                        label="Business Email"
-                        type="text"
-                        id="registeredBusinessDetails.businessEmail"
-                        required
-                      />
-                      <FormikControl
-                        control="input"
-                        variant="outlined"
-                        name="registeredBusinessDetails.businessCurrency"
-                        label="Currency Business Operates"
-                        type="text"
-                        id="registeredBusinessDetails.businessCurrency"
-                        required
-                        select
-                        selectItem={businessCurrencyOptions}
-                      />
-                    </Stack>
-                    <FormikControl
-                      control="input"
-                      variant="outlined"
-                      name="registeredBusinessDetails.businessDescription"
-                      label="Business Description (min 150 characters)"
-                      type="text"
-                      id="registeredBusinessDetails.businessDescription"
-                      required
-                      multiline
-                    />
-                  </Stack>
-                </CreateAccountFormDiv>
-                <CreateAccountFormDiv topLabel="Business Location">
-                  <Stack direction="column" spacing={2}>
-                    <Stack spacing={3} direction={{ xs: "column", md: "row" }}>
-                      <FormikControl
-                        control="input"
-                        variant="outlined"
-                        name="businessLocation.physicalAddress"
-                        label="Physical Address (Street/Road/Building)"
-                        type="text"
-                        id="businessLocation.physicalAddress"
-                        required
-                      />
-                      <FormikControl
-                        control="input"
-                        variant="outlined"
-                        name="businessLocation.postalAddress"
-                        label="Postal Address"
-                        type="text"
-                        id="businessLocation.postalAddress"
-                        required
-                      />
-                    </Stack>
-                    <Stack direction={{ xs: "column", md: "row" }} spacing={3}>
-                      <FormikControl
-                        control="input"
-                        variant="outlined"
-                        name="businessLocation.postalCode"
-                        label="Postal Code"
-                        type="number"
-                        id="businessLocation.postalCode"
-                      />
-                      <FormikControl
-                        control="input"
-                        variant="outlined"
-                        name="businessLocation.city"
-                        label="City/Town"
-                        type="text"
-                        id="businessLocation.city"
-                        required
-                      />
-                    </Stack>
-                    <Stack
-                      direction={{ xs: "column", md: "row" }}
-                      spacing={3}
-                      justifyContent="space-between"
-                    >
-                      <FormikControl
-                        control="input"
-                        variant="outlined"
-                        name="businessLocation.county"
-                        label="County"
-                        type="text"
-                        id="businessLocation.county"
-                      />
-                      <FormikControl
-                        control="input"
-                        variant="outlined"
-                        name="businessLocation.websiteLink"
-                        label="Business Website Link"
-                        type="text"
-                        id="businessLocation.websiteLink"
-                        required
-                      />
-                    </Stack>
-                    <Stack direction={{ xs: "column", md: "row" }} spacing={3}>
-                      <FormikControl
-                        control="input"
-                        variant="outlined"
-                        name="businessLocation.appDownloadLink"
-                        label="Business App Download Link"
-                        type="text"
-                        id="businessLocation.appDownloadLink"
-                      />
-                    </Stack>
-                  </Stack>
-                </CreateAccountFormDiv>
-                <CreateAccountFormDiv topLabel="Number Of Beneficial Owners">
-                  <Stack>
-                    <FormikControl
-                      control="input"
-                      variant="outlined"
-                      name="numberOfBeneficialOwners"
-                      label="Enter Number Of Beneficial Owners"
-                      type="number"
-                      id="numberOfBeneficialOwners"
-                      required
-                      onChange={(e) => {
-                        formik.setFieldValue(
-                          "numberOfBeneficialOwners",
-                          e.target.value
-                        );
-                        const difference =
-                          Number(e.target.value) -
-                          formik.values.ultimateBeneficialOwners.length;
-
-                        if (
-                          Number(e.target.value) > 5 ||
-                          Number(e.target.value) < 1
-                        ) {
-                          return null;
-                        }
-                        if (
-                          difference >= 1 &&
-                          difference <= 5 &&
-                          Number(e.target.value) <= 5 &&
-                          Number(e.target.value) >= 1
-                        ) {
-                          for (let i = 0; i < difference; i += 1) {
-                            formik.values.ultimateBeneficialOwners.push({
-                              title: "",
-                              surname: "",
-                              firstName: "",
-                              middleName: "",
-                              shareHolderType: "",
-                              otherShareHolderType: "",
-                              telephoneCountryCode: "",
-                              contactNumber: "",
-                              email: "",
-                              documentType: "1",
-                              documentNumber: "",
-                              nationalIdFront: [],
-                              nationalIdBack: [],
-                              passport: [],
-                              passportSizePhoto: [],
-                              pinCertificate: [],
-                              nationality: "",
-                              numberOfBeneficiaries: "1",
-                              nextOfKin: [
-                                {
-                                  title: "",
-                                  surname: "",
-                                  firstName: "",
-                                  middleName: "",
-                                  telephoneCountryCode: "",
-                                  contactNumber: "",
-                                  email: "",
-                                  relationship: "",
-                                  dateOfBirth: null,
-                                  documentType: "1",
-                                  documentNumber: "",
-                                  nationalIdFront: [],
-                                  nationalIdBack: [],
-                                  passport: [],
-                                  birthCertificate: [],
-                                  percentageBeneficiary: "100",
-                                },
-                              ],
-                            });
-                          }
-                        } else if (
-                          difference >= -5 &&
-                          difference < 0 &&
-                          Number(e.target.value) <= 5 &&
-                          Number(e.target.value) >= 1
-                        ) {
-                          for (let i = 0; i < Math.abs(difference); i += 1) {
-                            formik.values.ultimateBeneficialOwners.pop();
-                          }
-                        }
-                        return null;
-                      }}
-                    />
-                  </Stack>
-                </CreateAccountFormDiv>
-
-                {formik.values.ultimateBeneficialOwners.map((item, index) => (
-                  <>
-                    <CreateAccountFormDiv
-                      topLabel={`Ultimate Beneficial Owner ${index + 1}`}
-                    >
-                      <Stack direction="column" spacing={2}>
                         <Stack
-                          direction={{ xs: "column", md: "row" }}
+                          sx={{
+                            width: "100%",
+                          }}
+                          direction={{ xs: "row" }}
                           spacing={3}
                         >
-                          <FormikControl
-                            control="select"
-                            variant="outlined"
-                            name={`ultimateBeneficialOwners[${index}].title`}
-                            label="Title"
-                            type="text"
-                            select
-                            selectItem={titleOptions}
-                            id={`ultimateBeneficialOwners[${index}].title`}
-                            required
-                          />
-                          <FormikControl
-                            control="input"
-                            label="Surname"
-                            name={`ultimateBeneficialOwners[${index}].surname`}
-                            variant="outlined"
-                            type="text"
-                            id={`ultimateBeneficialOwners[${index}].surname`}
-                            required
-                          />
-                          <FormikControl
-                            control="input"
-                            label="First Name"
-                            name={`ultimateBeneficialOwners[${index}].firstName`}
-                            variant="outlined"
-                            type="text"
-                            id={`ultimateBeneficialOwners[${index}].firstName`}
-                            required
-                          />
-                          <FormikControl
-                            control="input"
-                            label="Middle Name"
-                            name={`ultimateBeneficialOwners[${index}].middleName`}
-                            variant="outlined"
-                            type="text"
-                            id={`ultimateBeneficialOwners[${index}].middleName`}
-                          />
-                        </Stack>
-                        <Stack
-                          direction={{ xs: "column", md: "row" }}
-                          spacing={3}
-                        >
-                          <FormikControl
-                            control="radio"
-                            label="ShareHolder Type"
-                            name={`ultimateBeneficialOwners[${index}].shareHolderType`}
-                            options={shareHolderTypeOptions}
-                          />
-                        </Stack>
-
-                        {formik.values.ultimateBeneficialOwners[index]
-                          .shareHolderType === "4" && (
-                          <Stack
-                            direction={{ xs: "column", md: "row" }}
-                            spacing={3}
-                          >
+                          <Box sx={{ width: "130px" }}>
                             <FormikControl
                               control="input"
-                              label="Other ShareHolder Type"
-                              name={`ultimateBeneficialOwners[${index}].otherShareHolderType`}
-                              variant="outlined"
+                              name="businessRepresentative.telephoneCountryCode"
+                              label="Code"
                               type="text"
-                              id={`ultimateBeneficialOwners[${index}].otherShareHolderType`}
+                              select
+                              selectItem={telephoneCodes}
+                              id="businessRepresentative.telephoneCountryCode"
                               required
                             />
-                          </Stack>
-                        )}
-
-                        <Stack
-                          direction={{ xs: "column", md: "row" }}
-                          spacing={3}
-                        >
-                          <Stack
-                            sx={{
-                              width: "100%",
-                            }}
-                            direction={{ xs: "row" }}
-                            spacing={3}
-                          >
-                            <Box sx={{ width: "130px" }}>
-                              <FormikControl
-                                control="input"
-                                name={`ultimateBeneficialOwners[${index}].telephoneCountryCode`}
-                                label="Code"
-                                type="text"
-                                select
-                                selectItem={telephoneCodes}
-                                id={`ultimateBeneficialOwners[${index}].telephoneCountryCode`}
-                                required
-                              />
-                            </Box>
-                            <FormikControl
-                              control="input"
-                              variant="outlined"
-                              name={`ultimateBeneficialOwners[${index}].contactNumber`}
-                              label="Contact Number"
-                              type="number"
-                              id={`ultimateBeneficialOwners[${index}].contactNumber`}
-                              required
-                              haveTooltip
-                              tooltipText="Enter Your Contact number without country code"
-                            />
-                          </Stack>
+                          </Box>
                           <FormikControl
                             control="input"
-                            label="Email"
-                            name={`ultimateBeneficialOwners[${index}].email`}
                             variant="outlined"
-                            type="text"
-                            id={`ultimateBeneficialOwners[${index}].email`}
+                            name="businessRepresentative.contactNumber"
+                            label="Contact Number"
+                            type="number"
+                            id="contactNumber"
                             required
+                            haveTooltip
+                            tooltipText="Enter Your Contact number without country code"
                           />
                         </Stack>
-                        <Stack
-                          direction={{ xs: "column", md: "row" }}
-                          spacing={3}
-                        >
-                          <FormikControl
-                            control="input"
-                            variant="outlined"
-                            name={`ultimateBeneficialOwners[${index}].documentType`}
-                            label="Document Type"
-                            type="text"
-                            id={`ultimateBeneficialOwners[${index}].documentType`}
-                            required
-                            select
-                            selectItem={documentTypeOptions}
-                            onChange={(e) => {
-                              formik.setFieldValue(
-                                `ultimateBeneficialOwners[${index}].documentType`,
-                                e.target.value
-                              );
-                              formik.setFieldValue(
-                                `ultimateBeneficialOwners[${index}].documentNumber`,
-                                ""
-                              );
-                              formik.setFieldValue(
-                                `ultimateBeneficialOwners[${index}].passport`,
-                                []
-                              );
-                              formik.setFieldValue(
-                                `ultimateBeneficialOwners[${index}].nationalIdFront`,
-                                []
-                              );
-                              formik.setFieldValue(
-                                `ultimateBeneficialOwners[${index}].nationalIdBack`,
-                                []
-                              );
-                              formik.setFieldValue(
-                                `ultimateBeneficialOwners[${index}].birthCertificate`,
-                                []
-                              );
-                            }}
-                          />
-                          <FormikControl
-                            control="input"
-                            label="Document Number"
-                            name={`ultimateBeneficialOwners[${index}].documentNumber`}
-                            variant="outlined"
-                            type="text"
-                            id={`ultimateBeneficialOwners[${index}].documentNumber`}
-                            required
-                          />
-                        </Stack>
-                        {formik.values.ultimateBeneficialOwners[index]
-                          .documentType === "1" && (
-                          <Stack direction={{ xs: "column" }} spacing={3}>
-                            <FormikControl
-                              control="singleFileUpload"
-                              label="National Id of Business Owner (front)"
-                              name={`ultimateBeneficialOwners[${index}].nationalIdFront`}
-                              multiple={false}
-                              required
-                              givenFile={
-                                formik.values.ultimateBeneficialOwners[index]
-                                  .nationalIdFront !== undefined
-                                  ? formik.values.ultimateBeneficialOwners[
-                                      index
-                                    ].nationalIdFront[0]
-                                  : null
-                              }
-                            />
+                        <FormikControl
+                          control="input"
+                          label="Email"
+                          name="businessRepresentative.email"
+                          variant="outlined"
+                          type="text"
+                          id="email"
+                          required
+                        />
+                      </Stack>
+                      <Stack
+                        direction={{ xs: "column", md: "row" }}
+                        spacing={3}
+                        justifyContent="space-between"
+                      >
+                        <FormikControl
+                          control="input"
+                          variant="outlined"
+                          name="businessRepresentative.gender"
+                          label="Gender"
+                          type="text"
+                          id="gender"
+                          select
+                          selectItem={genderOptions}
+                          required
+                        />
+                        <FormikControl
+                          control="input"
+                          variant="outlined"
+                          name="businessRepresentative.maritalStatus"
+                          label="Marital Status"
+                          type="text"
+                          id="marital Status"
+                          select
+                          selectItem={maritalStatusOptions}
+                          required
+                        />
+                      </Stack>
+                      <Stack
+                        direction={{ xs: "column", md: "row" }}
+                        spacing={3}
+                      >
+                        <FormikControl
+                          control="datePicker"
+                          label="Date Of Birth"
+                          name="businessRepresentative.dateOfBirth"
+                          required
+                          onChange={(val) => {
+                            formik.setFieldValue(
+                              "businessRepresentative.dateOfBirth",
+                              val
+                            );
+                          }}
+                        />
+                        <FormikControl
+                          control="input"
+                          variant="outlined"
+                          name="businessRepresentative.countryOfOperation"
+                          label="Country Of Operation"
+                          type="text"
+                          id="countryOfOperation"
+                          required
+                          disabled
+                        />
+                      </Stack>
+                      <Stack
+                        direction={{ xs: "column", md: "row" }}
+                        spacing={3}
+                      >
+                        <FormikControl
+                          control="input"
+                          variant="outlined"
+                          name="businessRepresentative.documentType"
+                          label="Document Type"
+                          type="text"
+                          id="documentType"
+                          required
+                          select
+                          selectItem={documentTypeOptions}
+                          onChange={(e) => {
+                            formik.setFieldValue(
+                              "businessRepresentative.documentType",
+                              e.target.value
+                            );
+                            formik.setFieldValue(
+                              "businessRepresentative.documentNumber",
+                              ""
+                            );
+                            formik.setFieldValue(
+                              "businessRepresentative.passport",
+                              []
+                            );
 
-                            <FormikControl
-                              control="singleFileUpload"
-                              label="National Id of Business Owner (Back)"
-                              name={`ultimateBeneficialOwners[${index}].nationalIdBack`}
-                              multiple={false}
-                              required
-                              givenFile={
-                                formik.values.ultimateBeneficialOwners[index]
-                                  .nationalIdBack !== undefined
-                                  ? formik.values.ultimateBeneficialOwners[
-                                      index
-                                    ].nationalIdBack[0]
-                                  : null
-                              }
-                            />
-                          </Stack>
-                        )}
-                        {formik.values.ultimateBeneficialOwners[index]
-                          .documentType === "2" && (
-                          <Stack direction={{ xs: "column" }} spacing={3}>
-                            <FormikControl
-                              control="singleFileUpload"
-                              label="Passport of Business Owner (front)"
-                              name={`ultimateBeneficialOwners[${index}].passport]`}
-                              multiple={false}
-                              required
-                              givenFile={
-                                formik.values.ultimateBeneficialOwners[index]
-                                  .passport !== undefined
-                                  ? formik.values.ultimateBeneficialOwners[
-                                      index
-                                    ].passport[0]
-                                  : null
-                              }
-                            />
-                          </Stack>
-                        )}
+                            formik.setFieldValue(
+                              "businessRepresentative.nationalIdFront",
+                              []
+                            );
+                            formik.setFieldValue(
+                              "businessRepresentative.nationalIdBack",
+                              []
+                            );
+                          }}
+                        />
+                        <FormikControl
+                          control="input"
+                          variant="outlined"
+                          name="businessRepresentative.documentNumber"
+                          label="Document Number"
+                          type="text"
+                          id="documentNumber"
+                          required
+                        />
+                      </Stack>
+                      {formik.values.businessRepresentative.documentType ===
+                        "1" && (
                         <Stack direction={{ xs: "column" }} spacing={3}>
                           <FormikControl
                             control="singleFileUpload"
-                            label="Colored Passport Size Photograph of Business Owner"
-                            name={`ultimateBeneficialOwners[${index}].passportSizePhoto`}
+                            label="National Id of the Business Representative (front)"
+                            name="businessRepresentative.nationalIdFront"
                             multiple={false}
                             required
                             givenFile={
-                              formik.values.ultimateBeneficialOwners[index]
-                                .passportSizePhoto !== undefined
-                                ? formik.values.ultimateBeneficialOwners[index]
-                                    .passportSizePhoto[0]
+                              formik.values.businessRepresentative
+                                .nationalIdFront !== undefined
+                                ? formik.values.businessRepresentative
+                                    .nationalIdFront[0]
                                 : null
                             }
                           />
                           <FormikControl
                             control="singleFileUpload"
-                            label="Tax PIN certificate of Business Owner (individual)"
-                            name={`ultimateBeneficialOwners[${index}].pinCertificate`}
+                            label="National Id of the Business Representative (Back)"
+                            name="businessRepresentative.nationalIdBack"
                             multiple={false}
                             required
                             givenFile={
-                              formik.values.ultimateBeneficialOwners[index]
-                                .pinCertificate !== undefined
-                                ? formik.values.ultimateBeneficialOwners[index]
-                                    .pinCertificate[0]
+                              formik.values.businessRepresentative
+                                .nationalIdBack !== undefined
+                                ? formik.values.businessRepresentative
+                                    .nationalIdBack[0]
                                 : null
                             }
                           />
                         </Stack>
+                      )}
+                      {formik.values.businessRepresentative.documentType ===
+                        "2" && (
+                        <Stack direction={{ xs: "column" }} spacing={3}>
+                          <FormikControl
+                            control="singleFileUpload"
+                            label="Passport of the Business Representative"
+                            name="businessRepresentative.passport"
+                            multiple={false}
+                            required
+                            givenFile={
+                              formik.values.businessRepresentative.passport !==
+                              undefined
+                                ? formik.values.businessRepresentative
+                                    .passport[0]
+                                : null
+                            }
+                          />
+                        </Stack>
+                      )}
+                      <Stack direction={{ xs: "column" }} spacing={3}>
+                        <FormikControl
+                          control="singleFileUpload"
+                          label="Colored Passport Size Photograph of the Business Representative"
+                          name="businessRepresentative.passportSizePhoto"
+                          multiple={false}
+                          required
+                          givenFile={
+                            formik.values.businessRepresentative
+                              .passportSizePhoto !== undefined
+                              ? formik.values.businessRepresentative
+                                  .passportSizePhoto[0]
+                              : null
+                          }
+                        />
+                        <FormikControl
+                          control="singleFileUpload"
+                          label="Tax PIN certificate of the Business Representative"
+                          name="businessRepresentative.pinCertificate"
+                          multiple={false}
+                          required
+                          givenFile={
+                            formik.values.businessRepresentative
+                              .pinCertificate !== undefined
+                              ? formik.values.businessRepresentative
+                                  .pinCertificate[0]
+                              : null
+                          }
+                        />
+                      </Stack>
+                    </Stack>
+                  </CreateAccountFormDiv>
+                  <CreateAccountFormDiv topLabel="Registered Business Details">
+                    <Stack direction="column" spacing={2}>
+                      <Stack
+                        direction={{ xs: "column", md: "row" }}
+                        spacing={3}
+                      >
+                        <FormikControl
+                          control="input"
+                          variant="outlined"
+                          name="registeredBusinessDetails.businessName"
+                          label="Business Name"
+                          type="text"
+                          id="businessName"
+                          required
+                        />
+                        <FormikControl
+                          control="input"
+                          variant="outlined"
+                          name="registeredBusinessDetails.businessRegistrationNumber"
+                          label="Business Registration Number"
+                          type="text"
+                          id="businessRegistrationNumber"
+                          required
+                        />
+                      </Stack>
+                      <Stack
+                        direction={{ xs: "column", md: "row" }}
+                        spacing={3}
+                      >
+                        <FormikControl
+                          control="input"
+                          variant="outlined"
+                          name="registeredBusinessDetails.businessCategory"
+                          label="Business Category"
+                          type="text"
+                          id="businessCategory"
+                          select
+                          selectItem={businessCategoryOptions}
+                          required
+                        />
+                        <FormikControl
+                          control="input"
+                          variant="outlined"
+                          name="registeredBusinessDetails.businessSubCategory"
+                          label="Business SubCategory"
+                          type="text"
+                          id="businessSubCategory"
+                          select
+                          selectItem={businessSubCategoryOptions}
+                          required
+                        />
+                      </Stack>
+                      <Stack
+                        direction={{ xs: "column", md: "row" }}
+                        spacing={3}
+                      >
+                        <FormikControl
+                          control="input"
+                          variant="outlined"
+                          name="registeredBusinessDetails.businessTaxPin"
+                          label="Business Tax Pin"
+                          type="text"
+                          id="businessTaxPin"
+                          required
+                        />
                         <Stack
-                          direction={{ xs: "column", md: "row" }}
+                          sx={{
+                            width: "100%",
+                          }}
+                          direction={{ xs: "row" }}
                           spacing={3}
                         >
+                          <Box sx={{ width: "130px" }}>
+                            <FormikControl
+                              control="input"
+                              name="registeredBusinessDetails.telephoneCountryCode"
+                              label="Code"
+                              type="text"
+                              select
+                              selectItem={telephoneCodes}
+                              id="registeredBusinessDetails.telephoneCountryCode"
+                              required
+                            />
+                          </Box>
                           <FormikControl
                             control="input"
                             variant="outlined"
-                            name={`ultimateBeneficialOwners[${index}].nationality`}
-                            label="Nationality"
-                            type="text"
-                            id={`ultimateBeneficialOwners[${index}].nationality`}
-                            required
-                          />
-                          <FormikControl
-                            control="input"
-                            label="Enter Number Of Beneficiaries"
-                            name={`ultimateBeneficialOwners[${index}].numberOfBeneficiaries`}
-                            variant="outlined"
+                            name="registeredBusinessDetails.businessTelephone"
+                            label="Business Telephone"
                             type="number"
-                            id={`ultimateBeneficialOwners[${index}].numberOfBeneficiaries`}
+                            id="registeredBusinessDetails.businessTelephone"
                             required
-                            disabled
                           />
                         </Stack>
                       </Stack>
-                    </CreateAccountFormDiv>
+                      <Stack
+                        direction={{ xs: "column", md: "row" }}
+                        spacing={3}
+                      >
+                        <FormikControl
+                          control="input"
+                          variant="outlined"
+                          name="registeredBusinessDetails.businessEmail"
+                          label="Business Email"
+                          type="text"
+                          id="registeredBusinessDetails.businessEmail"
+                          required
+                        />
+                        <FormikControl
+                          control="input"
+                          variant="outlined"
+                          name="registeredBusinessDetails.businessCurrency"
+                          label="Currency Business Operates"
+                          type="text"
+                          id="registeredBusinessDetails.businessCurrency"
+                          required
+                          select
+                          selectItem={businessCurrencyOptions}
+                        />
+                      </Stack>
+                      <FormikControl
+                        control="input"
+                        variant="outlined"
+                        name="registeredBusinessDetails.businessDescription"
+                        label="Business Description (min 150 characters)"
+                        type="text"
+                        id="registeredBusinessDetails.businessDescription"
+                        required
+                        multiline
+                      />
+                    </Stack>
+                  </CreateAccountFormDiv>
+                  <CreateAccountFormDiv topLabel="Business Location">
+                    <Stack direction="column" spacing={2}>
+                      <Stack
+                        spacing={3}
+                        direction={{ xs: "column", md: "row" }}
+                      >
+                        <FormikControl
+                          control="input"
+                          variant="outlined"
+                          name="businessLocation.physicalAddress"
+                          label="Physical Address (Street/Road/Building)"
+                          type="text"
+                          id="businessLocation.physicalAddress"
+                          required
+                        />
+                        <FormikControl
+                          control="input"
+                          variant="outlined"
+                          name="businessLocation.postalAddress"
+                          label="Postal Address"
+                          type="text"
+                          id="businessLocation.postalAddress"
+                          required
+                        />
+                      </Stack>
+                      <Stack
+                        direction={{ xs: "column", md: "row" }}
+                        spacing={3}
+                      >
+                        <FormikControl
+                          control="input"
+                          variant="outlined"
+                          name="businessLocation.postalCode"
+                          label="Postal Code"
+                          type="number"
+                          id="businessLocation.postalCode"
+                        />
+                        <FormikControl
+                          control="input"
+                          variant="outlined"
+                          name="businessLocation.city"
+                          label="City/Town"
+                          type="text"
+                          id="businessLocation.city"
+                          required
+                        />
+                      </Stack>
+                      <Stack
+                        direction={{ xs: "column", md: "row" }}
+                        spacing={3}
+                        justifyContent="space-between"
+                      >
+                        <FormikControl
+                          control="input"
+                          variant="outlined"
+                          name="businessLocation.county"
+                          label="County"
+                          type="text"
+                          id="businessLocation.county"
+                        />
+                        <FormikControl
+                          control="input"
+                          variant="outlined"
+                          name="businessLocation.websiteLink"
+                          label="Business Website Link"
+                          type="text"
+                          id="businessLocation.websiteLink"
+                          required
+                        />
+                      </Stack>
+                      <Stack
+                        direction={{ xs: "column", md: "row" }}
+                        spacing={3}
+                      >
+                        <FormikControl
+                          control="input"
+                          variant="outlined"
+                          name="businessLocation.appDownloadLink"
+                          label="Business App Download Link"
+                          type="text"
+                          id="businessLocation.appDownloadLink"
+                        />
+                      </Stack>
+                    </Stack>
+                  </CreateAccountFormDiv>
+                  <CreateAccountFormDiv topLabel="Number Of Beneficial Owners">
+                    <Stack>
+                      <FormikControl
+                        control="input"
+                        variant="outlined"
+                        name="numberOfBeneficialOwners"
+                        label="Enter Number Of Beneficial Owners"
+                        type="number"
+                        id="numberOfBeneficialOwners"
+                        required
+                        onChange={(e) => {
+                          formik.setFieldValue(
+                            "numberOfBeneficialOwners",
+                            e.target.value
+                          );
+                          const difference =
+                            Number(e.target.value) -
+                            formik.values.ultimateBeneficialOwners.length;
 
-                    {item.nextOfKin.map((item1, index1) => (
+                          if (
+                            Number(e.target.value) > 5 ||
+                            Number(e.target.value) < 1
+                          ) {
+                            return null;
+                          }
+                          if (
+                            difference >= 1 &&
+                            difference <= 5 &&
+                            Number(e.target.value) <= 5 &&
+                            Number(e.target.value) >= 1
+                          ) {
+                            for (let i = 0; i < difference; i += 1) {
+                              formik.values.ultimateBeneficialOwners.push({
+                                title: "",
+                                surname: "",
+                                firstName: "",
+                                middleName: "",
+                                shareHolderType: "",
+                                otherShareHolderType: "",
+                                telephoneCountryCode: "",
+                                contactNumber: "",
+                                email: "",
+                                documentType: "1",
+                                documentNumber: "",
+                                nationalIdFront: [],
+                                nationalIdBack: [],
+                                passport: [],
+                                passportSizePhoto: [],
+                                pinCertificate: [],
+                                nationality: "",
+                                numberOfBeneficiaries: "1",
+                                nextOfKin: [
+                                  {
+                                    title: "",
+                                    surname: "",
+                                    firstName: "",
+                                    middleName: "",
+                                    telephoneCountryCode: "",
+                                    contactNumber: "",
+                                    email: "",
+                                    relationship: "",
+                                    dateOfBirth: null,
+                                    documentType: "1",
+                                    documentNumber: "",
+                                    nationalIdFront: [],
+                                    nationalIdBack: [],
+                                    passport: [],
+                                    birthCertificate: [],
+                                    percentageBeneficiary: "100",
+                                  },
+                                ],
+                              });
+                            }
+                          } else if (
+                            difference >= -5 &&
+                            difference < 0 &&
+                            Number(e.target.value) <= 5 &&
+                            Number(e.target.value) >= 1
+                          ) {
+                            for (let i = 0; i < Math.abs(difference); i += 1) {
+                              formik.values.ultimateBeneficialOwners.pop();
+                            }
+                          }
+                          return null;
+                        }}
+                      />
+                    </Stack>
+                  </CreateAccountFormDiv>
+
+                  {formik.values.ultimateBeneficialOwners.map((item, index) => (
+                    <>
                       <CreateAccountFormDiv
-                        topLabel={`Next Of Kin ${index1 + 1}`}
+                        topLabel={`Ultimate Beneficial Owner ${index + 1}`}
                       >
                         <Stack direction="column" spacing={2}>
                           <Stack
                             direction={{ xs: "column", md: "row" }}
                             spacing={3}
                           >
-                            <Stack
-                              sx={{
-                                width: "100%",
-                              }}
-                              direction={{ xs: "row" }}
-                              spacing={3}
-                            >
-                              <Box sx={{ width: "150px" }}>
-                                <FormikControl
-                                  control="select"
-                                  variant="outlined"
-                                  name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].title`}
-                                  label="Title"
-                                  type="text"
-                                  select
-                                  selectItem={titleOptions}
-                                  id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].title`}
-                                  required
-                                />
-                              </Box>
-                              <FormikControl
-                                control="input"
-                                label="Surname"
-                                name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].surname`}
-                                variant="outlined"
-                                type="text"
-                                id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].surname`}
-                                required
-                              />
-                            </Stack>
+                            <FormikControl
+                              control="select"
+                              variant="outlined"
+                              name={`ultimateBeneficialOwners[${index}].title`}
+                              label="Title"
+                              type="text"
+                              select
+                              selectItem={titleOptions}
+                              id={`ultimateBeneficialOwners[${index}].title`}
+                              required
+                            />
+                            <FormikControl
+                              control="input"
+                              label="Surname"
+                              name={`ultimateBeneficialOwners[${index}].surname`}
+                              variant="outlined"
+                              type="text"
+                              id={`ultimateBeneficialOwners[${index}].surname`}
+                              required
+                            />
                             <FormikControl
                               control="input"
                               label="First Name"
-                              name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].firstName`}
+                              name={`ultimateBeneficialOwners[${index}].firstName`}
                               variant="outlined"
                               type="text"
-                              id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].firstName`}
+                              id={`ultimateBeneficialOwners[${index}].firstName`}
                               required
                             />
                             <FormikControl
                               control="input"
                               label="Middle Name"
-                              name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].middleName`}
+                              name={`ultimateBeneficialOwners[${index}].middleName`}
                               variant="outlined"
                               type="text"
-                              id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].middleName`}
+                              id={`ultimateBeneficialOwners[${index}].middleName`}
                             />
                           </Stack>
+                          <Stack
+                            direction={{ xs: "column", md: "row" }}
+                            spacing={3}
+                          >
+                            <FormikControl
+                              control="radio"
+                              label="ShareHolder Type"
+                              name={`ultimateBeneficialOwners[${index}].shareHolderType`}
+                              options={shareHolderTypeOptions}
+                            />
+                          </Stack>
+
+                          {formik.values.ultimateBeneficialOwners[index]
+                            .shareHolderType === "4" && (
+                            <Stack
+                              direction={{ xs: "column", md: "row" }}
+                              spacing={3}
+                            >
+                              <FormikControl
+                                control="input"
+                                label="Other ShareHolder Type"
+                                name={`ultimateBeneficialOwners[${index}].otherShareHolderType`}
+                                variant="outlined"
+                                type="text"
+                                id={`ultimateBeneficialOwners[${index}].otherShareHolderType`}
+                                required
+                              />
+                            </Stack>
+                          )}
+
                           <Stack
                             direction={{ xs: "column", md: "row" }}
                             spacing={3}
@@ -1229,22 +997,22 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                               <Box sx={{ width: "130px" }}>
                                 <FormikControl
                                   control="input"
-                                  name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].telephoneCountryCode`}
+                                  name={`ultimateBeneficialOwners[${index}].telephoneCountryCode`}
                                   label="Code"
                                   type="text"
                                   select
                                   selectItem={telephoneCodes}
-                                  id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].telephoneCountryCode`}
+                                  id={`ultimateBeneficialOwners[${index}].telephoneCountryCode`}
                                   required
                                 />
                               </Box>
                               <FormikControl
                                 control="input"
                                 variant="outlined"
-                                name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].contactNumber`}
+                                name={`ultimateBeneficialOwners[${index}].contactNumber`}
                                 label="Contact Number"
                                 type="number"
-                                id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].contactNumber`}
+                                id={`ultimateBeneficialOwners[${index}].contactNumber`}
                                 required
                                 haveTooltip
                                 tooltipText="Enter Your Contact number without country code"
@@ -1253,10 +1021,11 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                             <FormikControl
                               control="input"
                               label="Email"
-                              name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].email`}
+                              name={`ultimateBeneficialOwners[${index}].email`}
                               variant="outlined"
                               type="text"
-                              id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].email`}
+                              id={`ultimateBeneficialOwners[${index}].email`}
+                              required
                             />
                           </Stack>
                           <Stack
@@ -1266,184 +1035,455 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                             <FormikControl
                               control="input"
                               variant="outlined"
-                              name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].relationship`}
-                              label="Relationship"
-                              type="text"
-                              id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].relationship`}
-                              required
-                            />
-                            <FormikControl
-                              control="datePicker"
-                              label="Date Of Birth"
-                              name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].dateOfBirth`}
-                              required
-                              onChange={(val) => {
-                                formik.setFieldValue(
-                                  `ultimateBeneficialOwners[${index}].nextOfKin[${index1}].dateOfBirth`,
-                                  val
-                                );
-                              }}
-                            />
-                            <FormikControl
-                              control="input"
-                              variant="outlined"
-                              name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].documentType`}
+                              name={`ultimateBeneficialOwners[${index}].documentType`}
                               label="Document Type"
                               type="text"
-                              id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].documentType`}
+                              id={`ultimateBeneficialOwners[${index}].documentType`}
                               required
                               select
-                              selectItem={documentTypeOptionsForNextOfKin}
+                              selectItem={documentTypeOptions}
                               onChange={(e) => {
                                 formik.setFieldValue(
-                                  `ultimateBeneficialOwners[${index}].nextOfKin[${index1}].documentType`,
+                                  `ultimateBeneficialOwners[${index}].documentType`,
                                   e.target.value
                                 );
                                 formik.setFieldValue(
-                                  `ultimateBeneficialOwners[${index}].nextOfKin[${index1}].documentNumber`,
+                                  `ultimateBeneficialOwners[${index}].documentNumber`,
                                   ""
                                 );
                                 formik.setFieldValue(
-                                  `ultimateBeneficialOwners[${index}].nextOfKin[${index1}].passport`,
+                                  `ultimateBeneficialOwners[${index}].passport`,
                                   []
                                 );
                                 formik.setFieldValue(
-                                  `ultimateBeneficialOwners[${index}].nextOfKin[${index1}].nationalIdFront`,
+                                  `ultimateBeneficialOwners[${index}].nationalIdFront`,
                                   []
                                 );
                                 formik.setFieldValue(
-                                  `ultimateBeneficialOwners[${index}].nextOfKin[${index1}].nationalIdBack`,
+                                  `ultimateBeneficialOwners[${index}].nationalIdBack`,
                                   []
                                 );
                                 formik.setFieldValue(
-                                  `ultimateBeneficialOwners[${index}].nextOfKin[${index1}].birthCertificate`,
+                                  `ultimateBeneficialOwners[${index}].birthCertificate`,
                                   []
                                 );
                               }}
                             />
                             <FormikControl
                               control="input"
-                              variant="outlined"
-                              name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].documentNumber`}
                               label="Document Number"
+                              name={`ultimateBeneficialOwners[${index}].documentNumber`}
+                              variant="outlined"
                               type="text"
-                              id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].documentNumber`}
+                              id={`ultimateBeneficialOwners[${index}].documentNumber`}
                               required
                             />
                           </Stack>
-                          <Stack spacing={3}>
-                            {formik.values.ultimateBeneficialOwners[index]
-                              .nextOfKin[index1].documentType === "1" && (
-                              <Stack direction={{ xs: "column" }} spacing={3}>
-                                <FormikControl
-                                  control="singleFileUpload"
-                                  label="National Id of Next Of Kin (front)"
-                                  name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].nationalIdFront`}
-                                  multiple={false}
-                                  required
-                                  givenFile={
-                                    formik.values.ultimateBeneficialOwners[
-                                      index
-                                    ].nextOfKin[index1].nationalIdFront !==
-                                    undefined
-                                      ? formik.values.ultimateBeneficialOwners[
-                                          index
-                                        ].nextOfKin[index1].nationalIdFront[0]
-                                      : null
-                                  }
-                                />
-                                <FormikControl
-                                  control="singleFileUpload"
-                                  label="National Id of Next Of Kin (Back)"
-                                  name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].nationalIdBack`}
-                                  multiple={false}
-                                  required
-                                  givenFile={
-                                    formik.values.ultimateBeneficialOwners[
-                                      index
-                                    ].nextOfKin[index1].nationalIdBack !==
-                                    undefined
-                                      ? formik.values.ultimateBeneficialOwners[
-                                          index
-                                        ].nextOfKin[index1].nationalIdBack[0]
-                                      : null
-                                  }
-                                />
-                              </Stack>
-                            )}
-                            {formik.values.ultimateBeneficialOwners[index]
-                              .nextOfKin[index1].documentType === "2" && (
+                          {formik.values.ultimateBeneficialOwners[index]
+                            .documentType === "1" && (
+                            <Stack direction={{ xs: "column" }} spacing={3}>
                               <FormikControl
                                 control="singleFileUpload"
-                                label="Passport of  Next Of Kin"
-                                name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].passport`}
+                                label="National Id of Business Owner (front)"
+                                name={`ultimateBeneficialOwners[${index}].nationalIdFront`}
                                 multiple={false}
                                 required
                                 givenFile={
                                   formik.values.ultimateBeneficialOwners[index]
-                                    .nextOfKin[index1].passport !== undefined
+                                    .nationalIdFront !== undefined
                                     ? formik.values.ultimateBeneficialOwners[
                                         index
-                                      ].nextOfKin[index1].passport[0]
+                                      ].nationalIdFront[0]
                                     : null
                                 }
                               />
-                            )}
-                            {formik.values.ultimateBeneficialOwners[index]
-                              .nextOfKin[index1].documentType === "3" && (
+
                               <FormikControl
                                 control="singleFileUpload"
-                                label="Birth Certificate of Next Of Kin "
-                                name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].birthCertificate`}
+                                label="National Id of Business Owner (Back)"
+                                name={`ultimateBeneficialOwners[${index}].nationalIdBack`}
                                 multiple={false}
                                 required
                                 givenFile={
                                   formik.values.ultimateBeneficialOwners[index]
-                                    .nextOfKin[index1].birthCertificate !==
-                                  undefined
+                                    .nationalIdBack !== undefined
                                     ? formik.values.ultimateBeneficialOwners[
                                         index
-                                      ].nextOfKin[index1].birthCertificate[0]
+                                      ].nationalIdBack[0]
                                     : null
                                 }
                               />
-                            )}
+                            </Stack>
+                          )}
+                          {formik.values.ultimateBeneficialOwners[index]
+                            .documentType === "2" && (
+                            <Stack direction={{ xs: "column" }} spacing={3}>
+                              <FormikControl
+                                control="singleFileUpload"
+                                label="Passport of Business Owner (front)"
+                                name={`ultimateBeneficialOwners[${index}].passport]`}
+                                multiple={false}
+                                required
+                                givenFile={
+                                  formik.values.ultimateBeneficialOwners[index]
+                                    .passport !== undefined
+                                    ? formik.values.ultimateBeneficialOwners[
+                                        index
+                                      ].passport[0]
+                                    : null
+                                }
+                              />
+                            </Stack>
+                          )}
+                          <Stack direction={{ xs: "column" }} spacing={3}>
+                            <FormikControl
+                              control="singleFileUpload"
+                              label="Colored Passport Size Photograph of Business Owner"
+                              name={`ultimateBeneficialOwners[${index}].passportSizePhoto`}
+                              multiple={false}
+                              required
+                              givenFile={
+                                formik.values.ultimateBeneficialOwners[index]
+                                  .passportSizePhoto !== undefined
+                                  ? formik.values.ultimateBeneficialOwners[
+                                      index
+                                    ].passportSizePhoto[0]
+                                  : null
+                              }
+                            />
+                            <FormikControl
+                              control="singleFileUpload"
+                              label="Tax PIN certificate of Business Owner (individual)"
+                              name={`ultimateBeneficialOwners[${index}].pinCertificate`}
+                              multiple={false}
+                              required
+                              givenFile={
+                                formik.values.ultimateBeneficialOwners[index]
+                                  .pinCertificate !== undefined
+                                  ? formik.values.ultimateBeneficialOwners[
+                                      index
+                                    ].pinCertificate[0]
+                                  : null
+                              }
+                            />
                           </Stack>
-                          <Stack spacing={3}>
+                          <Stack
+                            direction={{ xs: "column", md: "row" }}
+                            spacing={3}
+                          >
                             <FormikControl
                               control="input"
-                              label="Percentage Beneficiary"
-                              name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].percentageBeneficiary`}
+                              variant="outlined"
+                              name={`ultimateBeneficialOwners[${index}].nationality`}
+                              label="Nationality"
+                              type="text"
+                              id={`ultimateBeneficialOwners[${index}].nationality`}
+                              required
+                            />
+                            <FormikControl
+                              control="input"
+                              label="Enter Number Of Beneficiaries"
+                              name={`ultimateBeneficialOwners[${index}].numberOfBeneficiaries`}
                               variant="outlined"
                               type="number"
-                              id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].percentageBeneficiary`}
+                              id={`ultimateBeneficialOwners[${index}].numberOfBeneficiaries`}
                               required
                               disabled
                             />
                           </Stack>
                         </Stack>
                       </CreateAccountFormDiv>
-                    ))}
-                  </>
-                ))}
-                <LoadingButton
-                  loading={loading}
-                  variant="contained"
-                  type="submit"
-                  size="large"
-                  sx={styles.saveAndNextButton}
-                  disabled={!formik.isValid}
-                >
-                  Save & Next
-                </LoadingButton>
-              </Stack>
-            </Form>
-          );
-        }}
-      </Formik>
-      {alert.type !== "" && alert.message !== "" && (
-        <MuiAlert variant={alert.type} message={alert.message} />
-      )}
+
+                      {item.nextOfKin.map((item1, index1) => (
+                        <CreateAccountFormDiv
+                          topLabel={`Next Of Kin ${index1 + 1}`}
+                        >
+                          <Stack direction="column" spacing={2}>
+                            <Stack
+                              direction={{ xs: "column", md: "row" }}
+                              spacing={3}
+                            >
+                              <Stack
+                                sx={{
+                                  width: "100%",
+                                }}
+                                direction={{ xs: "row" }}
+                                spacing={3}
+                              >
+                                <Box sx={{ width: "150px" }}>
+                                  <FormikControl
+                                    control="select"
+                                    variant="outlined"
+                                    name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].title`}
+                                    label="Title"
+                                    type="text"
+                                    select
+                                    selectItem={titleOptions}
+                                    id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].title`}
+                                    required
+                                  />
+                                </Box>
+                                <FormikControl
+                                  control="input"
+                                  label="Surname"
+                                  name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].surname`}
+                                  variant="outlined"
+                                  type="text"
+                                  id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].surname`}
+                                  required
+                                />
+                              </Stack>
+                              <FormikControl
+                                control="input"
+                                label="First Name"
+                                name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].firstName`}
+                                variant="outlined"
+                                type="text"
+                                id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].firstName`}
+                                required
+                              />
+                              <FormikControl
+                                control="input"
+                                label="Middle Name"
+                                name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].middleName`}
+                                variant="outlined"
+                                type="text"
+                                id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].middleName`}
+                              />
+                            </Stack>
+                            <Stack
+                              direction={{ xs: "column", md: "row" }}
+                              spacing={3}
+                            >
+                              <Stack
+                                sx={{
+                                  width: "100%",
+                                }}
+                                direction={{ xs: "row" }}
+                                spacing={3}
+                              >
+                                <Box sx={{ width: "130px" }}>
+                                  <FormikControl
+                                    control="input"
+                                    name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].telephoneCountryCode`}
+                                    label="Code"
+                                    type="text"
+                                    select
+                                    selectItem={telephoneCodes}
+                                    id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].telephoneCountryCode`}
+                                    required
+                                  />
+                                </Box>
+                                <FormikControl
+                                  control="input"
+                                  variant="outlined"
+                                  name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].contactNumber`}
+                                  label="Contact Number"
+                                  type="number"
+                                  id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].contactNumber`}
+                                  required
+                                  haveTooltip
+                                  tooltipText="Enter Your Contact number without country code"
+                                />
+                              </Stack>
+                              <FormikControl
+                                control="input"
+                                label="Email"
+                                name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].email`}
+                                variant="outlined"
+                                type="text"
+                                id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].email`}
+                              />
+                            </Stack>
+                            <Stack
+                              direction={{ xs: "column", md: "row" }}
+                              spacing={3}
+                            >
+                              <FormikControl
+                                control="input"
+                                variant="outlined"
+                                name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].relationship`}
+                                label="Relationship"
+                                type="text"
+                                id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].relationship`}
+                                required
+                              />
+                              <FormikControl
+                                control="datePicker"
+                                label="Date Of Birth"
+                                name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].dateOfBirth`}
+                                required
+                                onChange={(val) => {
+                                  formik.setFieldValue(
+                                    `ultimateBeneficialOwners[${index}].nextOfKin[${index1}].dateOfBirth`,
+                                    val
+                                  );
+                                }}
+                              />
+                              <FormikControl
+                                control="input"
+                                variant="outlined"
+                                name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].documentType`}
+                                label="Document Type"
+                                type="text"
+                                id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].documentType`}
+                                required
+                                select
+                                selectItem={documentTypeOptionsForNextOfKin}
+                                onChange={(e) => {
+                                  formik.setFieldValue(
+                                    `ultimateBeneficialOwners[${index}].nextOfKin[${index1}].documentType`,
+                                    e.target.value
+                                  );
+                                  formik.setFieldValue(
+                                    `ultimateBeneficialOwners[${index}].nextOfKin[${index1}].documentNumber`,
+                                    ""
+                                  );
+                                  formik.setFieldValue(
+                                    `ultimateBeneficialOwners[${index}].nextOfKin[${index1}].passport`,
+                                    []
+                                  );
+                                  formik.setFieldValue(
+                                    `ultimateBeneficialOwners[${index}].nextOfKin[${index1}].nationalIdFront`,
+                                    []
+                                  );
+                                  formik.setFieldValue(
+                                    `ultimateBeneficialOwners[${index}].nextOfKin[${index1}].nationalIdBack`,
+                                    []
+                                  );
+                                  formik.setFieldValue(
+                                    `ultimateBeneficialOwners[${index}].nextOfKin[${index1}].birthCertificate`,
+                                    []
+                                  );
+                                }}
+                              />
+                              <FormikControl
+                                control="input"
+                                variant="outlined"
+                                name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].documentNumber`}
+                                label="Document Number"
+                                type="text"
+                                id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].documentNumber`}
+                                required
+                              />
+                            </Stack>
+                            <Stack spacing={3}>
+                              {formik.values.ultimateBeneficialOwners[index]
+                                .nextOfKin[index1].documentType === "1" && (
+                                <Stack direction={{ xs: "column" }} spacing={3}>
+                                  <FormikControl
+                                    control="singleFileUpload"
+                                    label="National Id of Next Of Kin (front)"
+                                    name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].nationalIdFront`}
+                                    multiple={false}
+                                    required
+                                    givenFile={
+                                      formik.values.ultimateBeneficialOwners[
+                                        index
+                                      ].nextOfKin[index1].nationalIdFront !==
+                                      undefined
+                                        ? formik.values
+                                            .ultimateBeneficialOwners[index]
+                                            .nextOfKin[index1]
+                                            .nationalIdFront[0]
+                                        : null
+                                    }
+                                  />
+                                  <FormikControl
+                                    control="singleFileUpload"
+                                    label="National Id of Next Of Kin (Back)"
+                                    name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].nationalIdBack`}
+                                    multiple={false}
+                                    required
+                                    givenFile={
+                                      formik.values.ultimateBeneficialOwners[
+                                        index
+                                      ].nextOfKin[index1].nationalIdBack !==
+                                      undefined
+                                        ? formik.values
+                                            .ultimateBeneficialOwners[index]
+                                            .nextOfKin[index1].nationalIdBack[0]
+                                        : null
+                                    }
+                                  />
+                                </Stack>
+                              )}
+                              {formik.values.ultimateBeneficialOwners[index]
+                                .nextOfKin[index1].documentType === "2" && (
+                                <FormikControl
+                                  control="singleFileUpload"
+                                  label="Passport of  Next Of Kin"
+                                  name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].passport`}
+                                  multiple={false}
+                                  required
+                                  givenFile={
+                                    formik.values.ultimateBeneficialOwners[
+                                      index
+                                    ].nextOfKin[index1].passport !== undefined
+                                      ? formik.values.ultimateBeneficialOwners[
+                                          index
+                                        ].nextOfKin[index1].passport[0]
+                                      : null
+                                  }
+                                />
+                              )}
+                              {formik.values.ultimateBeneficialOwners[index]
+                                .nextOfKin[index1].documentType === "3" && (
+                                <FormikControl
+                                  control="singleFileUpload"
+                                  label="Birth Certificate of Next Of Kin "
+                                  name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].birthCertificate`}
+                                  multiple={false}
+                                  required
+                                  givenFile={
+                                    formik.values.ultimateBeneficialOwners[
+                                      index
+                                    ].nextOfKin[index1].birthCertificate !==
+                                    undefined
+                                      ? formik.values.ultimateBeneficialOwners[
+                                          index
+                                        ].nextOfKin[index1].birthCertificate[0]
+                                      : null
+                                  }
+                                />
+                              )}
+                            </Stack>
+                            <Stack spacing={3}>
+                              <FormikControl
+                                control="input"
+                                label="Percentage Beneficiary"
+                                name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].percentageBeneficiary`}
+                                variant="outlined"
+                                type="number"
+                                id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].percentageBeneficiary`}
+                                required
+                                disabled
+                              />
+                            </Stack>
+                          </Stack>
+                        </CreateAccountFormDiv>
+                      ))}
+                    </>
+                  ))}
+                  <LoadingButton
+                    loading={loading}
+                    variant="contained"
+                    type="submit"
+                    size="large"
+                    sx={styles.saveAndNextButton}
+                    disabled={!formik.isValid}
+                  >
+                    Save & Next
+                  </LoadingButton>
+                </Stack>
+              </Form>
+            );
+          }}
+        </Formik>
+        {alert.type !== "" && alert.message !== "" && (
+          <MuiAlert variant={alert.type} message={alert.message} />
+        )}
+      </Stack>
     </>
   );
 };
