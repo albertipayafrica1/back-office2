@@ -5,8 +5,12 @@ import PropTypes from "prop-types";
 import { TextField, IconButton, ClickAwayListener } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
+import useStyles from "./styles";
+
 const AutoComplete = ({ uniKey, children, onInputValueChange }) => {
   const input = useRef();
+  const classes = useStyles();
+
   const [{ isOpen }, setState] = useState({
     isOpen: false,
   });
@@ -36,13 +40,12 @@ const AutoComplete = ({ uniKey, children, onInputValueChange }) => {
           fullWidth
           placeholder="Search"
           variant="outlined"
+          className={classes.root}
           InputProps={{
             endAdornment: (
-              <>
-                <IconButton onClick={toggleMenu}>
-                  <SearchIcon />
-                </IconButton>
-              </>
+              <IconButton onClick={toggleMenu}>
+                <SearchIcon />
+              </IconButton>
             ),
           }}
           InputLabelProps={{
