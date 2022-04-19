@@ -12,6 +12,7 @@ import ProtectedRoute from "../../../components/ProtectedRoute";
 import { wrapper } from "../../../redux/store";
 
 const Kyc = ({ data, error }) => {
+  console.log(data, "data");
   if (error !== "") {
     return <ErrorBoundary error={error} />;
   }

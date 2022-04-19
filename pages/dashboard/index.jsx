@@ -17,6 +17,7 @@
 
 import React from "react";
 import CreateAccountOtpDialog from "../../components/CreateAccountOtpDialog";
+import Search from "../../atoms/Search";
 
 // const drawerWidth = 240;
 // const transitionDuration = 1000; // can also use theme.transitions.duration
@@ -151,13 +152,14 @@ function index(props) {
     left: 50,
   };
   return (
-    <div>
-      <CreateAccountOtpDialog
-        open
-        backDropVisible
-        paperPropsStyling={paperPropsStyling}
-      />
-    </div>
+    // <div>
+    //   <CreateAccountOtpDialog
+    //     open
+    //     backDropVisible
+    //     paperPropsStyling={paperPropsStyling}
+    //   />
+    // </div>
+    <Search />
   );
 }
 

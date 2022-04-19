@@ -20,10 +20,10 @@ export const fulfillmentPeriod = [
   },
   {
     key: "Within Two Months",
-    value: "2",
+    value: "3",
   },
   {
     key: "More Than Two Months",
-    value: "3",
+    value: "4",
   },
 ];

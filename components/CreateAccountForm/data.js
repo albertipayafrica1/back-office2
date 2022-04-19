@@ -61,8 +61,8 @@ export const titleOptions = [
 ];
 export const privacy = [{ key: "", value: "true" }];
 export const signUpDurationOptions = [
-  { key: "Short Term Need", value: "1" },
-  { key: "Long Term Need", value: "2" },
+  { key: "Short Term Need", value: "2" },
+  { key: "Long Term Need", value: "1" },
 ];
 
 export const telephoneCodes = [
