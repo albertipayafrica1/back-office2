@@ -26,7 +26,7 @@ export const styles = (theme) => ({
 export const stepper = {
   backgroundColor: (theme) => theme.colors.mono1,
   color: "blue",
-  zIndex: 1,
+  zIndex: 2,
   display: "flex",
   width: "100%",
   justifyContent: "center",
