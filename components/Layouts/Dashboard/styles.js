@@ -1,6 +1,6 @@
 import { makeStyles } from "@mui/styles";
 
-const drawerWidth = 240;
+const drawerWidth = 250;
 export const useStyles = makeStyles((theme) => ({
   AppBarContainer: {
     width: { sm: `ca lc(100%)` },
@@ -12,6 +12,17 @@ export const useStyles = makeStyles((theme) => ({
       backgroundColor: "#2029A4",
     },
     ml: { sm: `${drawerWidth}px` },
+  },
+  topNavigationIcon: {
+    position: "fixed",
+    right: "10px",
+    width: "100px",
+  },
+
+  toggleIconContainer: {
+    position: "fixed",
+    left: "10px",
+    display: "flex",
   },
 
   textField: {
@@ -72,15 +83,17 @@ export const useStyles = makeStyles((theme) => ({
 
   menuText: {
     position: "relative",
-    fontSize: "small",
-    top: "10px",
+    fontSize: "11px",
+    color: "#969696",
+    top: "5px",
   },
 
   productText: {
-    fontSize: "small",
+    fontSize: "11px",
     position: "relative",
+    color: "#969696",
     padding: "10px",
-    top: "10px",
+    top: "5px",
   },
 
   menuContainer: {
@@ -89,19 +102,21 @@ export const useStyles = makeStyles((theme) => ({
   },
 
   activeMenuItem: {
-    borderRadius: "8px",
-    backgroundColor: "white",
-    color: "orange",
-    display: "flex",
-    flexDirection: "row",
+    backgroundColor: "#E4F2FF",
+    color: "black",
+    width: "100%",
+    "&:hover": {
+      color: "black",
+      backgroundColor: "#E4F2FF",
+    },
   },
 
   menuItems: {
-    borderRadius: "8px",
     cursor: "pointer",
-    flexDirection: "row",
+    color: "white",
+    backgroundColor: " #ffffff00",
     "&:hover": {
-      color: "orange",
+      color: "black",
       backgroundColor: "#E4F2FF",
     },
     width: "100%",
@@ -119,7 +134,9 @@ export const useStyles = makeStyles((theme) => ({
   },
 
   expandIcon: {
-    marginTop: "3px",
+    color: "white",
+
+    marginBottom: "2px",
     marginRight: "3px",
   },
 
@@ -141,7 +158,6 @@ export const useStyles = makeStyles((theme) => ({
   },
 
   navContainer: {
-    position: "absolute",
     display: "flex",
     flexDirection: "row",
     width: "100%",
@@ -156,13 +172,16 @@ export const useStyles = makeStyles((theme) => ({
     top: "10px",
     flexDirection: "row",
   },
+
   userDetails: {
     display: "flex",
+    position: "relative",
+    bottom: "10px",
+    left: "30px",
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
     color: "black",
-    mb: 1,
   },
 
   searchContent: {
@@ -175,7 +194,7 @@ export const useStyles = makeStyles((theme) => ({
     width: "100%",
     "&:hover": {
       border: "40px",
-      backgroundColor: "#F3F4F6",
+      backgroundColor: "#",
     },
   },
 
@@ -187,7 +206,7 @@ export const useStyles = makeStyles((theme) => ({
     left: "0px",
     top: "0px",
     backgroundColor: "#2029A4",
-    minWidth: "240px",
+    minWidth: drawerWidth,
   },
 
   searchBarContainer: {},
@@ -245,6 +264,22 @@ export const permanentDrawer = {
     width: drawerWidth,
     backgroundColor: "#2029A4",
     marginTop: "55px",
+    overflow: "hidden",
+    "&:hover": {
+      overflow: "scroll",
+      "&::-webkit-scrollbar": {
+        width: 6,
+        height: 5,
+      },
+      "&::-webkit-scrollbar-track": {
+        boxShadow: `inset 0 0 6px rgba(0, 0, 0, 0.3)`,
+      },
+      "&::-webkit-scrollbar-thumb": {
+        backgroundColor: "white",
+        borderRadius: "10px",
+        outline: `1px solid slategrey`,
+      },
+    },
   },
 };
 

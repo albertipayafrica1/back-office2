@@ -49,4 +49,7 @@ export const contactUs = {
 
 export const blueText = {
   color: (theme) => theme.colors.blue,
+  textDecoration: "none",
 };
+
+export const forgotPassword = { textDecoration: "none", marginTop: "6px" };

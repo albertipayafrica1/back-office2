@@ -42,6 +42,9 @@ const FormikDatePicker = ({
                   {...restProps}
                   maxDate={new Date()}
                   inputFormat="dd/MM/yyyy"
+                  InputProps={{
+                    classes: { root: classes.root },
+                  }}
                   onChange={onChange !== "" ? onChange : form.handleChange}
                   onBlur={onBlur !== "" ? onBlur : form.handleBlur}
                   renderInput={(params) => (
@@ -65,7 +68,29 @@ const FormikDatePicker = ({
                         </Typography>
                       }
                       required={required}
-                      className={classes.root}
+                      InputLabelProps={{
+                        shrink: !(
+                          field !== undefined &&
+                          field.value !== undefined &&
+                          field.value !== null &&
+                          field.value.length <= 0
+                        ),
+                        className:
+                          field !== undefined &&
+                          field.value !== undefined &&
+                          field.value !== null &&
+                          field.value.length <= 0
+                            ? classes.inputLabelNoShrink
+                            : undefined,
+                        // style: {
+                        //   textOverflow: "ellipsis",
+                        //   whiteSpace: "nowrap",
+                        //   overflow: "hidden",
+                        //   width: "100%",
+                        //   //fontSize: "5px",
+                        //   // color: "green",
+                        // },
+                      }}
                       sx={{
                         "& .MuiOutlinedInput-root:hover": {
                           "& > fieldset": {

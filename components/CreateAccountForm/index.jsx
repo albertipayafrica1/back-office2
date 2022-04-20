@@ -292,7 +292,7 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
         enableReinitialize
       >
         {(formik) => {
-          console.log(formik.errors, "fork");
+          // console.log(formik.errors, "fork");
           return (
             <Form>
               <Stack sx={styles.formContainer} spacing={8}>
@@ -303,7 +303,7 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
                       spacing={1}
                       justifyContent="space-between"
                     >
-                      <Box sx={{ width: "150px" }}>
+                      <Box sx={{ width: "100px" }}>
                         <FormikControl
                           control="select"
                           variant="outlined"
@@ -350,8 +350,8 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
                       />
                     </Stack>
                     <Stack direction="row" spacing={1}>
-                      <Box sx={{ width: "150px" }}>
-                        <FormikControl
+                      <Box>
+                        {/* <FormikControl
                           control="input"
                           name="telephoneCountryCode"
                           label="Code"
@@ -361,6 +361,14 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
                           id="telephoneCountryCode"
                           required
                           defaultValue={formik.values.countryOfOperation}
+                        /> */}
+                        <FormikControl
+                          control="autocomplete"
+                          name="telephoneCountryCode"
+                          label="Code"
+                          use="telephoneCountryCode"
+                          options={telephoneCodes}
+                          required
                         />
                       </Box>
                       <FormikControl
@@ -431,7 +439,6 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
                       defaultValue={formik.values.countryOfOperation}
                       onChange={(e) => {
                         if (formik.values.ipayProducts.includes("2")) {
-                          console.log("andar ghusyo");
                           formik.setFieldValue("ipayProducts", ["2"]);
                         } else {
                           formik.setFieldValue("ipayProducts", []);
@@ -565,8 +572,6 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
                       selectItem={aboutUs}
                       id="aboutUs"
                       onChange={(e) => {
-                        console.log(e.target.value, "vaaaaaa");
-
                         if (e.target.value === "1") {
                           formik.setFieldValue("referral", "");
                         } else if (e.target.value === "2") {
