@@ -145,11 +145,10 @@ const LoginForm = ({ country }) => {
                   direction="row"
                   justifyContent="flex-end"
                   alignItems="flex-end"
-                  mr={4}
                   mb={1}
                 >
                   <Link href={`/resetPasswordRequest?country=${query.country}`}>
-                    <a>
+                    <a style={styles.forgotPassword}>
                       <Typography variant="subtitle2" sx={styles.blueText}>
                         Forgot Password?
                       </Typography>
@@ -185,7 +184,7 @@ const LoginForm = ({ country }) => {
           <Link href={`/createAccount?country=${query.country}&rc=RC0000`}>
             <a>
               <Typography variant="title6" sx={styles.blueText}>
-                Dont have iPay Merchant account? Register here.
+                Dont have an account? Register here.
               </Typography>
             </a>
           </Link>

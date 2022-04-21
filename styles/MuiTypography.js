@@ -127,6 +127,7 @@ export default {
         variant: "title9",
       },
       style: {
+        color: "#969696",
         padding: "10px",
         lineHeight: "37px",
         letterSpacing: "0.06em",

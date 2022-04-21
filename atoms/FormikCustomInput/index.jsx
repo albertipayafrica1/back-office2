@@ -10,6 +10,7 @@ import {
   Tooltip,
   MenuItem,
   Typography,
+  InputLabel,
 } from "@mui/material";
 
 import Visibility from "@mui/icons-material/Visibility";
@@ -90,6 +91,7 @@ const FormikCustomInput = ({
               error={Boolean(
                 getIn(form.touched, name) && getIn(form.errors, name)
               )}
+              placeholder={label}
               size="medium"
               fullWidth
               multiline={multiline}
@@ -112,16 +114,44 @@ const FormikCustomInput = ({
                   },
                 },
               }}
+              InputLabelProps={{
+                shrink: !(
+                  field !== undefined &&
+                  field.value !== undefined &&
+                  field.value.length <= 0
+                ),
+                className:
+                  field !== undefined &&
+                  field.value !== undefined &&
+                  field.value.length <= 0
+                    ? classes.inputLabelNoShrink
+                    : undefined,
+                // style: {
+                //   textOverflow: "ellipsis",
+                //   whiteSpace: "nowrap",
+                //   overflow: "hidden",
+                //   width: "100%",
+                //   //fontSize: "5px",
+                //   // color: "green",
+                // },
+              }}
               InputProps={{
-                className: classes.input,
+                // classes: { input: classes.input },
+                className: !multiline ? classes.input : classes.multiline,
                 endAdornment: (
-                  <InputAdornment position="start">
+                  <InputAdornment
+                    position={type === "password" ? "end" : "start"}
+                  >
                     {type === "password" ? (
                       <IconButton
                         aria-label="toggle password visibility"
                         onClick={typeChangeHandler}
                       >
-                        {visibility ? <Visibility /> : <VisibilityOff />}
+                        {visibility ? (
+                          <Visibility sx={{ fontSize: 18 }} />
+                        ) : (
+                          <VisibilityOff sx={{ fontSize: 18 }} />
+                        )}
                       </IconButton>
                     ) : (
                       haveTooltip && (
@@ -134,6 +164,7 @@ const FormikCustomInput = ({
                             <InfoOutlinedIcon
                               sx={{
                                 color: (theme) => theme.colors.orange,
+                                fontSize: 18,
                               }}
                             />
                           </IconButton>
@@ -177,6 +208,7 @@ const FormikCustomInput = ({
             error={Boolean(
               getIn(form.touched, name) && getIn(form.errors, name)
             )}
+            placeholder={label}
             size="medium"
             fullWidth
             multiline={multiline}
@@ -199,16 +231,43 @@ const FormikCustomInput = ({
                 },
               },
             }}
+            InputLabelProps={{
+              shrink: !(
+                field !== undefined &&
+                field.value !== undefined &&
+                field.value.length <= 0
+              ),
+              className:
+                field !== undefined &&
+                field.value !== undefined &&
+                field.value.length <= 0
+                  ? classes.inputLabelNoShrink
+                  : undefined,
+              // style: {
+              //   textOverflow: "ellipsis",
+              //   whiteSpace: "nowrap",
+              //   overflow: "hidden",
+              //   width: "100%",
+              //   //fontSize: "5px",
+              //   // color: "green",
+              // },
+            }}
             InputProps={{
-              className: classes.input,
+              className: !multiline ? classes.input : classes.multiline,
               endAdornment: (
-                <InputAdornment position="start">
+                <InputAdornment
+                  position={type === "password" ? "end" : "start"}
+                >
                   {type === "password" ? (
                     <IconButton
                       aria-label="toggle password visibility"
                       onClick={typeChangeHandler}
                     >
-                      {visibility ? <Visibility /> : <VisibilityOff />}
+                      {visibility ? (
+                        <Visibility sx={{ fontSize: 18 }} />
+                      ) : (
+                        <VisibilityOff sx={{ fontSize: 18 }} />
+                      )}
                     </IconButton>
                   ) : (
                     haveTooltip && (
@@ -221,6 +280,7 @@ const FormikCustomInput = ({
                           <InfoOutlinedIcon
                             sx={{
                               color: (theme) => theme.colors.orange,
+                              fontSize: 18,
                             }}
                           />
                         </IconButton>
