@@ -17,15 +17,15 @@ const Account = ({ left, right, loading, alert, nameOnAlert }) => {
             <Box className={classes.alert}>
               <Typography variant="subtitle3" className={classes.whiteText}>
                 {"Hi "}
-              </Typography>
-              <Typography variant="subtitle3" className={classes.blueText}>
-                {nameOnAlert}
-              </Typography>
-              <Typography variant="subtitle4" className={classes.whiteText}>
-                {"Almost there! "}
-              </Typography>
-              <Typography variant="subtitle3" className={classes.whiteText}>
-                Check your email address for verification
+                <span variant="subtitle3" className={classes.blueText}>
+                  {nameOnAlert}
+                </span>
+                <span variant="subtitle4" className={classes.whiteText}>
+                  {" Almost there! "}
+                </span>
+                <span variant="subtitle3" className={classes.whiteText}>
+                  Check your email address for verification
+                </span>
               </Typography>
             </Box>
           )}
