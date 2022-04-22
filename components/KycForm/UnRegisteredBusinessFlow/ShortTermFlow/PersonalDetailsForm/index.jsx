@@ -15,6 +15,7 @@ import CreateAccountFormDiv from "../../../../../atoms/CreateAccountFormDiv";
 import MuiAlert from "../../../../../atoms/MuiAlert";
 
 import { personalDetails } from "../../../../../utils/formValidations/kyc/unRegisteredBusinessFlow/shortTermFlow/personalDetails";
+import { telephoneCodes } from "../../../../../utils/data";
 
 import {
   signUpDurationOptions,
@@ -23,7 +24,6 @@ import {
   genderOptions,
   maritalStatusOptions,
   documentTypeOptions,
-  telephoneCodes,
 } from "./data";
 
 import * as styles from "./styles";

@@ -16,6 +16,7 @@ import CreateAccountFormDiv from "../../../../atoms/CreateAccountFormDiv";
 import MuiAlert from "../../../../atoms/MuiAlert";
 
 import { businessStructure } from "../../../../utils/formValidations/kyc/registeredBusinessFlow/businessStructure";
+import { telephoneCodes } from "../../../../utils/data";
 
 import {
   titleOptions,
@@ -26,7 +27,6 @@ import {
   businessCurrencyOptions,
   documentTypeOptions,
   shareHolderTypeOptions,
-  telephoneCodes,
   documentTypeOptionsForNextOfKin,
 } from "./data";
 

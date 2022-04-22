@@ -28,7 +28,7 @@ import {
   getTelephoneCountryCode,
 } from "../../utils/countryOfOperation";
 import { createAccount } from "../../utils/formValidations/createAccount";
-
+import { telephoneCodes } from "../../utils/data";
 import * as styles from "./styles";
 
 import {
@@ -43,7 +43,6 @@ import {
   ugandaIpayProducts,
   aboutUs,
   ads,
-  telephoneCodes,
   titleOptions,
   signUpDurationOptions,
 } from "./data";
@@ -434,7 +433,7 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
                       control="input"
                       variant="outlined"
                       name="countryOfOperation"
-                      label={"Country Of Operation"}
+                      label="Country Of Operation"
                       type="text"
                       select
                       selectItem={country}
