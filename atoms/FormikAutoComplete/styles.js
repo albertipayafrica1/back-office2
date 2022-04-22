@@ -41,6 +41,11 @@ const useStyles = makeStyles((theme) => ({
     //   height: "40px",
     //   borderRadius: "7px",
     // },
+    "& label": {
+      "&.Mui-focused": {
+        color: theme.colors.blue,
+      },
+    },
     "& .MuiAutocomplete-inputRoot": {
       height: "40px",
       borderRadius: "7px",

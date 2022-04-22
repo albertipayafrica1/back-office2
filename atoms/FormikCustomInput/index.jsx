@@ -96,6 +96,11 @@ const FormikCustomInput = ({
               multiline={multiline}
               select={select}
               sx={{
+                "& label": {
+                  "&.Mui-focused": {
+                    color: (theme) => theme.colors.blue,
+                  },
+                },
                 "& .MuiOutlinedInput-root:hover": {
                   "& > fieldset": {
                     borderColor: (theme) => theme.colors.blue,
@@ -213,6 +218,11 @@ const FormikCustomInput = ({
             multiline={multiline}
             select={select}
             sx={{
+              "& label": {
+                "&.Mui-focused": {
+                  color: (theme) => theme.colors.blue,
+                },
+              },
               "& .MuiOutlinedInput-root:hover": {
                 "& > fieldset": {
                   borderColor: (theme) => theme.colors.blue,
