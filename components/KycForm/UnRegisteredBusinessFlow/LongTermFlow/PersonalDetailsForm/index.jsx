@@ -206,7 +206,7 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                           direction={{ xs: "row" }}
                           spacing={3}
                         >
-                          <Box sx={{ width: "110px" }}>
+                          <Box sx={{ width: "170px" }}>
                             <FormikControl
                               control="select"
                               variant="outlined"
@@ -258,8 +258,8 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                           direction={{ xs: "row" }}
                           spacing={3}
                         >
-                          <Box sx={{ width: "100px" }}>
-                            <FormikControl
+                          <Box sx={{ width: "140px" }}>
+                            {/* <FormikControl
                               control="input"
                               name="businessRepresentative.telephoneCountryCode"
                               label="Code"
@@ -269,6 +269,19 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                               id="telephoneCountryCode"
                               required
                               defaultValue={formik.values.businessRepresentative.countryOfOperation.toUpperCase()}
+                            /> */}
+                            <FormikControl
+                              control="autocomplete"
+                              name="businessRepresentative.telephoneCountryCode"
+                              label="Code"
+                              use="telephoneCountryCode"
+                              options={telephoneCodes}
+                              required
+                              defaultValue={{
+                                value: "KE",
+                                label: "Kenya",
+                                key: "254",
+                              }}
                             />
                           </Box>
                           <FormikControl

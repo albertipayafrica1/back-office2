@@ -21,6 +21,7 @@ import { styles } from "./styles";
 
 const initialValues = {
   resident: "",
+  citizen: "",
   greenCard: "",
   born: "",
   powerAuthority: "",
@@ -109,6 +110,7 @@ const ComplianceForm = ({ handleNextStep }) => {
     const savedValues = {
       // this you get it from api call
       resident: "",
+      citizen: "",
       greenCard: "",
       born: "",
       powerAuthority: "",
@@ -141,153 +143,202 @@ const ComplianceForm = ({ handleNextStep }) => {
                     <Box sx={styles.radioButtonContainer}>
                       <FormikControl
                         control="radio"
-                        label="1. Are you a U.S resident"
-                        name="resident"
+                        label="1. Are you a U.S citizen?"
+                        name="citizen"
                         options={ComplianceResponse}
-                      />
-                    </Box>
-                  </Box>
-
-                  <Box sx={styles.innerContainer}>
-                    <Box sx={styles.radioButtonContainer}>
-                      <FormikControl
-                        control="radio"
-                        label="3. Are you holding a U.S. Permanent Resident Card (Green
-                    Card)?"
-                        name="greenCard"
-                        options={ComplianceResponse}
-                      />
-                    </Box>
-                  </Box>
-                  <Box sx={styles.innerContainer}>
-                    <Box sx={styles.radioButtonContainer}>
-                      <FormikControl
-                        control="radio"
-                        label="4. Were you born in the U.S"
-                        name="born"
-                        options={ComplianceResponse}
-                      />
-                    </Box>
-                  </Box>
-                  <Box sx={styles.innerContainer}>
-                    <Box sx={styles.radioButtonContainer}>
-                      <FormikControl
-                        control="radio"
-                        label="5. Have you granted power of attorney or signatory authority to a person with a U.S. address?"
-                        name="powerAuthority"
-                        options={ComplianceResponse}
-                      />
-                    </Box>
-                  </Box>
-                  <Box sx={styles.innerContainer}>
-                    <Box sx={styles.radioButtonContainer}>
-                      <FormikControl
-                        control="radio"
-                        label="6. Do you have a U.S. residential address?"
-                        name="address"
-                        options={ComplianceResponse}
-                      />
-                    </Box>
-                  </Box>
-                  <Box sx={styles.innerContainer}>
-                    <Box sx={styles.radioButtonContainer}>
-                      <FormikControl
-                        control="radio"
-                        label="7. Do you have a correspondence, C/O or Hold mail address in
-                    the U.S.?"
-                        name="mailAddress"
-                        options={ComplianceResponse}
-                      />
-                    </Box>
-                  </Box>
-                  <Box sx={styles.innerContainer}>
-                    <Box sx={styles.radioButtonContainer}>
-                      <FormikControl
-                        control="radio"
-                        label="8. Do you have a standing order to a U.S. Bank Account?"
-                        name="bankAccount"
-                        options={ComplianceResponse}
-                      />
-                    </Box>
-                  </Box>
-
-                  <Box sx={styles.innerContainer}>
-                    <Box sx={styles.radioButtonContainer}>
-                      <FormikControl
-                        control="radio"
-                        label="9. Do you have a U.S. telephone number?"
-                        name="telephone"
-                        options={ComplianceResponse}
-                      />
-                    </Box>
-                  </Box>
-                  <Box sx={styles.innerContainer}>
-                    <Box sx={styles.radioButtonContainer}>
-                      <FormikControl
-                        control="radio"
-                        label="FATCA Status"
-                        name="fatcaStatus"
-                        options={ComplianceResponse}
+                        required
                         onChange={(e) => {
-                          formik.setFieldValue("fatcaStatus", e.target.value);
-                          formik.setFieldValue("W8Form", []);
-                          formik.setFieldValue("explanation", []);
+                          formik.setFieldValue("citizen", e.target.value);
+                          if (e.target.value === "2") {
+                            formik.setFieldValue("resident", "");
+                            formik.setFieldValue("greenCard", "");
+                            formik.setFieldValue("born", "");
+                            formik.setFieldValue("powerAuthority", "");
+                            formik.setFieldValue("powerAuthority", "");
+                            formik.setFieldValue("address", "");
+                            formik.setFieldValue("mailAddress", "");
+                            formik.setFieldValue("bankAccount", "");
+                            formik.setFieldValue("telephone", "");
+                            formik.setFieldValue("fatcaStatus", "");
+                            formik.setFieldValue("explanation", []);
+                            formik.setFieldValue("w8Form", []);
+                          }
                         }}
                       />
                     </Box>
                   </Box>
-                  <Box>
-                    {formik.values.fatcaStatus === "1" && (
-                      <Box>
-                        <Box sx={styles.fatcaStatusContainer}>
-                          <Typography sx={styles.subtitle3} variant="subtitle3">
-                            IF Yes, Document to be completed
-                          </Typography>
-
-                          <Typography sx={styles.subtitle3} variant="subtitle3">
-                            1. Form W-8BEN (Non U.S. Persons only)
-                          </Typography>
-                        </Box>
-
-                        <Box sx={styles.uploadContainer}>
-                          <DownloadDiv
-                            text="Download W-8BEN form here"
-                            downloadUrl="https://www.irs.gov/pub/irs-pdf/fw8ben.pdf"
-                          />
-                        </Box>
-                        <Box sx={styles.uploadContainer}>
+                  {formik.values.citizen === "1" && (
+                    <>
+                      <Box sx={styles.innerContainer}>
+                        <Box sx={styles.radioButtonContainer}>
                           <FormikControl
-                            control="singleFileUpload"
-                            label="Form W-8BEN (Non U.S. Persons only)"
-                            name="W8Form"
-                            mulitple={false}
+                            control="radio"
+                            label="2. Are you a U.S resident?"
+                            name="resident"
+                            options={ComplianceResponse}
                             required
-                            givenFile={
-                              formik.values.W8Form !== undefined
-                                ? formik.values.W8Form[0]
-                                : null
-                            }
-                          />
-                        </Box>
-
-                        <Box sx={styles.uploadContainer}>
-                          <FormikControl
-                            control="singleFileUpload"
-                            label="Written explanation for US born non-US citizens (Confirmation of renunciation of U.S. Citizenship / reason for not taking up U.S citizenship at birth)"
-                            name="explanation"
-                            mulitple={false}
-                            required
-                            givenFile={
-                              formik.values.explanation !== undefined
-                                ? formik.values.explanation[0]
-                                : null
-                            }
                           />
                         </Box>
                       </Box>
-                    )}
-                  </Box>
-                  <Box />
+
+                      <Box sx={styles.innerContainer}>
+                        <Box sx={styles.radioButtonContainer}>
+                          <FormikControl
+                            control="radio"
+                            label="3. Are you holding a U.S. Permanent Resident Card (Green
+                    Card)?"
+                            name="greenCard"
+                            options={ComplianceResponse}
+                            required
+                          />
+                        </Box>
+                      </Box>
+                      <Box sx={styles.innerContainer}>
+                        <Box sx={styles.radioButtonContainer}>
+                          <FormikControl
+                            control="radio"
+                            label="4. Were you born in the U.S?"
+                            name="born"
+                            options={ComplianceResponse}
+                            required
+                          />
+                        </Box>
+                      </Box>
+                      <Box sx={styles.innerContainer}>
+                        <Box sx={styles.radioButtonContainer}>
+                          <FormikControl
+                            control="radio"
+                            label="5. Have you granted power of attorney or signatory authority to a person with a U.S. address?"
+                            name="powerAuthority"
+                            options={ComplianceResponse}
+                            required
+                          />
+                        </Box>
+                      </Box>
+                      <Box sx={styles.innerContainer}>
+                        <Box sx={styles.radioButtonContainer}>
+                          <FormikControl
+                            control="radio"
+                            label="6. Do you have a U.S. residential address?"
+                            name="address"
+                            options={ComplianceResponse}
+                            required
+                          />
+                        </Box>
+                      </Box>
+                      <Box sx={styles.innerContainer}>
+                        <Box sx={styles.radioButtonContainer}>
+                          <FormikControl
+                            control="radio"
+                            label="7. Do you have a correspondence, C/O or Hold mail address in
+                    the U.S.?"
+                            name="mailAddress"
+                            options={ComplianceResponse}
+                            required
+                          />
+                        </Box>
+                      </Box>
+                      <Box sx={styles.innerContainer}>
+                        <Box sx={styles.radioButtonContainer}>
+                          <FormikControl
+                            control="radio"
+                            label="8. Do you have a standing order to a U.S. Bank Account?"
+                            name="bankAccount"
+                            options={ComplianceResponse}
+                            required
+                          />
+                        </Box>
+                      </Box>
+
+                      <Box sx={styles.innerContainer}>
+                        <Box sx={styles.radioButtonContainer}>
+                          <FormikControl
+                            control="radio"
+                            label="9. Do you have a U.S. telephone number?"
+                            name="telephone"
+                            options={ComplianceResponse}
+                            required
+                          />
+                        </Box>
+                      </Box>
+                      <Box sx={styles.innerContainer}>
+                        <Box sx={styles.radioButtonContainer}>
+                          <FormikControl
+                            control="radio"
+                            label="FATCA Status"
+                            name="fatcaStatus"
+                            options={ComplianceResponse}
+                            onChange={(e) => {
+                              formik.setFieldValue(
+                                "fatcaStatus",
+                                e.target.value
+                              );
+                              formik.setFieldValue("W8Form", []);
+                              formik.setFieldValue("explanation", []);
+                            }}
+                            required
+                          />
+                        </Box>
+                      </Box>
+                      <Box>
+                        {formik.values.fatcaStatus === "1" && (
+                          <Box>
+                            <Box sx={styles.fatcaStatusContainer}>
+                              <Typography
+                                sx={styles.subtitle3}
+                                variant="subtitle3"
+                              >
+                                IF Yes, Document to be completed
+                              </Typography>
+
+                              <Typography
+                                sx={styles.subtitle3}
+                                variant="subtitle3"
+                              >
+                                1. Form W-8BEN (Non U.S. Persons only)
+                              </Typography>
+                            </Box>
+
+                            <Box sx={styles.uploadContainer}>
+                              <DownloadDiv
+                                text="Download W-8BEN form here"
+                                downloadUrl="https://www.irs.gov/pub/irs-pdf/fw8ben.pdf"
+                              />
+                            </Box>
+                            <Box sx={styles.uploadContainer}>
+                              <FormikControl
+                                control="singleFileUpload"
+                                label="Form W-8BEN (Non U.S. Persons only)"
+                                name="W8Form"
+                                mulitple={false}
+                                required
+                                givenFile={
+                                  formik.values.W8Form !== undefined
+                                    ? formik.values.W8Form[0]
+                                    : null
+                                }
+                              />
+                            </Box>
+
+                            <Box sx={styles.uploadContainer}>
+                              <FormikControl
+                                control="singleFileUpload"
+                                label="Written explanation for US born non-US citizens (Confirmation of renunciation of U.S. Citizenship / reason for not taking up U.S citizenship at birth)"
+                                name="explanation"
+                                mulitple={false}
+                                required
+                                givenFile={
+                                  formik.values.explanation !== undefined
+                                    ? formik.values.explanation[0]
+                                    : null
+                                }
+                              />
+                            </Box>
+                          </Box>
+                        )}
+                      </Box>
+                    </>
+                  )}
                 </ComplianceFormContainer>
 
                 <Box sx={styles.dataProcessingContainer}>

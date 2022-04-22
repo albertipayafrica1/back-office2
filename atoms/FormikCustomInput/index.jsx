@@ -37,7 +37,6 @@ const FormikCustomInput = ({
   onChange,
   onBlur,
   fastField,
-  value,
   ...restProps
 }) => {
   const [visibility, setVisibility] = useState(false);
@@ -323,7 +322,6 @@ FormikCustomInput.defaultProps = {
 
 FormikCustomInput.propTypes = {
   type: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,

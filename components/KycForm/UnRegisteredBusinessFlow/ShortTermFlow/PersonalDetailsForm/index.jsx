@@ -259,7 +259,7 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                           spacing={3}
                         >
                           <Box sx={{ width: "100px" }}>
-                            <FormikControl
+                            {/* <FormikControl
                               control="input"
                               name="businessRepresentative.telephoneCountryCode"
                               label="Code"
@@ -269,6 +269,19 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                               id="telephoneCountryCode"
                               required
                               defaultValue={formik.values.businessRepresentative.countryOfOperation.toUpperCase()}
+                            /> */}
+                            <FormikControl
+                              control="autocomplete"
+                              name="businessRepresentative.telephoneCountryCode"
+                              label="Code"
+                              use="telephoneCountryCode"
+                              options={telephoneCodes}
+                              required
+                              defaultValue={{
+                                value: "KE",
+                                label: "Kenya",
+                                key: "254",
+                              }}
                             />
                           </Box>
                           <FormikControl

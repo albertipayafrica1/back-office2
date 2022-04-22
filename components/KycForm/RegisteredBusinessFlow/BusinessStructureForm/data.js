@@ -1,7 +1,7 @@
 export const titleOptions = [
   { key: "Mr", value: "1" },
   { key: "Mrs", value: "2" },
-  { key: "Miss", value: "3" },
+  { key: "Ms", value: "3" },
 ];
 
 export const genderOptions = [

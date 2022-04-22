@@ -8,7 +8,6 @@ import FormikAutoComplete from "../../atoms/FormikAutoComplete";
 import FormikFileUploadField from "../DocumentUploadWithProgress";
 
 const FormikControl = ({ control, ...rest }) => {
-  console.log(control);
   switch (control) {
     case "input":
       return <FormikCustomInput {...rest} />;

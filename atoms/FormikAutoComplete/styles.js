@@ -35,6 +35,37 @@ const useStyles = makeStyles((theme) => ({
   inputLabelNoShrink: {
     transform: "translate(14px, 8px) scale(1)",
   },
+
+  inputOuterStyling: {
+    // ".MuiAutocomplete-inputRoot": {
+    //   height: "40px",
+    //   borderRadius: "7px",
+    // },
+    "& .MuiAutocomplete-inputRoot": {
+      height: "40px",
+      borderRadius: "7px",
+      width: "100%",
+      "& .MuiAutocomplete-input": {
+        padding: "3px 4px 7.5px 6px",
+      },
+    },
+    "& .MuiOutlinedInput-root:hover": {
+      "& > fieldset": {
+        borderColor: theme.colors.blue,
+      },
+    },
+    "& .MuiOutlinedInput-root": {
+      "& .Mui-focused": {
+        borderColor: theme.colors.blue,
+      },
+    },
+    "& .MuiFormLabel-root": {
+      color: theme.colors.mono4,
+      "& .Mui-focused": {
+        color: theme.colors.blue,
+      },
+    },
+  },
 }));
 
 export default useStyles;

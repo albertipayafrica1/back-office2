@@ -43,7 +43,7 @@ export const tanzaniaIpayProducts = [{ value: "2", key: "eLipa Online" }];
 export const ugandaIpayProducts = [{ value: "2", key: "eLipa Online" }];
 export const togoIpayProducts = [{ value: "2", key: "eLipa Online" }];
 export const aboutUs = [
-  { value: "1", key: "Ads" },
+  { value: "1", key: "Advertisements" },
   { value: "2", key: "Referral" },
   { value: "3", key: "Social Media" },
   { value: "4", key: "Website" },
@@ -57,7 +57,7 @@ export const ads = [
 export const titleOptions = [
   { key: "Mr", value: "1" },
   { key: "Mrs", value: "2" },
-  { key: "Miss", value: "3" },
+  { key: "Ms", value: "3" },
 ];
 export const privacy = [{ key: "", value: "true" }];
 export const signUpDurationOptions = [

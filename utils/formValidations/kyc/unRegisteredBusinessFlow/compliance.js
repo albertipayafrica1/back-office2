@@ -2,6 +2,7 @@ import * as yup from "yup";
 
 export const compliance = yup.object({
   resident: yup.string().required("required"),
+  citizen: yup.string().required("required"),
   greenCard: yup.string().required("required"),
   born: yup.string().required("required"),
   powerAuthority: yup.string().required("required"),
