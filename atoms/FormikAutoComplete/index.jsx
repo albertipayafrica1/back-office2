@@ -51,24 +51,24 @@ const FormikAutoComplete = ({
   label,
   ...restProps
 }) => {
-  console.log(options);
   const classes = useStyles();
+  console.log(defaultValue, "defaultValue");
+  console.log(options.find((obj) => obj.value === defaultValue.value));
 
   return (
     <FastField name={name}>
       {({ field, form }) => {
-        console.log(form, "form");
-        console.log(field, "field");
         return (
           <FormControl
             error={Boolean(
               getIn(form.touched, name) && getIn(form.errors, name)
             )}
+            sx={{ width: "100%" }}
           >
             <FormGroup>
               <Autocomplete
                 {...restProps}
-                defaultValue={{ value: "KE", label: "Kenya", key: "254" }}
+                defaultValue={options.find((obj) => obj.value === "KE")}
                 disableClearable
                 id={name}
                 name={name}
@@ -89,19 +89,10 @@ const FormikAutoComplete = ({
                 InputProps={{
                   classes: { root: classes.root },
                 }}
-                sx={{
-                  ".MuiAutocomplete-inputRoot": {
-                    height: "40px",
-                    borderRadius: "7px",
-                    width: "100%",
-                    "& .MuiAutocomplete-input": {
-                      padding: "3px 4px 7.5px 6px",
-                    },
-                  },
-                }}
                 renderOption={(props, option) => (
                   <Box
                     component="li"
+                    key={option.value}
                     sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
                     {...props}
                   >
@@ -160,28 +151,7 @@ const FormikAutoComplete = ({
                       //   // color: "green",
                       // },
                     }}
-                    sx={{
-                      // ".MuiAutocomplete-inputRoot": {
-                      //   height: "40px",
-                      //   borderRadius: "7px",
-                      // },
-                      "& .MuiOutlinedInput-root:hover": {
-                        "& > fieldset": {
-                          borderColor: (theme) => theme.colors.blue,
-                        },
-                      },
-                      "& .MuiOutlinedInput-root": {
-                        "& .Mui-focused": {
-                          borderColor: (theme) => theme.colors.blue,
-                        },
-                      },
-                      "& .MuiFormLabel-root": {
-                        color: (theme) => theme.colors.mono4,
-                        "& .Mui-focused": {
-                          color: (theme) => theme.colors.blue,
-                        },
-                      },
-                    }}
+                    className={classes.inputOuterStyling}
                   />
                 )}
               />

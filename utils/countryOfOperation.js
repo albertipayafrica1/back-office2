@@ -1,3 +1,5 @@
+import { telephoneCodes } from "./data";
+
 export const countryOfOperation = (CountryCode) => {
   let givenCountry = "";
 
@@ -133,4 +135,9 @@ export const countryOfOperationFullName = (country) => {
       givenCountryCode = "Kenya";
   }
   return givenCountryCode;
+};
+
+export const getTelephoneCountryCode = (country) => {
+  const code = telephoneCodes.find((obj) => obj.value === country);
+  return code;
 };

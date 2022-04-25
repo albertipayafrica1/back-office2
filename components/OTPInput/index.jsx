@@ -65,7 +65,10 @@ const OTPInput = ({
           {otp.map((data, index) => (
             <input
               style={styles.otpField}
-              onPaste="return false;"
+              onPaste={(e) => {
+                e.preventDefault();
+                return false;
+              }}
               className="otp-field"
               type="text"
               name="otp"
@@ -134,12 +137,12 @@ const OTPInput = ({
 };
 
 OTPInput.propTypes = {
-  otp: PropTypes.string.isRequired,
+  otp: PropTypes.arrayOf(PropTypes.string).isRequired,
   error: PropTypes.string.isRequired,
   loading: PropTypes.bool.isRequired,
   clearTimer: PropTypes.bool.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  handleChange: PropTypes.bool.isRequired,
+  handleChange: PropTypes.func.isRequired,
   handleResendOtp: PropTypes.func.isRequired,
   resendOtpSuccess: PropTypes.bool.isRequired,
 };

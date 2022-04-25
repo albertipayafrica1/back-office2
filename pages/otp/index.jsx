@@ -15,7 +15,7 @@ const Otp = () => {
   const router = useRouter();
 
   const [otp, setOtp] = useState(new Array(5).fill(""));
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [clearTimer, setClearTimer] = useState(false);
   const [resendOtpSuccess, setResendOtpSuccess] = useState(false);

@@ -15,7 +15,15 @@ import { Field, ErrorMessage, getIn } from "formik";
 
 import * as styles from "./styles";
 
-const FormikRadioGroup = ({ label, name, options, onChange, onBlur, row }) => {
+const FormikRadioGroup = ({
+  label,
+  name,
+  options,
+  onChange,
+  onBlur,
+  row,
+  required,
+}) => {
   return (
     <Field name={name}>
       {({ field, form }) => {
@@ -26,7 +34,9 @@ const FormikRadioGroup = ({ label, name, options, onChange, onBlur, row }) => {
             )}
           >
             {label !== "" && (
-              <FormLabel id="radio-buttons-group-label">{label}</FormLabel>
+              <FormLabel id="radio-buttons-group-label" required={required}>
+                {label}
+              </FormLabel>
             )}
             {options.map((option) => {
               return (
@@ -70,6 +80,7 @@ const FormikRadioGroup = ({ label, name, options, onChange, onBlur, row }) => {
 FormikRadioGroup.defaultProps = {
   onChange: "",
   onBlur: "",
+  required: false,
 };
 
 FormikRadioGroup.propTypes = {
@@ -81,6 +92,7 @@ FormikRadioGroup.propTypes = {
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
   row: PropTypes.bool.isRequired,
+  required: PropTypes.bool,
 };
 
 export default FormikRadioGroup;

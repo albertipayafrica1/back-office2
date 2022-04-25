@@ -25,9 +25,10 @@ import MuiAlert from "../../atoms/MuiAlert";
 import {
   getCountryIconLink,
   countryOfOperationFullName,
+  getTelephoneCountryCode,
 } from "../../utils/countryOfOperation";
 import { createAccount } from "../../utils/formValidations/createAccount";
-
+import { telephoneCodes } from "../../utils/data";
 import * as styles from "./styles";
 
 import {
@@ -42,13 +43,11 @@ import {
   ugandaIpayProducts,
   aboutUs,
   ads,
-  telephoneCodes,
   titleOptions,
   signUpDurationOptions,
 } from "./data";
 
 const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
-  console.log(countryCode);
   const router = useRouter();
   const { query } = router;
 
@@ -56,6 +55,7 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
     "https://icons.elipa.co/iPay_newlogo.svg"
   );
   const [countryRegulator, setCountryRegulator] = useState("Kenya");
+  const [defaultTelephoneCode, setDefaultTelephoneCode] = useState({}); // since default value and actual form value is different for autocomplete we have this state
   const [formValues, setFormValues] = useState({
     title: "",
     surname: "",
@@ -144,6 +144,10 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
     );
 
     setCountryIconLink(getCountryIconLink(formValues.countryOfOperation));
+
+    setDefaultTelephoneCode(
+      getTelephoneCountryCode(formValues.countryOfOperation)
+    );
     return setCountryRegulator(countryOfOperationFullName(query.country));
   }, [formValues.countryOfOperation, query.country]);
 
@@ -292,7 +296,7 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
         enableReinitialize
       >
         {(formik) => {
-          // console.log(formik.errors, "fork");
+          // console.log(formik.values, "fork");
           return (
             <Form>
               <Stack sx={styles.formContainer} spacing={8}>
@@ -369,6 +373,7 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
                           use="telephoneCountryCode"
                           options={telephoneCodes}
                           required
+                          defaultValue={defaultTelephoneCode}
                         />
                       </Box>
                       <FormikControl
@@ -557,6 +562,7 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
                           : "Choose eLipa Products"
                       }
                       name="ipayProducts"
+                      required
                     />
                   </Stack>
                 </CreateAccountFormDiv>
@@ -569,6 +575,7 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
                       label="About Us"
                       type="text"
                       select
+                      required
                       selectItem={aboutUs}
                       id="aboutUs"
                       onChange={(e) => {
@@ -589,6 +596,7 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
                         control="input"
                         variant="outlined"
                         name="referral"
+                        required
                         label="Referral Code"
                         type="text"
                         id="referralCode"

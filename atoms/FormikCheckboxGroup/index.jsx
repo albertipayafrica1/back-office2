@@ -14,7 +14,14 @@ import { Field, ErrorMessage, getIn } from "formik";
 
 import * as styles from "./styles";
 
-const FormikCheckboxGroup = ({ label, options, name, onChange, onBlur }) => {
+const FormikCheckboxGroup = ({
+  label,
+  options,
+  name,
+  onChange,
+  onBlur,
+  required,
+}) => {
   return (
     <Field name={name}>
       {({ field, form }) => {
@@ -24,15 +31,16 @@ const FormikCheckboxGroup = ({ label, options, name, onChange, onBlur }) => {
               getIn(form.touched, name) && getIn(form.errors, name)
             )}
           >
-            {label !== "" && <FormLabel>{label}</FormLabel>}
+            {label !== "" && <FormLabel required={required}>{label}</FormLabel>}
             {options.map((option) => {
               return (
-                <FormGroup>
+                <FormGroup key={option.value}>
                   <FormControlLabel
                     value={option.value}
                     control={
                       <Checkbox
                         id={option.value}
+                        key={option.value}
                         {...field}
                         value={option.value}
                         checked={field.value.includes(option.value)}
@@ -65,6 +73,7 @@ FormikCheckboxGroup.defaultProps = {
   label: "",
   onChange: "",
   onBlur: "",
+  required: false,
 };
 
 FormikCheckboxGroup.propTypes = {
@@ -73,9 +82,10 @@ FormikCheckboxGroup.propTypes = {
   onBlur: PropTypes.func,
   helperText: PropTypes.string,
   options: PropTypes.arrayOf(
-    PropTypes.shape({ key: PropTypes.string, value: PropTypes.string })
+    PropTypes.shape({ key: PropTypes.shape(), value: PropTypes.string })
   ).isRequired,
   name: PropTypes.string.isRequired,
+  required: PropTypes.bool,
 };
 
 export default FormikCheckboxGroup;

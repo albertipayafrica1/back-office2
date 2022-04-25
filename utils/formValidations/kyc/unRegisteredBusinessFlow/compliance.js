@@ -1,16 +1,61 @@
 import * as yup from "yup";
 
 export const compliance = yup.object({
-  resident: yup.string().required("required"),
-  greenCard: yup.string().required("required"),
-  born: yup.string().required("required"),
-  powerAuthority: yup.string().required("required"),
-  address: yup.string().required("required"),
-  mailAddress: yup.string().required("required"),
-  bankAccount: yup.string().required("required"),
-  telephone: yup.string().required("required"),
-  fatcaStatus: yup.string().required("required"),
-
+  citizen: yup.string().required("required"),
+  resident: yup.string().when("citizen", (citizen) => {
+    if (citizen === "1") {
+      return yup.string().required("required");
+    }
+    return yup.string();
+  }),
+  greenCard: yup.string().when("citizen", (citizen) => {
+    if (citizen === "1") {
+      return yup.string().required("required");
+    }
+    return yup.string();
+  }),
+  born: yup.string().when("citizen", (citizen) => {
+    if (citizen === "1") {
+      return yup.string().required("required");
+    }
+    return yup.string();
+  }),
+  powerAuthority: yup.string().when("citizen", (citizen) => {
+    if (citizen === "1") {
+      return yup.string().required("required");
+    }
+    return yup.string();
+  }),
+  address: yup.string().when("citizen", (citizen) => {
+    if (citizen === "1") {
+      return yup.string().required("required");
+    }
+    return yup.string();
+  }),
+  mailAddress: yup.string().when("citizen", (citizen) => {
+    if (citizen === "1") {
+      return yup.string().required("required");
+    }
+    return yup.string();
+  }),
+  bankAccount: yup.string().when("citizen", (citizen) => {
+    if (citizen === "1") {
+      return yup.string().required("required");
+    }
+    return yup.string();
+  }),
+  telephone: yup.string().when("citizen", (citizen) => {
+    if (citizen === "1") {
+      return yup.string().required("required");
+    }
+    return yup.string();
+  }),
+  fatcaStatus: yup.string().when("citizen", (citizen) => {
+    if (citizen === "1") {
+      return yup.string().required("required");
+    }
+    return yup.string();
+  }),
   explanation: yup
     .array(
       yup

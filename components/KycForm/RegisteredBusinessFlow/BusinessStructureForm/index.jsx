@@ -16,6 +16,7 @@ import CreateAccountFormDiv from "../../../../atoms/CreateAccountFormDiv";
 import MuiAlert from "../../../../atoms/MuiAlert";
 
 import { businessStructure } from "../../../../utils/formValidations/kyc/registeredBusinessFlow/businessStructure";
+import { telephoneCodes } from "../../../../utils/data";
 
 import {
   titleOptions,
@@ -26,7 +27,6 @@ import {
   businessCurrencyOptions,
   documentTypeOptions,
   shareHolderTypeOptions,
-  telephoneCodes,
   documentTypeOptionsForNextOfKin,
 } from "./data";
 
@@ -365,7 +365,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                           spacing={3}
                         >
                           <Box sx={{ width: "130px" }}>
-                            <FormikControl
+                            {/* <FormikControl
                               control="input"
                               name="businessRepresentative.telephoneCountryCode"
                               label="Code"
@@ -374,6 +374,19 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                               selectItem={telephoneCodes}
                               id="businessRepresentative.telephoneCountryCode"
                               required
+                            /> */}
+                            <FormikControl
+                              control="autocomplete"
+                              name="businessRepresentative.telephoneCountryCode"
+                              label="Code"
+                              use="telephoneCountryCode"
+                              options={telephoneCodes}
+                              required
+                              defaultValue={{
+                                value: "KE",
+                                label: "Kenya",
+                                key: "254",
+                              }}
                             />
                           </Box>
                           <FormikControl
@@ -658,7 +671,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                           spacing={3}
                         >
                           <Box sx={{ width: "130px" }}>
-                            <FormikControl
+                            {/* <FormikControl
                               control="input"
                               name="registeredBusinessDetails.telephoneCountryCode"
                               label="Code"
@@ -667,6 +680,19 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                               selectItem={telephoneCodes}
                               id="registeredBusinessDetails.telephoneCountryCode"
                               required
+                            /> */}
+                            <FormikControl
+                              control="autocomplete"
+                              name="registeredBusinessDetails.telephoneCountryCode"
+                              label="Code"
+                              use="telephoneCountryCode"
+                              options={telephoneCodes}
+                              required
+                              defaultValue={{
+                                value: "KE",
+                                label: "Kenya",
+                                key: "254",
+                              }}
                             />
                           </Box>
                           <FormikControl
@@ -981,7 +1007,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                               spacing={3}
                             >
                               <Box sx={{ width: "130px" }}>
-                                <FormikControl
+                                {/* <FormikControl
                                   control="input"
                                   name={`ultimateBeneficialOwners[${index}].telephoneCountryCode`}
                                   label="Code"
@@ -990,6 +1016,19 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                                   selectItem={telephoneCodes}
                                   id={`ultimateBeneficialOwners[${index}].telephoneCountryCode`}
                                   required
+                                /> */}
+                                <FormikControl
+                                  control="autocomplete"
+                                  name={`ultimateBeneficialOwners[${index}].telephoneCountryCode`}
+                                  label="Code"
+                                  use="telephoneCountryCode"
+                                  options={telephoneCodes}
+                                  required
+                                  defaultValue={{
+                                    value: "KE",
+                                    label: "Kenya",
+                                    key: "254",
+                                  }}
                                 />
                               </Box>
                               <FormikControl
@@ -1249,7 +1288,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                                 spacing={3}
                               >
                                 <Box sx={{ width: "130px" }}>
-                                  <FormikControl
+                                  {/* <FormikControl
                                     control="input"
                                     name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].telephoneCountryCode`}
                                     label="Code"
@@ -1258,6 +1297,19 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                                     selectItem={telephoneCodes}
                                     id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].telephoneCountryCode`}
                                     required
+                                  /> */}
+                                  <FormikControl
+                                    control="autocomplete"
+                                    name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].telephoneCountryCode`}
+                                    label="Code"
+                                    use="telephoneCountryCode"
+                                    options={telephoneCodes}
+                                    required
+                                    defaultValue={{
+                                      value: "KE",
+                                      label: "Kenya",
+                                      key: "254",
+                                    }}
                                   />
                                 </Box>
                                 <FormikControl

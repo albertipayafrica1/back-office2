@@ -37,7 +37,6 @@ const FormikCustomInput = ({
   onChange,
   onBlur,
   fastField,
-  value,
   ...restProps
 }) => {
   const [visibility, setVisibility] = useState(false);
@@ -97,6 +96,11 @@ const FormikCustomInput = ({
               multiline={multiline}
               select={select}
               sx={{
+                "& label": {
+                  "&.Mui-focused": {
+                    color: (theme) => theme.colors.blue,
+                  },
+                },
                 "& .MuiOutlinedInput-root:hover": {
                   "& > fieldset": {
                     borderColor: (theme) => theme.colors.blue,
@@ -214,6 +218,11 @@ const FormikCustomInput = ({
             multiline={multiline}
             select={select}
             sx={{
+              "& label": {
+                "&.Mui-focused": {
+                  color: (theme) => theme.colors.blue,
+                },
+              },
               "& .MuiOutlinedInput-root:hover": {
                 "& > fieldset": {
                   borderColor: (theme) => theme.colors.blue,
@@ -323,7 +332,6 @@ FormikCustomInput.defaultProps = {
 
 FormikCustomInput.propTypes = {
   type: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
