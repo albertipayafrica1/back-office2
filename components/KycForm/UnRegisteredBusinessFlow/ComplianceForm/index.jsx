@@ -136,6 +136,7 @@ const ComplianceForm = ({ handleNextStep }) => {
           enableReinitialize
         >
           {(formik) => {
+            // console.log(formik.errors, "for");
             return (
               <Form>
                 <ComplianceFormContainer topLabel="Foreign Account Tax Compliance Act (FATCA)">
