@@ -24,6 +24,6 @@ const Carousel = ({ imageArray, onChange }) => {
 export default Carousel;
 
 Carousel.propTypes = {
-  imageArray: PropTypes.arrayOf(PropTypes.string).isRequired,
+  imageArray: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   onChange: PropTypes.func.isRequired,
 };
