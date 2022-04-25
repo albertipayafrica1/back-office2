@@ -127,8 +127,14 @@ const FormikCustomInput = ({
                 className:
                   field !== undefined &&
                   field.value !== undefined &&
-                  field.value.length <= 0
+                  field.value.length <= 0 &&
+                  !multiline
                     ? classes.inputLabelNoShrink
+                    : field !== undefined &&
+                      field.value !== undefined &&
+                      field.value.length <= 0 &&
+                      multiline
+                    ? classes.inputLabelMultilineNoShrink
                     : undefined,
                 // style: {
                 //   textOverflow: "ellipsis",
@@ -249,8 +255,14 @@ const FormikCustomInput = ({
               className:
                 field !== undefined &&
                 field.value !== undefined &&
-                field.value.length <= 0
+                field.value.length <= 0 &&
+                !multiline
                   ? classes.inputLabelNoShrink
+                  : field !== undefined &&
+                    field.value !== undefined &&
+                    field.value.length <= 0 &&
+                    multiline
+                  ? classes.inputLabelMultilineNoShrink
                   : undefined,
               // style: {
               //   textOverflow: "ellipsis",

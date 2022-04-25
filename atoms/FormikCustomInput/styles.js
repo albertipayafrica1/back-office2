@@ -21,6 +21,9 @@ const useStyles = makeStyles((theme) => ({
   inputLabelNoShrink: {
     transform: "translate(14px, 8px) scale(1)",
   },
+  inputLabelMultilineNoShrink: {
+    transform: "translate(14px, 36px) scale(1)",
+  },
 }));
 
 export default useStyles;
