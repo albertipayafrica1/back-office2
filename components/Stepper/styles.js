@@ -1,4 +1,4 @@
-import { withStyles } from "@mui/styles";
+import { Styles } from "@mui/styles";
 
 export const styles = (theme) => ({
   // root: {
@@ -12,15 +12,6 @@ export const styles = (theme) => ({
     marginTop: theme.spacing.unit,
     marginBottom: theme.spacing.unit,
   },
-  stepIconRoot: {
-    color: "pink",
-    "&.Mui-active": {
-      color: "red",
-    },
-    "&.Mui-completed": {
-      color: "green",
-    },
-  },
 });
 
 export const stepper = {
@@ -33,6 +24,9 @@ export const stepper = {
   alignItems: "center",
   position: "sticky",
   top: 63,
+  "& .MuiStepIcon-root.Mui-active": {
+    color: (theme) => theme.colors.blue,
+  },
 };
 
 export const container = {

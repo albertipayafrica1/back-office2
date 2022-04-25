@@ -249,25 +249,7 @@ const HorizontalLinearStepper = ({ flow, companyType, duration }) => {
           return (
             <Step key={item.label} {...props}>
               <StepButton>
-                <StepLabel
-                  StepIconProps={{
-                    classes: {
-                      root: { color: "pink" },
-                      active: {
-                        "&.Mui-active": {
-                          color: "red",
-                        },
-                      },
-                      completed: {
-                        "&.Mui-completed": {
-                          color: "red",
-                        },
-                      },
-                    },
-                  }}
-                  onClick={handleStep(index)}
-                  {...labelProps}
-                >
+                <StepLabel onClick={handleStep(index)} {...labelProps}>
                   {matches ? (
                     <Stack direction="row" alignItems="center">
                       <Box>{item.label}</Box>
