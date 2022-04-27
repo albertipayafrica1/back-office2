@@ -137,6 +137,28 @@ export const countryOfOperationFullName = (country) => {
   return givenCountryCode;
 };
 
+export const countryOfOperationBank = (country) => {
+  let givenBank = "";
+
+  switch (country) {
+    case "KE":
+      givenBank = "The Central Bank Of Kenya";
+      break;
+    case "TG":
+      givenBank = "The Central Bank Of West African States";
+      break;
+    case "TZ":
+      givenBank = "The Bank Of Tanzania";
+      break;
+    case "UG":
+      givenBank = "The Bank Of Uganda";
+      break;
+    default:
+      givenBank = "The Central Bank Of Kenya";
+  }
+  return givenBank;
+};
+
 export const getTelephoneCountryCode = (country) => {
   const code = telephoneCodes.find((obj) => obj.value === country);
   return code;

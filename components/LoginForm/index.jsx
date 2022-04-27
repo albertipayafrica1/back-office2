@@ -18,7 +18,7 @@ import MuiAlert from "../../atoms/MuiAlert";
 
 import {
   getCountryIconLink,
-  countryOfOperationFullName,
+  countryOfOperationBank,
 } from "../../utils/countryOfOperation";
 import { login } from "../../utils/formValidations/login";
 
@@ -94,7 +94,7 @@ const LoginForm = ({ country }) => {
       sessionStorage.removeItem("timer");
     }
     setCountryIconLink(getCountryIconLink(query.country));
-    setCountryRegulator(countryOfOperationFullName(query.country));
+    setCountryRegulator(countryOfOperationBank(query.country));
     if (query.status === "newAccountCreated") {
       setFlashMessage(true);
       setTimeout(() => {
@@ -212,8 +212,8 @@ const LoginForm = ({ country }) => {
             mr={4}
           >
             <Typography variant="subtitle3">
-              Authorised Payment Services Provider Regulated by the Central Bank
-              of {countryRegulator}
+              Authorised Payment Services Provider Regulated By{" "}
+              {countryRegulator}
             </Typography>
           </Stack>
         </Stack>

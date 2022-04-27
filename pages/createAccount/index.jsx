@@ -49,7 +49,7 @@ export const getServerSideProps = async (context) => {
     return {
       redirect: {
         permanent: false,
-        destination: `/createAccount?country=KE&rc=RC007`,
+        destination: `/createAccount?country=KE&rc=RC000000`,
       },
     };
   }
@@ -78,7 +78,7 @@ export const getServerSideProps = async (context) => {
     return {
       redirect: {
         permanent: false,
-        destination: `/createAccount?country=KE&rc=RC0000`,
+        destination: `/createAccount?country=KE&rc=RC000000`,
       },
     };
   }
@@ -86,7 +86,7 @@ export const getServerSideProps = async (context) => {
     return {
       redirect: {
         permanent: false,
-        destination: `/createAccount?country=${givenCountryCode}&rc=RC0000`,
+        destination: `/createAccount?country=${givenCountryCode}&rc=RC000000`,
       },
     };
   }

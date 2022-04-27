@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
   input: {
     backgroundColor: "white",
     borderRadius: 7,
-    height: "60px",
+    height: "40px",
   },
 }));
 

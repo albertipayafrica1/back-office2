@@ -14,7 +14,7 @@ import ResendOtp from "../../atoms/ResendOtp";
 
 import {
   getCountryIconLink,
-  countryOfOperationFullName,
+  countryOfOperationBank,
 } from "../../utils/countryOfOperation";
 
 import * as styles from "./styles";
@@ -39,7 +39,7 @@ const OTPInput = ({
 
   useEffect(() => {
     setCountryIconLink(getCountryIconLink(query.country));
-    setCountryRegulator(countryOfOperationFullName(query.country));
+    setCountryRegulator(countryOfOperationBank(query.country));
   }, []);
 
   return (
@@ -121,7 +121,7 @@ const OTPInput = ({
             mr={4}
           >
             <Typography variant="subtitle3">
-              Authorised Payment Services Provider Regulated by the Central Bank
+              Authorised Payment Services Provider Regulated By the Central Bank
               of {countryRegulator}
             </Typography>
           </Stack>
