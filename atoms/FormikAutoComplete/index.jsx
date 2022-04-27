@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { styled } from "@mui/material/styles";
+// import { styled } from "@mui/material/styles";
 
 import * as React from "react";
 
@@ -52,8 +52,6 @@ const FormikAutoComplete = ({
   ...restProps
 }) => {
   const classes = useStyles();
-  console.log(defaultValue, "defaultValue");
-  console.log(options.find((obj) => obj.value === defaultValue.value));
 
   return (
     <FastField name={name}>
@@ -68,7 +66,7 @@ const FormikAutoComplete = ({
             <FormGroup>
               <Autocomplete
                 {...restProps}
-                defaultValue={options.find((obj) => obj.value === "KE")}
+                defaultValue={defaultValue}
                 disableClearable
                 id={name}
                 name={name}

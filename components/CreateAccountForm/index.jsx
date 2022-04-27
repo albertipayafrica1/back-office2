@@ -24,7 +24,7 @@ import MuiAlert from "../../atoms/MuiAlert";
 
 import {
   getCountryIconLink,
-  countryOfOperationFullName,
+  countryOfOperationBank,
   getTelephoneCountryCode,
 } from "../../utils/countryOfOperation";
 import { createAccount } from "../../utils/formValidations/createAccount";
@@ -55,13 +55,13 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
     "https://icons.elipa.co/iPay_newlogo.svg"
   );
   const [countryRegulator, setCountryRegulator] = useState("Kenya");
-  const [defaultTelephoneCode, setDefaultTelephoneCode] = useState({}); // since default value and actual form value is different for autocomplete we have this state
+  // since default value and actual form value is different for autocomplete we have this state
   const [formValues, setFormValues] = useState({
     title: "",
     surname: "",
     firstName: "",
     middleName: "",
-    telephoneCountryCode: "",
+    telephoneCountryCode: countryCode,
     contactNumber: "",
     email: "",
     password: "",
@@ -93,7 +93,7 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
     surname: "",
     firstName: "",
     middleName: "",
-    telephoneCountryCode: "",
+    telephoneCountryCode: countryCode,
     contactNumber: "",
     email: "",
     password: "",
@@ -145,10 +145,7 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
 
     setCountryIconLink(getCountryIconLink(formValues.countryOfOperation));
 
-    setDefaultTelephoneCode(
-      getTelephoneCountryCode(formValues.countryOfOperation)
-    );
-    return setCountryRegulator(countryOfOperationFullName(query.country));
+    return setCountryRegulator(countryOfOperationBank(query.country));
   }, [formValues.countryOfOperation, query.country]);
 
   useEffect(() => {
@@ -296,7 +293,7 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
         enableReinitialize
       >
         {(formik) => {
-          // console.log(formik.values, "fork");
+          console.log(formik.values, "fork");
           return (
             <Form>
               <Stack sx={styles.formContainer} spacing={8}>
@@ -373,7 +370,9 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
                           use="telephoneCountryCode"
                           options={telephoneCodes}
                           required
-                          defaultValue={defaultTelephoneCode}
+                          defaultValue={getTelephoneCountryCode(
+                            formValues.countryOfOperation
+                          )}
                         />
                       </Box>
                       <FormikControl
@@ -515,7 +514,7 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
                       />
                     )}
                     {formik.values.registrationDetails === "2" &&
-                      formik.values.signUpDuration === "1" && (
+                      formik.values.signUpDuration === "2" && (
                         <FormikControl
                           control="input"
                           variant="outlined"
@@ -574,6 +573,9 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
                       name="aboutUs"
                       label="About Us"
                       type="text"
+                      disabled={
+                        rc !== undefined && rc !== null && rc !== "RC000000"
+                      }
                       select
                       required
                       selectItem={aboutUs}
@@ -599,6 +601,9 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
                         required
                         label="Referral Code"
                         type="text"
+                        disabled={
+                          rc !== undefined && rc !== null && rc !== "RC000000"
+                        }
                         id="referralCode"
                         onChange={(e) => {
                           formik.setFieldValue("referral", e.target.value);
@@ -703,8 +708,8 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
                     sx={{ mr: 4 }}
                   >
                     <Typography variant="subtitle3">
-                      Authorised Payment Services Provider Regulated by the
-                      Central Bank of {countryRegulator}
+                      Authorised Payment Services Provider Regulated By{" "}
+                      {countryRegulator}
                     </Typography>
                   </Stack>
                 </Stack>

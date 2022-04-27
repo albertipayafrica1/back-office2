@@ -40,8 +40,8 @@ const AutoComplete = ({ uniKey, children, onInputValueChange }) => {
           fullWidth
           placeholder="Search"
           variant="outlined"
-          className={classes.root}
           InputProps={{
+            className: classes.input,
             endAdornment: (
               <IconButton onClick={toggleMenu}>
                 <SearchIcon />
@@ -77,6 +77,7 @@ const AutoComplete = ({ uniKey, children, onInputValueChange }) => {
             },
           }}
         />
+
         {typeof children === "function" &&
           children({
             isOpen,

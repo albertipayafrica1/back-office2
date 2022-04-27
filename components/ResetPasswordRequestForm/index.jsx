@@ -16,7 +16,7 @@ import MuiAlert from "../../atoms/MuiAlert";
 
 import {
   getCountryIconLink,
-  countryOfOperationFullName,
+  countryOfOperationBank,
 } from "../../utils/countryOfOperation";
 import { resetPasswordRequest } from "../../utils/formValidations/resetPasswordRequest";
 
@@ -39,7 +39,7 @@ const ResetPasswordRequestForm = () => {
 
   useEffect(() => {
     setCountryIconLink(getCountryIconLink(query.country));
-    setCountryRegulator(countryOfOperationFullName(query.country));
+    setCountryRegulator(countryOfOperationBank(query.country));
   }, []);
 
   const handleSubmit = (values) => {
@@ -162,8 +162,8 @@ const ResetPasswordRequestForm = () => {
             mr={4}
           >
             <Typography variant="subtitle3">
-              Authorised Payment Services Provider Regulated by the Central Bank
-              of {countryRegulator}
+              Authorised Payment Services Provider Regulated By{" "}
+              {countryRegulator}
             </Typography>
           </Stack>
         </Stack>
