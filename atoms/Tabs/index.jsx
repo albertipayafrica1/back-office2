@@ -19,7 +19,12 @@ const Tabs = ({ tabTitle, children }) => {
         <Box sx={{ ml: 25 }}>
           <TabList onChange={handleChange} aria-label="tabs" sx={styles.tabs}>
             {tabTitle.map((title, index) => (
-              <Tab label={title} value={index.toString()} />
+              <Tab
+                disableRipple
+                label={title}
+                value={index.toString()}
+                sx={{ padding: 0 }}
+              />
             ))}
           </TabList>
         </Box>
