@@ -16,16 +16,22 @@ const Tabs = ({ tabTitle, children }) => {
   return (
     <Box sx={{ width: "100%" }}>
       <TabContext value={value}>
-        <Box>
+        <Box sx={{ ml: 25 }}>
           <TabList onChange={handleChange} aria-label="tabs" sx={styles.tabs}>
             {tabTitle.map((title, index) => (
-              <Tab label={title} value={index.toString()} />
+              <Tab
+                disableRipple
+                label={title}
+                value={index.toString()}
+                sx={{ padding: 0 }}
+              />
             ))}
           </TabList>
         </Box>
-        {children.map((child, index) => (
-          <TabPanel value={index.toString()}>{child}</TabPanel>
-        ))}
+        {children !== undefined &&
+          children.map((child, index) => (
+            <TabPanel value={index.toString()}>{child}</TabPanel>
+          ))}
       </TabContext>
     </Box>
   );

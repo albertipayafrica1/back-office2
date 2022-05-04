@@ -1,13 +1,16 @@
+import Add from "@mui/icons-material/Add";
 import DashboardLayout from "../../components/Layouts/Dashboard";
 import Tabs from "../../atoms/Tabs";
 import TransactionTable from "../../components/TransactionTable";
 
 const Transaction = () => {
-  const tabTitle = ["ds", "dss"];
+  const tabTitle = ["Payins", "Payouts", "Billing"];
+
   return (
     <Tabs tabTitle={tabTitle}>
       <TransactionTable />
-      <>dfs</>
+      <TransactionTable newTransferEnabled />
+      <TransactionTable />
     </Tabs>
   );
 };
