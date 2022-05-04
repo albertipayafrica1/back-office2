@@ -10,7 +10,13 @@ import {
   TableHead,
   TablePagination,
   TableRow,
+  Box,
+  Stack,
 } from "@mui/material";
+
+import Add from "@mui/icons-material/Add";
+
+import TransactionButton from "../../atoms/TransactionButton";
 
 const columns = [
   { id: "name", label: "Name", minWidth: 170 },
@@ -65,26 +71,65 @@ function createData(name, code, population, size) {
 }
 
 const rows = [
-  createData("India", "Icsdcdsxcsdc", 1324171354, 3287263),
-  createData("China", "Icsdcdsxcsdc", 1403500365, 9596961),
-  createData("Italy", "Icsdcdsxcsdc", 60483973, 301340),
-  createData("United States", "Icsdcdsxcsdc", 327167434, 9833520),
-  createData("Canada", "Icsdcdsxcsdc", 37602103, 9984670),
-  createData("Australia", "Icsdcdsxcsdc", 25475400, 7692024),
-  createData("Germany", "Icsdcdsxcsdc", 83019200, 357578),
-  createData("Ireland", "Icsdcdsxcsdc", 4857000, 70273),
-  createData("Mexico", "Icsdcdsxcsdc", 126577691, 1972550),
-  createData("Japan", "Icsdcdsxcsdc", 126317000, 377973),
-  createData("France", "Icsdcdsxcsdc", 67022000, 640679),
-  createData("United Kingdom", "Icsdcdsxcsdc", 67545757, 242495),
-  createData("Russia", "Icsdcdsxcsdc", 146793744, 17098246),
-  createData("Nigeria", "Icsdcdsxcsdc", 200962417, 923768),
-  createData("Brazil", "Icsdcdsxcsdc", 210147125, 8515767),
+  {
+    name: "India",
+    code: "Icsdcdsxcsdc",
+    population: 1324171354,
+    density: 3287263,
+  },
+  {
+    name: "India",
+    code: "Icsdcdsxcsdc",
+    population: 1324171354,
+    density: 3287263,
+  },
+  {
+    name: "India",
+    code: "Icsdcdsxcsdc",
+    population: 1324171354,
+    density: 3287263,
+  },
+  {
+    name: "India",
+    code: "Icsdcdsxcsdc",
+    population: 1324171354,
+    density: 3287263,
+  },
+  {
+    name: "India",
+    code: "Icsdcdsxcsdc",
+    population: 1324171354,
+    density: 3287263,
+  },
+  {
+    name: "India",
+    code: "Icsdcdsxcsdc",
+    population: 1324171354,
+    density: 3287263,
+  },
+  {
+    name: "India",
+    code: "Icsdcdsxcsdc",
+    population: 1324171354,
+    density: 3287263,
+  },
+  {
+    name: "India",
+    code: "Icsdcdsxcsdc",
+    population: 1324171354,
+    density: 3287263,
+  },
+  {
+    name: "India",
+    code: "Icsdcdsxcsdc",
+    population: 1324171354,
+    density: 3287263,
+  },
 ];
 
 const TransactionTable = () => {
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState(7);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -96,75 +141,133 @@ const TransactionTable = () => {
   };
 
   return (
-    <Paper sx={{ width: "100%", overflow: "hidden" }}>
-      <TableContainer sx={{ maxHeight: 440 }}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              {columns.map((column) => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ width: 200 }}
-                  // style={{ minWidth: column.minWidth }}
-                  sx={{ color: (theme) => theme.colors.blue }}
-                >
-                  {column.label}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
-                return (
-                  <TableRow
-                    hover
-                    role="checkbox"
-                    tabIndex={-1}
-                    key={row.code}
-                    sx={{
-                      "&:nth-of-type(odd)": {
-                        backgroundColor: (theme) => theme.colors.mono9,
-                      },
-                    }}
+    <Box
+      sx={{
+        maxHeight: 590,
+        background: "white",
+        boxShadow: "0px 5px 5px 2px #888888",
+        borderRadius: "5px",
+        mt: 3,
+        ml: 8,
+        mr: 8,
+      }}
+    >
+      <Stack
+        justifyContent="space-between"
+        alignItems="center"
+        direction="row"
+        sx={{
+          ml: 8,
+          mr: 8,
+          height: 100,
+          background: "white",
+          borderRadius: "5px",
+        }}
+      >
+        <Stack>
+          <TransactionButton
+            text="New Transfer"
+            icon={<img src="/Balance-icon.svg" alt="icon" />}
+          />
+        </Stack>
+        <Stack
+          justifyContent="flex-end"
+          alignItems="center"
+          direction="row"
+          spacing={3}
+        >
+          <TransactionButton
+            text="Balance"
+            icon={<img src="/Balance-icon.svg" alt="icon" />}
+          />
+          <TransactionButton
+            text="Filter"
+            icon={<img src="/Filter-icon.svg" alt="icon" />}
+          />
+          <TransactionButton
+            text="Export"
+            icon={<img src="/Export-icon.svg" alt="icon" />}
+          />
+        </Stack>
+      </Stack>
+
+      <Paper sx={{ width: "100%", overflow: "hidden", boxShadow: "none" }}>
+        <TableContainer sx={{ maxHeight: 440 }}>
+          <Table
+            stickyHeader
+            aria-label="sticky table"
+            sx={{
+              "& .MuiTableRow-root:hover": {
+                backgroundColor: "none",
+              },
+            }}
+          >
+            <TableHead>
+              <TableRow>
+                {columns.map((column) => (
+                  <TableCell
+                    key={column.id}
+                    align={column.align}
+                    style={{ width: 200 }}
+                    // style={{ minWidth: column.minWidth }}
+                    sx={{ color: (theme) => theme.colors.blue }}
                   >
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === "number"
-                            ? column.format(value)
-                            : value}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[]}
-        component="div"
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-        // sx={{
-        //   ".MuiTablePagination-toolbar": {
-        //     // backgroundColor: "rgba(100,100,100,0.5)",
-        //   },
-        //   ".MuiTablePagination-selectLabel, .MuiTablePagination-input": {
-        //     fontWeight: "bold",
-        //     color: "blue",
-        //   },
-        // }}
-      />
-    </Paper>
+                    {column.label}
+                  </TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((row) => {
+                  return (
+                    <TableRow
+                      hover
+                      tabIndex={-1}
+                      key={row.code}
+                      sx={{
+                        "&:nth-of-type(odd)": {
+                          backgroundColor: (theme) => theme.colors.mono9,
+                        },
+                      }}
+                    >
+                      {columns.map((column) => {
+                        const value = row[column.id];
+                        return (
+                          <TableCell key={column.id} align={column.align}>
+                            {column.format && typeof value === "number"
+                              ? column.format(value)
+                              : value}
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  );
+                })}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[]}
+          component="div"
+          count={rows.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+          // sx={{
+          //   ".MuiTablePagination-toolbar": {
+          //     backgroundColor: "rgba(100,100,100,0.5)",
+          //   },
+          //   ".MuiTablePagination-selectLabel, .MuiTablePagination-input": {
+          //     fontWeight: "bold",
+          //     color: "blue",
+          //   },
+          // }}
+        />
+      </Paper>
+    </Box>
   );
 };
 
