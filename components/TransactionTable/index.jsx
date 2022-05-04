@@ -10,14 +10,117 @@ import Table from "../../atoms/Table";
 import * as styles from "./styles";
 
 const TransactionTable = ({
-  rows,
-  columns,
   handleApplyFilter,
   handleBalanceCheck,
   handleExport,
   handleNewTransfer,
   newTransferEnabled,
 }) => {
+  const columns = [
+    { id: "name", label: "Name", minWidth: 170 },
+    { id: "code", label: "ISO\u00a0Code", minWidth: 100 },
+    {
+      id: "population",
+      label: "Population",
+      minWidth: 170,
+      align: "right",
+      format: (value) => value.toLocaleString("en-US"),
+    },
+    {
+      id: "size",
+      label: "Size\u00a0(km\u00b2)",
+      minWidth: 170,
+      align: "right",
+      format: (value) => value.toLocaleString("en-US"),
+    },
+    {
+      id: "density",
+      label: "Density",
+      minWidth: 170,
+      align: "right",
+      format: (value) => value.toFixed(2),
+    },
+    {
+      id: "densdity",
+      label: "Density",
+      minWidth: 170,
+      align: "right",
+      format: (value) => value.toFixed(2),
+    },
+    {
+      id: "denssity",
+      label: "Density",
+      minWidth: 170,
+      align: "right",
+      format: (value) => value.toFixed(2),
+    },
+    {
+      id: "densidty",
+      label: "Density",
+      minWidth: 170,
+      align: "right",
+      format: (value) => value.toFixed(2),
+    },
+  ];
+
+  const rows = [
+    {
+      name: "India",
+      code: "Icsdcdsxcsdc",
+      population: 1324171354,
+      density: 3287263,
+    },
+    {
+      name: "India",
+      code: "Icsdcdsxcsdc",
+      population: 1324171354,
+      density: 3287263,
+    },
+    {
+      name: "India",
+      code: "Icsdcdsxcsdc",
+      population: 1324171354,
+      density: 3287263,
+    },
+    {
+      name: "India",
+      code: "Icsdcdsxcsdc",
+      population: 1324171354,
+      density: 3287263,
+    },
+    {
+      name: "India",
+      code: "Icsdcdsxcsdc",
+      population: 1324171354,
+      density: 3287263,
+    },
+    {
+      name: "India",
+      code: "Icsdcdsxcsdc",
+      population: 1324171354,
+      density: 3287263,
+    },
+    {
+      name: "India",
+      code: "Icsdcdsxcsdc",
+      population: 1324171354,
+      density: 3287263,
+    },
+    {
+      name: "India",
+      code: "Icsdcdsxcsdc",
+      population: 1324171354,
+      density: 3287263,
+    },
+    {
+      name: "India",
+      code: "Icsdcdsxcsdc",
+      population: 1324171354,
+      density: 3287263,
+    },
+  ];
+
+  // take rows and columns from endpoints and have a loading state here i.e show loader when data is fetched
   return (
     <Box sx={styles.tableContainer}>
       <Stack
@@ -72,8 +175,6 @@ TransactionTable.defaultProps = {
 };
 
 TransactionTable.propTypes = {
-  rows: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  columns: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   handleApplyFilter: PropTypes.func,
   handleExport: PropTypes.func,
   handleNewTransfer: PropTypes.func,
