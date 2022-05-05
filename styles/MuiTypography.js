@@ -2,6 +2,17 @@ export default {
   variants: [
     {
       props: {
+        variant: "title7",
+      },
+      style: {
+        fontWeight: 500,
+        fontSize: "20px",
+        lineHeight: "28px",
+        letterSpacing: "0.15px",
+      },
+    },
+    {
+      props: {
         variant: "title6",
       },
       style: {
