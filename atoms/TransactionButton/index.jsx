@@ -16,7 +16,7 @@ const TransactionButton = ({ icon, text, onClick }) => {
         spacing={2}
       >
         <Box sx={{ mt: 1 }}> {icon} </Box>
-        {matches && <Typography>{text}</Typography>}
+        {matches && <Typography variant="caption2">{text}</Typography>}
       </Stack>
     </Button>
   );
