@@ -128,7 +128,7 @@ const CreateAccountOtpDialog = ({
       <Dialog
         open={open}
         onClose={toggleOtpDialog}
-        backDropVisible
+        backDropVisible={backDropVisible}
         paperPropsStyling={paperPropsStyling}
       >
         <Box sx={styles.formContainer}>

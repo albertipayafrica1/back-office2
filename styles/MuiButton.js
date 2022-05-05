@@ -32,7 +32,7 @@ export default {
         variant: "orange",
       },
       style: {
-        color: colors.mono1,
+        color: colors.mono5,
         backgroundColor: colors.orange,
         padding: "0.875rem 1.75rem",
         borderRadius: "0.438rem",

@@ -8,9 +8,9 @@ const Transaction = () => {
 
   return (
     <Tabs tabTitle={tabTitle}>
-      <TransactionTable />
-      <TransactionTable newTransferEnabled />
-      <TransactionTable />
+      <TransactionTable name="payins" />
+      <TransactionTable name="payouts" />
+      <TransactionTable name="billing" />
     </Tabs>
   );
 };
