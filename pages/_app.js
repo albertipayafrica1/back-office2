@@ -6,6 +6,7 @@ import { CacheProvider } from "@emotion/react";
 import { PersistGate } from "redux-persist/integration/react";
 
 import { Provider, useStore } from "react-redux";
+import NextNProgress from "nextjs-progressbar";
 import theme from "../styles/theme";
 import createEmotionCache from "../config/createEmotionCache";
 import { wrapper } from "../redux/store";
@@ -31,6 +32,15 @@ const MyApp = (props) => {
           </Head>
           <ThemeProvider theme={theme}>
             <CssBaseline />
+            <NextNProgress
+              color="#29D"
+              startPosition={0.3}
+              stopDelayMs={200}
+              height={3}
+              options={{ showSpinner: false }}
+              showOnShallow
+            />
+
             {getLayout(<Component {...pageProps} />)}
           </ThemeProvider>
         </CacheProvider>
@@ -48,6 +58,15 @@ const MyApp = (props) => {
           </Head>
           <ThemeProvider theme={theme}>
             <CssBaseline />
+            <NextNProgress
+              color="#29D"
+              startPosition={0.3}
+              stopDelayMs={200}
+              options={{ showSpinner: false }}
+              height={3}
+              showOnShallow
+            />
+
             {getLayout(<Component {...pageProps} />)}
           </ThemeProvider>
         </CacheProvider>

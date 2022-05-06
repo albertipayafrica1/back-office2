@@ -1,81 +1,77 @@
-import PropTypes from "prop-types";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import Image from "next/image";
 import {
   Box,
-  Button,
   Typography,
   InputLabel,
   MenuItem,
   FormControl,
   Select,
 } from "@mui/material";
-import useForm from "../../hooks/useForm";
-import { countryOfOperationCode } from "../../utils/countryOfOperation";
+import ListItemIcon from "@mui/material/ListItemIcon";
 import Dialog from "../../atoms/Dialog/index";
 import { Country } from "./data";
 import { styles } from "./styles";
 
-const SelectContryDialog = ({ open, handleToggleSelectCountry }) => {
-  const [formData, handleFormChange] = useForm({
-    country: "",
-  });
-
+const SelectCountryDialog = () => {
+  const [country, setCountry] = useState("");
   const router = useRouter();
 
-  const handleSubmit = () => {
-    const code = countryOfOperationCode(formData.country);
-    router.push(`login?country=${code}`);
-  };
-  return (
-    <div>
-      <Dialog
-        open={open}
-        onClose={handleToggleSelectCountry}
-        position={styles.dialogueContainer}
-      >
-        <div style={styles.Container}>
-          <Box sx={styles.selectCountryContainer}>
-            <Typography variant="title2">
-              SELECT COUNTRY OF OPERATION
-            </Typography>
+  const handleFormChange = (event) => {
+    setCountry(event.target.country);
 
-            <FormControl sx={styles.formControler}>
-              <InputLabel id="country">Country</InputLabel>
-              <Select
-                labelId="Country"
-                id="country"
-                name="country"
-                value={formData.country}
-                label="country"
-                onChange={handleFormChange}
+    if (
+      window.location.hostname === "127.0.0.1" ||
+      window.location.hostname === "localhost"
+    ) {
+      router.push(
+        `http://${window.location.hostname}:3000?country=${event.target.value}`
+      );
+    } else {
+      router.push(`${window.location.hostname}?country=${event.target.value}`);
+    }
+  };
+
+  return (
+    <Dialog
+      open
+      position={styles.dialogueContainer}
+      paperPropsStyling={{ position: "absolute", top: "0px" }}
+    >
+      <Box sx={styles.selectCountryContainer}>
+        <Typography sx={styles.selectCountryText} variant="title2">
+          Select country to proceed
+        </Typography>
+
+        <FormControl sx={styles.formController}>
+          <InputLabel id="country">-Select-</InputLabel>
+          <Select
+            labelId="Country"
+            id="country"
+            name="country"
+            value={country}
+            label="Select"
+            onChange={handleFormChange}
+          >
+            {Country.map((name) => (
+              <MenuItem
+                sx={{ fontSize: "small" }}
+                key={name.id}
+                value={name.country}
               >
-                {Country.map((name) => (
-                  <MenuItem key={name.id} value={name.country}>
-                    <Image width="20" height="15" alt="map" src={name.src} />
-                    {name.country}
-                  </MenuItem>
-                ))}
-              </Select>
-              <Button
-                onClick={handleSubmit}
-                disabled={formData.country === ""}
-                sx={styles.submit}
-                variant="blue"
-              >
-                Submit
-              </Button>
-            </FormControl>
-          </Box>
-        </div>
-      </Dialog>
-    </div>
+                <ListItemIcon>
+                  <Image src={name.src} alt="logo" width={20} height={20} />
+                </ListItemIcon>
+
+                {name.country}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </Box>
+    </Dialog>
   );
 };
 
-export default SelectContryDialog;
-
-SelectContryDialog.propTypes = {
-  open: PropTypes.bool.isRequired,
-  handleToggleSelectCountry: PropTypes.func.isRequired,
-};
+export default SelectCountryDialog;

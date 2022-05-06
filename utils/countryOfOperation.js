@@ -94,7 +94,7 @@ export const getCountryIconLinkLandingPage = (country) => {
   switch (country) {
     case "KE":
       givenCountryIconLinkLandingPage =
-        "https://icons.elipa.co/iPay_newlogo.svg";
+        "https://icons.elipa.co/iPay_logo_white.svg";
       break;
     case "TG":
       givenCountryIconLinkLandingPage =
@@ -110,7 +110,7 @@ export const getCountryIconLinkLandingPage = (country) => {
       break;
     default:
       givenCountryIconLinkLandingPage =
-        "https://icons.elipa.co/iPay_newlogo.svg";
+        "https://icons.elipa.co/iPay_logo_white.svg";
   }
   return givenCountryIconLinkLandingPage;
 };

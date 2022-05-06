@@ -2,14 +2,14 @@ import PropTypes from "prop-types";
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Box, Typography } from "@mui/material";
+import { Stack, Box, Typography } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { Formik, Form } from "formik";
 import axios from "axios";
 import Dialog from "../../atoms/Dialog/index";
 import Marquee from "../../atoms/Marquee/index";
 import FormikControl from "../FormikControls/index";
-import { validationSchema } from "../../utils/formValidations/ContactSales";
+import { validationSchema } from "../../utils/formValidations/contactSales";
 import MuiAlert from "../../atoms/MuiAlert";
 import { iPayProducts } from "./data";
 import { styles } from "./styles";
@@ -18,7 +18,7 @@ const ContactSales = ({ toggleSales, open }) => {
   const [alert, setAlert] = useState(false);
   const [error, setError] = useState(false);
   const [Loading, SetLoading] = useState(false);
-
+  const [responseMessage, setResponseMessage] = useState("");
   useEffect(() => {
     setAlert(false);
     setError(false);
@@ -30,7 +30,7 @@ const ContactSales = ({ toggleSales, open }) => {
 
     const config = {
       method: "post",
-      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/book-demo`,
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/contact-sales`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -39,13 +39,16 @@ const ContactSales = ({ toggleSales, open }) => {
 
     axios(config)
       .then((response) => {
-        console.log(response.data.success);
         if (response.data.success) {
+          setResponseMessage(response.data.response);
+          setError(false);
           setAlert(true);
           SetLoading(false);
         }
       })
       .catch((errors) => {
+        setError(false);
+        setError(true);
         if (error.response) {
           if (errors.response.data.responseCode === 400) {
             setErrors(errors.response.data.response);
@@ -53,7 +56,6 @@ const ContactSales = ({ toggleSales, open }) => {
             SetLoading(false);
           }
         }
-        setError(true);
         SetLoading(false);
       });
   };
@@ -77,10 +79,7 @@ const ContactSales = ({ toggleSales, open }) => {
         position={styles.dialogueContainer}
       >
         {alert ? (
-          <MuiAlert
-            variant="success"
-            message="Demo booked succesfuly ipay team will contact you"
-          />
+          <MuiAlert variant="success" message={responseMessage} />
         ) : null}
 
         {error ? (
@@ -107,18 +106,22 @@ const ContactSales = ({ toggleSales, open }) => {
                   <Typography sx={styles.salesText}>
                     Contact our Sales team.
                   </Typography>
-                  <Typography>
+                  <Typography sx={styles.salesDescription}>
                     With iPay you can Sell online, process payments, build
                     financial products, or use business tools designed to grow
                     your business. Please complete the form below to connect
                     with a member of our team.
                   </Typography>
-                  <Box sx={styles.FormContainer}>
-                    <Box>
-                      <Box sx={styles.inputsContainer}>
+                  <Box>
+                    <Stack
+                      direction={{ xs: "column", sm: "row" }}
+                      sx={{ mt: "10px" }}
+                      spacing={2}
+                    >
+                      <Box sx={{ width: "100%" }}>
                         <FormikControl
                           control="input"
-                          label="FirstName"
+                          label="First name"
                           name="firstName"
                           variant="outlined"
                           type="text"
@@ -126,33 +129,11 @@ const ContactSales = ({ toggleSales, open }) => {
                           required
                         />
                       </Box>
-                      <Box sx={styles.leftFormContainer}>
+
+                      <Box sx={{ width: "100%" }}>
                         <FormikControl
                           control="input"
-                          label="Enter Your Company Name"
-                          name="yourCompanyName"
-                          variant="outlined"
-                          type="text"
-                          id="firstname"
-                        />
-                      </Box>
-                      <Box sx={styles.leftFormContainer}>
-                        <FormikControl
-                          control="input"
-                          label="Enter your mobile number"
-                          name="mobileNumber"
-                          variant="outlined"
-                          type="text"
-                          id="mobileNumber"
-                          required
-                        />
-                      </Box>
-                    </Box>
-                    <Box>
-                      <Box sx={styles.LastnameForm}>
-                        <FormikControl
-                          control="input"
-                          label="Enter your  lastname"
+                          label="Last name"
                           name="lastName"
                           variant="outlined"
                           type="text"
@@ -160,17 +141,54 @@ const ContactSales = ({ toggleSales, open }) => {
                           required
                         />
                       </Box>
-                      <Box sx={styles.rightFormContainer}>
+                    </Stack>
+
+                    <Stack
+                      direction={{ xs: "column", sm: "row" }}
+                      spacing={2}
+                      sx={{ mt: "5px" }}
+                    >
+                      <Box sx={{ width: "100%" }}>
                         <FormikControl
                           control="input"
-                          label="Enter your company website"
+                          label="Company name"
+                          name="yourCompanyName"
+                          variant="outlined"
+                          type="text"
+                          id="firstname"
+                        />
+                      </Box>
+
+                      <Box sx={{ width: "100%" }}>
+                        <FormikControl
+                          control="input"
+                          label="You company website"
                           name="yourCompanyWebsite"
                           variant="outlined"
                           type="text"
                           id="yourCompanyWebsite"
                         />
                       </Box>
-                      <Box sx={styles.rightFormContainer}>
+                    </Stack>
+
+                    <Stack
+                      direction={{ xs: "column", sm: "row" }}
+                      spacing={2}
+                      sx={{ mt: "5px" }}
+                    >
+                      <Box sx={{ width: "100%" }}>
+                        <FormikControl
+                          control="input"
+                          label="Mobile number"
+                          name="mobileNumber"
+                          variant="outlined"
+                          type="text"
+                          id="mobileNumber"
+                          required
+                        />
+                      </Box>
+
+                      <Box sx={{ width: "100%" }}>
                         <FormikControl
                           control="input"
                           label="Email"
@@ -181,7 +199,7 @@ const ContactSales = ({ toggleSales, open }) => {
                           required
                         />
                       </Box>
-                    </Box>
+                    </Stack>
                   </Box>
                   <Box>
                     <Box>
@@ -196,7 +214,7 @@ const ContactSales = ({ toggleSales, open }) => {
                           required
                         />
                       </Box>
-                      <Box sx={{ marginTop: "10px" }}>
+                      <Box sx={{ marginTop: "5px" }}>
                         What solution are you interested in?
                       </Box>
                     </Box>

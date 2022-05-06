@@ -27,5 +27,5 @@ export const validationSchema = yup.object({
     )
     .required("Mobile number is required"),
 
-  subject: yup.string("Enter the subject").required("subject is required"),
+  subject: yup.string("Enter the subject").required("Subject is required"),
 });
