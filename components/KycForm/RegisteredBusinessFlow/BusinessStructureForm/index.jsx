@@ -295,7 +295,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
           enableReinitialize
         >
           {(formik) => {
-            // console.log(formik.values, "fork");
+            console.log(formik.errors, "fork");
             return (
               <Form>
                 <Stack spacing={8}>
