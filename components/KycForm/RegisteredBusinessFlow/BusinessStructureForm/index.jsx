@@ -230,7 +230,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
         businessDescription: "",
       },
       businessLocation: {
-        physicalAddress: "This is my physical address",
+        physicalAddress: "",
         postalAddress: "",
         postalCode: "",
         city: "",
