@@ -15,15 +15,19 @@ export const shipProductYourself = [
 export const fulfillmentPeriod = [
   { key: "Immediately", value: "1" },
   {
-    key: "Within One Month",
+    key: "Within a Week",
     value: "2",
   },
   {
-    key: "Within Two Months",
+    key: "Within One Month",
     value: "3",
   },
   {
-    key: "More Than Two Months",
+    key: "Within Two Months",
     value: "4",
+  },
+  {
+    key: "More Than Two Months",
+    value: "5",
   },
 ];

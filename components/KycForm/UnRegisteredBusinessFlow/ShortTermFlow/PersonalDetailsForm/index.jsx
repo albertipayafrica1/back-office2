@@ -22,7 +22,6 @@ import {
   purposeOptions,
   titleOptions,
   genderOptions,
-  maritalStatusOptions,
   documentTypeOptions,
 } from "./data";
 
@@ -38,7 +37,6 @@ const initialValues = {
     contactNumber: "",
     email: "",
     gender: "",
-    maritalStatus: "",
     dateOfBirth: null,
     countryOfOperation: "KE",
     documentType: "1",
@@ -149,7 +147,6 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
         contactNumber: "",
         email: "",
         gender: "",
-        maritalStatus: "",
         dateOfBirth: null,
         countryOfOperation: "KE",
         documentType: "1",
@@ -320,17 +317,6 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                           id="gender"
                           select
                           selectItem={genderOptions}
-                          required
-                        />
-                        <FormikControl
-                          control="input"
-                          variant="outlined"
-                          name="businessRepresentative.maritalStatus"
-                          label="Marital Status"
-                          type="text"
-                          id="marital Status"
-                          select
-                          selectItem={maritalStatusOptions}
                           required
                         />
                       </Stack>

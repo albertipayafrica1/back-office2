@@ -50,7 +50,7 @@ const TopAppBar = ({ handleDrawerToggle }) => {
       .then((response) => {
         Cookies.set("iPayT", "", { expires: -1 });
 
-        router.push(`/login/?country=${"KE"}`); // update this once we get user location from the server
+        router.replace(`/login/?country=${"KE"}`); // update this once we get user location from the server
         setLoadingButton(false);
         // if (response.data.success === true) {
         //   // Cookies.set("iPayT", "", { expires: -1 });

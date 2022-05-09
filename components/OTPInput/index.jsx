@@ -44,7 +44,7 @@ const OTPInput = ({
 
   return (
     <Box sx={styles.formContainer}>
-      <Stack direction="column" spacing={2} sx={styles.form}>
+      <Stack direction="column" spacing={2} sx={styles.form} component="form">
         <Stack
           direction="row"
           justifyContent="space-between"

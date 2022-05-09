@@ -23,11 +23,6 @@ export const genderOptions = [
   { key: "Other", value: "3" },
 ];
 
-export const maritalStatusOptions = [
-  { key: "Married", value: "1" },
-  { key: "Single", value: "2" },
-];
-
 export const documentTypeOptions = [
   { key: "National Id", value: "1" },
   { key: "Passport", value: "2" },

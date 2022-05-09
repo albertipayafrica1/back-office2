@@ -61,7 +61,6 @@ export const businessStructure = yup.object({
       .email("Please Enter a valid Email")
       .required("Email is required"),
     gender: yup.string().required("kindly select gender"),
-    maritalStatus: yup.string().required("kindly select your marital status"),
     dateOfBirth: yup
       .date()
       .required("kindly select your date of birth")

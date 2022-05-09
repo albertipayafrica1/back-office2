@@ -10,11 +10,6 @@ export const genderOptions = [
   { key: "Other", value: "3" },
 ];
 
-export const maritalStatusOptions = [
-  { key: "Married", value: "1" },
-  { key: "Single", value: "2" },
-];
-
 export const businessCategoryOptions = [
   { key: "Ecommerce", value: "1" },
   { key: "Education", value: "2" },

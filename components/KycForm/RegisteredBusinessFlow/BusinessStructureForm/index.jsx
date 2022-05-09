@@ -21,7 +21,6 @@ import { telephoneCodes } from "../../../../utils/data";
 import {
   titleOptions,
   genderOptions,
-  maritalStatusOptions,
   businessCategoryOptions,
   businessSubCategoryOptions,
   businessCurrencyOptions,
@@ -38,11 +37,10 @@ const initialValues = {
     surname: "",
     firstName: "",
     middleName: "",
-    telephoneCountryCode: "",
+    telephoneCountryCode: "KE",
     contactNumber: "",
     email: "",
     gender: "",
-    maritalStatus: "",
     dateOfBirth: null,
     countryOfOperation: "KE",
     documentType: "1",
@@ -82,7 +80,7 @@ const initialValues = {
       middleName: "",
       shareHolderType: "",
       otherShareHolderType: "",
-      telephoneCountryCode: "",
+      telephoneCountryCode: "KE",
       contactNumber: "",
       email: "",
       documentType: "1",
@@ -100,7 +98,7 @@ const initialValues = {
           surname: "",
           firstName: "",
           middleName: "",
-          telephoneCountryCode: "",
+          telephoneCountryCode: "KE",
           contactNumber: "",
           email: "",
           relationship: "",
@@ -196,11 +194,10 @@ const BusinessStructureForm = ({ handleNextStep }) => {
         surname: "",
         firstName: "",
         middleName: "",
-        telephoneCountryCode: "",
+        telephoneCountryCode: "KE",
         contactNumber: "",
         email: "",
         gender: "",
-        maritalStatus: "",
         dateOfBirth: null,
         countryOfOperation: "KE",
         documentType: "1",
@@ -247,7 +244,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
           middleName: "",
           shareHolderType: "",
           otherShareHolderType: "",
-          telephoneCountryCode: "",
+          telephoneCountryCode: "KE",
           contactNumber: "",
           email: "",
           documentType: "1",
@@ -265,7 +262,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
               surname: "",
               firstName: "",
               middleName: "",
-              telephoneCountryCode: "",
+              telephoneCountryCode: "KE",
               contactNumber: "",
               email: "",
               relationship: "",
@@ -425,17 +422,6 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                           id="gender"
                           select
                           selectItem={genderOptions}
-                          required
-                        />
-                        <FormikControl
-                          control="input"
-                          variant="outlined"
-                          name="businessRepresentative.maritalStatus"
-                          label="Marital Status"
-                          type="text"
-                          id="marital Status"
-                          select
-                          selectItem={maritalStatusOptions}
                           required
                         />
                       </Stack>
