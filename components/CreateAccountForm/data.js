@@ -38,6 +38,7 @@ export const kenyaIpayProducts = [
   { value: "3", key: "E-invoicing" },
   { value: "4", key: "iPay Lite" },
   { value: "5", key: "iPay Payouts" },
+  { value: "6", key: "iPay Billing" },
 ];
 export const tanzaniaIpayProducts = [{ value: "2", key: "eLipa Online" }];
 export const ugandaIpayProducts = [{ value: "2", key: "eLipa Online" }];
