@@ -293,7 +293,7 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
         enableReinitialize
       >
         {(formik) => {
-          console.log(formik.values, "fork");
+          console.log(formik.errors, "fork");
           return (
             <Form>
               <Stack sx={styles.formContainer} spacing={8}>
