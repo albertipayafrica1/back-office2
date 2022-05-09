@@ -49,7 +49,9 @@ const Home = () => {
   const countryLink = getCountryIconLinkLandingPage(formData.countrySelector);
 
   const handleCreateAccount = () => {
-    router.push(`/createAccount?country=${formData.countrySelector}&rc=RC0000`);
+    router.push(
+      `/createAccount?country=${formData.countrySelector}&rc=RC000000`
+    );
   };
 
   const handleLogin = () => {
