@@ -21,11 +21,9 @@ const DownloadDiv = ({ text, downloadUrl }) => {
         </Box>
 
         <Box sx={styles.TitleContainer}>
-          <Link href={downloadUrl}>
-            <Typography variant="subtitle3" sx={styles.TextLink}>
-              {text}
-            </Typography>
-          </Link>
+          <Typography variant="subtitle3" sx={styles.TextLink}>
+            {text}
+          </Typography>
         </Box>
       </Box>
     </a>

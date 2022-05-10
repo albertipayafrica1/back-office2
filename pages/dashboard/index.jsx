@@ -1,6 +1,7 @@
 import React from "react";
 import CreateAccountOtpDialog from "../../components/CreateAccountOtpDialog";
 import Search from "../../atoms/Search";
+import DownloadDiv from "../../atoms/DownloadDiv";
 
 function index(props) {
   const paperPropsStyling = {
@@ -17,7 +18,13 @@ function index(props) {
     //     paperPropsStyling={paperPropsStyling}
     //   />
     // </div>
-    <Search />
+    <>
+      <Search />
+      <DownloadDiv
+        text="Download Our AML (Anti-Money Laundering)/KYC questionnaire for signature"
+        downloadUrl="https://www.irs.gov/pub/irs-pdf/fw8ben.pdf"
+      />
+    </>
   );
 }
 
