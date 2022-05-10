@@ -270,7 +270,7 @@ export const businessStructure = yup.object({
     postalAddress: yup
       .string()
       .required("kindly enter your business postal address"),
-    postalCode: yup.string(),
+    postalCode: yup.string().required("kindly enter your business postal code"),
     city: yup.string().required("kindly enter your city/town "),
     county: yup.string("Kindly enter county"),
     websiteLink: yup.string().url("Enter a valid url"),

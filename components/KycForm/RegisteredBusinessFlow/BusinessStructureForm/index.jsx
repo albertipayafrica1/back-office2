@@ -757,6 +757,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                           label="Postal Code"
                           type="number"
                           id="businessLocation.postalCode"
+                          required
                         />
                         <FormikControl
                           control="input"
