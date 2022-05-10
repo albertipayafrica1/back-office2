@@ -58,6 +58,8 @@ export const personalDetails = yup.object({
       .required("Contact Number is required"),
     email: yup
       .string()
+      .strict()
+      .trim("Kindly remove spaces before/after the email")
       .email("Please Enter a valid Email")
       .required("Email is required"),
     gender: yup.string().required("kindly select gender"),

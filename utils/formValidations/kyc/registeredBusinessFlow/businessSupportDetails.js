@@ -11,6 +11,8 @@ export const businessSupportDetails = yup.object({
     ),
   customerSupportEmailAddress: yup
     .string()
+    .strict()
+    .trim("Kindly remove spaces before/after the email")
     .email("Please Enter a valid Email")
     .required("Email is required"),
 });

@@ -58,6 +58,8 @@ export const businessStructure = yup.object({
       .required("Contact Number is required"),
     email: yup
       .string()
+      .strict()
+      .trim("Kindly remove spaces before/after the email")
       .email("Please Enter a valid Email")
       .required("Email is required"),
     gender: yup.string().required("kindly select gender"),
@@ -243,6 +245,8 @@ export const businessStructure = yup.object({
       .required("Contact Number is required"),
     businessEmail: yup
       .string()
+      .strict()
+      .trim("Kindly remove spaces before/after the email")
       .email("Please Enter a valid Email")
       .required("Kindly Enter your business Email"),
     businessCurrency: yup
@@ -349,6 +353,8 @@ export const businessStructure = yup.object({
         .required("Contact Number is required"),
       email: yup
         .string()
+        .strict()
+        .trim("Kindly remove spaces before/after the email")
         .email("Please Enter a valid Email")
         .required("Email is required"),
       documentType: yup.string().required("kindly select document Type"),
@@ -565,7 +571,11 @@ export const businessStructure = yup.object({
                 );
             })
             .required("Contact Number is required"),
-          email: yup.string().email("Please Enter a valid Email"),
+          email: yup
+            .string()
+            .strict()
+            .trim("Kindly remove spaces before/after the email")
+            .email("Please Enter a valid Email"),
           relationship: yup
             .string()
             .required("kindly enter you relationship with your next of Kin"),

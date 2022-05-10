@@ -3,7 +3,9 @@ import * as yup from "yup";
 export const validationSchema = yup.object({
   email: yup
     .string()
-    .email("Enter a valid email")
+    .strict()
+    .trim("Kindly remove spaces before/after the email")
+    .email("Please Enter a valid Email")
     .required("Email is required"),
   firstName: yup
     .string("Enter your First name")
