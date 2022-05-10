@@ -59,6 +59,7 @@ const Wedding = ({ handleNextStep }) => {
           setAlert({ type: "error", message: "Something Went Wrong" });
           setLoading(false);
         }
+        formikHelpers.setSubmitting(false);
       })
       .catch((error) => {
         setLoading(false);
@@ -90,6 +91,7 @@ const Wedding = ({ handleNextStep }) => {
           setAlert({ type: "error", message: "Something Went Wrong" });
           console.log(error, "third if else");
         }
+        formikHelpers.setSubmitting(false);
       });
   };
 
