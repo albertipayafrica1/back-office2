@@ -105,11 +105,6 @@ const initialValues = {
           dateOfBirth: null,
           documentType: "1",
           documentNumber: "",
-          nationalIdFront: [],
-          nationalIdBack: [],
-          passport: [],
-          birthCertificate: [],
-          percentageBeneficiary: "100",
         },
       ],
     },
@@ -269,11 +264,6 @@ const BusinessStructureForm = ({ handleNextStep }) => {
               dateOfBirth: null,
               documentType: "1",
               documentNumber: "",
-              nationalIdFront: [],
-              nationalIdBack: [],
-              passport: [],
-              birthCertificate: [],
-              percentageBeneficiary: "100",
             },
           ],
         },
@@ -878,11 +868,6 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                                     dateOfBirth: null,
                                     documentType: "1",
                                     documentNumber: "",
-                                    nationalIdFront: [],
-                                    nationalIdBack: [],
-                                    passport: [],
-                                    birthCertificate: [],
-                                    percentageBeneficiary: "100",
                                   },
                                 ],
                               });
@@ -1389,99 +1374,6 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                                 type="text"
                                 id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].documentNumber`}
                                 required
-                              />
-                            </Stack>
-                            <Stack spacing={3}>
-                              {formik.values.ultimateBeneficialOwners[index]
-                                .nextOfKin[index1].documentType === "1" && (
-                                <Stack direction={{ xs: "column" }} spacing={3}>
-                                  <FormikControl
-                                    control="singleFileUpload"
-                                    label="National Id of Next Of Kin (front)"
-                                    name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].nationalIdFront`}
-                                    multiple={false}
-                                    required
-                                    givenFile={
-                                      formik.values.ultimateBeneficialOwners[
-                                        index
-                                      ].nextOfKin[index1].nationalIdFront !==
-                                      undefined
-                                        ? formik.values
-                                            .ultimateBeneficialOwners[index]
-                                            .nextOfKin[index1]
-                                            .nationalIdFront[0]
-                                        : null
-                                    }
-                                  />
-                                  <FormikControl
-                                    control="singleFileUpload"
-                                    label="National Id of Next Of Kin (Back)"
-                                    name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].nationalIdBack`}
-                                    multiple={false}
-                                    required
-                                    givenFile={
-                                      formik.values.ultimateBeneficialOwners[
-                                        index
-                                      ].nextOfKin[index1].nationalIdBack !==
-                                      undefined
-                                        ? formik.values
-                                            .ultimateBeneficialOwners[index]
-                                            .nextOfKin[index1].nationalIdBack[0]
-                                        : null
-                                    }
-                                  />
-                                </Stack>
-                              )}
-                              {formik.values.ultimateBeneficialOwners[index]
-                                .nextOfKin[index1].documentType === "2" && (
-                                <FormikControl
-                                  control="singleFileUpload"
-                                  label="Passport of  Next Of Kin"
-                                  name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].passport`}
-                                  multiple={false}
-                                  required
-                                  givenFile={
-                                    formik.values.ultimateBeneficialOwners[
-                                      index
-                                    ].nextOfKin[index1].passport !== undefined
-                                      ? formik.values.ultimateBeneficialOwners[
-                                          index
-                                        ].nextOfKin[index1].passport[0]
-                                      : null
-                                  }
-                                />
-                              )}
-                              {formik.values.ultimateBeneficialOwners[index]
-                                .nextOfKin[index1].documentType === "3" && (
-                                <FormikControl
-                                  control="singleFileUpload"
-                                  label="Birth Certificate of Next Of Kin "
-                                  name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].birthCertificate`}
-                                  multiple={false}
-                                  required
-                                  givenFile={
-                                    formik.values.ultimateBeneficialOwners[
-                                      index
-                                    ].nextOfKin[index1].birthCertificate !==
-                                    undefined
-                                      ? formik.values.ultimateBeneficialOwners[
-                                          index
-                                        ].nextOfKin[index1].birthCertificate[0]
-                                      : null
-                                  }
-                                />
-                              )}
-                            </Stack>
-                            <Stack spacing={3}>
-                              <FormikControl
-                                control="input"
-                                label="Percentage Beneficiary"
-                                name={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].percentageBeneficiary`}
-                                variant="outlined"
-                                type="number"
-                                id={`ultimateBeneficialOwners[${index}].nextOfKin[${index1}].percentageBeneficiary`}
-                                required
-                                disabled
                               />
                             </Stack>
                           </Stack>

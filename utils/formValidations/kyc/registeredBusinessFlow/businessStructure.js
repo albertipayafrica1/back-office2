@@ -572,132 +572,46 @@ export const businessStructure = yup.object({
           dateOfBirth: yup.date().required("kindly select your date of birth"),
           documentType: yup.string().required("kindly select a document Type"),
           documentNumber: yup.string().required("kindly enter document number"),
-          nationalIdFront: yup
-            .array(
-              yup
-                .object({
-                  url: yup.string().required("This file is required"),
-                })
-                .required("This file is required")
-            )
-            .when("documentType", (documentType) => {
-              if (documentType === "1") {
-                return yup
-                  .array(
-                    yup
-                      .object({
-                        url: yup.string().required("This file is required"),
-                      })
-                      .required("This file is required")
-                  )
-                  .min(1, "This file is required")
-                  .required("This file is required");
-              }
-              return yup.array(
-                yup
-                  .object({
-                    url: yup.string().required("This file is required"),
-                  })
-                  .required("This file is required")
-              );
-            }),
-          nationalIdBack: yup
-            .array(
-              yup
-                .object({
-                  url: yup.string().required("This file is required"),
-                })
-                .required("This file is required")
-            )
-            .when("documentType", (documentType) => {
-              if (documentType === "1") {
-                return yup
-                  .array(
-                    yup
-                      .object({
-                        url: yup.string().required("This file is required"),
-                      })
-                      .required("This file is required")
-                  )
-                  .min(1, "This file is required")
-                  .required("This file is required");
-              }
-              return yup.array(
-                yup
-                  .object({
-                    url: yup.string().required("This file is required"),
-                  })
-                  .required("This file is required")
-              );
-            }),
-          passport: yup
-            .array(
-              yup
-                .object({
-                  url: yup.string().required("This file is required"),
-                })
-                .required("This file is required")
-            )
-            .when("documentType", (documentType) => {
-              if (documentType === "2") {
-                return yup
-                  .array(
-                    yup
-                      .object({
-                        url: yup.string().required("This file is required"),
-                      })
-                      .required("This file is required")
-                  )
-                  .min(1, "This file is required")
-                  .required("This file is required");
-              }
-              return yup.array(
-                yup
-                  .object({
-                    url: yup.string().required("This file is required"),
-                  })
-                  .required("This file is required")
-              );
-            }),
-          birthCertificate: yup
-            .array(
-              yup
-                .object({
-                  url: yup.string().required("This file is required"),
-                })
-                .required("This file is required")
-            )
-            .when("documentType", (documentType) => {
-              if (documentType === "3") {
-                return yup
-                  .array(
-                    yup
-                      .object({
-                        url: yup.string().required("This file is required"),
-                      })
-                      .required("This file is required")
-                  )
-                  .min(1, "This file is required")
-                  .required("This file is required");
-              }
-              return yup.array(
-                yup
-                  .object({
-                    url: yup.string().required("This file is required"),
-                  })
-                  .required("This file is required")
-              );
-            }),
-          percentageBeneficiary: yup
-            .string()
-            .test(
-              "value",
-              "Percentage share of your next of kin must be between 1 and 100",
-              (val) => Number(val) >= 1 && Number(val) <= 100
-            )
-            .required(
-              "kindly enter the share of your next of kin between 1-100"
-            ),
+          // below is for reference in case
+          // birthCertificate: yup
+          //   .array(
+          //     yup
+          //       .object({
+          //         url: yup.string().required("This file is required"),
+          //       })
+          //       .required("This file is required")
+          //   )
+          //   .when("documentType", (documentType) => {
+          //     if (documentType === "3") {
+          //       return yup
+          //         .array(
+          //           yup
+          //             .object({
+          //               url: yup.string().required("This file is required"),
+          //             })
+          //             .required("This file is required")
+          //         )
+          //         .min(1, "This file is required")
+          //         .required("This file is required");
+          //     }
+          //     return yup.array(
+          //       yup
+          //         .object({
+          //           url: yup.string().required("This file is required"),
+          //         })
+          //         .required("This file is required")
+          //     );
+          //   }),
+          // percentageBeneficiary: yup
+          //   .string()
+          //   .test(
+          //     "value",
+          //     "Percentage share of your next of kin must be between 1 and 100",
+          //     (val) => Number(val) >= 1 && Number(val) <= 100
+          //   )
+          //   .required(
+          //     "kindly enter the share of your next of kin between 1-100"
+          //   ),
         })
       ),
     })

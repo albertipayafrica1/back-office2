@@ -17,13 +17,7 @@ import MuiAlert from "../../../../../atoms/MuiAlert";
 import { personalDetails } from "../../../../../utils/formValidations/kyc/unRegisteredBusinessFlow/shortTermFlow/personalDetails";
 import { telephoneCodes } from "../../../../../utils/data";
 
-import {
-  signUpDurationOptions,
-  purposeOptions,
-  titleOptions,
-  genderOptions,
-  documentTypeOptions,
-} from "./data";
+import { titleOptions, genderOptions, documentTypeOptions } from "./data";
 
 import * as styles from "./styles";
 
@@ -48,11 +42,6 @@ const initialValues = {
     passportSizePhoto: [],
     pinCertificate: [],
   },
-  // plan: {
-  //    signUpDuration: "",
-  //    purpose: "",
-  //   description: "",
-  // },
   businessLocation: {
     physicalAddress: "",
     postalAddress: "",
@@ -158,11 +147,6 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
         passportSizePhoto: [],
         pinCertificate: [],
       },
-      // plan: {
-      //    signUpDuration: "",
-      //    purpose: "",
-      //   description: "",
-      // },
       businessLocation: {
         physicalAddress: "",
         postalAddress: "",
@@ -256,17 +240,6 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                           spacing={3}
                         >
                           <Box sx={{ width: "100px" }}>
-                            {/* <FormikControl
-                              control="input"
-                              name="businessRepresentative.telephoneCountryCode"
-                              label="Code"
-                              type="text"
-                              select
-                              selectItem={telephoneCodes}
-                              id="telephoneCountryCode"
-                              required
-                              defaultValue={formik.values.businessRepresentative.countryOfOperation.toUpperCase()}
-                            /> */}
                             <FormikControl
                               control="autocomplete"
                               name="businessRepresentative.telephoneCountryCode"
@@ -488,60 +461,6 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                       </Stack>
                     </Stack>
                   </CreateAccountFormDiv>
-                  {/* <CreateAccountFormDiv topLabel="Plan">
-                    <Stack direction="column" spacing={2}>
-                      <FormikControl
-                        control="select"
-                        variant="outlined"
-                        name="plan.signUpDuration"
-                        label="Sign Up Duration"
-                        type="text"
-                        select
-                        selectItem={signUpDurationOptions}
-                        id="signUpDuration"
-                        required
-                      />
-                      {formik.values.plan.signUpDuration === "1" && (
-                        <FormikControl
-                          control="select"
-                          variant="outlined"
-                          name="plan.purpose"
-                          label="Purpose"
-                          type="text"
-                          select
-                          selectItem={purposeOptions}
-                          id="purpose"
-                          required
-                        />
-                      )}
-                      {formik.values.plan.signUpDuration === "2" && (
-                        <FormikControl
-                          control="input"
-                          variant="outlined"
-                          name="plan.description"
-                          label="Business Description"
-                          type="text"
-                          id="description"
-                          multiline
-                          required
-                          haveTooltip
-                          tooltipText="Describe the nature Of Business"
-                        />
-                      )}
-                      <FormikControl
-                        control="input"
-                        variant="outlined"
-                        name="plan.description"
-                        label="Business Description"
-                        type="text"
-                        id="description"
-                        multiline
-                        required
-                        haveTooltip
-                        tooltipText="Describe the nature Of Business"
-                      />
-                    </Stack>
-                  </CreateAccountFormDiv> */}
                   <CreateAccountFormDiv topLabel="Address">
                     <Stack direction="column" spacing={2}>
                       <Stack
