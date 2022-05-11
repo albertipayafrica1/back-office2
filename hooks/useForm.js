@@ -21,7 +21,7 @@ const useForm = (initialValues) => {
         ) {
           window.location.href = `http://${window.location.hostname}:3000?country=${e.target.value}`;
         } else {
-          window.location.href = `${window.location.hostname}?country=${e.target.value}`;
+          window.location.href = `https://${window.location.hostname}?country=${e.target.value}`;
         }
       }
     }

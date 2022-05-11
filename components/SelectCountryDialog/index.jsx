@@ -29,7 +29,9 @@ const SelectCountryDialog = () => {
         `http://${window.location.hostname}:3000?country=${event.target.value}`
       );
     } else {
-      router.push(`${window.location.hostname}?country=${event.target.value}`);
+      router.push(
+        `https://${window.location.hostname}?country=${event.target.value}`
+      );
     }
   };
 
