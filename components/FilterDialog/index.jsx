@@ -52,7 +52,7 @@ const FilterDialog = ({ open, toggleBalanceDialog, name }) => {
   return (
     <div>
       <Dialog
-        open={true}
+        open
         onClose={toggleBalanceDialog}
         backDropVisible={false}
         paperPropsStyling={{ position: "absolute", width: "3000px" }}
@@ -192,7 +192,7 @@ const FilterDialog = ({ open, toggleBalanceDialog, name }) => {
                       direction="row"
                       spacing={7}
                       justifyContent="space-between"
-                    ></Stack>
+                    />
                     <Stack direction="row" justifyContent="space-between">
                       <Button
                         variant="text"
