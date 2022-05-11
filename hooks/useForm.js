@@ -4,6 +4,27 @@ const useForm = (initialValues) => {
   const [values, setValues] = useState(initialValues);
 
   const handleValueChange = (e) => {
+    const country = window.location.href.substring(
+      window.location.href.length - 2,
+      window.location.href.length
+    );
+    const availableCountries = ["KE", "UG", "TG", "TZ"];
+    if (
+      e.target.name === "selectWithRedirect" &&
+      e.target.value !== undefined &&
+      e.target.value !== null
+    ) {
+      if (country !== e.target.value && availableCountries.includes(country)) {
+        if (
+          window.location.hostname === "127.0.0.1" ||
+          window.location.hostname === "localhost"
+        ) {
+          window.location.href = `http://${window.location.hostname}:3000?country=${e.target.value}`;
+        } else {
+          window.location.href = `${window.location.hostname}?country=${e.target.value}`;
+        }
+      }
+    }
     setValues({
       ...values,
       [e.target.name]: e.target.value,

@@ -6,7 +6,7 @@ import MuiButton from "./MuiButton";
 
 const lightTheme = createTheme({
   typography: {
-    fontFamily: ["Roboto", "sans-serif"].join(","),
+    fontFamily: ["Roboto", "sans-serif"].join(","), // to be discussed
   },
   colors,
   components: {

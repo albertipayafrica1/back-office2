@@ -1,18 +1,24 @@
 export const Country = [
   {
     id: 1,
-    country: "kenya",
-    src: "/kenya.svg",
+    country: "KE",
+    src: "/KE.svg",
   },
 
   {
     id: 2,
-    country: "Uganda",
-    src: "/uganda.svg",
+    country: "UG",
+    src: "/UG.svg",
   },
   {
     id: 3,
-    country: "Tanzania",
-    src: "/tanzania.svg",
+    country: "TZ",
+    src: "/TZ.svg",
+  },
+
+  {
+    id: 4,
+    country: "TG",
+    src: "/Togo.svg",
   },
 ];

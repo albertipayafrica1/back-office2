@@ -15,10 +15,14 @@ export const styles = {
   salesText: {
     color: "#124AA1",
     letterSpacing: "0.08em",
-    fontSize: "19px",
+    fontSize: "16px",
     marginTop: "5px",
     marginBottom: "10px",
   },
+  salesDescription: {
+    fontSize: "15px",
+  },
+
   Textpolicy: {
     color: "orange",
     textDecoration: "none",
@@ -43,34 +47,9 @@ export const styles = {
     display: "flex",
   },
 
-  inputsContainer: {
-    width: { lg: "100%", md: "100%", xs: "95%" },
-    height: "50px",
-  },
-
-  leftFormContainer: {
-    width: { lg: "100%", md: "100%", xs: "95%" },
-    height: "50px",
-    marginTop: "30px",
-  },
-
-  rightFormContainer: {
-    width: { lg: "210px", md: "210px", xs: "95%" },
-    height: "50px",
-    marginTop: "30px",
-    marginLeft: { lg: "20px", md: "20px", xs: "Opx" },
-  },
-
-  LastnameForm: {
-    width: { lg: "210px", md: "210px", xs: "95%" },
-    height: "50px",
-    marginTop: { lg: "0px", md: "0px", xs: "40px" },
-    marginLeft: { lg: "20px", md: "20px", xs: "Opx" },
-  },
-
   subject: {
-    marginTop: "30px",
-    width: { lg: "95%", md: "95%", xs: "95%" },
+    marginTop: "10px",
+    width: "100%",
   },
 
   textTrusted: {

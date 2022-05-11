@@ -11,14 +11,15 @@ import {
   Select,
   MenuItem,
 } from "@mui/material";
-import ListItemIcon from "@mui/material/ListItemIcon";
 
+import ListItemIcon from "@mui/material/ListItemIcon";
 import { makeStyles } from "@mui/styles";
 import backgroundImage from "../public/ipay-landing-background.png";
-
 import WatchDemoDialog from "../components/WatchDemoDialog";
-import { getCountryIconLinkLandingPage } from "../utils/countryOfOperation";
 import ContactSalesDialog from "../components/ContactSalesDialog";
+import SelectCountryDialog from "../components/SelectCountryDialog";
+import { getCountryIconLinkLandingPage } from "../utils/countryOfOperation";
+
 import { Country } from "../data";
 import { styles } from "../styles/Home";
 import useForm from "../hooks/useForm";
@@ -34,28 +35,45 @@ const Home = () => {
   const [sale, setSales] = useState(false);
   const router = useRouter();
 
-  //  const { country } = router.query;
-
+  const { country } = router.query;
   const classes = useStyles();
 
-  const [formData, handleFormChange] = useForm({ countrySelector: "KE" });
+  const countryOfOperations = ["KE", "UG", "TZ", "TG"];
+  const [formData, handleFormChange] = useForm({ selectWithRedirect: "KE" });
 
   useEffect(() => {
     handleFormChange({
-      target: { name: "countrySelector", value: router.query.country },
+      target: { name: "selectWithRedirect", value: router.query.country },
     });
+
+    if (country === undefined) {
+      return;
+    }
+
+    if (country === "" || country === null) {
+      router.push(`?country=KE`);
+    }
+
+    if (
+      country !== undefined &&
+      countryOfOperations.includes[country.toUpperCase()]
+    ) {
+      router.push(`?country=KE`);
+    }
   }, [router.query.country]);
 
-  const countryLink = getCountryIconLinkLandingPage(formData.countrySelector);
+  const countryLink = getCountryIconLinkLandingPage(
+    formData.selectWithRedirect
+  );
 
   const handleCreateAccount = () => {
     router.push(
-      `/createAccount?country=${formData.countrySelector}&rc=RC000000`
+      `/createAccount?country=${formData.selectWithRedirect}&rc=RC0000000`
     );
   };
 
   const handleLogin = () => {
-    router.push(`login?country=${formData.countrySelector}`);
+    router.push(`login?country=${formData.selectWithRedirect}`);
   };
 
   const toggleDemo = () => {
@@ -77,9 +95,9 @@ const Home = () => {
               <Select
                 className={classes.select}
                 sx={styles.select}
-                id="countrySelector"
-                name="countrySelector"
-                value={formData.countrySelector}
+                id="selectWithRedirect"
+                name="selectWithRedirect"
+                value={formData.selectWithRedirect}
                 onChange={handleFormChange} // add change domain logic
                 renderValue={(value) => {
                   return (
@@ -138,6 +156,10 @@ const Home = () => {
             channels. Explore limitless opportunities to
             <span style={styles.expandText}> expand </span> your business today.{" "}
           </Typography>
+
+          {router.isReady && country === undefined ? (
+            <SelectCountryDialog />
+          ) : null}
 
           <WatchDemoDialog open={demo} toggleWatchDemo={toggleDemo} />
           <ContactSalesDialog open={sale} toggleSales={toggleSale} />

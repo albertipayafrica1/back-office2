@@ -155,5 +155,16 @@ export default {
         letterSpacing: "0.06em",
       },
     },
+
+    {
+      props: {
+        variant: "title10",
+      },
+      style: {
+        fontFamily: "Open Sans",
+        fontSize: "12px",
+        fontWeight: 600,
+      },
+    },
   ],
 };

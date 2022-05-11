@@ -1,80 +1,64 @@
-export const Home = [
+import SettingsIcon from "@mui/icons-material/Settings";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import LinkIcon from "@mui/icons-material/Link";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import TransitEnterexitIcon from "@mui/icons-material/TransitEnterexit";
+import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
+import BarChartIcon from "@mui/icons-material/BarChart";
+import AddCardIcon from "@mui/icons-material/AddCard";
+
+export const MenuItems = [
   {
     id: 1,
     url: "/dashboard/home",
     name: "Dashboard",
-    icon: "/home.svg",
-  },
-];
-
-export const Transaction = [
-  {
-    id: 1,
-    url: "/dashboard/transaction",
-    name: "Transaction",
+    icon: <DashboardIcon />,
   },
   {
     id: 2,
-    url: "/dashboard/transaction",
-    name: "Transaction",
+    url: "/dashboard/transactions",
+    name: "Transactions",
+    icon: <TransitEnterexitIcon />,
   },
   {
     id: 3,
-    url: "/dashboard/transaction",
-    name: "Transaction",
-  },
-];
-
-export const MainMenu = [
-  {
-    id: 1,
-    url: "/dashboard/payout",
-    name: "Payout",
-    icon: "/Payout .svg",
+    url: "/dashboard/settlements",
+    name: "Settlements",
+    icon: <AddCardIcon />,
   },
 
   {
-    id: 2,
-    url: "/dashboard/paymentLink",
-    name: "Payment Link",
-    icon: "/Paymentlink.png",
+    id: 4,
+    url: "/dashboard/paymentLinks",
+    name: "Payment Links",
+    icon: <LinkIcon />,
   },
 
   {
-    id: 3,
-    url: "/dashboard/report",
-    name: "Report",
-    icon: "/Report.svg",
-  },
-];
-
-export const Product = [
-  {
-    id: 1,
-    url: "/dashboard/kopeshaLoan",
-    name: "Kopesha Loan",
-    icon: "/Kopesha.svg",
-  },
-  {
-    id: 2,
-    url: "/dashboard/IPaylite",
-    name: "iPayLite",
-    icon: "/ipaylite.png",
-  },
-];
-
-export const General = [
-  {
-    id: 1,
-    url: "/dashboard/usemanual",
-    name: "User Manual",
-    icon: "/useraccount.png",
+    id: 5,
+    url: "/dashboard/reports",
+    name: "Reports",
+    icon: <BarChartIcon />,
   },
 
   {
-    id: 2,
-    url: "/dashboard/setting",
+    id: 6,
+    url: "/dashboard/kopeshaLoans",
+    name: "KopeshaLoans",
+    icon: <MonetizationOnIcon />,
+  },
+
+  {
+    id: 7,
+    url: "/dashboard/iPayLite",
+    name: "iPay Lite",
+    icon: <ShoppingCartIcon />,
+  },
+
+  {
+    id: 8,
+    url: "/dashboard/settings",
     name: "Settings",
-    icon: "/setting.svg",
+    icon: <SettingsIcon />,
   },
 ];

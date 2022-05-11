@@ -9,11 +9,11 @@ export default {
   mono8: "#C4C4C4",
   mono9: "#F6F6F6",
   orange: "#F29103",
-  blue: "#124AA1",
   pink: "#F9F4F4",
   errorRed: "#d32f2f",
   successGreen: "#2E7D32",
   pinkshade2: "#EBE7E7",
   yellowOrange: "#FB9100",
   TypanBlue: "#1D2D9C",
+  blue: "#124AA1",
 };
