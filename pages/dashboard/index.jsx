@@ -1,7 +1,7 @@
 import React from "react";
 import CreateAccountOtpDialog from "../../components/CreateAccountOtpDialog";
 import Search from "../../atoms/Search";
-import DownloadDiv from "../../atoms/DownloadDiv";
+import FilterDialog from "../../components/FilterDialog";
 
 function index(props) {
   const paperPropsStyling = {
@@ -20,10 +20,7 @@ function index(props) {
     // </div>
     <>
       <Search />
-      <DownloadDiv
-        text="Download Our AML (Anti-Money Laundering)/KYC questionnaire for signature"
-        downloadUrl="https://www.irs.gov/pub/irs-pdf/fw8ben.pdf"
-      />
+      <FilterDialog />
     </>
   );
 }

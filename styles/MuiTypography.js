@@ -68,6 +68,17 @@ export default {
     },
     {
       props: {
+        variant: "subtitle5",
+      },
+      style: {
+        fontSize: "12px",
+        lineHeight: "16px",
+        fontWeight: 600,
+        letterSpacing: "0.4px",
+      },
+    },
+    {
+      props: {
         variant: "body1",
       },
       style: {
