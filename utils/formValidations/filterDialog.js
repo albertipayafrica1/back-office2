@@ -21,7 +21,6 @@ export const filterDialog = yup.object().shape({
     ),
   dateRange: yup
     .array()
-    .of(yup.date("Select a valid date"))
-    .min(2, "You must have a start and an end date")
-    .required("Date is Required"),
+    .of(yup.date("Select a valid date").nullable().typeError("Invalid Date"))
+    .min(2, "You must have a start and an end date"),
 });

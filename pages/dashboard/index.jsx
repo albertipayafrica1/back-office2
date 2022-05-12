@@ -2,6 +2,7 @@ import React from "react";
 import CreateAccountOtpDialog from "../../components/CreateAccountOtpDialog";
 import Search from "../../atoms/Search";
 import FilterDialog from "../../components/FilterDialog";
+import Stepper from "../../components/Stepper";
 
 function index(props) {
   const paperPropsStyling = {
@@ -20,7 +21,8 @@ function index(props) {
     // </div>
     <>
       <Search />
-      <FilterDialog />
+      {/* <FilterDialog /> */}
+      <Stepper flow="registered" />
     </>
   );
 }
