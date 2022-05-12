@@ -4,7 +4,7 @@ import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { MobileDateRangePicker, LocalizationProvider } from "@mui/lab";
 import { TextField, Box, Typography } from "@mui/material";
 
-import { FastField } from "formik";
+import { FastField, getIn } from "formik";
 import useStyles from "./styles";
 
 const FormikDateRangePicker = ({
@@ -41,24 +41,14 @@ const FormikDateRangePicker = ({
                   <TextField
                     {...startProps}
                     helperText={
-                      form.errors[name] !== undefined &&
-                      form.errors[name] !== 0 &&
-                      form.errors[name] !== null &&
-                      form.errors[name][1]
+                      Boolean(getIn(form.errors, name)) && form.errors[name][1]
                     }
-                    error={
-                      form.errors[name] !== undefined &&
-                      form.errors[name] !== 0 &&
-                      form.errors[name] !== null
-                    }
+                    error={Boolean(getIn(form.errors, name))}
                     label={
                       <Typography
                         variant="subtitle3"
                         className={
-                          form.errors[name] !== undefined &&
-                          form.errors[name] !== 0 &&
-                          form.errors[name] !== null &&
-                          classes.error
+                          Boolean(getIn(form.errors, name)) && classes.error
                         }
                       >
                         {labelStart}
@@ -106,24 +96,14 @@ const FormikDateRangePicker = ({
                   <TextField
                     {...endProps}
                     helperText={
-                      form.errors[name] !== undefined &&
-                      form.errors[name] !== 0 &&
-                      form.errors[name] !== null &&
-                      form.errors[name][1]
+                      Boolean(getIn(form.errors, name)) && form.errors[name][1]
                     }
-                    error={
-                      form.errors[name] !== undefined &&
-                      form.errors[name] !== 0 &&
-                      form.errors[name] !== null
-                    }
+                    error={Boolean(getIn(form.errors, name))}
                     label={
                       <Typography
                         variant="subtitle3"
                         className={
-                          form.errors[name] !== undefined &&
-                          form.errors[name] !== 0 &&
-                          form.errors[name] !== null &&
-                          classes.error
+                          Boolean(getIn(form.errors, name)) && classes.error
                         }
                       >
                         {labelEnd}

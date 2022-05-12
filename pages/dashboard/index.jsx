@@ -21,8 +21,8 @@ function index(props) {
     // </div>
     <>
       <Search />
-      {/* <FilterDialog /> */}
-      <Stepper flow="registered" />
+      <FilterDialog />
+      {/* <Stepper flow="registered" /> */}
     </>
   );
 }
