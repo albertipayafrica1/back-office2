@@ -2,16 +2,9 @@ import PropTypes from "prop-types";
 
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { MobileDateRangePicker, LocalizationProvider } from "@mui/lab";
-import {
-  FormControl,
-  FormGroup,
-  FormHelperText,
-  TextField,
-  Typography,
-  Box,
-} from "@mui/material";
+import { TextField, Box, Typography } from "@mui/material";
 
-import { FastField, ErrorMessage, getIn } from "formik";
+import { FastField } from "formik";
 import useStyles from "./styles";
 
 const FormikDateRangePicker = ({
@@ -29,124 +22,155 @@ const FormikDateRangePicker = ({
     <FastField name={name}>
       {({ field, form }) => {
         return (
-          <FormControl
-            error={Boolean(
-              getIn(form.touched, name) && getIn(form.errors, name)
-            )}
+          <LocalizationProvider
+            dateAdapter={AdapterDateFns}
             sx={{ width: "100%" }}
           >
-            <FormGroup>
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <MobileDateRangePicker
-                  {...field}
-                  {...restProps}
-                  inputFormat="dd/MM/yyyy"
-                  InputProps={{
-                    classes: { root: classes.root },
-                  }}
-                  startText={labelStart}
-                  endText={labelEnd}
-                  maxDate={new Date()}
-                  onChange={onChange !== "" ? onChange : form.handleChange}
-                  onBlur={onBlur !== "" ? onBlur : form.handleBlur}
-                  renderInput={(startProps, endProps) => (
-                    <>
-                      <TextField
-                        {...startProps}
-                        error={Boolean(
-                          getIn(form.touched, name) && getIn(form.errors, name)
-                        )}
-                        InputProps={{
-                          className: classes.input,
-                        }}
-                        required={required}
-                        InputLabelProps={{
-                          shrink: !(
-                            field !== undefined &&
-                            field.value !== undefined &&
-                            field.value !== null &&
-                            field.value.length <= 0
-                          ),
-                          className:
-                            field !== undefined &&
-                            field.value !== undefined &&
-                            field.value !== null &&
-                            field.value.length <= 0
-                              ? classes.inputLabelNoShrink
-                              : undefined,
-                        }}
-                        sx={{
-                          "& .MuiOutlinedInput-root:hover": {
-                            "& > fieldset": {
-                              borderColor: (theme) => theme.colors.blue,
-                            },
-                          },
-                          "& .MuiOutlinedInput-root": {
-                            "& .Mui-focused": {
-                              borderColor: (theme) => theme.colors.blue,
-                            },
-                          },
-                          "& .MuiFormLabel-root": {
-                            color: (theme) => theme.colors.mono4,
-                            "& .Mui-focused": {
-                              color: (theme) => theme.colors.blue,
-                            },
-                          },
-                        }}
-                      />
-                      <Box sx={{ mx: 2 }}> - </Box>
-                      <TextField
-                        {...endProps}
-                        error={Boolean(
-                          getIn(form.touched, name) && getIn(form.errors, name)
-                        )}
-                        InputProps={{
-                          className: classes.input,
-                        }}
-                        required={required}
-                        InputLabelProps={{
-                          shrink: !(
-                            field !== undefined &&
-                            field.value !== undefined &&
-                            field.value !== null &&
-                            field.value.length <= 0
-                          ),
-                          className:
-                            field !== undefined &&
-                            field.value !== undefined &&
-                            field.value !== null &&
-                            field.value.length <= 0
-                              ? classes.inputLabelNoShrink
-                              : undefined,
-                        }}
-                        sx={{
-                          "& .MuiOutlinedInput-root:hover": {
-                            "& > fieldset": {
-                              borderColor: (theme) => theme.colors.blue,
-                            },
-                          },
-                          "& .MuiOutlinedInput-root": {
-                            "& .Mui-focused": {
-                              borderColor: (theme) => theme.colors.blue,
-                            },
-                          },
-                          "& .MuiFormLabel-root": {
-                            color: (theme) => theme.colors.mono4,
-                            "& .Mui-focused": {
-                              color: (theme) => theme.colors.blue,
-                            },
-                          },
-                        }}
-                      />
-                    </>
-                  )}
-                />
-              </LocalizationProvider>
-            </FormGroup>
-            <FormHelperText>
-              <ErrorMessage name={name} />
-            </FormHelperText>
-          </FormControl>
+            <MobileDateRangePicker
+              {...field}
+              {...restProps}
+              inputFormat="dd/MM/yyyy"
+              InputProps={{
+                classes: { root: classes.root },
+              }}
+              maxDate={new Date()}
+              onChange={onChange !== "" ? onChange : form.handleChange}
+              onBlur={onBlur !== "" ? onBlur : form.handleBlur}
+              renderInput={(startProps, endProps) => (
+                <>
+                  <TextField
+                    {...startProps}
+                    helperText={
+                      form.errors[name] !== undefined &&
+                      form.errors[name] !== 0 &&
+                      form.errors[name] !== null &&
+                      form.errors[name][1]
+                    }
+                    error={
+                      form.errors[name] !== undefined &&
+                      form.errors[name] !== 0 &&
+                      form.errors[name] !== null
+                    }
+                    label={
+                      <Typography
+                        variant="subtitle3"
+                        className={
+                          form.errors[name] !== undefined &&
+                          form.errors[name] !== 0 &&
+                          form.errors[name] !== null &&
+                          classes.error
+                        }
+                      >
+                        {labelStart}
+                      </Typography>
+                    }
+                    InputProps={{
+                      className: classes.input,
+                    }}
+                    required={required}
+                    InputLabelProps={{
+                      shrink: !(
+                        field !== undefined &&
+                        field.value !== undefined &&
+                        field.value !== null &&
+                        field.value.length <= 0
+                      ),
+                      className:
+                        field !== undefined &&
+                        field.value !== undefined &&
+                        field.value !== null &&
+                        field.value.length <= 0
+                          ? classes.inputLabelNoShrink
+                          : undefined,
+                    }}
+                    sx={{
+                      "& .MuiOutlinedInput-root:hover": {
+                        "& > fieldset": {
+                          borderColor: (theme) => theme.colors.blue,
+                        },
+                      },
+                      "& .MuiOutlinedInput-root": {
+                        "& .Mui-focused": {
+                          borderColor: (theme) => theme.colors.blue,
+                        },
+                      },
+                      "& .MuiFormLabel-root": {
+                        color: (theme) => theme.colors.mono4,
+                        "& .Mui-focused": {
+                          color: (theme) => theme.colors.blue,
+                        },
+                      },
+                    }}
+                  />
+                  <Box sx={{ mx: 2 }}> - </Box>
+                  <TextField
+                    {...endProps}
+                    helperText={
+                      form.errors[name] !== undefined &&
+                      form.errors[name] !== 0 &&
+                      form.errors[name] !== null &&
+                      form.errors[name][1]
+                    }
+                    error={
+                      form.errors[name] !== undefined &&
+                      form.errors[name] !== 0 &&
+                      form.errors[name] !== null
+                    }
+                    label={
+                      <Typography
+                        variant="subtitle3"
+                        className={
+                          form.errors[name] !== undefined &&
+                          form.errors[name] !== 0 &&
+                          form.errors[name] !== null &&
+                          classes.error
+                        }
+                      >
+                        {labelEnd}
+                      </Typography>
+                    }
+                    InputProps={{
+                      className: classes.input,
+                    }}
+                    required={required}
+                    InputLabelProps={{
+                      shrink: !(
+                        field !== undefined &&
+                        field.value !== undefined &&
+                        field.value !== null &&
+                        field.value.length <= 0
+                      ),
+                      className:
+                        field !== undefined &&
+                        field.value !== undefined &&
+                        field.value !== null &&
+                        field.value.length <= 0
+                          ? classes.inputLabelNoShrink
+                          : undefined,
+                    }}
+                    sx={{
+                      "& .MuiOutlinedInput-root:hover": {
+                        "& > fieldset": {
+                          borderColor: (theme) => theme.colors.blue,
+                        },
+                      },
+                      "& .MuiOutlinedInput-root": {
+                        "& .Mui-focused": {
+                          borderColor: (theme) => theme.colors.blue,
+                        },
+                      },
+                      "& .MuiFormLabel-root": {
+                        color: (theme) => theme.colors.mono4,
+                        "& .Mui-focused": {
+                          color: (theme) => theme.colors.blue,
+                        },
+                      },
+                    }}
+                  />
+                </>
+              )}
+            />
+          </LocalizationProvider>
         );
       }}
     </FastField>

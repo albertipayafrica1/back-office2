@@ -71,8 +71,8 @@ const FilterDialog = ({ open, toggleBalanceDialog, name }) => {
           enableReinitialize
         >
           {(formik) => {
-            console.log(formik.errors, "fork");
-            console.log(formik.values, "values");
+            // console.log(formik.errors, "fork");
+            // console.log(formik.values, "values");
             return (
               <Form>
                 <Stack sx={styles.formContainer} spacing={8}>
