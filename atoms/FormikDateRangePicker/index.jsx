@@ -41,7 +41,7 @@ const FormikDateRangePicker = ({
                   <TextField
                     {...startProps}
                     helperText={
-                      Boolean(getIn(form.errors, name)) && form.errors[name][1]
+                      Boolean(getIn(form.errors, name)) && form.errors[name][0]
                     }
                     error={Boolean(getIn(form.errors, name))}
                     label={
