@@ -23,12 +23,12 @@ export const stepper = {
   justifyContent: "center",
   alignItems: "center",
   position: "sticky",
-  top: 63,
+  top: { xs: 100, md: 109 },
   "& .MuiStepIcon-root.Mui-active": {
     color: (theme) => theme.colors.blue,
   },
 };
 
 export const container = {
-  padding: "0 2rem 0 2rem",
+  padding: "0 2rem",
 };
