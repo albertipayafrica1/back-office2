@@ -180,18 +180,18 @@ const HorizontalLinearStepper = ({ flow, companyType, duration }) => {
     if (flow === "registered") {
       return [
         { toolTip: false, toolTipText: "", label: "Business Structure" },
-        { toolTip: false, toolTipText: "", label: "Business Bank Details" },
+        { toolTip: false, toolTipText: "", label: "Bank Details" },
         {
           toolTip: true,
           toolTipText: "Business compliance",
-          label: "Business Compliance",
+          label: "Compliance",
         },
         {
           toolTip: false,
           toolTipText: "",
-          label: "Business Fulfillment Details",
+          label: "Fulfillment Details",
         },
-        { toolTip: false, toolTipText: "", label: "Business Support Details" },
+        { toolTip: false, toolTipText: "", label: "Support Details" },
         {
           toolTip: true,
           toolTipText:

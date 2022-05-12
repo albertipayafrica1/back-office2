@@ -12,7 +12,7 @@ import {
   Typography,
 } from "@mui/material";
 
-import { FastField, ErrorMessage, getIn } from "formik";
+import { Field, ErrorMessage, getIn } from "formik";
 import useStyles from "./styles";
 
 const FormikDatePicker = ({
@@ -26,8 +26,9 @@ const FormikDatePicker = ({
   const classes = useStyles();
 
   return (
-    <FastField name={name}>
+    <Field name={name}>
       {({ field, form }) => {
+        console.log(field, "eeros in field");
         return (
           <FormControl
             error={Boolean(
@@ -120,7 +121,7 @@ const FormikDatePicker = ({
           </FormControl>
         );
       }}
-    </FastField>
+    </Field>
   );
 };
 

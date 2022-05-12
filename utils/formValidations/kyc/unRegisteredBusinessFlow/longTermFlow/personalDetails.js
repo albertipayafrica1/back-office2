@@ -65,6 +65,8 @@ export const personalDetails = yup.object({
     gender: yup.string().required("kindly select gender"),
     dateOfBirth: yup
       .date()
+      .nullable()
+      .typeError("Invalid Date")
       .required("kindly select your date of birth")
       .test("dob", "Your age must be over 18 years", function (value) {
         return differenceInYears(new Date(), new Date(value)) >= 18;

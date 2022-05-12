@@ -9,6 +9,7 @@ import FormikControl from "../FormikControls";
 import Dialog from "../../atoms/Dialog";
 
 import { paymentChannelOptions } from "./data";
+import { filterDialog } from "../../utils/formValidations/filterDialog";
 
 import * as styles from "./styles";
 
@@ -22,7 +23,7 @@ const FilterDialog = ({ open, toggleBalanceDialog, name }) => {
     category: "",
     merchantRef: "",
     telephone: "",
-    dateRange: "",
+    dateRange: [null, null],
     accountId: "",
   });
   const [loading, setLoading] = useState(false);
@@ -45,7 +46,7 @@ const FilterDialog = ({ open, toggleBalanceDialog, name }) => {
     category: "",
     merchantRef: "",
     telephone: "",
-    dateRange: "",
+    dateRange: [null, null],
     accountId: "",
   };
 
@@ -65,12 +66,13 @@ const FilterDialog = ({ open, toggleBalanceDialog, name }) => {
         </Typography>
         <Formik
           initialValues={initialValues}
-          // validationSchema={createAccount}
+          validationSchema={filterDialog}
           // onSubmit={handleSubmit}
           enableReinitialize
         >
           {(formik) => {
-            console.log(formik.errors, "fork");
+            // console.log(formik.errors, "fork");
+            // console.log(formik.values, "values");
             return (
               <Form>
                 <Stack sx={styles.formContainer} spacing={8}>
@@ -172,12 +174,14 @@ const FilterDialog = ({ open, toggleBalanceDialog, name }) => {
                       sx={{ width: "65%" }}
                     >
                       <FormikControl
-                        control="input"
-                        label="Date Range"
+                        control="dateRangePicker"
+                        labelStart="start"
+                        labelEnd="end"
                         name="dateRange"
-                        variant="outlined"
-                        type="text"
-                        id="dateRange"
+                        required
+                        onChange={(val) => {
+                          formik.setFieldValue("dateRange", val);
+                        }}
                       />
                       <FormikControl
                         control="input"

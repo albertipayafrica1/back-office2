@@ -34,22 +34,19 @@ const DrawerWrapper = ({ mobileOpen, handleDrawerToggle, testModeStatus }) => {
           />
         </div>
         <Divider sx={{ mt: 6, width: "80%" }} />
-        {/* eslint-disable */}
+
         <div
           style={{ cursor: "pointer" }}
           onClick={() => router.push("/dashboard/kyc")}
+          role="button"
         >
-          {/* eslint-disable */}
-          <Typography
-            onClick={() => router.push("/dashboard/kyc")}
-            sx={styles.activateAccountText}
-          >
+          <Typography sx={styles.activateAccountText}>
             Activate Account
           </Typography>
           <div style={{ position: "absolute", top: "150px", left: "108px" }}>
             <MuiToolTip
               placement="right-start"
-              title="Click her to activate account"
+              title="Click here to activate account"
               style={styles.toolTip}
             />
           </div>

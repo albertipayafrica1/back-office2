@@ -26,11 +26,7 @@ const MuiAlert = ({ variant, message }) => {
   return (
     <Box sx={styles.AlertContainer}>
       {show && (
-        <Alert
-          variant="filled"
-          severity={variant}
-          sx={{ zindex: 999999999999 }}
-        >
+        <Alert variant="filled" severity={variant}>
           {message}
         </Alert>
       )}

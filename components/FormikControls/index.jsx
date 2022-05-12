@@ -4,6 +4,7 @@ import FormikCustomInput from "../../atoms/FormikCustomInput";
 import FormikCheckboxGroup from "../../atoms/FormikCheckboxGroup";
 import FormikRadioGroup from "../../atoms/FormikRadioGroup";
 import FormikDatePicker from "../../atoms/FormikDatePicker";
+import FormikDateRangePicker from "../../atoms/FormikDateRangePicker";
 import FormikAutoComplete from "../../atoms/FormikAutoComplete";
 import FormikFileUploadField from "../DocumentUploadWithProgress";
 
@@ -23,6 +24,8 @@ const FormikControl = ({ control, ...rest }) => {
       return <FormikRadioGroup {...rest} />;
     case "datePicker":
       return <FormikDatePicker {...rest} />;
+    case "dateRangePicker":
+      return <FormikDateRangePicker {...rest} />;
     case "singleFileUpload":
       return <FormikFileUploadField {...rest} />;
 

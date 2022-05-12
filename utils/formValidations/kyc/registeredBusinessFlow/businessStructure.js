@@ -65,6 +65,8 @@ export const businessStructure = yup.object({
     gender: yup.string().required("kindly select gender"),
     dateOfBirth: yup
       .date()
+      .nullable()
+      .typeError("Invalid Date")
       .required("kindly select your date of birth")
       .test("dob", "Your age must be over 18 years", function (value) {
         if (value === null || value === undefined) {
@@ -579,7 +581,11 @@ export const businessStructure = yup.object({
           relationship: yup
             .string()
             .required("kindly enter you relationship with your next of Kin"),
-          dateOfBirth: yup.date().required("kindly select your date of birth"),
+          dateOfBirth: yup
+            .date()
+            .nullable()
+            .typeError("Invalid Date")
+            .required("kindly select your date of birth"),
           documentType: yup.string().required("kindly select a document Type"),
           documentNumber: yup.string().required("kindly enter document number"),
           // below is for reference in case

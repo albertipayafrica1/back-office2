@@ -181,7 +181,7 @@ const LoginForm = ({ country }) => {
           }}
         </Formik>
         <Stack spacing={2} mt={4}>
-          <Link href={`/createAccount?country=${query.country}&rc=RC0000`}>
+          <Link href={`/createAccount?country=${query.country}&rc=RC000000`}>
             <a>
               <Typography variant="title6" sx={styles.blueText}>
                 Dont have an account? Register here.

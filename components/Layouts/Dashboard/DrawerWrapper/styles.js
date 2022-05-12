@@ -1,5 +1,3 @@
-import colors from "../../../../styles/colors";
-
 const drawerWidth = "250px";
 
 export const temporaryDrawer = {
@@ -8,7 +6,7 @@ export const temporaryDrawer = {
     boxSizing: "border-box",
     width: drawerWidth,
     boxShadow: "5px 0 5px -5px rgba(0, 0, 0, 0.25)",
-    backgroundColor: colors.mono1,
+    backgroundColor: (theme) => theme.colors.mono1,
     "& .MuiBox-root": {
       marginTop: "100px",
     },
@@ -23,7 +21,7 @@ export const temporaryDrawer = {
         boxShadow: `inset 0 0 6px rgba(0, 0, 0, 0.3)`,
       },
       "&::-webkit-scrollbar-thumb": {
-        backgroundColor: "whitbe",
+        backgroundColor: "white",
         borderRadius: "10px",
         outline: `1px solid slategrey`,
       },
@@ -36,7 +34,7 @@ export const permanentDrawer = {
     boxSizing: "border-box",
     width: drawerWidth,
     boxShadow: "5px 0 5px -5px rgba(0, 0, 0, 0.25)",
-    backgroundColor: colors.mono1,
+    backgroundColor: (theme) => theme.colors.mono1,
     "& .MuiBox-root": {
       marginTop: "100px",
     },
@@ -51,7 +49,7 @@ export const permanentDrawer = {
         boxShadow: `inset 0 0 6px rgba(0, 0, 0, 0.3)`,
       },
       "&::-webkit-scrollbar-thumb": {
-        backgroundColor: "whitbe",
+        backgroundColor: "white",
         borderRadius: "10px",
         outline: `1px solid slategrey`,
       },
@@ -77,12 +75,13 @@ export const linearProgress = {
   width: "74px",
   height: "5px",
   color: "grey.500",
+  backgroundColor: (theme) => theme.colors.mono1,
   mt: "10px",
   border: "1px solid #C4C4C4",
   boxSizing: "borderbox",
   borderRadius: "100px",
   "& .MuiLinearProgress-bar": {
-    backgroundColor: colors.orange,
+    backgroundColor: (theme) => theme.colors.orange,
   },
 };
 
@@ -108,7 +107,7 @@ export const vendorIdText = {
 };
 
 export const currencyText = {
-  color: colors.blue,
+  color: (theme) => theme.colors.blue,
   lineHeight: "16px",
   fontStyle: "normal",
   fontWeight: 700,
@@ -133,7 +132,7 @@ export const menuItem = {
   color: "#000000",
   "&:hover": {
     color: "white",
-    backgroundColor: colors.blue,
+    backgroundColor: (theme) => theme.colors.blue,
   },
   "&.MuiButton-root": {
     display: "flex",
@@ -147,9 +146,9 @@ export const activeMenuItem = {
   height: "44px",
   mt: 2,
   color: "white",
-  backgroundColor: colors.blue,
+  backgroundColor: (theme) => theme.colors.blue,
   "&:hover": {
-    backgroundColor: colors.blue,
+    backgroundColor: (theme) => theme.colors.blue,
   },
   "&.MuiButton-root": {
     display: "flex",
