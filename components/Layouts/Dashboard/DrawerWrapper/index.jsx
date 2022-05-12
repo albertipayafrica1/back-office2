@@ -39,6 +39,8 @@ const DrawerWrapper = ({ mobileOpen, handleDrawerToggle, testModeStatus }) => {
           style={{ cursor: "pointer" }}
           onClick={() => router.push("/dashboard/kyc")}
           role="button"
+          tabIndex={0}
+          onKeyDown={() => {}}
         >
           <Typography sx={styles.activateAccountText}>
             Activate Account
@@ -79,7 +81,7 @@ const DrawerWrapper = ({ mobileOpen, handleDrawerToggle, testModeStatus }) => {
 
   return (
     <>
-      {/**Drawer for mobile */}
+      {/* Drawer for mobile */}
       <Drawer
         variant="temporary"
         open={mobileOpen}
@@ -92,7 +94,7 @@ const DrawerWrapper = ({ mobileOpen, handleDrawerToggle, testModeStatus }) => {
         {drawer}
       </Drawer>
 
-      {/**Drawer for laptop */}
+      {/* Drawer for laptop */}
       <Drawer variant="permanent" sx={styles.permanentDrawer} open>
         {drawer}
       </Drawer>
