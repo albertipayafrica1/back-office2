@@ -10,6 +10,7 @@ import Table from "../../atoms/Table";
 
 import * as styles from "./styles";
 import BalanceDialog from "../BalanceDialog";
+import FilterDialog from "../FilterDialog";
 
 const columns = [
   { id: "name", label: "Date", minWidth: 170 },
@@ -129,9 +130,13 @@ const TransactionTable = ({
   handleNewTransfer,
 }) => {
   const [openBalanceDialog, setOpenBalanceDialog] = useState(false);
+  const [openFilterDialog, setOpenFilterDialog] = useState(false);
 
   const toggleBalanceDialog = () => {
     setOpenBalanceDialog((prevState) => !prevState);
+  };
+  const toggleFilterDialog = () => {
+    setOpenFilterDialog((prevState) => !prevState);
   };
   // based on name get table data in useeffect
   // take rows and columns from endpoints and have a loading state here i.e show loader when data is fetched
@@ -164,11 +169,13 @@ const TransactionTable = ({
               text="Balance"
               icon={<img src="/Balance-icon.svg" alt="icon" />}
               onClick={toggleBalanceDialog}
+              activeState={openBalanceDialog}
             />
             <TransactionButton
               text="Filter"
               icon={<img src="/Filter-icon.svg" alt="icon" />}
-              onClick={handleApplyFilter}
+              onClick={toggleFilterDialog}
+              activeState={openFilterDialog}
             />
             <TransactionButton
               text="Export"
@@ -183,6 +190,11 @@ const TransactionTable = ({
         name={name}
         open={openBalanceDialog}
         toggleBalanceDialog={toggleBalanceDialog}
+      />
+      <FilterDialog
+        name={name}
+        open={openFilterDialog}
+        toggleFilterDialog={toggleFilterDialog}
       />
     </>
   );

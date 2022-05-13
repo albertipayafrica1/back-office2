@@ -1,22 +1,28 @@
 export const formContainer = { padding: "1rem" };
 
 export const clearButton = {
-  width: "150px",
-  display: "inline-block",
-  padding: 0,
-  minHeight: 0,
-  minWidth: 0,
-  mt: 5,
   color: (theme) => theme.colors.orange,
+  cursor: "pointer",
 };
 
 export const cancelButton = {
-  width: "100%",
-  mt: 5,
+  mr: 8,
   color: (theme) => theme.colors.mono5,
+  cursor: "pointer",
 };
 export const applyButton = {
-  width: "100%",
-  mt: 5,
   color: (theme) => theme.colors.blue,
+  cursor: "pointer",
+};
+
+export const paperPropsStylingLaptop = {
+  position: "absolute",
+  top: 240,
+  right: 70,
+  maxWidth: "800px",
+  maxHeight: "380px",
+};
+
+export const paperPropsStylingMobile = {
+  maxWidth: "800px",
 };

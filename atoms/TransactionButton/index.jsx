@@ -4,11 +4,15 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 
 import * as styles from "./styles";
 
-const TransactionButton = ({ icon, text, onClick }) => {
+const TransactionButton = ({ icon, text, onClick, activeState }) => {
   const matches = useMediaQuery("(min-width:600px)");
 
   return (
-    <Button variant="outlined" sx={styles.button} onClick={onClick}>
+    <Button
+      variant="outlined"
+      sx={activeState ? styles.activeButton : styles.button}
+      onClick={onClick}
+    >
       <Stack
         direction="row"
         justifyContent="center"
@@ -26,6 +30,7 @@ TransactionButton.propTypes = {
   icon: PropTypes.node.isRequired,
   text: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
+  activeState: PropTypes.bool.isRequired,
 };
 
 export default TransactionButton;

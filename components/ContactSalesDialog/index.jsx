@@ -77,6 +77,7 @@ const ContactSales = ({ toggleSales, open }) => {
         open={open}
         onClose={toggleSales}
         position={styles.dialogueContainer}
+        hasCloseIcon
       >
         {alert ? (
           <MuiAlert variant="success" message={responseMessage} />

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-import { Typography, Stack, Button, Box } from "@mui/material";
-import { LoadingButton } from "@mui/lab";
+import { Typography, Stack, Box, useMediaQuery } from "@mui/material";
+
 import { Form, Formik } from "formik";
 import FormikControl from "../FormikControls";
 
@@ -13,7 +13,10 @@ import { filterDialog } from "../../utils/formValidations/filterDialog";
 
 import * as styles from "./styles";
 
-const FilterDialog = ({ open, toggleBalanceDialog, name }) => {
+const FilterDialog = ({ open, toggleFilterDialog, name }) => {
+  const matchesWidth = useMediaQuery("(min-width:900px)");
+  const matchesHeight = useMediaQuery("(min-height:649px)");
+
   const [formValues, setFormValues] = useState({
     transactionId: "",
     paymentChannel: "",
@@ -29,16 +32,8 @@ const FilterDialog = ({ open, toggleBalanceDialog, name }) => {
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState({ type: "", message: "" });
 
-  const [captchaToken, setCaptchaToken] = useState("");
-  const [resetCaptcha, setResetCaptcha] = useState(false);
-  const [captchaError, setCaptchaError] = useState("");
-
-  const handleCaptchaToken = (token) => {
-    setCaptchaToken(token);
-  };
-
   const initialValues = {
-    // transactionId: "",
+    transactionId: "",
     paymentChannel: "",
     orderId: "",
     lastDays: "",
@@ -53,10 +48,14 @@ const FilterDialog = ({ open, toggleBalanceDialog, name }) => {
   return (
     <div>
       <Dialog
-        open
-        onClose={toggleBalanceDialog}
+        open={open}
+        onClose={toggleFilterDialog}
         backDropVisible={false}
-        paperPropsStyling={{ position: "absolute", width: "3000px" }}
+        paperPropsStyling={
+          matchesWidth && matchesHeight
+            ? styles.paperPropsStylingLaptop
+            : styles.paperPropsStylingMobile
+        }
       >
         <Typography
           variant="subtitle5"
@@ -78,8 +77,8 @@ const FilterDialog = ({ open, toggleBalanceDialog, name }) => {
                 <Stack sx={styles.formContainer} spacing={8}>
                   <Stack direction="column" spacing={2}>
                     <Stack
-                      direction="row"
-                      spacing={7}
+                      direction={{ xs: "column", md: "row" }}
+                      spacing={2}
                       justifyContent="space-between"
                     >
                       <FormikControl
@@ -89,6 +88,7 @@ const FilterDialog = ({ open, toggleBalanceDialog, name }) => {
                         variant="outlined"
                         type="text"
                         id="transactionId"
+                        shrink
                         placeholder=""
                       />
                       <FormikControl
@@ -100,6 +100,8 @@ const FilterDialog = ({ open, toggleBalanceDialog, name }) => {
                         select
                         selectItem={paymentChannelOptions}
                         id="paymentChannel"
+                        shrink
+                        placeholder=""
                       />
                       <FormikControl
                         control="input"
@@ -108,11 +110,13 @@ const FilterDialog = ({ open, toggleBalanceDialog, name }) => {
                         variant="outlined"
                         type="text"
                         id="orderId"
+                        shrink
+                        placeholder=""
                       />
                     </Stack>
                     <Stack
-                      direction="row"
-                      spacing={7}
+                      direction={{ xs: "column", md: "row" }}
+                      spacing={2}
                       justifyContent="space-between"
                     >
                       <FormikControl
@@ -124,6 +128,8 @@ const FilterDialog = ({ open, toggleBalanceDialog, name }) => {
                         select
                         selectItem={paymentChannelOptions}
                         id="lastDays"
+                        shrink
+                        placeholder=""
                       />
                       <FormikControl
                         control="input"
@@ -132,6 +138,8 @@ const FilterDialog = ({ open, toggleBalanceDialog, name }) => {
                         variant="outlined"
                         type="text"
                         id="email"
+                        shrink
+                        placeholder=""
                       />
                       <FormikControl
                         control="input"
@@ -142,13 +150,15 @@ const FilterDialog = ({ open, toggleBalanceDialog, name }) => {
                         select
                         selectItem={paymentChannelOptions}
                         id="category"
+                        shrink
+                        placeholder="primary"
                       />
                     </Stack>
                     <Stack
-                      direction="row"
-                      spacing={7}
+                      direction={{ xs: "column", md: "row" }}
+                      spacing={2}
                       justifyContent="space-between"
-                      sx={{ width: "65%" }}
+                      sx={matchesWidth ? { width: "66%" } : { width: "100%" }}
                     >
                       <FormikControl
                         control="input"
@@ -157,6 +167,8 @@ const FilterDialog = ({ open, toggleBalanceDialog, name }) => {
                         variant="outlined"
                         type="text"
                         id="merchantRef"
+                        shrink
+                        placeholder=""
                       />
                       <FormikControl
                         control="input"
@@ -165,20 +177,21 @@ const FilterDialog = ({ open, toggleBalanceDialog, name }) => {
                         label="Telephone"
                         type="text"
                         id="telephone"
+                        shrink
+                        placeholder=""
                       />
                     </Stack>
                     <Stack
-                      direction="row"
-                      spacing={7}
+                      direction={{ xs: "column", md: "row" }}
+                      spacing={2}
                       justifyContent="space-between"
-                      sx={{ width: "65%" }}
+                      sx={matchesWidth ? { width: "66%" } : { width: "100%" }}
                     >
                       <FormikControl
                         control="dateRangePicker"
-                        labelStart="start"
-                        labelEnd="end"
+                        labelStart="From"
+                        labelEnd="To"
                         name="dateRange"
-                        required
                         onChange={(val) => {
                           formik.setFieldValue("dateRange", val);
                         }}
@@ -190,37 +203,43 @@ const FilterDialog = ({ open, toggleBalanceDialog, name }) => {
                         label="Account Id"
                         type="text"
                         id="accountId"
+                        shrink
+                        placeholder=""
                       />
                     </Stack>
                     <Stack
                       direction="row"
-                      spacing={7}
                       justifyContent="space-between"
-                    />
-                    <Stack direction="row" justifyContent="space-between">
-                      <Button
-                        variant="text"
-                        sx={styles.clearButton}
-                        classes={{ root: { padding: 0 } }}
-                      >
-                        <Typography variant="subtitle5">
+                      sx={{ pt: 5 }}
+                    >
+                      <Box>
+                        <Typography
+                          variant="subtitle5"
+                          sx={styles.clearButton}
+                          onClick={() => {
+                            formik.resetForm();
+                          }}
+                        >
                           Clear All Filters
                         </Typography>
-                      </Button>
-                      <Stack direction="row" justifyContent="space-between">
-                        <Button variant="text" sx={styles.cancelButton}>
-                          <Typography variant="subtitle5">Cancel</Typography>
-                        </Button>
-                        <Button
-                          loading={loading}
-                          disableRipple
-                          variant="text"
-                          type="submit"
-                          sx={styles.applyButton}
+                      </Box>
+                      <Box>
+                        <Typography
+                          variant="subtitle5"
+                          sx={styles.cancelButton}
+                          onClick={toggleFilterDialog}
                         >
-                          <Typography variant="subtitle5">Apply</Typography>
-                        </Button>
-                      </Stack>
+                          Cancel
+                        </Typography>
+
+                        <Typography
+                          variant="subtitle5"
+                          sx={styles.applyButton}
+                          onClick={() => {}}
+                        >
+                          Apply
+                        </Typography>
+                      </Box>
                     </Stack>
                   </Stack>
                 </Stack>
@@ -235,7 +254,7 @@ const FilterDialog = ({ open, toggleBalanceDialog, name }) => {
 
 FilterDialog.propTypes = {
   open: PropTypes.bool.isRequired,
-  toggleBalanceDialog: PropTypes.func.isRequired,
+  toggleFilterDialog: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
 };
 export default FilterDialog;

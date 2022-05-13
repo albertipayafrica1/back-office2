@@ -7,11 +7,13 @@ const Transaction = () => {
   const tabTitle = ["Payins", "Payouts", "Billing"];
 
   return (
-    <Tabs tabTitle={tabTitle}>
-      <TransactionTable name="payins" />
-      <TransactionTable name="payouts" />
-      <TransactionTable name="billing" />
-    </Tabs>
+    <>
+      <Tabs tabTitle={tabTitle}>
+        <TransactionTable name="payins" />
+        <TransactionTable name="payouts" />
+        <TransactionTable name="billing" />
+      </Tabs>
+    </>
   );
 };
 export default Transaction;

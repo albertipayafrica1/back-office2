@@ -37,6 +37,7 @@ const FormikCustomInput = ({
   onChange,
   onBlur,
   fastField,
+  shrink,
   ...restProps
 }) => {
   const [visibility, setVisibility] = useState(false);
@@ -119,23 +120,26 @@ const FormikCustomInput = ({
                 },
               }}
               InputLabelProps={{
-                shrink: !(
-                  field !== undefined &&
-                  field.value !== undefined &&
-                  field.value.length <= 0
-                ),
-                className:
-                  field !== undefined &&
-                  field.value !== undefined &&
-                  field.value.length <= 0 &&
-                  !multiline
-                    ? classes.inputLabelNoShrink
-                    : field !== undefined &&
+                shrink: shrink
+                  ? true
+                  : !(
+                      field !== undefined &&
                       field.value !== undefined &&
-                      field.value.length <= 0 &&
-                      multiline
-                    ? classes.inputLabelMultilineNoShrink
-                    : undefined,
+                      field.value.length <= 0
+                    ),
+                className: shrink
+                  ? undefined
+                  : field !== undefined &&
+                    field.value !== undefined &&
+                    field.value.length <= 0 &&
+                    !multiline
+                  ? classes.inputLabelNoShrink
+                  : field !== undefined &&
+                    field.value !== undefined &&
+                    field.value.length <= 0 &&
+                    multiline
+                  ? classes.inputLabelMultilineNoShrink
+                  : undefined,
                 // style: {
                 //   textOverflow: "ellipsis",
                 //   whiteSpace: "nowrap",
@@ -247,23 +251,26 @@ const FormikCustomInput = ({
               },
             }}
             InputLabelProps={{
-              shrink: !(
-                field !== undefined &&
-                field.value !== undefined &&
-                field.value.length <= 0
-              ),
-              className:
-                field !== undefined &&
-                field.value !== undefined &&
-                field.value.length <= 0 &&
-                !multiline
-                  ? classes.inputLabelNoShrink
-                  : field !== undefined &&
+              shrink: shrink
+                ? true
+                : !(
+                    field !== undefined &&
                     field.value !== undefined &&
-                    field.value.length <= 0 &&
-                    multiline
-                  ? classes.inputLabelMultilineNoShrink
-                  : undefined,
+                    field.value.length <= 0
+                  ),
+              className: shrink
+                ? undefined
+                : field !== undefined &&
+                  field.value !== undefined &&
+                  field.value.length <= 0 &&
+                  !multiline
+                ? classes.inputLabelNoShrink
+                : field !== undefined &&
+                  field.value !== undefined &&
+                  field.value.length <= 0 &&
+                  multiline
+                ? classes.inputLabelMultilineNoShrink
+                : undefined,
               // style: {
               //   textOverflow: "ellipsis",
               //   whiteSpace: "nowrap",
@@ -340,6 +347,7 @@ FormikCustomInput.defaultProps = {
   onChange: "",
   onBlur: "",
   fastField: true,
+  shrink: false,
 };
 
 FormikCustomInput.propTypes = {
@@ -359,6 +367,7 @@ FormikCustomInput.propTypes = {
   select: PropTypes.bool,
   selectItem: PropTypes.arrayOf(PropTypes.string),
   fastField: PropTypes.bool,
+  shrink: PropTypes.bool,
 };
 
 export default FormikCustomInput;

@@ -12,3 +12,10 @@ export const button = {
     backgroundColor: (theme) => theme.colors.orange,
   },
 };
+
+export const activeButton = {
+  borderRadius: "5px",
+  color: (theme) => theme.colors.mono5,
+  borderColor: (theme) => theme.colors.orange,
+  backgroundColor: (theme) => theme.colors.orange,
+};

@@ -12,6 +12,7 @@ const DialogView = ({
   backDropVisible,
   dialogTitleStyling,
   dialogTitle,
+  hasCloseIcon,
 }) => {
   return (
     <Dialog
@@ -22,10 +23,11 @@ const DialogView = ({
       }}
       open={open}
       BackdropProps={{ invisible: backDropVisible }}
+      fullWidth
     >
       <DialogTitle sx={dialogTitleStyling}>
         {dialogTitle}
-        {onClose && dialogTitle === "" ? (
+        {onClose && hasCloseIcon === "" ? (
           <IconButton
             aria-label="close"
             onClick={onClose}
@@ -52,6 +54,7 @@ DialogView.defaultProps = {
   dialogTitleStyling: {},
   backDropVisible: false,
   dialogTitle: "",
+  hasCloseIcon: false,
 };
 
 DialogView.propTypes = {
@@ -62,4 +65,5 @@ DialogView.propTypes = {
   dialogTitleStyling: PropTypes.shape({}),
   backDropVisible: PropTypes.bool,
   dialogTitle: PropTypes.string,
+  hasCloseIcon: PropTypes.string,
 };
