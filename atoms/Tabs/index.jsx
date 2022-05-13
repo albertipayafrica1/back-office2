@@ -1,13 +1,14 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-import { Box, Tab } from "@mui/material";
+import { Box, Tab, useMediaQuery } from "@mui/material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 
 import * as styles from "./styles";
 
 const Tabs = ({ tabTitle, children }) => {
   const [value, setValue] = useState("0");
+  const matchesWidth = useMediaQuery("(min-width:900px)");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -16,7 +17,7 @@ const Tabs = ({ tabTitle, children }) => {
   return (
     <Box sx={{ width: "100%" }}>
       <TabContext value={value}>
-        <Box sx={{ ml: 25 }}>
+        <Box sx={matchesWidth ? { ml: 25 } : { ml: 12 }}>
           <TabList onChange={handleChange} aria-label="tabs" sx={styles.tabs}>
             {tabTitle.map((title, index) => (
               <Tab
