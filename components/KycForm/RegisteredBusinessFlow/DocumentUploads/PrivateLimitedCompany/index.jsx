@@ -15,6 +15,7 @@ import FormikControl from "../../../../FormikControls/index";
 import PrivateLimitedCompanyContainer from "../../../../../atoms/CreateAccountFormDiv";
 import DownloadDiv from "../../../../../atoms/DownloadDiv";
 import MuiAlert from "../../../../../atoms/MuiAlert";
+import Loader from "../../../../../atoms/Loader";
 
 import { privateLimitedCompany } from "../../../../../utils/formValidations/kyc/registeredBusinessFlow/documentUploads/privateLimitedCompany";
 
@@ -168,7 +169,7 @@ const PrivateLimitedCompany = ({ handleNextStep }) => {
   }, []);
 
   if (retrievalLoading) {
-    return <div>loading...</div>;
+    return <Loader spaceAround="md" alignment={{ height: "65vh" }} />;
   }
 
   return (

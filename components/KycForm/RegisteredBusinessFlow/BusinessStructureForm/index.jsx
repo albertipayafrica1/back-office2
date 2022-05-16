@@ -14,6 +14,7 @@ import FormikControl from "../../../FormikControls";
 
 import CreateAccountFormDiv from "../../../../atoms/CreateAccountFormDiv";
 import MuiAlert from "../../../../atoms/MuiAlert";
+import Loader from "../../../../atoms/Loader";
 
 import { businessStructure } from "../../../../utils/formValidations/kyc/registeredBusinessFlow/businessStructure";
 import { telephoneCodes } from "../../../../utils/data";
@@ -327,7 +328,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
   }, []);
 
   if (retrievalLoading) {
-    return <div>loading...</div>;
+    return <Loader spaceAround="md" alignment={{ height: "65vh" }} />;
   }
   return (
     <>

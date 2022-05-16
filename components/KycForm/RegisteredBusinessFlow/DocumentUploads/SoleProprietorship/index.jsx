@@ -15,6 +15,7 @@ import FormikControl from "../../../../FormikControls/index";
 import SoleProprietorshipContainer from "../../../../../atoms/CreateAccountFormDiv";
 import DownloadDiv from "../../../../../atoms/DownloadDiv";
 import MuiAlert from "../../../../../atoms/MuiAlert";
+import Loader from "../../../../../atoms/Loader";
 
 import { soleProprietorship } from "../../../../../utils/formValidations/kyc/registeredBusinessFlow/documentUploads/soleProprietorship";
 
@@ -162,7 +163,7 @@ const SoleProprietorship = ({ handleNextStep }) => {
   }, []);
 
   if (retrievalLoading) {
-    return <div>loading...</div>;
+    return <Loader spaceAround="md" alignment={{ height: "65vh" }} />;
   }
 
   return (

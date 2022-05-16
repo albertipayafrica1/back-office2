@@ -14,6 +14,7 @@ import { Formik, Form } from "formik";
 import FormikControl from "../../../../../FormikControls/index";
 import WeddingContainer from "../../../../../../atoms/CreateAccountFormDiv";
 import MuiAlert from "../../../../../../atoms/MuiAlert";
+import Loader from "../../../../../../atoms/Loader";
 
 import { wedding } from "../../../../../../utils/formValidations/kyc/unRegisteredBusinessFlow/shortTermFlow/documentUploads/wedding";
 
@@ -155,7 +156,7 @@ const Wedding = ({ handleNextStep }) => {
   }, []);
 
   if (retrievalLoading) {
-    return <div>loading...</div>;
+    return <Loader spaceAround="md" alignment={{ height: "65vh" }} />;
   }
 
   return (

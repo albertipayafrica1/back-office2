@@ -1,16 +1,3 @@
-export const signUpDurationOptions = [
-  { key: "Short Term Need", value: "1" },
-  { key: "Long Term Need", value: "2" },
-];
-
-export const purposeOptions = [
-  { key: "Medical", value: "1" },
-  { key: "Education", value: "2" },
-  { key: "Funeral", value: "3" },
-  { key: "Wedding", value: "4" },
-  { key: "Charity", value: "5" },
-];
-
 export const titleOptions = [
   { key: "Mr", value: "1" },
   { key: "Mrs", value: "2" },

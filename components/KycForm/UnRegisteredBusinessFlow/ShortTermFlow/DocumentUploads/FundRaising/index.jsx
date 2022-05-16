@@ -14,6 +14,7 @@ import { Formik, Form } from "formik";
 import FormikControl from "../../../../../FormikControls/index";
 import FundRaisingContainer from "../../../../../../atoms/CreateAccountFormDiv";
 import MuiAlert from "../../../../../../atoms/MuiAlert";
+import Loader from "../../../../../../atoms/Loader";
 
 import { fundRaising } from "../../../../../../utils/formValidations/kyc/unRegisteredBusinessFlow/shortTermFlow/documentUploads/fundRaising";
 
@@ -155,7 +156,7 @@ const FundRaising = ({ handleNextStep }) => {
   }, []);
 
   if (retrievalLoading) {
-    return <div>loading...</div>;
+    return <Loader spaceAround="md" alignment={{ height: "65vh" }} />;
   }
 
   return (

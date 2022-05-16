@@ -14,6 +14,7 @@ import { Formik, Form } from "formik";
 import FormikControl from "../../../FormikControls/index";
 import BankDetailsContainer from "../../../../atoms/CreateAccountFormDiv";
 import MuiAlert from "../../../../atoms/MuiAlert";
+import Loader from "../../../../atoms/Loader";
 
 import { currency, bankLocation } from "./data";
 import { bankDetails } from "../../../../utils/formValidations/kyc/registeredBusinessFlow/bankDetails";
@@ -167,7 +168,7 @@ const BankDetailsForm = ({ handleNextStep }) => {
   }, []);
 
   if (retrievalLoading) {
-    return <div>loading...</div>;
+    return <Loader spaceAround="md" alignment={{ height: "65vh" }} />;
   }
 
   return (

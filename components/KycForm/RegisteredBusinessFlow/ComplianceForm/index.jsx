@@ -14,6 +14,7 @@ import { Formik, Form } from "formik";
 import FormikControl from "../../../FormikControls/index";
 
 import MuiAlert from "../../../../atoms/MuiAlert";
+import Loader from "../../../../atoms/Loader";
 import ComplianceFormContainer from "../../../../atoms/CreateAccountFormDiv";
 
 import { consent } from "./data";
@@ -156,7 +157,7 @@ const ComplianceForm = ({ handleNextStep }) => {
   }, []);
 
   if (retrievalLoading) {
-    return <div>loading...</div>;
+    return <Loader spaceAround="md" alignment={{ height: "65vh" }} />;
   }
 
   return (

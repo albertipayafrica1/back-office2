@@ -13,17 +13,12 @@ import { Formik, Form } from "formik";
 import FormikControl from "../../../../FormikControls";
 import CreateAccountFormDiv from "../../../../../atoms/CreateAccountFormDiv";
 import MuiAlert from "../../../../../atoms/MuiAlert";
+import Loader from "../../../../../atoms/Loader";
 
 import { personalDetails } from "../../../../../utils/formValidations/kyc/unRegisteredBusinessFlow/longTermFlow/personalDetails";
 import { telephoneCodes } from "../../../../../utils/data";
 
-import {
-  signUpDurationOptions,
-  purposeOptions,
-  titleOptions,
-  genderOptions,
-  documentTypeOptions,
-} from "./data";
+import { titleOptions, genderOptions, documentTypeOptions } from "./data";
 
 import * as styles from "./styles";
 
@@ -229,7 +224,7 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
   }, []);
 
   if (retrievalLoading) {
-    return <div>loading...</div>;
+    return <Loader spaceAround="md" alignment={{ height: "65vh" }} />;
   }
 
   return (

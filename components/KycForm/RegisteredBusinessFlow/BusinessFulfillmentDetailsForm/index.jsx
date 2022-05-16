@@ -14,6 +14,7 @@ import FormikControl from "../../../FormikControls";
 
 import CreateAccountFormDiv from "../../../../atoms/CreateAccountFormDiv";
 import MuiAlert from "../../../../atoms/MuiAlert";
+import Loader from "../../../../atoms/Loader";
 
 import { businessFulfillmentDetails } from "../../../../utils/formValidations/kyc/registeredBusinessFlow/businessFulfillmentDetails";
 
@@ -164,7 +165,7 @@ const BusinessFulfillmentDetailsForm = ({ handleNextStep }) => {
   }, []);
 
   if (retrievalLoading) {
-    return <div>loading...</div>;
+    return <Loader spaceAround="md" alignment={{ height: "65vh" }} />;
   }
 
   return (

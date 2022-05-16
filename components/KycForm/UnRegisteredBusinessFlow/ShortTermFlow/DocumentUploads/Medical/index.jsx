@@ -14,6 +14,7 @@ import { Formik, Form } from "formik";
 import FormikControl from "../../../../../FormikControls/index";
 import MedicalContainer from "../../../../../../atoms/CreateAccountFormDiv";
 import MuiAlert from "../../../../../../atoms/MuiAlert";
+import Loader from "../../../../../../atoms/Loader";
 
 import { medical } from "../../../../../../utils/formValidations/kyc/unRegisteredBusinessFlow/shortTermFlow/documentUploads/medical";
 
@@ -157,7 +158,7 @@ const Medical = ({ handleNextStep }) => {
   }, []);
 
   if (retrievalLoading) {
-    return <div>loading...</div>;
+    return <Loader spaceAround="md" alignment={{ height: "65vh" }} />;
   }
 
   return (

@@ -15,6 +15,7 @@ import FormikControl from "../../../../FormikControls/index";
 import ProfessionalEntitiesContainer from "../../../../../atoms/CreateAccountFormDiv";
 import DownloadDiv from "../../../../../atoms/DownloadDiv";
 import MuiAlert from "../../../../../atoms/MuiAlert";
+import Loader from "../../../../../atoms/Loader";
 
 import { professionalEntities } from "../../../../../utils/formValidations/kyc/registeredBusinessFlow/documentUploads/professionalEntities";
 
@@ -167,7 +168,7 @@ const ProfessionalEntities = ({ handleNextStep }) => {
   }, []);
 
   if (retrievalLoading) {
-    return <div>loading...</div>;
+    return <Loader spaceAround="md" alignment={{ height: "65vh" }} />;
   }
   return (
     <>

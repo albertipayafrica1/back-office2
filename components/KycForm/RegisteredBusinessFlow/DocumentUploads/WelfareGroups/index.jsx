@@ -15,6 +15,7 @@ import FormikControl from "../../../../FormikControls/index";
 import WelfareGroupsContainer from "../../../../../atoms/CreateAccountFormDiv";
 import DownloadDiv from "../../../../../atoms/DownloadDiv";
 import MuiAlert from "../../../../../atoms/MuiAlert";
+import Loader from "../../../../../atoms/Loader";
 
 import { welfareGroups } from "../../../../../utils/formValidations/kyc/registeredBusinessFlow/documentUploads/welfareGroups";
 
@@ -164,7 +165,7 @@ const WelfareGroups = ({ handleNextStep }) => {
   }, []);
 
   if (retrievalLoading) {
-    return <div>loading...</div>;
+    return <Loader spaceAround="md" alignment={{ height: "65vh" }} />;
   }
 
   return (

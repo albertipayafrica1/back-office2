@@ -15,6 +15,7 @@ import { ComplianceResponse, consent } from "./data";
 import DownloadDiv from "../../../../atoms/DownloadDiv";
 import ComplianceFormContainer from "../../../../atoms/CreateAccountFormDiv";
 import MuiAlert from "../../../../atoms/MuiAlert";
+import Loader from "../../../../atoms/Loader";
 
 import { compliance } from "../../../../utils/formValidations/kyc/unRegisteredBusinessFlow/compliance";
 import { styles } from "./styles";
@@ -179,7 +180,7 @@ const ComplianceForm = ({ handleNextStep }) => {
   }, []);
 
   if (retrievalLoading) {
-    return <div>loading...</div>;
+    return <Loader spaceAround="md" alignment={{ height: "65vh" }} />;
   }
 
   return (

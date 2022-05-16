@@ -15,6 +15,7 @@ import FormikControl from "../../../../FormikControls/index";
 import LearningInstitutionContainer from "../../../../../atoms/CreateAccountFormDiv";
 import DownloadDiv from "../../../../../atoms/DownloadDiv";
 import MuiAlert from "../../../../../atoms/MuiAlert";
+import Loader from "../../../../../atoms/Loader";
 
 import { learningInstitution } from "../../../../../utils/formValidations/kyc/registeredBusinessFlow/documentUploads/learningInstitution";
 
@@ -168,7 +169,7 @@ const LearningInstitution = ({ handleNextStep }) => {
   }, []);
 
   if (retrievalLoading) {
-    return <div>loading...</div>;
+    return <Loader spaceAround="md" alignment={{ height: "65vh" }} />;
   }
   return (
     <>

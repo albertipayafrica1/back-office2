@@ -14,6 +14,7 @@ import { Formik, Form } from "formik";
 import FormikControl from "../../../../../FormikControls/index";
 import EducationContainer from "../../../../../../atoms/CreateAccountFormDiv";
 import MuiAlert from "../../../../../../atoms/MuiAlert";
+import Loader from "../../../../../../atoms/Loader";
 
 import { education } from "../../../../../../utils/formValidations/kyc/unRegisteredBusinessFlow/shortTermFlow/documentUploads/education";
 import { styles } from "../styles";
@@ -156,7 +157,7 @@ const Education = ({ handleNextStep }) => {
   }, []);
 
   if (retrievalLoading) {
-    return <div>loading...</div>;
+    return <Loader spaceAround="md" alignment={{ height: "65vh" }} />;
   }
 
   return (
