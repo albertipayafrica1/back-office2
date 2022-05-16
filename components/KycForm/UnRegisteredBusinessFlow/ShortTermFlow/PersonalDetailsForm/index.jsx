@@ -58,6 +58,7 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
 
   const [formValues, setFormValues] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [retrievalLoading, setRetrievalLoading] = useState(false);
   const [alert, setAlert] = useState({ type: "", message: "" });
 
   const handleSubmit = (values, formikHelpers) => {
@@ -125,7 +126,59 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
   };
 
   useEffect(() => {
-    const savedValues = {
+    setRetrievalLoading(true);
+    const credentials = Cookies.get("iPayT");
+    const config = {
+      method: "get",
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/kyc/biz-structure`,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${credentials}`,
+      },
+      withCredentials: true,
+    };
+    axios(config)
+      .then((response) => {
+        console.log(response, "response");
+        if (response.data.success === true) {
+          setFormValues(response.data.response);
+          setRetrievalLoading(false);
+        } else {
+          console.log(response, "response0");
+          setAlert({ type: "error", message: "Something Went Wrong" });
+          setRetrievalLoading(false);
+        }
+      })
+      .catch((error) => {
+        setRetrievalLoading(false);
+        if (error.response === undefined) {
+          setAlert({ type: "error", message: "Something Went Wrong" });
+        } else if (error.response.status === 401) {
+          // make a request to logout route here
+          setAlert({ type: "error", message: error.response.data.response });
+          setTimeout(() => {
+            router.replace("/");
+          }, 2000);
+        } else if (error.response) {
+          if (error.response.data.response !== undefined) {
+            setAlert({
+              type: "error",
+              message: error.response.data.response,
+            });
+          } else {
+            setAlert({
+              type: "error",
+              message: "Something Went Wrong",
+            });
+          }
+          console.log(error.response, "second if else");
+        } else {
+          setAlert({ type: "error", message: "Something Went Wrong" });
+          console.log(error, "third if else");
+        }
+        setRetrievalLoading(false);
+      });
+    setFormValues({
       // this you get it from api call
       businessRepresentative: {
         title: "",
@@ -156,9 +209,12 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
         websiteLink: "",
         appDownloadLink: "",
       },
-    };
-    setFormValues(savedValues);
+    });
   }, []);
+
+  if (retrievalLoading) {
+    return <div>loading...</div>;
+  }
 
   return (
     <>

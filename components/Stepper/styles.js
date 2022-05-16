@@ -23,7 +23,7 @@ export const stepper = {
   justifyContent: "center",
   alignItems: "center",
   position: "sticky",
-  top: { xs: 100, md: 109 },
+  top: { xs: 100, sm: 108, md: 109 },
   "& .MuiStepIcon-root.Mui-active": {
     color: (theme) => theme.colors.blue,
   },

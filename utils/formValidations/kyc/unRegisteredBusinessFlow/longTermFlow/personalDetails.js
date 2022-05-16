@@ -208,7 +208,7 @@ export const personalDetails = yup.object({
     postalAddress: yup
       .string()
       .required("kindly enter your business postal address"),
-    postalCode: yup.string(),
+    postalCode: yup.string("Kindly Enter your postal code"),
     city: yup.string().required("kindly enter your city/town "),
     county: yup.string(),
     websiteLink: yup
