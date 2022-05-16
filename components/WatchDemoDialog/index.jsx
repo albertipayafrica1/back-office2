@@ -9,6 +9,7 @@ const WatchDemo = ({ open, toggleWatchDemo }) => {
         open={open}
         onClose={toggleWatchDemo}
         position={styles.dialogueContainer}
+        hasCloseIcon
         paperPropsStyling={{
           width: "100vh",
           height: "100vh",
