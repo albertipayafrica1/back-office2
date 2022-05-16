@@ -258,12 +258,12 @@ export const businessStructure = yup.object({
       .string()
       .test(
         "len",
-        "your description must have atleast 150 characters",
+        "your description must have atleast 100 characters",
         (val) => {
           if (val === undefined || val === null || val === "") {
             return false;
           }
-          return val.length >= 150;
+          return val.length >= 100;
         }
       )
       .required("Kindly enter your business description"),
