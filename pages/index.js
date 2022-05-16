@@ -68,7 +68,7 @@ const Home = () => {
 
   const handleCreateAccount = () => {
     router.push(
-      `/createAccount?country=${formData.selectWithRedirect}&rc=RC0000000`
+      `/createAccount?country=${formData.selectWithRedirect}&rc=RC000000`
     );
   };
 
