@@ -51,7 +51,7 @@ export const aboutUs = [
 ];
 export const ads = [
   { value: "1", key: "BillBoards" },
-  { value: "2", key: "GDN" },
+  { value: "2", key: "Google Ads" },
   { value: "3", key: "Radio" },
   { value: "4", key: "Tv" },
 ];
