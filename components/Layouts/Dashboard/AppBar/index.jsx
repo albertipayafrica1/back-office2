@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
+import { useState } from "react";
 import Image from "next/image";
-// import Cookies from "js-cookie";
-// import axios from "axios";
 import {
   AppBar,
   Box,
@@ -14,36 +13,17 @@ import MenuIcon from "@mui/icons-material/Menu";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import { useStyles } from "./styles";
 import * as styles from "./styles";
+import UserDetails from "../UserDetails";
 import TestMode from "../Testmode";
 
 const TopAppBar = ({ handleDrawerToggle, testModeStatus }) => {
-  // const [loadingButton, setLoadingButton] = useState(false);
-  const classes = useStyles();
-  // const handleLogout = () => {
-  //   setLoadingButton(true);
-  //   const credentials = Cookies.get("iPayT");
-  //   const config = {
-  //     method: "post",
-  //     url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/logout`,
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Authorization: `Bearer ${credentials} `,
-  //     },
-  //     withCredentials: true,
-  //   };
-  //   axios(config)
-  //     .then((response) => {
-  //       Cookies.set("iPayT", "", { expires: -1 });
+  const [userDetailsComponent, setUserDetailsComponent] = useState(false);
 
-  //       router.push(`/login/?country=${"KE"}`);
-  //       setLoadingButton(false);
-  //     })
-  //     .catch((error) => {
-  //       Cookies.set("iPayT", "", { expires: -1 });
-  //       setLoadingButton(false);
-  //       router.push(`/login/?country=${"KE"}`);
-  //     });
-  // };
+  const toggleUserDetailsComponent = () => {
+    setUserDetailsComponent(!userDetailsComponent);
+  };
+
+  const classes = useStyles();
 
   return (
     <Box>
@@ -75,17 +55,23 @@ const TopAppBar = ({ handleDrawerToggle, testModeStatus }) => {
               </Box>
 
               <Box sx={styles.userDetailsContainer}>
-                <Badge badgeContent={4} sx={styles.badge}>
+                <Typography sx={styles.HelpText}>Help</Typography>
+                <Badge badgeContent={0} sx={styles.badge}>
                   <NotificationsActiveIcon sx={styles.notificationIcon} />
                 </Badge>
 
                 <Typography sx={styles.HelpText}>Hello, Diana</Typography>
-                <Box sx={styles.userIconContainer}>
+                <Box
+                  onClick={toggleUserDetailsComponent}
+                  sx={styles.userIconContainer}
+                >
                   <Image src="/usericon.svg" width={16.15} height={16.15} />
+
                   <Image src="/down arrow.svg" width="8.88px" height="8.88px" />
                 </Box>
               </Box>
             </Box>
+            <UserDetails status={userDetailsComponent} />
           </Box>
         </Toolbar>
       </AppBar>
