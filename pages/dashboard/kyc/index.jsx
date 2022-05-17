@@ -46,7 +46,14 @@ export const getServerSideProps = ProtectedRoute(
   wrapper.getServerSideProps((store) => async (context) => {
     const { req } = context;
 
-    console.log(req.cookies.iPayT);
+    console.log(
+      store.dispatch({
+        type: "BUY_CAKE",
+        payload: 1,
+      }),
+      "store"
+    );
+    console.log(store.getState(), "tttt");
 
     let data = "";
     let error = "";

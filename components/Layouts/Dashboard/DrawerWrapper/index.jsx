@@ -62,7 +62,10 @@ const DrawerWrapper = ({ mobileOpen, handleDrawerToggle, testModeStatus }) => {
           {MenuItems.map((item) => {
             return (
               <Button
-                onClick={() => router.push(`${item.url}`)}
+                onClick={() => {
+                  router.push(`${item.url}`);
+                  return handleDrawerToggle();
+                }}
                 sx={
                   router.pathname === `${item.url}`
                     ? styles.activeMenuItem
