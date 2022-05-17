@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { Drawer, Typography, Button, LinearProgress } from "@mui/material";
 import Divider from "@mui/material/Divider";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import SelectCurrencies from "../SelectCurrencies";
 
 import MuiToolTip from "../../../../atoms/MuiToolTip";
@@ -44,7 +44,10 @@ const DrawerWrapper = ({ mobileOpen, handleDrawerToggle, testModeStatus }) => {
 
         <div
           style={{ cursor: "pointer" }}
-          onClick={() => router.push("/dashboard/kyc")}
+          onClick={() => {
+            router.push("/dashboard/kyc");
+            return handleDrawerToggle();
+          }}
           role="button"
           tabIndex={0}
           onKeyDown={() => {}}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 import {
@@ -40,12 +40,20 @@ import Funeral from "../KycForm/UnRegisteredBusinessFlow/ShortTermFlow/DocumentU
 import Medical from "../KycForm/UnRegisteredBusinessFlow/ShortTermFlow/DocumentUploads/Medical";
 import Wedding from "../KycForm/UnRegisteredBusinessFlow/ShortTermFlow/DocumentUploads/Wedding";
 
+import { useSelector } from "react-redux";
+
 import { styles, stepper, container } from "./styles";
 
 const HorizontalLinearStepper = ({ flow, companyType, duration }) => {
   const matches = useMediaQuery("(min-width:800px)");
+  const kycStatus = useSelector((state) => state.kycStatus.kycStatus);
+
   const [activeStep, setActiveStep] = useState(0);
   const [stepFailed, setStepFailed] = useState(new Set());
+
+  useEffect(() => {
+    setActiveStep(kycStatus.lastStep);
+  }, []);
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
