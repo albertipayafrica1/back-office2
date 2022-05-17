@@ -145,10 +145,6 @@ const BusinessStructureForm = ({ handleNextStep }) => {
       .then((response) => {
         console.log(response, "response");
         if (response.data.success === true) {
-          setAlert({
-            type: "success",
-            message: "Fulfillment Details Updated Successfully!",
-          });
           handleNextStep();
           setLoading(false);
         } else {
@@ -252,6 +248,9 @@ const BusinessStructureForm = ({ handleNextStep }) => {
         console.log(response, "response");
         if (response.data.success === true) {
           setFormValues(response.data.response);
+          setBusinessCategoryValue(
+            response.data.response.registeredBusinessDetails.businessCategory
+          );
           setRetrievalLoading(false);
         } else {
           console.log(response, "response0");
@@ -446,7 +445,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
           enableReinitialize
         >
           {(formik) => {
-            //  console.log(formik.errors, "fork");
+            console.log(formik.errors, "fork");
             return (
               <Form>
                 <Stack spacing={8}>
