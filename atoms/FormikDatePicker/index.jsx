@@ -28,7 +28,6 @@ const FormikDatePicker = ({
   return (
     <Field name={name}>
       {({ field, form }) => {
-        console.log(field, "eeros in field");
         return (
           <FormControl
             error={Boolean(

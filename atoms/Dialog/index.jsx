@@ -27,7 +27,7 @@ const DialogView = ({
     >
       <DialogTitle sx={dialogTitleStyling}>
         {dialogTitle}
-        {onClose && hasCloseIcon === "" ? (
+        {onClose && hasCloseIcon ? (
           <IconButton
             aria-label="close"
             onClick={onClose}
@@ -65,5 +65,5 @@ DialogView.propTypes = {
   dialogTitleStyling: PropTypes.shape({}),
   backDropVisible: PropTypes.bool,
   dialogTitle: PropTypes.string,
-  hasCloseIcon: PropTypes.string,
+  hasCloseIcon: PropTypes.bool,
 };

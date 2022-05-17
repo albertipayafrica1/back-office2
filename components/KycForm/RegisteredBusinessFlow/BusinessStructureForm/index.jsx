@@ -22,8 +22,8 @@ import { telephoneCodes } from "../../../../utils/data";
 import {
   titleOptions,
   genderOptions,
-  businessCategoryOptions,
-  businessSubCategoryOptions,
+  // businessCategoryOptions,
+  // businessSubCategoryOptions,
   businessCurrencyOptions,
   documentTypeOptions,
   shareHolderTypeOptions,
@@ -120,6 +120,12 @@ const BusinessStructureForm = ({ handleNextStep }) => {
   const [loading, setLoading] = useState(false);
   const [retrievalLoading, setRetrievalLoading] = useState(false);
   const [alert, setAlert] = useState({ type: "", message: "" });
+  const [businessCategoryValue, setBusinessCategoryValue] = useState();
+  const [businessCategoryOptions, setBusinessCategoryOptions] = useState([]);
+  const [businessSubCategoryOptions, setBusinessSubCategoryOptions] = useState(
+    []
+  );
+  const [subCategoryLoading, setSubCategoryLoading] = useState(false);
 
   const handleSubmit = (values, formikHelpers) => {
     setLoading(true);
@@ -187,6 +193,51 @@ const BusinessStructureForm = ({ handleNextStep }) => {
   useEffect(() => {
     setRetrievalLoading(true);
     const credentials = Cookies.get("iPayT");
+
+    const businessCategoryConfig = {
+      method: "get",
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/categories`,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${credentials}`,
+      },
+      withCredentials: true,
+    };
+
+    axios(businessCategoryConfig)
+      .then((response) => {
+        if (response.data.success === true) {
+          setBusinessCategoryOptions(response.data.response);
+        } else {
+          setAlert({ type: "error", message: "Something Went Wrong" });
+        }
+      })
+      .catch((error) => {
+        if (error.response === undefined) {
+          setAlert({ type: "error", message: "Something Went Wrong" });
+        } else if (error.response.status === 401) {
+          // make a request to logout route here
+          setAlert({ type: "error", message: error.response.data.response });
+          setTimeout(() => {
+            router.replace("/");
+          }, 2000);
+        } else if (error.response) {
+          if (error.response.data.response !== undefined) {
+            setAlert({
+              type: "error",
+              message: error.response.data.response,
+            });
+          } else {
+            setAlert({
+              type: "error",
+              message: "Something Went Wrong",
+            });
+          }
+        } else {
+          setAlert({ type: "error", message: "Something Went Wrong" });
+        }
+      });
+
     const config = {
       method: "get",
       url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/kyc/biz-structure`,
@@ -238,7 +289,6 @@ const BusinessStructureForm = ({ handleNextStep }) => {
         setRetrievalLoading(false);
       });
     setFormValues({
-      // this you get it from api call
       businessRepresentative: {
         title: "",
         surname: "",
@@ -327,6 +377,62 @@ const BusinessStructureForm = ({ handleNextStep }) => {
     });
   }, []);
 
+  useEffect(() => {
+    console.log(businessCategoryValue, "useeef ran");
+    if (businessCategoryValue === undefined) {
+      return;
+    }
+    setSubCategoryLoading(true);
+
+    const credentials = Cookies.get("iPayT");
+
+    const businessSubCategoryConfig = {
+      method: "get",
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/categories/${businessCategoryValue}`,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${credentials}`,
+      },
+      withCredentials: true,
+    };
+
+    axios(businessSubCategoryConfig)
+      .then((response) => {
+        if (response.data.success === true) {
+          setBusinessSubCategoryOptions(response.data.response);
+        } else {
+          setAlert({ type: "error", message: "Something Went Wrong" });
+        }
+        setSubCategoryLoading(false);
+      })
+      .catch((error) => {
+        if (error.response === undefined) {
+          setAlert({ type: "error", message: "Something Went Wrong" });
+        } else if (error.response.status === 401) {
+          // make a request to logout route here
+          setAlert({ type: "error", message: error.response.data.response });
+          setTimeout(() => {
+            router.replace("/");
+          }, 2000);
+        } else if (error.response) {
+          if (error.response.data.response !== undefined) {
+            setAlert({
+              type: "error",
+              message: error.response.data.response,
+            });
+          } else {
+            setAlert({
+              type: "error",
+              message: "Something Went Wrong",
+            });
+          }
+        } else {
+          setAlert({ type: "error", message: "Something Went Wrong" });
+        }
+        setSubCategoryLoading(false);
+      });
+  }, [businessCategoryValue]);
+
   if (retrievalLoading) {
     return <Loader spaceAround="md" alignment={{ height: "65vh" }} />;
   }
@@ -340,7 +446,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
           enableReinitialize
         >
           {(formik) => {
-            console.log(formik.errors, "fork");
+            //  console.log(formik.errors, "fork");
             return (
               <Form>
                 <Stack spacing={8}>
@@ -671,18 +777,29 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                           select
                           selectItem={businessCategoryOptions}
                           required
+                          onChange={(e) => {
+                            formik.setFieldValue(
+                              "registeredBusinessDetails.businessCategory",
+                              e.target.value
+                            );
+                            setBusinessCategoryValue(e.target.value);
+                          }}
                         />
-                        <FormikControl
-                          control="input"
-                          variant="outlined"
-                          name="registeredBusinessDetails.businessSubCategory"
-                          label="Business SubCategory"
-                          type="text"
-                          id="businessSubCategory"
-                          select
-                          selectItem={businessSubCategoryOptions}
-                          required
-                        />
+                        {subCategoryLoading ? (
+                          <Loader spaceAround="xs" />
+                        ) : (
+                          <FormikControl
+                            control="input"
+                            variant="outlined"
+                            name="registeredBusinessDetails.businessSubCategory"
+                            label="Business SubCategory"
+                            type="text"
+                            id="businessSubCategory"
+                            select
+                            selectItem={businessSubCategoryOptions}
+                            required
+                          />
+                        )}
                       </Stack>
                       <Stack
                         direction={{ xs: "column", md: "row" }}
