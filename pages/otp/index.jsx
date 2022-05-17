@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 
+import { useDispatch } from "react-redux";
+
 import axios from "axios";
 import Cookies from "js-cookie";
 
@@ -9,10 +11,15 @@ import OTPInput from "../../components/OTPInput";
 import Auth from "../../components/Layouts/Auth";
 import ProtectedRoute from "../../components/ProtectedRoute";
 
-import { wrapper } from "../../redux/store";
+import {
+  fetchKycStatusRequest,
+  fetchKycStatusSuccess,
+  fetchKycStatusFailure,
+} from "../../redux";
 
 const Otp = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const [otp, setOtp] = useState(new Array(5).fill(""));
   const [error, setError] = useState("");
@@ -39,6 +46,7 @@ const Otp = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(fetchKycStatusRequest());
     setClearTimer(true);
     setLoading(true);
     setError(null);
@@ -64,22 +72,27 @@ const Otp = () => {
     axios(config)
       .then((response) => {
         console.log(response, "otp response");
-        if (response.data.success === true) {
+        if (
+          response.data.success === true &&
+          response.data.kycStatus !== undefined
+        ) {
           Cookies.set("iPayT", response.data.token, {
             secure: true,
           });
           setLoading(false);
           setClearTimer(true);
+          dispatch(fetchKycStatusSuccess(response.data.kycStatus));
           router.replace("/dashboard/kyc");
         } else {
+          dispatch(fetchKycStatusFailure());
           setError("Invalid Otp");
           setClearTimer(true);
           setLoading(false);
         }
       })
       .catch((err) => {
+        dispatch(fetchKycStatusFailure());
         console.log(err, "erro");
-
         if (err.response) {
           setError(err.response.data.response);
         } else {
@@ -148,28 +161,26 @@ const Otp = () => {
 
 export default Otp;
 
-export const getServerSideProps = ProtectedRoute(
-  wrapper.getServerSideProps((store) => async (context) => {
-    const { req } = context;
-    // console.log(req.headers.cookie, "cookie on header");
-    const { country } = context.query;
+export const getServerSideProps = ProtectedRoute((context) => {
+  const { req } = context;
+  // console.log(req.headers.cookie, "cookie on header");
+  const { country } = context.query;
 
-    if (
-      country === undefined ||
-      (country.toUpperCase() !== "KE" &&
-        country.toUpperCase() !== "UG" &&
-        country.toUpperCase() !== "TZ" &&
-        country.toUpperCase() !== "TG")
-    ) {
-      return {
-        redirect: {
-          permanent: false,
-          destination: `/`,
-        },
-      };
-    }
+  if (
+    country === undefined ||
+    (country.toUpperCase() !== "KE" &&
+      country.toUpperCase() !== "UG" &&
+      country.toUpperCase() !== "TZ" &&
+      country.toUpperCase() !== "TG")
+  ) {
     return {
-      props: {},
+      redirect: {
+        permanent: false,
+        destination: `/`,
+      },
     };
-  })
-);
+  }
+  return {
+    props: {},
+  };
+});

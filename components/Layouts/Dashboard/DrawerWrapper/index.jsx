@@ -1,14 +1,21 @@
 import PropTypes from "prop-types";
 import { useRouter } from "next/router";
+
 import { Drawer, Typography, Button, LinearProgress } from "@mui/material";
 import Divider from "@mui/material/Divider";
+
+import { useSelector, useDispatch } from "react-redux";
 import SelectCurrencies from "../SelectCurrencies";
+
 import MuiToolTip from "../../../../atoms/MuiToolTip";
+
 import { MenuItems } from "../data";
 import * as styles from "./styles";
 
 const DrawerWrapper = ({ mobileOpen, handleDrawerToggle, testModeStatus }) => {
   const router = useRouter();
+  const kycStatus = useSelector((state) => state.kycStatus.kycStatus);
+
   const drawer = (
     <div>
       <div style={testModeStatus ? styles.testModeOn : styles.testModeOff}>
@@ -53,8 +60,14 @@ const DrawerWrapper = ({ mobileOpen, handleDrawerToggle, testModeStatus }) => {
             />
           </div>
           <div style={styles.progressBarContainer}>
-            <LinearProgress sx={styles.linearProgress} />
-            <Typography sx={{ fontSize: "11px" }}>25% Complete</Typography>
+            <LinearProgress
+              sx={styles.linearProgress}
+              variant="determinate"
+              value={kycStatus.percentage}
+            />
+            <Typography
+              sx={{ fontSize: "11px" }}
+            >{`${kycStatus.percentage}% Complete`}</Typography>
           </div>
         </div>
         <Divider sx={{ mt: 2, width: "80%" }} />
