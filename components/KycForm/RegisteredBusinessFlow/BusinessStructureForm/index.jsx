@@ -563,10 +563,10 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                           required
                         />
                       </Stack>
+
                       <Stack
                         direction={{ xs: "column", md: "row" }}
                         spacing={3}
-                        justifyContent="space-between"
                       >
                         <FormikControl
                           control="input"
@@ -579,11 +579,6 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                           selectItem={genderOptions}
                           required
                         />
-                      </Stack>
-                      <Stack
-                        direction={{ xs: "column", md: "row" }}
-                        spacing={3}
-                      >
                         <FormikControl
                           control="datePicker"
                           label="Date Of Birth"
@@ -1214,6 +1209,15 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                             <FormikControl
                               control="input"
                               variant="outlined"
+                              name={`ultimateBeneficialOwners[${index}].nationality`}
+                              label="Nationality"
+                              type="text"
+                              id={`ultimateBeneficialOwners[${index}].nationality`}
+                              required
+                            />
+                            <FormikControl
+                              control="input"
+                              variant="outlined"
                               name={`ultimateBeneficialOwners[${index}].documentType`}
                               label="Document Type"
                               type="text"
@@ -1350,15 +1354,6 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                             direction={{ xs: "column", md: "row" }}
                             spacing={3}
                           >
-                            <FormikControl
-                              control="input"
-                              variant="outlined"
-                              name={`ultimateBeneficialOwners[${index}].nationality`}
-                              label="Nationality"
-                              type="text"
-                              id={`ultimateBeneficialOwners[${index}].nationality`}
-                              required
-                            />
                             <FormikControl
                               control="input"
                               label="Enter Number Of Beneficiaries"
