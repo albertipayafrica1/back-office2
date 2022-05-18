@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
+import { useSelector } from "react-redux";
+
 import {
   Stepper,
   Step,
@@ -39,8 +41,6 @@ import FundRaising from "../KycForm/UnRegisteredBusinessFlow/ShortTermFlow/Docum
 import Funeral from "../KycForm/UnRegisteredBusinessFlow/ShortTermFlow/DocumentUploads/Funeral";
 import Medical from "../KycForm/UnRegisteredBusinessFlow/ShortTermFlow/DocumentUploads/Medical";
 import Wedding from "../KycForm/UnRegisteredBusinessFlow/ShortTermFlow/DocumentUploads/Wedding";
-
-import { useSelector } from "react-redux";
 
 import { styles, stepper, container } from "./styles";
 
