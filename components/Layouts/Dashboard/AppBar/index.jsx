@@ -55,10 +55,10 @@ const TopAppBar = ({ handleDrawerToggle, testModeStatus }) => {
               </Box>
 
               <Box sx={styles.userDetailsContainer}>
-                <Typography sx={styles.HelpText}>Help</Typography>
+                {/* <Typography sx={styles.HelpText}>Help</Typography>
                 <Badge badgeContent={0} sx={styles.badge}>
                   <NotificationsActiveIcon sx={styles.notificationIcon} />
-                </Badge>
+                </Badge> */}
 
                 <Typography sx={styles.HelpText}>Hello, Diana</Typography>
                 <Box
