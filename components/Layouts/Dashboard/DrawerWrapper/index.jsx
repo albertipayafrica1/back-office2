@@ -21,13 +21,14 @@ import * as styles from "./styles";
 const DrawerWrapper = ({ mobileOpen, handleDrawerToggle, testModeStatus }) => {
   const router = useRouter();
   const kycStatus = useSelector((state) => state.kycStatus.kycStatus);
+  const user = useSelector((state) => state.user.user);
 
   const drawer = (
     <div>
       <div style={testModeStatus ? styles.testModeOn : styles.testModeOff}>
         <img src="/LOGO.svg" alt="logo" style={styles.logo} />
         <Typography variant="title10" sx={styles.vendorIdText}>
-          Vendor ID: fivespot
+          {`Vendor ID: ${user.vid}`}
         </Typography>
         <div
           style={{
