@@ -72,9 +72,9 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
     businessType: "",
     revenue: "",
     ipayProducts: [],
-    aboutUs: "2",
+    aboutUs: query.rc === "RC000000" ? "1" : "2",
     referral: rc,
-    ads: "",
+    ads: query.rc === "RC000000" ? "1" : "",
     privacy: [],
   });
   const [loading, setLoading] = useState(false);
@@ -104,9 +104,9 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
     businessType: "",
     revenue: "",
     ipayProducts: [],
-    aboutUs: "2",
+    aboutUs: query.rc === "RC000000" ? "1" : "2",
     referral: rc,
-    ads: "",
+    ads: query.rc === "RC000000" ? "1" : "",
     privacy: [],
   };
 
