@@ -3,6 +3,7 @@ import CreateAccountOtpDialog from "../../components/CreateAccountOtpDialog";
 import Search from "../../atoms/Search";
 import FilterDialog from "../../components/FilterDialog";
 import Stepper from "../../components/Stepper";
+import KycCompleteDialog from "../../components/KycCompleteDialog";
 
 function index(props) {
   const paperPropsStyling = {
@@ -22,6 +23,7 @@ function index(props) {
     <>
       <Search />
       <FilterDialog />
+      <KycCompleteDialog open />
       {/* <Stepper flow="registered" /> */}
     </>
   );

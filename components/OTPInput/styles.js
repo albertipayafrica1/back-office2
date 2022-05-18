@@ -39,7 +39,7 @@ export const otpText = {
 export const otpField = {
   maxWidth: "3rem",
   height: "3.5rem",
-  fontSize: "2rem",
+  fontSize: "1.6rem",
   borderRadius: "0.5rem",
   borderColor: "gray",
 };

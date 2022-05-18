@@ -19,6 +19,8 @@ import {
 
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
+import KycCompleteDialog from "../KycCompleteDialog";
+
 import BusinessStructureForm from "../KycForm/RegisteredBusinessFlow/BusinessStructureForm";
 import BankDetailsForm from "../KycForm/RegisteredBusinessFlow/BankDetailsForm";
 import ComplianceForm from "../KycForm/RegisteredBusinessFlow/ComplianceForm";
@@ -286,7 +288,7 @@ const HorizontalLinearStepper = ({ flow, companyType, duration }) => {
         {activeStep === steps.length ? (
           <div>
             <Typography className={styles.instructions}>
-              Congratulations! You have successfully completed your kyc
+              <KycCompleteDialog open />
             </Typography>
             {/* <Button onClick={handleReset} className={styles.button}>
               Reset
