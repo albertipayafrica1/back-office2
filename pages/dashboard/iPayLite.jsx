@@ -2,7 +2,7 @@ import { Typography } from "@mui/material";
 
 import DashboardLayout from "../../components/Layouts/Dashboard";
 
-const Settings = () => {
+const iPayLite = () => {
   return (
     <Typography
       variant="title6"
@@ -13,12 +13,12 @@ const Settings = () => {
         height: "100%",
       }}
     >
-      Settings is Coming Soon
+      iPay Lite is Coming Soon
     </Typography>
   );
 };
+export default iPayLite;
 
-export default Settings;
-Settings.getLayout = function getLayout(page) {
+iPayLite.getLayout = function getLayout(page) {
   return <DashboardLayout>{page}</DashboardLayout>;
 };

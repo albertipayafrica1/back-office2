@@ -2,7 +2,7 @@ import { Typography } from "@mui/material";
 
 import DashboardLayout from "../../components/Layouts/Dashboard";
 
-const Settings = () => {
+const Settlements = () => {
   return (
     <Typography
       variant="title6"
@@ -13,12 +13,11 @@ const Settings = () => {
         height: "100%",
       }}
     >
-      Settings is Coming Soon
+      Settlements is Coming Soon
     </Typography>
   );
 };
-
-export default Settings;
-Settings.getLayout = function getLayout(page) {
+export default Settlements;
+Settlements.getLayout = function getLayout(page) {
   return <DashboardLayout>{page}</DashboardLayout>;
 };

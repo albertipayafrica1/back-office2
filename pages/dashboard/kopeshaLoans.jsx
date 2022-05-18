@@ -2,7 +2,7 @@ import { Typography } from "@mui/material";
 
 import DashboardLayout from "../../components/Layouts/Dashboard";
 
-const Settings = () => {
+const KopeshaLoan = () => {
   return (
     <Typography
       variant="title6"
@@ -13,12 +13,11 @@ const Settings = () => {
         height: "100%",
       }}
     >
-      Settings is Coming Soon
+      Kopesha Loans is Coming Soon
     </Typography>
   );
 };
-
-export default Settings;
-Settings.getLayout = function getLayout(page) {
+export default KopeshaLoan;
+KopeshaLoan.getLayout = function getLayout(page) {
   return <DashboardLayout>{page}</DashboardLayout>;
 };
