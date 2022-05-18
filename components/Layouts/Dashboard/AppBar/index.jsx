@@ -1,6 +1,9 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 import Image from "next/image";
+
+import { useSelector } from "react-redux";
+
 import {
   AppBar,
   Box,
@@ -17,13 +20,14 @@ import UserDetails from "../UserDetails";
 import TestMode from "../Testmode";
 
 const TopAppBar = ({ handleDrawerToggle, testModeStatus }) => {
+  const classes = useStyles();
+  const user = useSelector((state) => state.user.user);
+
   const [userDetailsComponent, setUserDetailsComponent] = useState(false);
 
   const toggleUserDetailsComponent = () => {
     setUserDetailsComponent(!userDetailsComponent);
   };
-
-  const classes = useStyles();
 
   return (
     <Box>
@@ -60,7 +64,9 @@ const TopAppBar = ({ handleDrawerToggle, testModeStatus }) => {
                   <NotificationsActiveIcon sx={styles.notificationIcon} />
                 </Badge> */}
 
-                <Typography sx={styles.HelpText}>Hello, Diana</Typography>
+                <Typography sx={styles.HelpText}>
+                  {`Hello, ${user.firstName}`}
+                </Typography>
                 <Box
                   onClick={toggleUserDetailsComponent}
                   sx={styles.userIconContainer}

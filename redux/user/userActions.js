@@ -1,31 +1,31 @@
 import axios from "axios";
 import {
-  FETCH_USERS_REQUEST,
-  FETCH_USERS_SUCCESS,
-  FETCH_USERS_FAILURE,
+  FETCH_USER_REQUEST,
+  FETCH_USER_SUCCESS,
+  FETCH_USER_FAILURE,
 } from "./userTypes";
 
-export const fetchUsersRequest = () => {
+export const fetchUserRequest = () => {
   return {
-    type: FETCH_USERS_REQUEST,
+    type: FETCH_USER_REQUEST,
   };
 };
 
-export const fetchUsersSuccess = (users) => {
-  console.log("fetcgUsersSuccesdispacted");
+export const fetchUserSuccess = (user) => {
   return {
-    type: FETCH_USERS_SUCCESS,
-    payload: users,
+    type: FETCH_USER_SUCCESS,
+    payload: user,
   };
 };
 
-export const fetchUsersFailure = (error) => {
-  console.log("fetchusersfailue");
+export const fetchUserFailure = (error) => {
   return {
-    type: FETCH_USERS_FAILURE,
+    type: FETCH_USER_FAILURE,
     payload: error,
   };
 };
+
+// this is a sample not used in the app
 
 export const fetchUsers = () => {
   return async (dispatch) => {

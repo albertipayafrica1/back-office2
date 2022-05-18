@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 
 import ProtectedRoute from "../../../components/ProtectedRoute";
-import { fetchUsers, fetchUsersSuccess } from "../../../redux";
+import { fetchUsers, fetchUserSuccess } from "../../../redux";
 
 import { wrapper } from "../../../redux/store";
 
@@ -15,21 +15,20 @@ const Kyc = () => {
   // useEffect(() => {
   //   router.push("/dashboard/transactions");
   // }, []);
-  const user = useSelector((state) => state.user);
-  console.log(user, "users");
+  // const user = useSelector((state) => state.user);
 
   return (
     <div>
       <button
         onClick={() => {
-          dispatch(fetchUsersSuccess([{ name: "hello" }]));
+          dispatch(fetchUserSuccess([{ name: "hello" }]));
           router.push("/dashboard/kyc");
         }}
         type="button"
       >
         fetchusers
       </button>
-      {user !== undefined && user.users[0] !== undefined && user.users[0].name}
+      {/* {user !== undefined && user.users[0] !== undefined && user.users[0].name} */}
       {/* users[0].name */}
     </div>
   );

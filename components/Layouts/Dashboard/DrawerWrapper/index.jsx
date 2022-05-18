@@ -1,10 +1,16 @@
 import PropTypes from "prop-types";
 import { useRouter } from "next/router";
 
-import { Drawer, Typography, Button, LinearProgress } from "@mui/material";
-import Divider from "@mui/material/Divider";
-
 import { useSelector } from "react-redux";
+
+import {
+  Drawer,
+  Typography,
+  Button,
+  LinearProgress,
+  Divider,
+} from "@mui/material";
+
 import SelectCurrencies from "../SelectCurrencies";
 
 import MuiToolTip from "../../../../atoms/MuiToolTip";

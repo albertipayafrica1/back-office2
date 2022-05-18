@@ -15,6 +15,9 @@ import {
   fetchKycStatusRequest,
   fetchKycStatusSuccess,
   fetchKycStatusFailure,
+  fetchUserRequest,
+  fetchUserSuccess,
+  fetchUserFailure,
 } from "../../redux";
 
 const Otp = () => {
@@ -47,6 +50,7 @@ const Otp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(fetchKycStatusRequest());
+    dispatch(fetchUserRequest());
     setClearTimer(true);
     setLoading(true);
     setError(null);
@@ -81,6 +85,7 @@ const Otp = () => {
           });
           setLoading(false);
           setClearTimer(true);
+          dispatch(fetchUserSuccess(response.data.registrationDetails));
           dispatch(fetchKycStatusSuccess(response.data.kycStatus));
           router.replace("/dashboard/kyc");
         } else {
@@ -91,14 +96,15 @@ const Otp = () => {
         }
       })
       .catch((err) => {
-        dispatch(fetchKycStatusFailure());
-        console.log(err, "erro");
-        if (err.response) {
+        if (err.response !== undefined) {
           setError(err.response.data.response);
+          dispatch(fetchKycStatusFailure(err.response.data.response));
+          dispatch(fetchUserFailure(err.response.data.response));
         } else {
           setError("Something went wrong");
+          dispatch(fetchKycStatusFailure("Something went wrong"));
+          dispatch(fetchUserFailure("Something went wrong"));
         }
-        setError("Something went wrong");
         setClearTimer(true);
         setLoading(false);
         // router.replace("/login");
