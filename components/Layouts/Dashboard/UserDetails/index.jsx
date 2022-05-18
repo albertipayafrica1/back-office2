@@ -59,9 +59,7 @@ const UserDetails = ({ status }) => {
           : styles.userDetailsContainerInactive
       }
     >
-      <Typography sx={styles.companyText}>
-        FIVE SUPPORT KENYA LIMITED
-      </Typography>
+      <Typography sx={styles.companyText}>FIVESPOT KENYA LIMITED</Typography>
 
       <Divider sx={styles.Divider} />
 

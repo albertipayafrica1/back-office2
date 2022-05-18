@@ -797,6 +797,12 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                             select
                             selectItem={businessSubCategoryOptions}
                             required
+                            disabled={
+                              formik.values.registeredBusinessDetails
+                                .businessCategory === "" ||
+                              formik.values.registeredBusinessDetails
+                                .businessCategory === undefined
+                            }
                           />
                         )}
                       </Stack>
