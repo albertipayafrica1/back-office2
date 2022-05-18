@@ -13,18 +13,18 @@ import ProtectedRoute from "../../../components/ProtectedRoute";
 const Kyc = ({ data, error }) => {
   const kycData = useSelector((state) => state);
   console.log(kycData, "data");
-  // if (error !== "") {
-  return <ErrorBoundary error={error} />;
-  // }
-  // return (
-  //   <Box sx={{ backgroundColor: "white" }}>
-  //     <HorizontalLinearStepper
-  //       flow={data.flow}
-  //       companyType={data.companyType}
-  //       duration={data.duration}
-  //     />
-  //   </Box>
-  // );
+  if (error !== "") {
+    return <ErrorBoundary error={error} />;
+  }
+  return (
+    <Box sx={{ backgroundColor: "white" }}>
+      <HorizontalLinearStepper
+        flow={data.flow}
+        companyType={data.companyType}
+        duration={data.duration}
+      />
+    </Box>
+  );
 };
 
 Kyc.propTypes = {
