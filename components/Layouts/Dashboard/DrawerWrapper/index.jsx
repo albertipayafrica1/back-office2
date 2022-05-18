@@ -36,7 +36,7 @@ const DrawerWrapper = ({ mobileOpen, handleDrawerToggle, testModeStatus }) => {
 
           <MuiToolTip
             placement="right-start"
-            title="Switch to view transaction of selected currencies" // this will change based on account status
+            title="Switch to view transaction of selected currency" // this will change based on account status
             style={styles.toolTip}
           />
         </div>

@@ -152,7 +152,7 @@ const FormikCustomInput = ({
               InputProps={{
                 // classes: { input: classes.input },
                 className: !multiline ? classes.input : classes.multiline,
-                endAdornment: (
+                endAdornment: (type === "password" || haveTooltip) && (
                   <InputAdornment
                     position={type === "password" ? "end" : "start"}
                   >
@@ -282,7 +282,7 @@ const FormikCustomInput = ({
             }}
             InputProps={{
               className: !multiline ? classes.input : classes.multiline,
-              endAdornment: (
+              endAdornment: (type === "password" || haveTooltip) && (
                 <InputAdornment
                   position={type === "password" ? "end" : "start"}
                 >
