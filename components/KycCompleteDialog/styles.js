@@ -6,5 +6,14 @@ export const dashboardButton = {
 };
 
 export const paperPropsStyling = {
-  maxWidth: "500px",
+  maxWidth: "600px",
+  maxheight: "800px",
+};
+
+export const title = {
+  fontFamily: "Montserrat Alternates",
+  fontWeight: 600,
+  fontSize: "36px",
+  color: (theme) => theme.colors.blue,
+  mb: 8,
 };

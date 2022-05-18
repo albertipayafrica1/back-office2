@@ -1,9 +1,10 @@
 import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 
-import { Typography, Stack, Box, useMediaQuery } from "@mui/material";
+import { Typography, Stack, Button, Box } from "@mui/material";
 
 import Dialog from "../../atoms/Dialog";
+import TransactionButton from "../../atoms/TransactionButton";
 
 import * as styles from "./styles";
 
@@ -11,38 +12,36 @@ const KycCompleteDialog = ({ open }) => {
   const router = useRouter();
 
   return (
-    <div>
-      <Dialog
-        open={open}
-        backDropVisible={false}
-        paperPropsStyling={styles.paperPropsStyling}
+    <Dialog
+      open={open}
+      backDropVisible={false}
+      paperPropsStyling={styles.paperPropsStyling}
+    >
+      <Stack
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+        spacing={1}
       >
-        <Stack sx={styles.formContainer} spacing={8}>
-          <Stack
-            direction="column"
-            justifyContent="center"
-            alignItems="center"
-            spacing={2}
-          >
-            <Typography
-              variant="title6"
-              sx={styles.completeButton}
-              onClick={() => router.push("/dashboard/home")}
-            >
-              Congratulations, You&apos;ve Completed your Kyc.
-            </Typography>
+        <Box>
+          <Typography sx={styles.title}>Thank you</Typography>
+        </Box>
+        <Box>
+          <Typography variant="title6" sx={styles.completeButton}>
+            Your submission has been received.
+          </Typography>
+        </Box>
+        <Box>
+          <Typography variant="title6">
+            We will review your details and contact you soon.
+          </Typography>
+        </Box>
 
-            <Typography
-              variant="subtitle5"
-              sx={styles.dashboardButton}
-              onClick={() => router.push("/dashboard/home")}
-            >
-              GO TO DASHBOARD
-            </Typography>
-          </Stack>
-        </Stack>
-      </Dialog>
-    </div>
+        <Button variant="orange" onClick={() => router.push("/dashboard/home")}>
+          Back To Dashboard
+        </Button>
+      </Stack>
+    </Dialog>
   );
 };
 
