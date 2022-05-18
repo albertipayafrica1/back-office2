@@ -68,6 +68,7 @@ const BankDetailsForm = ({ handleNextStep }) => {
           setAlert({ type: "error", message: "Something Went Wrong" });
           setLoading(false);
         }
+        formikHelpers.setSubmitting(false);
       })
       .catch((error) => {
         setLoading(false);
@@ -100,6 +101,7 @@ const BankDetailsForm = ({ handleNextStep }) => {
           console.log(error, "third if else");
         }
         setLoading(false);
+        formikHelpers.setSubmitting(false);
       });
   };
 

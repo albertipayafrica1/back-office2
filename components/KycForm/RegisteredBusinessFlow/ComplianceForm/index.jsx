@@ -63,6 +63,7 @@ const ComplianceForm = ({ handleNextStep }) => {
           setAlert({ type: "error", message: "Something Went Wrong" });
           setLoading(false);
         }
+        formikHelpers.setSubmitting(false);
       })
       .catch((error) => {
         setLoading(false);
@@ -95,6 +96,7 @@ const ComplianceForm = ({ handleNextStep }) => {
           console.log(error, "third if else");
         }
         setLoading(false);
+        formikHelpers.setSubmitting(false);
       });
   };
 
@@ -124,6 +126,7 @@ const ComplianceForm = ({ handleNextStep }) => {
       })
       .catch((error) => {
         setRetrievalLoading(false);
+
         if (error.response === undefined) {
           setAlert({ type: "error", message: "Something Went Wrong" });
         } else if (error.response.status === 401) {
