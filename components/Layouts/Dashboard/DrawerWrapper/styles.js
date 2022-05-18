@@ -72,7 +72,7 @@ export const menuItemContainer = {
 };
 
 export const linearProgress = {
-  width: "74px",
+  width: "80px",
   height: "5px",
   color: "grey.500",
   backgroundColor: (theme) => theme.colors.mono1,
@@ -88,7 +88,7 @@ export const linearProgress = {
 export const progressBarContainer = {
   display: "flex",
   flexDirection: "row",
-  width: "80%",
+  width: "75%",
   justifyContent: "space-between",
   alignContent: "center",
 };
@@ -144,7 +144,6 @@ export const activeMenuItem = {
   borderRadius: "5px",
   width: "165px",
   height: "44px",
-  mt: 2,
   color: "white",
   backgroundColor: (theme) => theme.colors.blue,
   "&:hover": {
@@ -156,7 +155,25 @@ export const activeMenuItem = {
   },
 };
 
-export const toolTip = {
+export const toolTipWithoutIcon = {
+  backgroundColor: "white",
+  border: "0.1px solid #E74C3C",
+  padding: "1.5px",
+  paddingLeft: "5px",
+  paddingRight: "10px",
+  position: "relative",
+  right: "70px",
+  boxSizing: "borderbox",
+  borderRadius: "0.5px",
+  color: "black",
+  fontStyle: "normal",
+  fontWeight: "400",
+  fontsize: "12px",
+  lineHeight: "15px",
+  letterSpacing: "0.09em",
+};
+
+export const toolTipWithIcon = {
   backgroundColor: "white",
   border: "0.1px solid #E74C3C",
   padding: "1.5px",
@@ -192,4 +209,12 @@ export const testModeOff = {
   display: "flex",
   flexDirection: "column",
   overflow: "hidden",
+};
+export const infoIcon = {
+  width: "13px",
+  height: "13px",
+  position: "relative",
+  left: "30px",
+  top: "20px",
+  cursor: "pointer",
 };

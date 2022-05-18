@@ -44,42 +44,44 @@ const DrawerWrapper = ({ mobileOpen, handleDrawerToggle, testModeStatus }) => {
           <MuiToolTip
             placement="right-start"
             title="Switch to view transaction of selected currency" // this will change based on account status
-            style={styles.toolTip}
-          />
+            style={styles.toolTipWithIcon}
+          >
+            <img src="/infoicon.svg" alt="info-logo" style={styles.infoIcon} />
+          </MuiToolTip>
         </div>
         <Divider sx={{ mt: 6, width: "80%" }} />
 
-        <div
-          style={{ cursor: "pointer" }}
-          onClick={() => {
-            router.push("/dashboard/kyc");
-            return handleDrawerToggle();
-          }}
-          role="button"
-          tabIndex={0}
-          onKeyDown={() => {}}
+        <MuiToolTip
+          placement="right-start"
+          title="Click here to activate account"
+          style={styles.toolTipWithoutIcon}
+          withoutIcon
         >
-          <Typography sx={styles.activateAccountText}>
-            Activate Account
-          </Typography>
-          <div style={{ position: "absolute", top: "150px", left: "108px" }}>
-            <MuiToolTip
-              placement="right-start"
-              title="Click here to activate account"
-              style={styles.toolTip}
-            />
+          <div
+            style={{ cursor: "pointer", marginTop: "5px" }}
+            onClick={() => {
+              router.push("/dashboard/kyc");
+              return handleDrawerToggle();
+            }}
+            role="button"
+            tabIndex={0}
+            onKeyDown={() => {}}
+          >
+            <Typography sx={styles.activateAccountText}>
+              Activate Account
+            </Typography>
+            <div style={styles.progressBarContainer}>
+              <LinearProgress
+                sx={styles.linearProgress}
+                variant="determinate"
+                value={kycStatus.percentage}
+              />
+              <Typography
+                sx={{ fontSize: "11px" }}
+              >{`${kycStatus.percentage}% Complete`}</Typography>
+            </div>
           </div>
-          <div style={styles.progressBarContainer}>
-            <LinearProgress
-              sx={styles.linearProgress}
-              variant="determinate"
-              value={kycStatus.percentage}
-            />
-            <Typography
-              sx={{ fontSize: "11px" }}
-            >{`${kycStatus.percentage}% Complete`}</Typography>
-          </div>
-        </div>
+        </MuiToolTip>
         <Divider sx={{ mt: 2, width: "80%" }} />
         <div style={styles.menuItemContainer}>
           {MenuItems.map((item) => {
