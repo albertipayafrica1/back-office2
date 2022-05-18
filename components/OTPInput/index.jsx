@@ -81,7 +81,7 @@ const OTPInput = ({
           ))}
         </Stack>
         <ResendOtp
-          seconds={130}
+          seconds={190}
           clearTimer={clearTimer}
           handleResendOtp={handleResendOtp}
         />

@@ -636,9 +636,17 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
                       {
                         key: (
                           <Typography variant="subtitle3">
-                            By clicking on submit you agree to share your
-                            information with iPay who agrees to use it as per
-                            their
+                            By clicking on submit, you agree to our{" "}
+                            <a
+                              style={styles.linkStyle}
+                              href="https://www.ipayafrica.com/info/terms-and-conditions"
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              {" "}
+                              Terms of Use
+                            </a>{" "}
+                            and
                             <a
                               style={styles.linkStyle}
                               href="https://www.ipayafrica.com/info/privacy-policy"
@@ -646,8 +654,8 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
                               rel="noreferrer"
                             >
                               {" "}
-                              privacy policy
-                            </a>
+                              Privacy Policy.
+                            </a>{" "}
                           </Typography>
                         ),
                         value: "true",

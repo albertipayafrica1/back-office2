@@ -33,16 +33,49 @@ export const registration = [
   { value: "2", key: "Non Registered" },
 ];
 export const kenyaIpayProducts = [
-  { value: "1", key: "iPay Pos/PDQ" },
-  { value: "2", key: "iPay Online" },
-  { value: "3", key: "E-invoicing" },
-  { value: "4", key: "iPay Lite" },
-  { value: "5", key: "iPay Payouts" },
-  { value: "6", key: "iPay Billing" },
+  {
+    value: "1",
+    key: "iPay Pos/PDQ - Accept mobile money or card payments at your preferred physical location.",
+  },
+  {
+    value: "2",
+    key: "iPay Online - Accept mobile money or card payments online.",
+  },
+  {
+    value: "3",
+    key: "Payment Links - Accept payments online without a website.",
+  },
+  {
+    value: "4",
+    key: "iPay Lite - Accept payments online through our lightweight, mobile-ready, web store.",
+  },
+  {
+    value: "5",
+    key: "iPay Payouts - Disburse funds to an existing Mobile Money, Paybill, Till, iPay Merchant, or Bank Account.",
+  },
+  {
+    value: "6",
+    key: "iPay Billing - Pay Airtime, Water, Electricity, and Pay TV bills conveniently, or offer this service to earn sales commission.",
+  },
 ];
-export const tanzaniaIpayProducts = [{ value: "2", key: "eLipa Online" }];
-export const ugandaIpayProducts = [{ value: "2", key: "eLipa Online" }];
-export const togoIpayProducts = [{ value: "2", key: "eLipa Online" }];
+export const tanzaniaIpayProducts = [
+  {
+    value: "2",
+    key: "eLipa Online - Accept mobile money or card payments online.",
+  },
+];
+export const ugandaIpayProducts = [
+  {
+    value: "2",
+    key: "eLipa Online - Accept mobile money or card payments online.",
+  },
+];
+export const togoIpayProducts = [
+  {
+    value: "2",
+    key: "eLipa Online - Accept mobile money or card payments online.",
+  },
+];
 export const aboutUs = [
   { value: "1", key: "Advertisements" },
   { value: "2", key: "Referral" },
