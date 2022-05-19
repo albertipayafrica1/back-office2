@@ -288,7 +288,7 @@ const HorizontalLinearStepper = ({ flow, companyType, duration }) => {
           );
         })}
       </Stepper>
-      <div style={{ padding: "1rem 0" }}>
+      <div>
         {activeStep === steps.length ? (
           <div>
             {kycStatus.slug === "review" ? (

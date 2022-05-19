@@ -6,9 +6,8 @@ import { TabContext, TabList, TabPanel } from "@mui/lab";
 
 import * as styles from "./styles";
 
-const Tabs = ({ tabTitle, children }) => {
+const Tabs = ({ tabTitle, children, positionStyles }) => {
   const [value, setValue] = useState("0");
-  const matchesWidth = useMediaQuery("(min-width:900px)");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -17,18 +16,20 @@ const Tabs = ({ tabTitle, children }) => {
   return (
     <Box sx={{ width: "100%" }}>
       <TabContext value={value}>
-        <Box sx={matchesWidth ? { ml: 25 } : { ml: 12 }}>
-          <TabList onChange={handleChange} aria-label="tabs" sx={styles.tabs}>
-            {tabTitle.map((title, index) => (
-              <Tab
-                disableRipple
-                label={title}
-                value={index.toString()}
-                sx={{ padding: 0 }}
-                key={title}
-              />
-            ))}
-          </TabList>
+        <Box sx={positionStyles}>
+          <Box sx={{ ml: { xs: 12, md: 25 } }}>
+            <TabList onChange={handleChange} aria-label="tabs" sx={styles.tabs}>
+              {tabTitle.map((title, index) => (
+                <Tab
+                  disableRipple
+                  label={title}
+                  value={index.toString()}
+                  sx={{ padding: 0 }}
+                  key={title}
+                />
+              ))}
+            </TabList>
+          </Box>
         </Box>
         {children !== undefined &&
           children.map((child, index) => (
@@ -41,9 +42,14 @@ const Tabs = ({ tabTitle, children }) => {
   );
 };
 
+Tabs.defaultProps = {
+  positionStyles: {},
+};
+
 Tabs.propTypes = {
   tabTitle: PropTypes.arrayOf(PropTypes.string).isRequired,
   children: PropTypes.node.isRequired,
+  positionStyles: PropTypes.shape({}),
 };
 
 export default Tabs;

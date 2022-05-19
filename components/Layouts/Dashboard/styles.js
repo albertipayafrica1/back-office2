@@ -1,6 +1,6 @@
 export const childContent = {
   width: "100%",
-  marginTop: "50px",
+  marginTop: "100px",
   p: 3,
-  maxHeigth: "100vh",
+  maxHeight: "100vh",
 };

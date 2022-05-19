@@ -31,5 +31,5 @@ export const stepper = {
 };
 
 export const container = {
-  padding: "2rem 2rem",
+  padding: "0 2rem 2rem 2rem",
 };
