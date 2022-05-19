@@ -6,8 +6,9 @@ const useStyles = makeStyles((theme) => ({
   },
   input: {
     backgroundColor: "white",
-    borderRadius: 7,
-    height: "40px",
+    borderRadius: 100,
+    height: "37px",
+    boxShadow: "0 3px 10px rgb(0 0 0 / 0.2)",
   },
 }));
 

@@ -1,6 +1,8 @@
-import PropTypes from "prop-types";
 import { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/router";
+
+import PropTypes from "prop-types";
 
 import { useSelector } from "react-redux";
 
@@ -12,15 +14,22 @@ import {
   Typography,
   Badge,
 } from "@mui/material";
+
 import MenuIcon from "@mui/icons-material/Menu";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
-import { useStyles } from "./styles";
-import * as styles from "./styles";
+
+import Search from "../../../../atoms/Search";
+
 import UserDetails from "../UserDetails";
 import TestMode from "../Testmode";
 
+import { useStyles } from "./styles";
+import * as styles from "./styles";
+
 const TopAppBar = ({ handleDrawerToggle, testModeStatus }) => {
   const classes = useStyles();
+  const router = useRouter();
+  console.log(router, "router");
   const user = useSelector((state) => state.user.user);
 
   const [userDetailsComponent, setUserDetailsComponent] = useState(false);
@@ -55,7 +64,7 @@ const TopAppBar = ({ handleDrawerToggle, testModeStatus }) => {
 
             <Box sx={styles.searchUserDetailsContainer}>
               <Box sx={styles.searchContainer}>
-                {/** place search component hear widrh 100% height%  */}
+                {router.pathname !== "/dashboard/kyc" && <Search />}
               </Box>
 
               <Box sx={styles.userDetailsContainer}>

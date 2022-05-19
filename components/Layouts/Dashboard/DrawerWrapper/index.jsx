@@ -90,7 +90,7 @@ const DrawerWrapper = ({ mobileOpen, handleDrawerToggle, testModeStatus }) => {
         </MuiToolTip>
         <Divider sx={{ mt: 2, width: "80%" }} />
         <div style={styles.menuItemContainer}>
-          {MenuItems.map((item) => {
+          {MenuItems.map((item, index) => {
             return (
               <Button
                 onClick={() => {
@@ -102,9 +102,13 @@ const DrawerWrapper = ({ mobileOpen, handleDrawerToggle, testModeStatus }) => {
                     ? styles.activeMenuItem
                     : styles.menuItem
                 }
+                key={index}
               >
                 {item.icon}
-                <Typography sx={styles.itemMenuText}> {item.name}</Typography>
+                <Typography sx={styles.itemMenuText} key={index}>
+                  {" "}
+                  {item.name}
+                </Typography>
               </Button>
             );
           })}

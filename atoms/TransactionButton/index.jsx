@@ -36,11 +36,14 @@ const TransactionButton = ({ icon, text, onClick, activeState }) => {
   );
 };
 
+TransactionButton.defaultProps = {
+  activeState: false,
+};
 TransactionButton.propTypes = {
   icon: PropTypes.node.isRequired,
   text: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
-  activeState: PropTypes.bool.isRequired,
+  activeState: PropTypes.bool,
 };
 
 export default TransactionButton;

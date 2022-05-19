@@ -8,9 +8,10 @@ import {
   MenuItem,
   MenuList,
   Typography,
-  Box,
   Stack,
 } from "@mui/material";
+
+import Loader from "../Loader";
 import debounce from "lodash/debounce";
 import AutoComplete from "./AutoComplete";
 import fetchData from "./fetchData";
@@ -18,7 +19,7 @@ import useFetch from "./useFetch";
 
 const renderItem = ({ item, style, uniKey }) => {
   return item ? (
-    <Link href={item[uniKey]}>
+    <Link href={item[uniKey]} key={item[uniKey]}>
       <MenuItem component="div" key={item[uniKey]} style={style}>
         {item[uniKey]}
       </MenuItem>
@@ -29,7 +30,9 @@ const renderItemList = ({ items, loading, err, uniKey }) => {
   if (loading)
     return (
       <Stack direction="row" justifyContent="center" alignItems="center">
-        <Typography component="em">Loading...</Typography>
+        <Typography component="em">
+          <Loader spaceAround="xs" />
+        </Typography>
       </Stack>
     );
   if (err)
@@ -81,38 +84,38 @@ const Search = () => {
     }, 300)
   );
   return (
-    <div>
-      <AutoComplete
-        items={items}
-        loading={loading}
-        error={error}
-        onInputValueChange={onInputValueChange}
-        itemToString={(item) => (item ? item.value : "")}
-        uniKey="value"
-      >
-        {({ isOpen, anchorEl, uniKey }) => {
-          return isOpen ? (
-            <Popper open={isOpen} anchorEl={anchorEl} disablePortal>
-              <Paper
-                square
-                style={{
-                  width: anchorEl ? anchorEl.clientWidth + 10 : null,
-                }}
-              >
-                <MenuList>
-                  {renderItemList({
-                    items,
-                    loading,
-                    err: error,
-                    uniKey,
-                  })}
-                </MenuList>
-              </Paper>
-            </Popper>
-          ) : null;
-        }}
-      </AutoComplete>
-    </div>
+    <AutoComplete
+      items={items}
+      loading={loading}
+      error={error}
+      onInputValueChange={onInputValueChange}
+      itemToString={(item) => (item ? item.value : "")}
+      uniKey="value"
+    >
+      {({ isOpen, anchorEl, uniKey }) => {
+        return isOpen ? (
+          <Popper open={isOpen} anchorEl={anchorEl} disablePortal>
+            <Paper
+              square
+              style={{
+                width: anchorEl ? anchorEl.clientWidth + 10 : null,
+              }}
+            >
+              <MenuList>
+                {renderItemList({
+                  items,
+                  loading,
+                  err: error,
+                  uniKey,
+                })}
+              </MenuList>
+            </Paper>
+          </Popper>
+        ) : (
+          <div />
+        );
+      }}
+    </AutoComplete>
   );
 };
 

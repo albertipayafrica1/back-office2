@@ -34,7 +34,7 @@ const AutoComplete = ({ uniKey, children, onInputValueChange }) => {
 
   return (
     <ClickAwayListener onClickAway={closeMenu}>
-      <div>
+      <div style={{ width: "100%" }}>
         <TextField
           inputRef={input}
           fullWidth
@@ -61,12 +61,23 @@ const AutoComplete = ({ uniKey, children, onInputValueChange }) => {
           sx={{
             "& .MuiOutlinedInput-root:hover": {
               "& > fieldset": {
-                borderColor: (theme) => theme.colors.blue,
+                borderColor: (theme) => theme.colors.mono1,
+              },
+            },
+            "& .MuiOutlinedInput-root:active": {
+              "& .Mui-focused": {
+                borderColor: (theme) => theme.colors.mono1,
+              },
+              "& > fieldset": {
+                borderColor: (theme) => theme.colors.mono1,
               },
             },
             "& .MuiOutlinedInput-root": {
               "& .Mui-focused": {
-                borderColor: (theme) => theme.colors.blue,
+                borderColor: (theme) => theme.colors.mono1,
+              },
+              "& > fieldset": {
+                borderColor: (theme) => theme.colors.mono1,
               },
             },
             "& .MuiFormLabel-root": {

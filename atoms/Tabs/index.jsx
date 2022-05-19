@@ -25,13 +25,16 @@ const Tabs = ({ tabTitle, children }) => {
                 label={title}
                 value={index.toString()}
                 sx={{ padding: 0 }}
+                key={title}
               />
             ))}
           </TabList>
         </Box>
         {children !== undefined &&
           children.map((child, index) => (
-            <TabPanel value={index.toString()}>{child}</TabPanel>
+            <TabPanel value={index.toString()} key={index}>
+              {child}
+            </TabPanel>
           ))}
       </TabContext>
     </Box>

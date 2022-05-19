@@ -37,13 +37,15 @@ export const searchContainer = {
   marginLeft: "10px",
   width: "50%",
   display: "flex",
+  alignItems: "center",
+  justifyContent: "flex-start",
 };
 
 export const userDetailsContainer = {
   width: { xs: "50%", md: "300px", lg: "300px" },
   marginLeft: { xs: "0px", md: "200px", lg: "200px" },
-  alighContent: "center",
-  justifyContent: "center",
+  alignItems: "center",
+  justifyContent: "flex-end",
   display: "flex",
   flexDirection: "row",
 };
@@ -96,6 +98,7 @@ export const searchUserDetailsContainer = {
 };
 
 export const appBarContainer = {
+  marginTop: "10px",
   display: "flex",
   width: "100%",
   flexDirection: "row",
