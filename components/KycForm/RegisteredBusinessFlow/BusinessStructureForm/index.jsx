@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
+import { useDispatch } from "react-redux";
+
 import PropTypes from "prop-types";
 
 import axios from "axios";
@@ -30,6 +32,8 @@ import {
   documentTypeOptionsForNextOfKin,
 } from "./data";
 
+import { fetchKycStatusSuccess } from "../../../../redux";
+
 import * as styles from "./styles";
 
 const initialValues = {
@@ -43,7 +47,7 @@ const initialValues = {
     email: "",
     gender: "",
     dateOfBirth: null,
-    countryOfOperation: "KE",
+    countryOfOperation: "Kenya",
     documentType: "1",
     documentNumber: "",
     nationalIdFront: [],
@@ -115,6 +119,7 @@ const initialValues = {
 
 const BusinessStructureForm = ({ handleNextStep }) => {
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const [formValues, setFormValues] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -151,6 +156,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
           console.log(response, "response0");
           setAlert({ type: "error", message: "Something Went Wrong" });
           setLoading(false);
+          dispatch(fetchKycStatusSuccess(response.data.response.kycStatus));
         }
         formikHelpers.setSubmitting(false);
       })
@@ -300,7 +306,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
         email: "",
         gender: "",
         dateOfBirth: null,
-        countryOfOperation: "KE",
+        countryOfOperation: "Kenya",
         documentType: "1",
         documentNumber: "",
         nationalIdFront: [

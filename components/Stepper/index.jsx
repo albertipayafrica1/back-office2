@@ -54,7 +54,11 @@ const HorizontalLinearStepper = ({ flow, companyType, duration }) => {
   const [stepFailed, setStepFailed] = useState(new Set());
 
   useEffect(() => {
-    setActiveStep(kycStatus.lastStep);
+    setActiveStep(
+      kycStatus !== undefined && kycStatus.lastStep !== undefined
+        ? kycStatus.lastStep
+        : 0
+    );
   }, []);
 
   const handleBack = () => {
@@ -287,9 +291,14 @@ const HorizontalLinearStepper = ({ flow, companyType, duration }) => {
       <div style={{ padding: "1rem 0" }}>
         {activeStep === steps.length ? (
           <div>
-            <Typography className={styles.instructions}>
+            {kycStatus.slug === "review" ? (
               <KycCompleteDialog open />
-            </Typography>
+            ) : (
+              <Typography className={styles.instructions}>
+                Your Submission is under Review
+              </Typography>
+            )}
+
             {/* <Button onClick={handleReset} className={styles.button}>
               Reset
             </Button> */}

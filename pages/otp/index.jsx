@@ -89,8 +89,8 @@ const Otp = () => {
           dispatch(fetchKycStatusSuccess(response.data.kycStatus));
           router.replace("/dashboard/kyc");
         } else {
-          dispatch(fetchKycStatusFailure());
-          setError("Invalid Otp");
+          dispatch(fetchKycStatusFailure("Something Went Wrong"));
+          setError("Something Went Wrong");
           setClearTimer(true);
           setLoading(false);
         }

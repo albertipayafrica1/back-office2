@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
+import { useDispatch } from "react-redux";
+
 import PropTypes from "prop-types";
 
 import axios from "axios";
@@ -17,6 +19,9 @@ import MuiAlert from "../../../../../../atoms/MuiAlert";
 import Loader from "../../../../../../atoms/Loader";
 
 import { funeral } from "../../../../../../utils/formValidations/kyc/unRegisteredBusinessFlow/shortTermFlow/documentUploads/funeral";
+
+import { fetchKycStatusSuccess } from "../../../../../../redux";
+
 import { styles } from "../styles";
 
 const initialValues = {
@@ -25,6 +30,7 @@ const initialValues = {
 
 const Funeral = ({ handleNextStep }) => {
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const [formValues, setFormValues] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -55,6 +61,7 @@ const Funeral = ({ handleNextStep }) => {
           });
           handleNextStep();
           setLoading(false);
+          dispatch(fetchKycStatusSuccess(response.data.response.kycStatus));
         } else {
           console.log(response, "response0");
           setAlert({ type: "error", message: "Something Went Wrong" });

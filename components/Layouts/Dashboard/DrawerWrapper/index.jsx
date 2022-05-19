@@ -74,11 +74,17 @@ const DrawerWrapper = ({ mobileOpen, handleDrawerToggle, testModeStatus }) => {
               <LinearProgress
                 sx={styles.linearProgress}
                 variant="determinate"
-                value={kycStatus.percentage}
+                value={
+                  kycStatus !== undefined && kycStatus.percentage !== undefined
+                    ? kycStatus.percentage
+                    : undefined
+                }
               />
-              <Typography
-                sx={{ fontSize: "11px" }}
-              >{`${kycStatus.percentage}% Complete`}</Typography>
+              <Typography sx={{ fontSize: "11px" }}>
+                {kycStatus !== undefined && kycStatus.percentage !== undefined
+                  ? `${kycStatus.percentage}% Complete`
+                  : undefined}
+              </Typography>
             </div>
           </div>
         </MuiToolTip>

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
+import { useDispatch } from "react-redux";
+
 import PropTypes from "prop-types";
 
 import axios from "axios";
@@ -18,6 +20,8 @@ import Loader from "../../../../atoms/Loader";
 
 import { businessSupportDetails } from "../../../../utils/formValidations/kyc/registeredBusinessFlow/businessSupportDetails";
 
+import { fetchKycStatusSuccess } from "../../../../redux";
+
 import * as styles from "./styles";
 
 const initialValues = {
@@ -28,6 +32,7 @@ const initialValues = {
 
 const BusinessSupportDetailsForm = ({ handleNextStep }) => {
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const [formValues, setFormValues] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -58,6 +63,7 @@ const BusinessSupportDetailsForm = ({ handleNextStep }) => {
           });
           handleNextStep();
           setLoading(false);
+          dispatch(fetchKycStatusSuccess(response.data.response.kycStatus));
         } else {
           console.log(response, "response0");
           setAlert({ type: "error", message: "Something Went Wrong" });
@@ -70,7 +76,6 @@ const BusinessSupportDetailsForm = ({ handleNextStep }) => {
         if (error.response === undefined) {
           setAlert({ type: "error", message: "Something Went Wrong" });
         } else if (error.response.status === 401) {
-          // make a request to logout route here
           setAlert({ type: "error", message: error.response.data.response });
           setTimeout(() => {
             router.replace("/");
