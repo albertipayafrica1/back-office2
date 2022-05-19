@@ -144,6 +144,7 @@ export const activeMenuItem = {
   borderRadius: "5px",
   width: "165px",
   height: "44px",
+  mt: 2,
   color: "white",
   backgroundColor: (theme) => theme.colors.blue,
   "&:hover": {

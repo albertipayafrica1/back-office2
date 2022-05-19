@@ -11,8 +11,8 @@ import {
   Stack,
 } from "@mui/material";
 
-import Loader from "../Loader";
 import debounce from "lodash/debounce";
+import Loader from "../Loader";
 import AutoComplete from "./AutoComplete";
 import fetchData from "./fetchData";
 import useFetch from "./useFetch";
