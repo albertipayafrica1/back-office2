@@ -386,7 +386,11 @@ const BusinessStructureForm = ({ handleNextStep }) => {
 
   useEffect(() => {
     console.log(businessCategoryValue, "useeef ran");
-    if (businessCategoryValue === undefined) {
+    if (
+      businessCategoryValue === undefined ||
+      businessCategoryValue === "" ||
+      businessCategoryValue === null
+    ) {
       return;
     }
     setSubCategoryLoading(true);
