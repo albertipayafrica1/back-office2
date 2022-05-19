@@ -30,10 +30,7 @@ const Dashboard = ({ children }) => {
           handleDrawerToggle={handleDrawerToggle}
         />
       </Box>
-      <Box sx={styles.childContent}>
-        <Toolbar />
-        {children}
-      </Box>
+      <Box sx={styles.childContent}>{children}</Box>
     </Box>
   );
 };

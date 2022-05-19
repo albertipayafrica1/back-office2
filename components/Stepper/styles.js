@@ -20,15 +20,16 @@ export const stepper = {
   zIndex: 2,
   display: "flex",
   width: "100%",
+  height: "50px",
   justifyContent: "center",
   alignItems: "center",
   position: "sticky",
-  top: { xs: 100, sm: 108, md: 109 },
+  top: { xs: 105, sm: 108, md: 109 },
   "& .MuiStepIcon-root.Mui-active": {
     color: (theme) => theme.colors.blue,
   },
 };
 
 export const container = {
-  padding: "0 2rem",
+  padding: "2rem 2rem",
 };

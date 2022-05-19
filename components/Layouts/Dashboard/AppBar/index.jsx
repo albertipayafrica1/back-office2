@@ -39,7 +39,7 @@ const TopAppBar = ({ handleDrawerToggle, testModeStatus }) => {
   };
 
   return (
-    <Box>
+    <Box sx={{ backgroundColor: "yellow" }}>
       <TestMode testModeStatus={testModeStatus} />
       <AppBar
         className={`${
@@ -48,7 +48,7 @@ const TopAppBar = ({ handleDrawerToggle, testModeStatus }) => {
             : classes.appBarContainerTestModeOff
         }`}
       >
-        <Toolbar>
+        <Toolbar sx={{ minHeight: 0 }}>
           <Box sx={styles.appBarContainer}>
             <IconButton
               color="inherit"
