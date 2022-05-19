@@ -38,12 +38,13 @@ const FormikRadioGroup = ({
                 {label}
               </FormLabel>
             )}
-            {options.map((option) => {
+            {options.map((option, index) => {
               return (
                 <RadioGroup
                   aria-labelledby="radio-buttons-group-label"
                   name="radio-buttons-group"
                   row
+                  key={index}
                 >
                   <FormControlLabel
                     value={option.value}
@@ -58,6 +59,7 @@ const FormikRadioGroup = ({
                         }
                         onBlur={onBlur !== "" ? onBlur : form.handleBlur}
                         sx={styles.radio}
+                        key={index}
                       />
                     }
                     label={
@@ -81,6 +83,7 @@ FormikRadioGroup.defaultProps = {
   onChange: "",
   onBlur: "",
   required: false,
+  row: false,
 };
 
 FormikRadioGroup.propTypes = {
@@ -91,7 +94,7 @@ FormikRadioGroup.propTypes = {
   ).isRequired,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
-  row: PropTypes.bool.isRequired,
+  row: PropTypes.bool,
   required: PropTypes.bool,
 };
 
