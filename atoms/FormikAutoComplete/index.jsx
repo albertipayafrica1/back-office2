@@ -72,7 +72,7 @@ const FormikAutoComplete = ({
                 name={name}
                 options={options}
                 onChange={
-                  onChange !== ""
+                  onChange !== null
                     ? onChange
                     : (e, value) => {
                         form.setFieldValue(
@@ -165,8 +165,8 @@ const FormikAutoComplete = ({
 };
 
 FormikAutoComplete.defaultProps = {
-  onChange: "",
-  onBlur: "",
+  onChange: null,
+  onBlur: null,
   use: "",
   defaultValue: {},
 };

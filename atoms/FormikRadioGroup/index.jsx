@@ -55,9 +55,9 @@ const FormikRadioGroup = ({
                         value={option.value}
                         checked={field.value === option.value}
                         onChange={
-                          onChange !== "" ? onChange : form.handleChange
+                          onChange !== null ? onChange : form.handleChange
                         }
-                        onBlur={onBlur !== "" ? onBlur : form.handleBlur}
+                        onBlur={onBlur !== null ? onBlur : form.handleBlur}
                         sx={styles.radio}
                         key={index}
                       />
@@ -80,8 +80,8 @@ const FormikRadioGroup = ({
 };
 
 FormikRadioGroup.defaultProps = {
-  onChange: "",
-  onBlur: "",
+  onChange: null,
+  onBlur: null,
   required: false,
   row: false,
 };

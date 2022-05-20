@@ -39,8 +39,8 @@ const FormikDateRangePicker = ({
                     classes: { root: classes.root },
                   }}
                   maxDate={new Date()}
-                  onChange={onChange !== "" ? onChange : form.handleChange}
-                  onBlur={onBlur !== "" ? onBlur : form.handleBlur}
+                  onChange={onChange !== null ? onChange : form.handleChange}
+                  onBlur={onBlur !== null ? onBlur : form.handleBlur}
                   renderInput={(startProps, endProps) => (
                     <>
                       <TextField
@@ -169,8 +169,8 @@ const FormikDateRangePicker = ({
 };
 
 FormikDateRangePicker.defaultProps = {
-  onChange: "",
-  onBlur: "",
+  onChange: null,
+  onBlur: null,
 };
 
 FormikDateRangePicker.propTypes = {

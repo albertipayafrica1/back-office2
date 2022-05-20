@@ -84,8 +84,8 @@ const FormikCustomInput = ({
                 type !== "password" ? type : visibility ? "text" : "password"
               }
               name={name}
-              onChange={onChange !== "" ? onChange : form.handleChange}
-              onBlur={onBlur !== "" ? onBlur : form.handleBlur}
+              onChange={onChange !== null ? onChange : form.handleChange}
+              onBlur={onBlur !== null ? onBlur : form.handleBlur}
               required={required}
               helperText={<ErrorMessage name={name} />}
               error={Boolean(
@@ -215,8 +215,8 @@ const FormikCustomInput = ({
             className={[classes.root, pClass].join(" ")}
             type={type !== "password" ? type : visibility ? "text" : "password"}
             name={name}
-            onChange={onChange !== "" ? onChange : form.handleChange}
-            onBlur={onBlur !== "" ? onBlur : form.handleBlur}
+            onChange={onChange !== null ? onChange : form.handleChange}
+            onBlur={onBlur !== null ? onBlur : form.handleBlur}
             required={required}
             helperText={<ErrorMessage name={name} />}
             error={Boolean(
@@ -344,8 +344,8 @@ FormikCustomInput.defaultProps = {
   helperText: "",
   select: false,
   selectItem: [],
-  onChange: "",
-  onBlur: "",
+  onChange: null,
+  onBlur: null,
   fastField: true,
   shrink: false,
   type: "text",

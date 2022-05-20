@@ -45,8 +45,8 @@ const FormikDatePicker = ({
                   InputProps={{
                     classes: { root: classes.root },
                   }}
-                  onChange={onChange !== "" ? onChange : form.handleChange}
-                  onBlur={onBlur !== "" ? onBlur : form.handleBlur}
+                  onChange={onChange !== null ? onChange : form.handleChange}
+                  onBlur={onBlur !== null ? onBlur : form.handleBlur}
                   renderInput={(params) => (
                     <TextField
                       {...params}
@@ -125,8 +125,8 @@ const FormikDatePicker = ({
 };
 
 FormikDatePicker.defaultProps = {
-  onChange: "",
-  onBlur: "",
+  onChange: null,
+  onBlur: null,
 };
 
 FormikDatePicker.propTypes = {

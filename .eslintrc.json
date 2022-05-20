@@ -52,6 +52,7 @@
           "some": ["nesting", "id"]
         }
       }
-    ]
+    ],
+    "jsx-a11y/no-autofocus": "off"
   }
 }

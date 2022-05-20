@@ -45,9 +45,9 @@ const FormikCheckboxGroup = ({
                         value={option.value}
                         checked={field.value.includes(option.value)}
                         onChange={
-                          onChange !== "" ? onChange : form.handleChange
+                          onChange !== null ? onChange : form.handleChange
                         }
-                        onBlur={onBlur !== "" ? onBlur : form.handleBlur}
+                        onBlur={onBlur !== null ? onBlur : form.handleBlur}
                         sx={styles.checkbox}
                       />
                     }
@@ -71,8 +71,8 @@ const FormikCheckboxGroup = ({
 FormikCheckboxGroup.defaultProps = {
   helperText: "",
   label: "",
-  onChange: "",
-  onBlur: "",
+  onChange: null,
+  onBlur: null,
   required: false,
 };
 

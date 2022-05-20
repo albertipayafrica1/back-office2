@@ -77,6 +77,7 @@ const OTPInput = ({
               value={data}
               onChange={(e) => handleChange(e.target, index)}
               onFocus={(e) => e.target.select()}
+              autoFocus={index === 0}
             />
           ))}
         </Stack>
@@ -136,9 +137,12 @@ const OTPInput = ({
   );
 };
 
+OTPInput.defaultProps = {
+  error: "",
+};
 OTPInput.propTypes = {
   otp: PropTypes.arrayOf(PropTypes.string).isRequired,
-  error: PropTypes.string.isRequired,
+  error: PropTypes.string,
   loading: PropTypes.bool.isRequired,
   clearTimer: PropTypes.bool.isRequired,
   handleSubmit: PropTypes.func.isRequired,
