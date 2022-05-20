@@ -164,16 +164,6 @@ const BankDetailsForm = ({ handleNextStep }) => {
         }
         setRetrievalLoading(false);
       });
-    setFormValues({
-      // this you get it from api call
-      bankLocality: "",
-      bankName: "",
-      bankBranch: "",
-      accountName: "",
-      accountNumber: "",
-      currency: "",
-      swiftCode: "",
-    });
   }, []);
 
   if (retrievalLoading) {

@@ -4,12 +4,7 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 const FileHeader = ({ file, onDelete }) => {
   return (
-    <Stack
-      container
-      justifyContent="space-between"
-      alignItems="center"
-      direction="row"
-    >
+    <Stack justifyContent="space-between" alignItems="center" direction="row">
       <Box>
         <Typography variant="subtitle4">{file.path} </Typography>
       </Box>

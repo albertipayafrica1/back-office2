@@ -156,9 +156,6 @@ const Wedding = ({ handleNextStep }) => {
         }
         setRetrievalLoading(false);
       });
-    setFormValues({
-      letterFromInstitution: [],
-    });
   }, []);
 
   if (retrievalLoading) {

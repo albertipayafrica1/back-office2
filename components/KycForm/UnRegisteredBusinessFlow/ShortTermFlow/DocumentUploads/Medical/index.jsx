@@ -158,9 +158,6 @@ const Medical = ({ handleNextStep }) => {
         }
         setRetrievalLoading(false);
       });
-    setFormValues({
-      hospitalAdmissionForm: [],
-    });
   }, []);
 
   if (retrievalLoading) {

@@ -157,10 +157,6 @@ const Education = ({ handleNextStep }) => {
         }
         setRetrievalLoading(false);
       });
-    setFormValues({
-      feeStructure: [],
-      admissionLetter: [],
-    });
   }, []);
 
   if (retrievalLoading) {

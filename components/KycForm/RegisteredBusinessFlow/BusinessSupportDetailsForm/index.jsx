@@ -158,11 +158,6 @@ const BusinessSupportDetailsForm = ({ handleNextStep }) => {
         }
         setRetrievalLoading(false);
       });
-    setFormValues({
-      customerSupportTelephoneNumber: "",
-      customerSupportAddress: "",
-      customerSupportEmailAddress: "",
-    });
   }, []);
 
   if (retrievalLoading) {

@@ -163,15 +163,6 @@ const PrivateLimitedCompany = ({ handleNextStep }) => {
         }
         setRetrievalLoading(false);
       });
-    setFormValues({
-      pinCertificate: [],
-      certificateOfRegistration: [],
-      memorandumAndArticlesOfAssociation: [],
-      businessPermit: [],
-      boardResolutionLetter: [],
-      companyStatusReport: [],
-      aml: [],
-    });
   }, []);
 
   if (retrievalLoading) {

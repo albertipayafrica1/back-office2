@@ -160,12 +160,6 @@ const SoleProprietorship = ({ handleNextStep }) => {
         }
         setRetrievalLoading(false);
       });
-    setFormValues({
-      pinCertificate: [],
-      certificateOfRegistration: [],
-      businessPermit: [],
-      aml: [],
-    });
   }, []);
 
   if (retrievalLoading) {

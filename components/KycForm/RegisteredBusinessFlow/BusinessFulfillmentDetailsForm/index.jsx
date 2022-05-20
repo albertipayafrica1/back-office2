@@ -164,11 +164,6 @@ const BusinessFulfillmentDetailsForm = ({ handleNextStep }) => {
         }
         setRetrievalLoading(false);
       });
-    setFormValues({
-      sellPhysicalGoodsOrServices: "",
-      shipProductYourself: "1",
-      fulfillmentPeriod: "",
-    });
   }, []);
 
   if (retrievalLoading) {

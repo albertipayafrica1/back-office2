@@ -170,22 +170,6 @@ const ComplianceForm = ({ handleNextStep }) => {
         }
         setRetrievalLoading(false);
       });
-    setFormValues({
-      // this you get it from api call
-      resident: "",
-      citizen: "",
-      greenCard: "",
-      born: "",
-      powerAuthority: "",
-      address: "",
-      mailAddress: "",
-      bankAccount: "",
-      telephone: "",
-      fatcaStatus: "",
-      explanation: [],
-      W8Form: [],
-      consent: [],
-    });
   }, []);
 
   if (retrievalLoading) {

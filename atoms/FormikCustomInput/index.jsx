@@ -348,10 +348,11 @@ FormikCustomInput.defaultProps = {
   onBlur: "",
   fastField: true,
   shrink: false,
+  type: "text",
 };
 
 FormikCustomInput.propTypes = {
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
@@ -365,7 +366,7 @@ FormikCustomInput.propTypes = {
   error: PropTypes.bool,
   helperText: PropTypes.string,
   select: PropTypes.bool,
-  selectItem: PropTypes.arrayOf(PropTypes.string),
+  selectItem: PropTypes.arrayOf(PropTypes.shape({})),
   fastField: PropTypes.bool,
   shrink: PropTypes.bool,
 };

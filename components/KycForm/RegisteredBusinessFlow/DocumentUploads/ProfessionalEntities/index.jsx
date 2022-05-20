@@ -163,14 +163,6 @@ const ProfessionalEntities = ({ handleNextStep }) => {
         }
         setRetrievalLoading(false);
       });
-    setFormValues({
-      pinCertificate: [],
-      certificateOfRegistration: [],
-      businessPermit: [],
-      boardResolutionLetter: [],
-      companyStatusReport: [],
-      aml: [],
-    });
   }, []);
 
   if (retrievalLoading) {

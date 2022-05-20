@@ -161,9 +161,6 @@ const ComplianceForm = ({ handleNextStep }) => {
         }
         setRetrievalLoading(false);
       });
-    setFormValues({
-      consent: [],
-    });
   }, []);
 
   if (retrievalLoading) {

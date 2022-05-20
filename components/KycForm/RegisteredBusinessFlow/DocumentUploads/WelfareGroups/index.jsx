@@ -161,13 +161,6 @@ const WelfareGroups = ({ handleNextStep }) => {
         }
         setRetrievalLoading(false);
       });
-    setFormValues({
-      pinCertificate: [],
-      certificateOfRegistration: [],
-      businessPermit: [],
-      boardResolutionLetter: [],
-      aml: [],
-    });
   }, []);
 
   if (retrievalLoading) {

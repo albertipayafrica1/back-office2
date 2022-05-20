@@ -183,16 +183,21 @@ const FileUploadField = ({ name, multiple, label, required, givenFile }) => {
   );
 };
 
+FileUploadField.defaultProps = {
+  givenFile: null,
+  required: false,
+};
+
 FileUploadField.propTypes = {
   name: PropTypes.string.isRequired,
   multiple: PropTypes.bool.isRequired,
   label: PropTypes.string.isRequired,
-  required: PropTypes.bool.isRequired,
+  required: PropTypes.bool,
   givenFile: PropTypes.shape({
     path: PropTypes.string,
-    errors: PropTypes.arrayOf({}),
+    errors: PropTypes.arrayOf(PropTypes.string),
     file: PropTypes.shape({ path: PropTypes.string }),
-  }).isRequired,
+  }),
 };
 
 export default FileUploadField;

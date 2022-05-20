@@ -156,9 +156,6 @@ const Funeral = ({ handleNextStep }) => {
         }
         setRetrievalLoading(false);
       });
-    setFormValues({
-      burialPermit: [],
-    });
   }, []);
 
   if (retrievalLoading) {

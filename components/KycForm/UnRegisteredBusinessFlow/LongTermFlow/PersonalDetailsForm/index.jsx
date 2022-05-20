@@ -192,43 +192,6 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
         }
         setRetrievalLoading(false);
       });
-    setFormValues({
-      // this you get it from api call
-      businessRepresentative: {
-        title: "",
-        surname: "",
-        firstName: "",
-        middleName: "",
-        telephoneCountryCode: "",
-        contactNumber: "",
-        email: "",
-        gender: "",
-        dateOfBirth: null,
-        countryOfOperation: "KE",
-        documentType: "1",
-        documentNumber: "",
-        taxPinNumber: "",
-        nationalIdFront: [],
-        nationalIdBack: [],
-        passport: [],
-        passportSizePhoto: [],
-        pinCertificate: [],
-      },
-      plan: {
-        // signUpDuration: "",
-        // purpose: "",
-        description: "",
-      },
-      businessLocation: {
-        physicalAddress: "",
-        postalAddress: "",
-        postalcode: "",
-        city: "",
-        county: "",
-        websiteLink: "",
-        appDownloadLink: "",
-      },
-    });
   }, []);
 
   if (retrievalLoading) {

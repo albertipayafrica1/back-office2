@@ -82,7 +82,7 @@ FormikCheckboxGroup.propTypes = {
   onBlur: PropTypes.func,
   helperText: PropTypes.string,
   options: PropTypes.arrayOf(
-    PropTypes.shape({ key: PropTypes.shape(), value: PropTypes.string })
+    PropTypes.shape({ key: PropTypes.string, value: PropTypes.string })
   ).isRequired,
   name: PropTypes.string.isRequired,
   required: PropTypes.bool,

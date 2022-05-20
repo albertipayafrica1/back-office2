@@ -156,9 +156,6 @@ const FundRaising = ({ handleNextStep }) => {
         }
         setRetrievalLoading(false);
       });
-    setFormValues({
-      coverLetter: [],
-    });
   }, []);
 
   if (retrievalLoading) {

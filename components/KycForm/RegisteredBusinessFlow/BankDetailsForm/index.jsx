@@ -164,15 +164,6 @@ const BankDetailsForm = ({ handleNextStep }) => {
         }
         setRetrievalLoading(false);
       });
-    setFormValues({
-      bankLocality: "",
-      bankName: "",
-      bankBranch: "",
-      accountName: "",
-      accountNumber: "",
-      currency: "",
-      swiftCode: "",
-    });
   }, []);
 
   if (retrievalLoading) {
