@@ -34,7 +34,7 @@ export const iconButton = {
 
 export const searchContainer = {
   color: colors.mono5,
-  marginLeft: "10px",
+  paddingLeft: { xs: "10px", sm: "230px", md: "10px" },
   width: "50%",
   display: "flex",
   alignItems: "center",
