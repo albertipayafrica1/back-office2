@@ -255,11 +255,11 @@ const BusinessStructureForm = ({ handleNextStep }) => {
       .then((response) => {
         console.log(response, "response");
         if (response.data.success === true) {
+          setRetrievalLoading(false);
           setFormValues(response.data.response);
           setBusinessCategoryValue(
             response.data.response.registeredBusinessDetails.businessCategory
           );
-          setRetrievalLoading(false);
         } else {
           console.log(response, "response0");
           setAlert({ type: "error", message: "Something Went Wrong" });

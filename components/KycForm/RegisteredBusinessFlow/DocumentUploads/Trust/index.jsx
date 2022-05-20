@@ -124,8 +124,8 @@ const Trust = ({ handleNextStep }) => {
       .then((response) => {
         console.log(response, "response");
         if (response.data.success === true) {
-          setFormValues(response.data.response);
           setRetrievalLoading(false);
+          setFormValues(response.data.response);
         } else {
           console.log(response, "response0");
           setAlert({ type: "error", message: "Something Went Wrong" });
