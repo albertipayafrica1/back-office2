@@ -173,7 +173,7 @@ const Education = ({ handleNextStep }) => {
           enableReinitialize
         >
           {(formik) => {
-            console.log(formik);
+            console.log(formik.values, "form");
             return (
               <Form>
                 <EducationContainer topLabel="Education">

@@ -53,11 +53,16 @@ const FileUploadField = ({ name, multiple, label, required, givenFile }) => {
     setFiles((curr) =>
       curr.map((fw) => {
         if (fw.file === file && returnedFileDetails !== undefined) {
+          let truncatedFieldName = name;
+          const indexOFDot = name.lastIndexOf(".");
+          if (indexOFDot !== undefined || indexOFDot !== null) {
+            truncatedFieldName = name.substring(indexOFDot + 1);
+          }
           return {
             ...fw,
             url: returnedFileDetails.url,
             modifiedName: returnedFileDetails.modifiedName,
-            fieldName: name,
+            fieldName: truncatedFieldName,
           };
         }
         return fw;
