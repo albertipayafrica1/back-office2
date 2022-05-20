@@ -72,7 +72,7 @@ export const menuItemContainer = {
 };
 
 export const linearProgress = {
-  width: "80px",
+  width: "75px",
   height: "5px",
   color: "grey.500",
   backgroundColor: (theme) => theme.colors.mono1,

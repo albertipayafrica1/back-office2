@@ -252,7 +252,7 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                           direction={{ xs: "row" }}
                           spacing={3}
                         >
-                          <Box sx={{ width: "110px" }}>
+                          <Box sx={{ width: { xs: "140px", sm: "128px" } }}>
                             <FormikControl
                               control="select"
                               variant="outlined"
@@ -344,7 +344,6 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                       <Stack
                         direction={{ xs: "column", md: "row" }}
                         spacing={3}
-                        justifyContent="space-between"
                       >
                         <FormikControl
                           control="input"
@@ -357,11 +356,6 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                           selectItem={genderOptions}
                           required
                         />
-                      </Stack>
-                      <Stack
-                        direction={{ xs: "column", md: "row" }}
-                        spacing={3}
-                      >
                         <FormikControl
                           control="datePicker"
                           label="Date Of Birth"

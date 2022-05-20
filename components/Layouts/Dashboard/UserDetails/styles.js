@@ -6,9 +6,8 @@ export const useStyles = makeStyles({
     width: "50px",
     height: "24px",
     padding: "0px",
+    margin: "0 6px",
     position: "relative",
-    left: "30px",
-    top: "5px",
   },
   switchBase: {
     color: "#818181",
@@ -58,7 +57,7 @@ export const useStyles = makeStyles({
 export const userDetailsContainerActive = {
   position: "absolute",
   width: "177px",
-  height: "215px",
+  maxHeight: "215px",
   top: "48px",
   color: "black",
   right: "10px",
@@ -67,36 +66,34 @@ export const userDetailsContainerActive = {
 };
 
 export const userDetailsContainerInactive = {
-  position: "absolute",
   display: "none",
-  width: "177px",
-  height: "215px",
-  top: "48px",
-  color: "black",
-  right: "10px",
-  backgroundColor: colors.mono1,
-  boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.25)",
 };
 
 export const modeSwitchContainer = {
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
+  width: "100%",
+  height: "40px",
+  borderBottom: "1px solid",
+  borderColor: colors.mono8,
+  padding: "15px",
 };
 
 export const userProfileSetting = {
   display: "flex",
   flexDirection: "column",
-  justifyContent: "space-around",
-  padding: "5px",
+  // justifyContent: "center",
+  // alignItems: "center",
+  borderBottom: "1px solid",
+  borderColor: colors.mono8,
+  padding: "15px",
 };
 
 export const userProfileContainer = {
   display: "flex",
   flexDirection: "row",
-  justifyContent: "space-around",
   cursor: "pointer",
-  mt: "5px",
   "&:hover": {
     color: colors.blue,
   },
@@ -105,44 +102,35 @@ export const userProfileContainer = {
 export const settingContainer = {
   display: "flex",
   flexDirection: "row",
-  justifyContent: "space-around",
   cursor: "pointer",
-  mt: "5px",
   "&:hover": {
     color: colors.blue,
   },
 };
 
 export const logOutContainer = {
-  display: "flex",
-  flexDirection: "row",
-  paddingBottom: "40px",
-  justifyContent: "space-around",
+  // display: "flex",
+  // flexDirection: "row",
 };
 
 export const companyText = {
   fontSize: "11px",
-  ml: "12px",
   fontWeight: "400",
   fontStyle: "normal",
-  mt: "15px",
+  textTransform: "uppercase",
+  width: "150px",
   color: colors.blue,
 };
 
 export const modeText = {
   fontSize: "11px",
-  top: "5px",
-  left: "22px",
-  position: "relative",
   color: colors.mono5,
 };
 
 export const loadingButton = {
   width: "100%",
-  display: "flex",
+  height: "40px",
   color: colors.mono5,
-  justifyContent: "space-around",
-  flexDirection: "row",
   "&:hover": {
     color: "white",
     border: "0px",
@@ -150,9 +138,11 @@ export const loadingButton = {
   },
 };
 
-export const muiIcons = { fontSize: "20px", ml: "10px" };
+export const muiIcons = { fontSize: "20px" };
 
-export const Divider = {
-  width: "100%",
-  mt: "10px",
+export const logOutDisplay = {
+  display: "flex",
+  flexDirection: "row",
+  position: "absolute",
+  left: "15px",
 };

@@ -1,13 +1,20 @@
-import PropTypes from "prop-types";
 import { useState } from "react";
 import { useRouter } from "next/router";
+
+import { useSelector } from "react-redux";
+
+import PropTypes from "prop-types";
+
 import Cookies from "js-cookie";
 import axios from "axios";
+
 import { Box, Typography, Switch, Divider } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
-import LoadingButton from "@mui/lab/LoadingButton";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import SettingsIcon from "@mui/icons-material/Settings";
+
+import LoadingButton from "@mui/lab/LoadingButton";
+
 import * as styles from "./styles";
 import { useStyles } from "./styles";
 
@@ -17,6 +24,7 @@ const UserDetails = ({ status }) => {
   const [checked, setChecked] = useState(false);
   const [loadingButton, setLoadingButton] = useState(false);
   const router = useRouter();
+  const user = useSelector((state) => state.user.user);
 
   // const toggleMode = (event) => {
   //   setChecked(event.target.checked);
@@ -52,23 +60,37 @@ const UserDetails = ({ status }) => {
   };
 
   return (
-    <div
+    <Box
       style={
         status
           ? styles.userDetailsContainerActive
           : styles.userDetailsContainerInactive
       }
     >
-      <Typography sx={styles.companyText}>FIVESPOT KENYA LIMITED</Typography>
-
-      <Divider sx={styles.Divider} />
+      <Box
+        sx={{
+          display: "flex",
+          justifycontent: "center",
+          alignItem: "center",
+          // maxHeight: "25px",
+          padding: "15px",
+          width: "177px",
+          borderBottom: "1px solid #c4c4c4",
+        }}
+      >
+        <Box sx={styles.companyText}>
+          {user.businessName !== null &&
+          user.businessName !== undefined &&
+          user.businessName !== ""
+            ? user.businessName
+            : `${user.firstName} ${user.surname}`}
+        </Box>
+      </Box>
 
       <Box sx={styles.modeSwitchContainer}>
-        <Typography style={styles.modeText}>mode</Typography>
-
+        <Typography style={styles.modeText}>Mode</Typography>
         <Switch
           size="medium"
-          sx={styles.Switch}
           checked={checked}
           onChange={toggleMode}
           inputProps={{ "aria-label": "controlled" }}
@@ -81,7 +103,6 @@ const UserDetails = ({ status }) => {
           }}
         />
       </Box>
-      <Divider sx={styles.Divider} />
 
       <Box sx={styles.userProfileSetting}>
         <Box
@@ -89,7 +110,7 @@ const UserDetails = ({ status }) => {
           sx={styles.userProfileContainer}
         >
           <PersonOutlineIcon sx={styles.muiIcons} />
-          <Typography sx={{ fontSize: "11px", mr: "60px" }}>
+          <Typography sx={{ fontSize: "11px", padding: "0 6px" }}>
             User Profile
           </Typography>
         </Box>
@@ -102,14 +123,13 @@ const UserDetails = ({ status }) => {
           <Typography
             sx={{
               fontSize: "11px",
-              mr: "60px",
+              padding: "0 6px",
             }}
           >
             Api settings
           </Typography>
         </Box>
       </Box>
-      <Divider sx={styles.Divider} />
 
       <Box sx={styles.logOutContainer}>
         <LoadingButton
@@ -117,11 +137,15 @@ const UserDetails = ({ status }) => {
           loading={loadingButton}
           sx={styles.loadingButton}
         >
-          <LogoutIcon sx={{ fontSize: "20px", ml: "10px" }} />
-          <Typography sx={{ fontSize: "11px", mr: "60px" }}>Log out</Typography>
+          <Box sx={styles.logOutDisplay}>
+            <LogoutIcon sx={{ fontSize: "20px" }} />
+            <Typography sx={{ fontSize: "11px", padding: "0 6px" }}>
+              Log out
+            </Typography>
+          </Box>
         </LoadingButton>
       </Box>
-    </div>
+    </Box>
   );
 };
 
