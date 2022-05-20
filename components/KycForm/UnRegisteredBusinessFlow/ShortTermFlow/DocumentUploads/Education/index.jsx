@@ -60,15 +60,15 @@ const Education = ({ handleNextStep }) => {
             type: "success",
             message: "Fulfillment Details Updated Successfully!",
           });
-          handleNextStep();
           setLoading(false);
           dispatch(fetchKycStatusSuccess(response.data.response.kycStatus));
+          handleNextStep();
         } else {
           console.log(response, "response0");
           setAlert({ type: "error", message: "Something Went Wrong" });
           setLoading(false);
+          formikHelpers.setSubmitting(false);
         }
-        formikHelpers.setSubmitting(false);
       })
       .catch((error) => {
         setLoading(false);

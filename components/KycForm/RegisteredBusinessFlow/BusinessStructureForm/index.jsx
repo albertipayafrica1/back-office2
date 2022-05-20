@@ -150,15 +150,15 @@ const BusinessStructureForm = ({ handleNextStep }) => {
       .then((response) => {
         console.log(response, "response");
         if (response.data.success === true) {
-          handleNextStep();
+          dispatch(fetchKycStatusSuccess(response.data.response.kycStatus));
           setLoading(false);
+          handleNextStep();
         } else {
           console.log(response, "response0");
           setAlert({ type: "error", message: "Something Went Wrong" });
           setLoading(false);
-          dispatch(fetchKycStatusSuccess(response.data.response.kycStatus));
+          formikHelpers.setSubmitting(false);
         }
-        formikHelpers.setSubmitting(false);
       })
       .catch((error) => {
         setLoading(false);
