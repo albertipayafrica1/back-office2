@@ -1231,7 +1231,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                               <FormikControl
                                 control="singleFileUpload"
                                 label="Passport of Business Owner (front)"
-                                name={`ultimateBeneficialOwners[${index}].passport]`}
+                                name={`ultimateBeneficialOwners[${index}].passport`}
                                 multiple={false}
                                 required
                                 givenFile={

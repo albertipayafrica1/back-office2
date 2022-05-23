@@ -203,7 +203,7 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
           enableReinitialize
         >
           {(formik) => {
-            console.log(formik.values, "aasa");
+            console.log(formik.errors, "aasa");
             return (
               <Form>
                 <Stack spacing={8}>
