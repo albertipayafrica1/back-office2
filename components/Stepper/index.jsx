@@ -262,7 +262,7 @@ const HorizontalLinearStepper = ({ flow, companyType, duration }) => {
 
           return (
             <Step key={item.label} {...props}>
-              <StepButton>
+              <StepButton disableRipple>
                 <StepLabel onClick={handleStep(index)} {...labelProps}>
                   {matches ? (
                     <Stack direction="row" alignItems="center">
