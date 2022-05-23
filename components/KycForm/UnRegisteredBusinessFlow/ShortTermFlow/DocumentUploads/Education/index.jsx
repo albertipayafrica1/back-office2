@@ -58,7 +58,7 @@ const Education = ({ handleNextStep }) => {
         if (response.data.success === true) {
           setAlert({
             type: "success",
-            message: "Fulfillment Details Updated Successfully!",
+            message: "Education Details Updated Successfully!",
           });
           setLoading(false);
           dispatch(fetchKycStatusSuccess(response.data.response.kycStatus));
@@ -122,7 +122,6 @@ const Education = ({ handleNextStep }) => {
         if (response.data.success === true) {
           setRetrievalLoading(false);
           setFormValues(response.data.response);
-          return;
         } else {
           console.log(response, "response0");
           setAlert({ type: "error", message: "Something Went Wrong" });

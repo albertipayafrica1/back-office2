@@ -61,7 +61,7 @@ const SoleProprietorship = ({ handleNextStep }) => {
         if (response.data.success === true) {
           setAlert({
             type: "success",
-            message: "Fulfillment Details Updated Successfully!",
+            message: "Sole Propreitorship Details Updated Successfully!",
           });
           setLoading(false);
           dispatch(fetchKycStatusSuccess(response.data.response.kycStatus));

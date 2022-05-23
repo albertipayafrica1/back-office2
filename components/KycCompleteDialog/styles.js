@@ -11,9 +11,9 @@ export const paperPropsStyling = {
 };
 
 export const title = {
-  fontFamily: "Montserrat Alternates",
-  fontWeight: 600,
-  fontSize: "36px",
+  fontFamily: "Pompiere",
+  fontWeight: 400,
+  fontSize: "50px",
   color: (theme) => theme.colors.blue,
   mb: 8,
 };

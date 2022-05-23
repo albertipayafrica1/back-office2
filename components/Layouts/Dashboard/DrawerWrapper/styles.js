@@ -190,8 +190,29 @@ export const toolTipWithIcon = {
   letterSpacing: "0.09em",
 };
 
+export const activateAccountContainer = {
+  cursor: "pointer",
+  marginTop: "5px",
+  "&:hover": {
+    color: (theme) => theme.colors.blue,
+    // "& $activateAccountText": {
+    //   color: "purple",
+    // },
+  },
+};
+
 export const activateAccountText = {
   fontSize: "12px",
+  "&:hover": {
+    color: (theme) => theme.colors.blue,
+  },
+};
+
+export const percentageText = {
+  fontSize: "11px",
+  "&:hover": {
+    color: (theme) => theme.colors.blue,
+  },
 };
 
 export const testModeOn = {

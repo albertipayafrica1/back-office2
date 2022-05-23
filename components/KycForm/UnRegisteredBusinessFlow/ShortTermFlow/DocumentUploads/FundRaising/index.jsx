@@ -57,7 +57,7 @@ const FundRaising = ({ handleNextStep }) => {
         if (response.data.success === true) {
           setAlert({
             type: "success",
-            message: "Fulfillment Details Updated Successfully!",
+            message: "Fund Raising Details Updated Successfully!",
           });
           setLoading(false);
           dispatch(fetchKycStatusSuccess(response.data.response.kycStatus));

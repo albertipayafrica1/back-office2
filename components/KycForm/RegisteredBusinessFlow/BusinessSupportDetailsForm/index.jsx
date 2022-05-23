@@ -59,7 +59,7 @@ const BusinessSupportDetailsForm = ({ handleNextStep }) => {
         if (response.data.success === true) {
           setAlert({
             type: "success",
-            message: "Bank Details Updated Successfully!",
+            message: "Business Support Details Updated Successfully!",
           });
           setLoading(false);
           dispatch(fetchKycStatusSuccess(response.data.response.kycStatus));

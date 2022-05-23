@@ -58,10 +58,10 @@ const DrawerWrapper = ({ mobileOpen, handleDrawerToggle, testModeStatus }) => {
           withoutIcon
         >
           <div
-            style={{ cursor: "pointer", marginTop: "5px" }}
+            style={styles.activateAccountContainer}
             onClick={() => {
-              router.push("/dashboard/kyc");
-              return handleDrawerToggle();
+              // handleDrawerToggle();
+              return router.push("/dashboard/kyc");
             }}
             role="button"
             tabIndex={0}
@@ -80,7 +80,7 @@ const DrawerWrapper = ({ mobileOpen, handleDrawerToggle, testModeStatus }) => {
                     : undefined
                 }
               />
-              <Typography sx={{ fontSize: "11px" }}>
+              <Typography sx={styles.percentageText}>
                 {kycStatus !== undefined && kycStatus.percentage !== undefined
                   ? `${kycStatus.percentage}% Complete`
                   : undefined}

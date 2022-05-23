@@ -45,7 +45,21 @@ const ComplianceForm = ({ handleNextStep }) => {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const [formValues, setFormValues] = useState(null);
+  const [formValues, setFormValues] = useState({
+    resident: "",
+    citizen: "",
+    greenCard: "",
+    born: "",
+    powerAuthority: "",
+    address: "",
+    mailAddress: "",
+    bankAccount: "",
+    telephone: "",
+    fatcaStatus: "",
+    explanation: [],
+    W8Form: [],
+    consent: [],
+  });
   const [loading, setLoading] = useState(false);
   const [retrievalLoading, setRetrievalLoading] = useState(false);
   const [alert, setAlert] = useState({ type: "", message: "" });
@@ -70,7 +84,7 @@ const ComplianceForm = ({ handleNextStep }) => {
         if (response.data.success === true) {
           setAlert({
             type: "success",
-            message: "Bank Details Updated Successfully!",
+            message: "Compliance Details Updated Successfully!",
           });
           setLoading(false);
           dispatch(fetchKycStatusSuccess(response.data.response.kycStatus));
@@ -181,12 +195,13 @@ const ComplianceForm = ({ handleNextStep }) => {
       <Stack sx={styles.topContainer} spacing={1}>
         <Formik
           onSubmit={handleSubmit}
-          initialValues={formValues || initialValues}
+          initialValues={formValues}
           validationSchema={compliance}
           enableReinitialize
         >
           {(formik) => {
-            // console.log(formik.errors, "for");
+            console.log(formik.values, "for");
+            console.log(formValues, "formvalues");
             return (
               <Form>
                 <ComplianceFormContainer topLabel="Foreign Account Tax Compliance Act (FATCA)">

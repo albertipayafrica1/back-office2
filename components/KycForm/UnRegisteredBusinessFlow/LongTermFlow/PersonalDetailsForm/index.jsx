@@ -92,7 +92,7 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
         if (response.data.success === true) {
           setAlert({
             type: "success",
-            message: "Bank Details Updated Successfully!",
+            message: "Personal Details Updated Successfully!",
           });
           setLoading(false);
           dispatch(fetchKycStatusSuccess(response.data.response.kycStatus));

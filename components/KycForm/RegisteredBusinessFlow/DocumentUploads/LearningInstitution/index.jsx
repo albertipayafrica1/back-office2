@@ -62,6 +62,10 @@ const LearningInstitution = ({ handleNextStep }) => {
       .then((response) => {
         console.log(response, "response");
         if (response.data.success === true) {
+          setAlert({
+            type: "success",
+            message: "Learning Institution Details Updated Successfully!",
+          });
           setLoading(false);
           dispatch(fetchKycStatusSuccess(response.data.response.kycStatus));
           handleNextStep();

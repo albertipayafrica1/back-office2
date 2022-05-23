@@ -25,6 +25,8 @@ const getNewId = () => {
 const FileUploadField = ({ name, multiple, label, required, givenFile }) => {
   const [field, meta, helpers] = useField(name);
 
+  console.log(givenFile, name);
+
   const [files, setFiles] = useState([]);
   const onDrop = useCallback((accFiles, rejFiles) => {
     const mappedAcc = accFiles.map((file) => {
@@ -46,7 +48,10 @@ const FileUploadField = ({ name, multiple, label, required, givenFile }) => {
   }, []);
 
   useEffect(() => {
-    helpers.setValue(files);
+    if (files.length > 0) {
+      helpers.setValue(files);
+    }
+    console.log(givenFile, name);
   }, [files]);
 
   const onUpload = (file, returnedFileDetails) => {

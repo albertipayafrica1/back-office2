@@ -150,6 +150,10 @@ const BusinessStructureForm = ({ handleNextStep }) => {
       .then((response) => {
         console.log(response, "response");
         if (response.data.success === true) {
+          setAlert({
+            type: "success",
+            message: "Business Structure Details Updated Successfully!",
+          });
           dispatch(fetchKycStatusSuccess(response.data.response.kycStatus));
           setLoading(false);
           handleNextStep();
