@@ -26,6 +26,9 @@ export const stepper = {
   position: "sticky",
   top: { xs: 105, sm: 108, md: 109 },
   "& .MuiStepIcon-root.Mui-active": {
+    color: (theme) => theme.colors.orange,
+  },
+  "& .MuiStepIcon-root.Mui-completed": {
     color: (theme) => theme.colors.blue,
   },
 };
