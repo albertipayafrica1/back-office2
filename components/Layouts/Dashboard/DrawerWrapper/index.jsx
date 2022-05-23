@@ -60,7 +60,9 @@ const DrawerWrapper = ({ mobileOpen, handleDrawerToggle, testModeStatus }) => {
           <div
             style={styles.activateAccountContainer}
             onClick={() => {
-              // handleDrawerToggle();
+              if (mobileOpen) {
+                handleDrawerToggle();
+              }
               return router.push("/dashboard/kyc");
             }}
             role="button"
@@ -94,8 +96,10 @@ const DrawerWrapper = ({ mobileOpen, handleDrawerToggle, testModeStatus }) => {
             return (
               <Button
                 onClick={() => {
-                  router.push(`${item.url}`);
-                  return handleDrawerToggle();
+                  if (mobileOpen) {
+                    handleDrawerToggle();
+                  }
+                  return router.push(`${item.url}`);
                 }}
                 sx={
                   router.pathname === `${item.url}`
