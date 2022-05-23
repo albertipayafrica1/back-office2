@@ -201,7 +201,6 @@ const BusinessStructureForm = ({ handleNextStep }) => {
   useEffect(() => {
     setRetrievalLoading(true);
     const credentials = Cookies.get("iPayT");
-
     const businessCategoryConfig = {
       method: "get",
       url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/categories`,
@@ -245,6 +244,15 @@ const BusinessStructureForm = ({ handleNextStep }) => {
           setAlert({ type: "error", message: "Something Went Wrong" });
         }
       });
+  }, []);
+
+  useEffect(() => {
+    setRetrievalLoading(true);
+
+    if (businessCategoryOptions.length === 0) {
+      return;
+    }
+    const credentials = Cookies.get("iPayT");
 
     const config = {
       method: "get",
@@ -299,7 +307,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
         }
         setRetrievalLoading(false);
       });
-  }, []);
+  }, [businessCategoryOptions]);
 
   useEffect(() => {
     console.log(businessCategoryValue, "useeef ran");

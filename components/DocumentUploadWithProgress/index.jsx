@@ -28,6 +28,8 @@ const FileUploadField = ({ name, multiple, label, required, givenFile }) => {
   console.log(givenFile, name);
 
   const [files, setFiles] = useState([]);
+  const [deleteAction, setDeleteAction] = useState(false);
+
   const onDrop = useCallback((accFiles, rejFiles) => {
     const mappedAcc = accFiles.map((file) => {
       console.log(file, "fileondrop");
@@ -50,8 +52,9 @@ const FileUploadField = ({ name, multiple, label, required, givenFile }) => {
   useEffect(() => {
     if (files.length > 0) {
       helpers.setValue(files);
+    } else if (files.length === 0 && deleteAction === true) {
+      helpers.setValue(files);
     }
-    console.log(givenFile, name);
   }, [files]);
 
   const onUpload = (file, returnedFileDetails) => {
@@ -93,6 +96,7 @@ const FileUploadField = ({ name, multiple, label, required, givenFile }) => {
 
   const onDelete = (file) => {
     setFiles((curr) => curr.filter((fw) => fw.file !== file));
+    setDeleteAction(true);
   };
 
   const { getRootProps, getInputProps } = useDropzone({

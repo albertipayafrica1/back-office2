@@ -175,11 +175,11 @@ const BusinessSupportDetailsForm = ({ handleNextStep }) => {
         {(formik) => {
           return (
             <Form>
-              <Stack spacing={8}>
+              <Stack spacing={8} sx={{ mt: 5, mb: 2 }}>
                 <Typography variant="subtitle1">
                   This information helps customers recognize your business. Your
                   support information may be visible in payment statements,
-                  involves and receipts
+                  invoices and receipts
                 </Typography>
                 <CreateAccountFormDiv topLabel="Business Support Details">
                   <Stack direction="column" spacing={2}>

@@ -183,7 +183,7 @@ const BusinessFulfillmentDetailsForm = ({ handleNextStep }) => {
           return (
             <Form>
               <Stack spacing={8}>
-                <Typography variant="subtitle1">
+                <Typography variant="subtitle1" sx={{ mt: 5, mb: 2 }}>
                   Tell us how you provide products or services
                 </Typography>
                 <CreateAccountFormDiv topLabel="Business Fulfillment Details">
