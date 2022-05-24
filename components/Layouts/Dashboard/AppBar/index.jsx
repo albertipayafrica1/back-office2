@@ -1,9 +1,7 @@
-import { useState } from "react";
-import Image from "next/image";
-import { useRouter } from "next/router";
-
 import PropTypes from "prop-types";
-
+import { useState, useRef } from "react";
+import { useRouter } from "next/router";
+import Image from "next/image";
 import { useSelector } from "react-redux";
 
 import {
@@ -17,6 +15,7 @@ import {
 
 import MenuIcon from "@mui/icons-material/Menu";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
+import NotificationDrawer from "./NotificationDrawer";
 
 import Search from "../../../../atoms/Search";
 
@@ -29,14 +28,27 @@ import * as styles from "./styles";
 const TopAppBar = ({ handleDrawerToggle, testModeStatus }) => {
   const classes = useStyles();
   const router = useRouter();
-  console.log(router, "router");
-  const user = useSelector((state) => state.user.user);
-
+  const containerRef = useRef(null);
+  const [openNotificationDrawer, setOpenNotificationDrawer] = useState(false);
   const [userDetailsComponent, setUserDetailsComponent] = useState(false);
 
+  const handleNotificationDrawer = () => {
+    if (userDetailsComponent === true) {
+      setUserDetailsComponent(false)
+    }
+    setOpenNotificationDrawer(!openNotificationDrawer);
+  };
+
   const toggleUserDetailsComponent = () => {
+    if (openNotificationDrawer === true) {
+      setOpenNotificationDrawer(false)
+    }
     setUserDetailsComponent(!userDetailsComponent);
   };
+
+  console.log(router, "router");
+  const user = useSelector((state) => state.user.user);
+  console.log(user);
 
   return (
     <Box sx={{ backgroundColor: "yellow" }}>
@@ -68,10 +80,19 @@ const TopAppBar = ({ handleDrawerToggle, testModeStatus }) => {
               </Box>
 
               <Box sx={styles.userDetailsContainer}>
-                {/* <Typography sx={styles.HelpText}>Help</Typography>
+                {/* <Typography sx={styles.HelpText}>Help</Typography> */}
+
                 <Badge badgeContent={0} sx={styles.badge}>
-                  <NotificationsActiveIcon sx={styles.notificationIcon} />
-                </Badge> */}
+                  <NotificationsActiveIcon
+                    onClick={handleNotificationDrawer}
+                    sx={styles.notificationIcon}
+                  />
+                  <NotificationDrawer
+                    toggleNotificationDrawer={handleNotificationDrawer}
+                    open={openNotificationDrawer}
+                    containerRef={containerRef}
+                  />
+                </Badge>
 
                 <Typography sx={styles.HelpText}>
                   {`Hello, ${user.firstName}`}
