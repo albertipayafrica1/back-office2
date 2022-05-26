@@ -587,7 +587,10 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                       </Stack>
                       {formik.values.businessRepresentative.documentType ===
                         "1" && (
-                        <Stack direction={{ xs: "column" }} spacing={3}>
+                        <Stack
+                          direction={{ xs: "column", md: "row" }}
+                          spacing={3}
+                        >
                           <FormikControl
                             control="singleFileUpload"
                             label="National Id of the Business Representative (front)"
@@ -618,9 +621,13 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                           />
                         </Stack>
                       )}
-                      {formik.values.businessRepresentative.documentType ===
-                        "2" && (
-                        <Stack direction={{ xs: "column" }} spacing={3}>
+
+                      <Stack
+                        direction={{ xs: "column", sm: "row" }}
+                        spacing={3}
+                      >
+                        {formik.values.businessRepresentative.documentType ===
+                          "2" && (
                           <FormikControl
                             control="singleFileUpload"
                             label="Passport of the Business Representative"
@@ -635,12 +642,10 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                                 : null
                             }
                           />
-                        </Stack>
-                      )}
-                      <Stack direction={{ xs: "column" }} spacing={3}>
+                        )}
                         <FormikControl
                           control="singleFileUpload"
-                          label="Colored Passport Size Photograph of the Business Representative"
+                          label="Colored Passport Size Photo of the Business Representative"
                           name="businessRepresentative.passportSizePhoto"
                           multiple={false}
                           required
@@ -1199,7 +1204,10 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                           </Stack>
                           {formik.values.ultimateBeneficialOwners[index]
                             .documentType === "1" && (
-                            <Stack direction={{ xs: "column" }} spacing={3}>
+                            <Stack
+                              direction={{ xs: "column", md: "row" }}
+                              spacing={3}
+                            >
                               <FormikControl
                                 control="singleFileUpload"
                                 label="National Id of Business Owner (front)"
@@ -1233,9 +1241,13 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                               />
                             </Stack>
                           )}
-                          {formik.values.ultimateBeneficialOwners[index]
-                            .documentType === "2" && (
-                            <Stack direction={{ xs: "column" }} spacing={3}>
+
+                          <Stack
+                            direction={{ xs: "column", sm: "row" }}
+                            spacing={3}
+                          >
+                            {formik.values.ultimateBeneficialOwners[index]
+                              .documentType === "2" && (
                               <FormikControl
                                 control="singleFileUpload"
                                 label="Passport of Business Owner (front)"
@@ -1251,12 +1263,10 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                                     : null
                                 }
                               />
-                            </Stack>
-                          )}
-                          <Stack direction={{ xs: "column" }} spacing={3}>
+                            )}
                             <FormikControl
                               control="singleFileUpload"
-                              label="Colored Passport Size Photograph of Business Owner"
+                              label="Colored Passport Size Photo of Business Owner"
                               name={`ultimateBeneficialOwners[${index}].passportSizePhoto`}
                               multiple={false}
                               required

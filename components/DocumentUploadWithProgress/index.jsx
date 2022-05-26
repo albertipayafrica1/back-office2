@@ -104,66 +104,68 @@ const FileUploadField = ({ name, multiple, label, required, givenFile }) => {
   });
 
   return (
-    <>
-      <Grid item>
-        <Field name={name}>
-          {({ _, form, __ }) => {
-            return (
-              <div {...getRootProps()}>
-                <Typography
-                  variant="subtitle3"
-                  sx={styles.dropzoneOuterTitle}
-                  required
-                >
-                  {label}
-                  {required && <sup style={{ color: "red" }}>*</sup>}
+    <Stack direction="column" sx={{ width: "100%" }}>
+      <Field name={name}>
+        {({ _, form, __ }) => {
+          return (
+            <div
+              {...getRootProps()}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                width: "100%",
+              }}
+            >
+              <Typography
+                variant="subtitle3"
+                sx={styles.dropzoneOuterTitle}
+                required
+              >
+                {label}
+                {required && <sup style={{ color: "red" }}>*</sup>}
+              </Typography>
+              <input
+                {...getInputProps()}
+                onBlur={() => {
+                  return meta.setFieldTouched(name);
+                }}
+              />
+              <Stack
+                sx={styles.dropzone}
+                direction="row"
+                alignItems="center"
+                justifyContent="space-between"
+              >
+                <Typography variant="subtitle3" sx={styles.dropzoneInnerTitle}>
+                  {givenFile !== null &&
+                  givenFile !== undefined &&
+                  givenFile.errors.length === 0
+                    ? givenFile.file.path
+                    : label}
                 </Typography>
-                <input
-                  {...getInputProps()}
-                  onBlur={() => {
-                    return meta.setFieldTouched(name);
-                  }}
+                <Image
+                  src="/cloud-computing.svg"
+                  alt="cloud computing"
+                  width="20"
+                  height="20"
                 />
-                <Stack
-                  sx={styles.dropzone}
-                  direction="row"
-                  alignItems="center"
-                  justifyContent="space-between"
+              </Stack>
+              {form.dirty && meta.error && typeof meta.error === "string" && (
+                <Typography
+                  variant="subtitle2"
+                  sx={{
+                    color: (theme) => theme.colors.errorRed,
+                    ml: 4,
+                    mt: 1,
+                  }}
                 >
-                  <Typography
-                    variant="subtitle3"
-                    sx={styles.dropzoneInnerTitle}
-                  >
-                    {givenFile !== null &&
-                    givenFile !== undefined &&
-                    givenFile.errors.length === 0
-                      ? givenFile.file.path
-                      : label}
-                  </Typography>
-                  <Image
-                    src="/cloud-computing.svg"
-                    alt="cloud computing"
-                    width="20"
-                    height="20"
-                  />
-                </Stack>
-                {form.dirty && meta.error && typeof meta.error === "string" && (
-                  <Typography
-                    variant="subtitle2"
-                    sx={{
-                      color: (theme) => theme.colors.errorRed,
-                      ml: 4,
-                      mt: 1,
-                    }}
-                  >
-                    {meta.error}
-                  </Typography>
-                )}
-              </div>
-            );
-          }}
-        </Field>
-      </Grid>
+                  {meta.error}
+                </Typography>
+              )}
+            </div>
+          );
+        }}
+      </Field>
       {givenFile !== null && // when we get file from server only show header
         givenFile !== undefined &&
         givenFile.errors.length === 0 && (
@@ -190,7 +192,7 @@ const FileUploadField = ({ name, multiple, label, required, givenFile }) => {
           )}
         </Grid>
       ))}
-    </>
+    </Stack>
   );
 };
 

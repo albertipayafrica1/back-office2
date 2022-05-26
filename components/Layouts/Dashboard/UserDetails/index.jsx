@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 import Cookies from "js-cookie";
 import axios from "axios";
 
-import { Box, Typography, Switch, Divider } from "@mui/material";
+import { Box, Typography, Switch } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import SettingsIcon from "@mui/icons-material/Settings";
