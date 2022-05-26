@@ -25,14 +25,11 @@ const getNewId = () => {
 const FileUploadField = ({ name, multiple, label, required, givenFile }) => {
   const [field, meta, helpers] = useField(name);
 
-  console.log(givenFile, name);
-
   const [files, setFiles] = useState([]);
   const [deleteAction, setDeleteAction] = useState(false);
 
   const onDrop = useCallback((accFiles, rejFiles) => {
     const mappedAcc = accFiles.map((file) => {
-      console.log(file, "fileondrop");
       return {
         file,
         errors: [],

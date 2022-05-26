@@ -4,7 +4,7 @@ import userReducer from "./user/userReducer";
 import kycStatusReducer from "./kycStatus/kycStatusReducer";
 
 const reducer = combineReducers({
-  cake: cakeReducer,
+  // cake: cakeReducer,
   user: userReducer,
   kycStatus: kycStatusReducer,
 });

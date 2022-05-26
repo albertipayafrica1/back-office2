@@ -61,7 +61,6 @@ const SingleFileUploadWithProgress = ({
       },
     };
 
-    console.log(fileToUpload, "fileToUpload");
     const formData = new FormData();
     let truncatedFieldName = fieldName;
     const indexOFDot = fieldName.lastIndexOf(".");
@@ -74,8 +73,6 @@ const SingleFileUploadWithProgress = ({
     return axios
       .post(url, formData, config)
       .then((res) => {
-        // return setServerError(true);
-        console.log(res, "response");
         return res.data.response;
       })
       .catch((error) => {
@@ -100,7 +97,6 @@ const SingleFileUploadWithProgress = ({
   useEffect(() => {
     async function upload() {
       const returnedFileDetails = await uploadFile(file, setProgress, onReject);
-      console.log("retunrded file", returnedFileDetails);
       if (returnedFileDetails !== undefined) {
         setDocumentUrl(returnedFileDetails.url);
       } else {

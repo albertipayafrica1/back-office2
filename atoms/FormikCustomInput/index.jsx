@@ -120,24 +120,12 @@ const FormikCustomInput = ({
                 },
               }}
               InputLabelProps={{
-                shrink: shrink
-                  ? true
-                  : !(
-                      field !== undefined &&
-                      field.value !== undefined &&
-                      field.value.length <= 0
-                    ),
+                shrink: shrink ? true : !(field?.value?.length <= 0),
                 className: shrink
                   ? undefined
-                  : field !== undefined &&
-                    field.value !== undefined &&
-                    field.value.length <= 0 &&
-                    !multiline
+                  : field?.value?.length <= 0 && !multiline
                   ? classes.inputLabelNoShrink
-                  : field !== undefined &&
-                    field.value !== undefined &&
-                    field.value.length <= 0 &&
-                    multiline
+                  : field?.value?.length <= 0 && multiline
                   ? classes.inputLabelMultilineNoShrink
                   : undefined,
                 // style: {
@@ -251,24 +239,12 @@ const FormikCustomInput = ({
               },
             }}
             InputLabelProps={{
-              shrink: shrink
-                ? true
-                : !(
-                    field !== undefined &&
-                    field.value !== undefined &&
-                    field.value.length <= 0
-                  ),
+              shrink: shrink ? true : !(field?.value?.length <= 0),
               className: shrink
                 ? undefined
-                : field !== undefined &&
-                  field.value !== undefined &&
-                  field.value.length <= 0 &&
-                  !multiline
+                : field?.value?.length <= 0 && !multiline
                 ? classes.inputLabelNoShrink
-                : field !== undefined &&
-                  field.value !== undefined &&
-                  field.value.length <= 0 &&
-                  multiline
+                : field?.value?.length <= 0 && multiline
                 ? classes.inputLabelMultilineNoShrink
                 : undefined,
               // style: {

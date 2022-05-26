@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import PropTypes from "prop-types";
 
@@ -120,6 +120,7 @@ const initialValues = {
 const BusinessStructureForm = ({ handleNextStep }) => {
   const router = useRouter();
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.user);
 
   const [formValues, setFormValues] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -223,7 +224,6 @@ const BusinessStructureForm = ({ handleNextStep }) => {
         if (error.response === undefined) {
           setAlert({ type: "error", message: "Something Went Wrong" });
         } else if (error.response.status === 401) {
-          // make a request to logout route here
           setAlert({ type: "error", message: error.response.data.response });
           setTimeout(() => {
             router.replace("/");
@@ -823,7 +823,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                         control="input"
                         variant="outlined"
                         name="registeredBusinessDetails.businessDescription"
-                        label="Business Description (min 150 characters)"
+                        label="Business Description (min 100 characters)"
                         type="text"
                         id="registeredBusinessDetails.businessDescription"
                         required
@@ -956,7 +956,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                                 middleName: "",
                                 shareHolderType: "",
                                 otherShareHolderType: "",
-                                telephoneCountryCode: "",
+                                telephoneCountryCode: user.countryIso,
                                 contactNumber: "",
                                 email: "",
                                 documentType: "1",
@@ -974,7 +974,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                                     surname: "",
                                     firstName: "",
                                     middleName: "",
-                                    telephoneCountryCode: "",
+                                    telephoneCountryCode: user.countryIso,
                                     contactNumber: "",
                                     email: "",
                                     relationship: "",

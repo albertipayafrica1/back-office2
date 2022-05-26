@@ -4,7 +4,6 @@ import { LinearProgress, Typography } from "@mui/material";
 import FileHeader from "./FileHeader";
 
 const UploadError = ({ file, onDelete, errors }) => {
-  // console.log(errors[0].error.message, "errors");
   return (
     <>
       <FileHeader file={file} onDelete={onDelete} progress={0} />
