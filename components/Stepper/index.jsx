@@ -200,7 +200,7 @@ const HorizontalLinearStepper = ({ flow, companyType, duration }) => {
         { toolTip: false, toolTipText: "", label: "Owners" },
         { toolTip: false, toolTipText: "", label: "Bank Details" },
         {
-          toolTip: true,
+          toolTip: false,
           toolTipText: "",
           label: "Compliance",
         },
@@ -223,7 +223,7 @@ const HorizontalLinearStepper = ({ flow, companyType, duration }) => {
         { toolTip: false, toolTipText: "", label: "Personal Details" },
         { toolTip: false, toolTipText: "", label: "Bank Details" },
         {
-          toolTip: true,
+          toolTip: false,
           toolTipText: "Compliance",
           label: "Compliance",
         },
@@ -240,7 +240,7 @@ const HorizontalLinearStepper = ({ flow, companyType, duration }) => {
       { toolTip: false, toolTipText: "", label: "Personal Details" },
       { toolTip: false, toolTipText: "", label: "Bank Details" },
       {
-        toolTip: true,
+        toolTip: false,
         toolTipText: "Compliance",
         label: "Compliance",
       },
