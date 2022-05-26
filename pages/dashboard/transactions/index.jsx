@@ -1,7 +1,10 @@
 import { Box } from "@mui/material";
-import DashboardLayout from "../../components/Layouts/Dashboard";
-import Tabs from "../../atoms/Tabs";
-import TransactionTable from "../../components/TransactionTable";
+
+import DashboardLayout from "../../../components/Layouts/Dashboard";
+import ProtectedRoute from "../../../components/ProtectedRoute";
+
+import Tabs from "../../../atoms/Tabs";
+import TransactionTable from "../../../components/TransactionTable";
 
 const Transaction = () => {
   const tabTitle = ["Payins", "Payouts", "Billing"];
@@ -27,6 +30,13 @@ const Transaction = () => {
 };
 
 export default Transaction;
+
 Transaction.getLayout = function getLayout(page) {
   return <DashboardLayout>{page}</DashboardLayout>;
 };
+
+export const getServerSideProps = ProtectedRoute(async (context) => {
+  return {
+    props: {},
+  };
+});

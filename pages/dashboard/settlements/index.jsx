@@ -1,6 +1,7 @@
 import { Typography } from "@mui/material";
 
-import DashboardLayout from "../../components/Layouts/Dashboard";
+import DashboardLayout from "../../../components/Layouts/Dashboard";
+import ProtectedRoute from "../../../components/ProtectedRoute";
 
 const Settlements = () => {
   return (
@@ -17,7 +18,15 @@ const Settlements = () => {
     </Typography>
   );
 };
+
 export default Settlements;
+
 Settlements.getLayout = function getLayout(page) {
   return <DashboardLayout>{page}</DashboardLayout>;
 };
+
+export const getServerSideProps = ProtectedRoute(async (context) => {
+  return {
+    props: {},
+  };
+});

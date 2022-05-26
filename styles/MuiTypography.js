@@ -24,6 +24,17 @@ export default {
     },
     {
       props: {
+        variant: "title5",
+      },
+      style: {
+        fontWeight: 500,
+        fontSize: "16px",
+        lineHeight: "28px",
+        letterSpacing: "0.15px",
+      },
+    },
+    {
+      props: {
         variant: "subtitle1",
       },
       style: {

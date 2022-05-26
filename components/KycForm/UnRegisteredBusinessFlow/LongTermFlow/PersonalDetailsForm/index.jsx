@@ -673,12 +673,3 @@ PersonalDetailsForm.propTypes = {
 };
 
 export default PersonalDetailsForm;
-
-export const getServerSideProps = async (context) => {
-  const data = "";
-  return {
-    props: {
-      data,
-    },
-  };
-};

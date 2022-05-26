@@ -36,10 +36,15 @@ const OTPInput = ({
     "https://icons.elipa.co/iPay_newlogo.svg"
   );
   const [countryRegulator, setCountryRegulator] = useState("Kenya");
+  const [flashMessage, setFlashMessage] = useState(false);
 
   useEffect(() => {
     setCountryIconLink(getCountryIconLink(query.country));
     setCountryRegulator(countryOfOperationBank(query.country));
+    setFlashMessage(true);
+    setTimeout(() => {
+      setFlashMessage(false);
+    }, 3000);
   }, []);
 
   return (
@@ -49,12 +54,14 @@ const OTPInput = ({
           direction="row"
           justifyContent="space-between"
           alignItems="center"
+          spacing={3}
         >
           <Image src={countryIconLink} alt="Logo" width={78} height={39} />
-
-          <Typography variant="title6" sx={styles.otpText}>
-            One Time Password (OTP) is sent to your email/mobile
-          </Typography>
+          {flashMessage && (
+            <Typography variant="title5" sx={styles.otpText}>
+              One Time Password (OTP) is sent to your email/mobile
+            </Typography>
+          )}
         </Stack>
 
         <Typography variant="title6">Enter OTP</Typography>

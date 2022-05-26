@@ -1,6 +1,7 @@
 import { Typography } from "@mui/material";
 
-import DashboardLayout from "../../components/Layouts/Dashboard";
+import DashboardLayout from "../../../components/Layouts/Dashboard";
+import ProtectedRoute from "../../../components/ProtectedRoute";
 
 const iPayLite = () => {
   return (
@@ -17,8 +18,15 @@ const iPayLite = () => {
     </Typography>
   );
 };
+
 export default iPayLite;
 
 iPayLite.getLayout = function getLayout(page) {
   return <DashboardLayout>{page}</DashboardLayout>;
 };
+
+export const getServerSideProps = ProtectedRoute(async (context) => {
+  return {
+    props: {},
+  };
+});

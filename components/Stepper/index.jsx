@@ -22,6 +22,7 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import KycCompleteDialog from "../KycCompleteDialog";
 
 import BusinessStructureForm from "../KycForm/RegisteredBusinessFlow/BusinessStructureForm";
+import BusinessOwnersForm from "../KycForm/RegisteredBusinessFlow/BusinessOwnersForm";
 import BankDetailsForm from "../KycForm/RegisteredBusinessFlow/BankDetailsForm";
 import ComplianceForm from "../KycForm/RegisteredBusinessFlow/ComplianceForm";
 import BusinessFulfillmentDetailsForm from "../KycForm/RegisteredBusinessFlow/BusinessFulfillmentDetailsForm";
@@ -115,14 +116,16 @@ const HorizontalLinearStepper = ({ flow, companyType, duration }) => {
         case 0:
           return <BusinessStructureForm handleNextStep={handleNext} />;
         case 1:
-          return <BankDetailsForm handleNextStep={handleNext} />;
+          return <BusinessOwnersForm handleNextStep={handleNext} />;
         case 2:
-          return <ComplianceForm handleNextStep={handleNext} />;
+          return <BankDetailsForm handleNextStep={handleNext} />;
         case 3:
-          return <BusinessFulfillmentDetailsForm handleNextStep={handleNext} />;
+          return <ComplianceForm handleNextStep={handleNext} />;
         case 4:
-          return <BusinessSupportDetailsForm handleNextStep={handleNext} />;
+          return <BusinessFulfillmentDetailsForm handleNextStep={handleNext} />;
         case 5:
+          return <BusinessSupportDetailsForm handleNextStep={handleNext} />;
+        case 6:
           if (companyType === "privateLimitedCompany") {
             return <PrivateLimitedCompany handleNextStep={handleNext} />;
           }
@@ -193,19 +196,20 @@ const HorizontalLinearStepper = ({ flow, companyType, duration }) => {
   const getSteps = () => {
     if (flow === "registered") {
       return [
-        { toolTip: false, toolTipText: "", label: "Business Structure" },
+        { toolTip: false, toolTipText: "", label: "Structure" },
+        { toolTip: false, toolTipText: "", label: "Owners" },
         { toolTip: false, toolTipText: "", label: "Bank Details" },
         {
           toolTip: true,
-          toolTipText: "Business compliance",
+          toolTipText: "",
           label: "Compliance",
         },
         {
           toolTip: false,
           toolTipText: "",
-          label: "Fulfillment Details",
+          label: "Fulfillment",
         },
-        { toolTip: false, toolTipText: "", label: "Support Details" },
+        { toolTip: false, toolTipText: "", label: "Support" },
         {
           toolTip: true,
           toolTipText:

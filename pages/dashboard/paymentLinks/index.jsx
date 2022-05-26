@@ -1,6 +1,7 @@
 import { Typography } from "@mui/material";
 
-import DashboardLayout from "../../components/Layouts/Dashboard";
+import DashboardLayout from "../../../components/Layouts/Dashboard";
+import ProtectedRoute from "../../../components/ProtectedRoute";
 
 const PaymentLinks = () => {
   return (
@@ -17,7 +18,15 @@ const PaymentLinks = () => {
     </Typography>
   );
 };
+
 export default PaymentLinks;
+
 PaymentLinks.getLayout = function getLayout(page) {
   return <DashboardLayout>{page}</DashboardLayout>;
 };
+
+export const getServerSideProps = ProtectedRoute(async (context) => {
+  return {
+    props: {},
+  };
+});

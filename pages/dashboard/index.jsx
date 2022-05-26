@@ -4,8 +4,9 @@ import Search from "../../atoms/Search";
 import FilterDialog from "../../components/FilterDialog";
 import Stepper from "../../components/Stepper";
 import KycCompleteDialog from "../../components/KycCompleteDialog";
+import ProtectedRoute from "../../components/ProtectedRoute";
 
-function index(props) {
+const index = () => {
   const paperPropsStyling = {
     position: "absolute",
     m: 0,
@@ -27,6 +28,15 @@ function index(props) {
       {/* <Stepper flow="registered" /> */}
     </>
   );
-}
+};
 
 export default index;
+
+export const getServerSideProps = ProtectedRoute(async (context) => {
+  return {
+    redirect: {
+      permanent: false,
+      destination: `/dashboard/home`,
+    },
+  };
+});

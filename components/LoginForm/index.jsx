@@ -114,8 +114,8 @@ const LoginForm = ({ country }) => {
         >
           <Image src={countryIconLink} alt="Logo" width={78} height={39} />
           {flashMessage && (
-            <Typography variant="subtitle1" sx={styles.flashMessage}>
-              Your Account has been created, kindly verify your email to login
+            <Typography variant="title5" sx={styles.flashMessage}>
+              Your Account is created, kindly verify your email to login
             </Typography>
           )}
         </Stack>
@@ -184,7 +184,7 @@ const LoginForm = ({ country }) => {
           <Link href={`/createAccount?country=${query.country}&rc=RC000000`}>
             <a>
               <Typography variant="title6" sx={styles.blueText}>
-                Dont have an account? Register here.
+                Don&apos;t have an account? Register here.
               </Typography>
             </a>
           </Link>

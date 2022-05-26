@@ -33,12 +33,12 @@ const MyApp = (props) => {
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <NextNProgress
-              color="#29D"
+              color="#124AA1"
               startPosition={0.3}
               stopDelayMs={200}
-              height={3}
+              height={4}
               options={{ showSpinner: false }}
-              showOnShallow
+              showOnShallow={false}
             />
 
             {getLayout(<Component {...pageProps} />)}
