@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 import Head from "next/head";
 import { ThemeProvider } from "@mui/material/styles";
@@ -6,7 +7,7 @@ import { CacheProvider } from "@emotion/react";
 import { PersistGate } from "redux-persist/integration/react";
 
 import { Provider, useStore } from "react-redux";
-import NextNProgress from "nextjs-progressbar";
+import NextProgress from "nextjs-progressbar";
 import theme from "../styles/theme";
 import createEmotionCache from "../config/createEmotionCache";
 import { wrapper } from "../redux/store";
@@ -18,6 +19,7 @@ const MyApp = (props) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   const getLayout = Component.getLayout || ((page) => page);
   const store = useStore((state) => state);
+  const router = useRouter();
 
   // incase we get any issues with rehydation, remove <Provide>
   return typeof window !== "undefined" ? (
@@ -32,8 +34,8 @@ const MyApp = (props) => {
           </Head>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <NextNProgress
-              color="#124AA1"
+            <NextProgress
+              color={router.pathname === "/" ? "#F29103" : "#124AA1"}
               startPosition={0.3}
               stopDelayMs={200}
               height={4}
@@ -58,13 +60,13 @@ const MyApp = (props) => {
           </Head>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <NextNProgress
-              color="#29D"
+            <NextProgress
+              color={router.pathname === "/" ? "#F29103" : "#124AA1"}
               startPosition={0.3}
               stopDelayMs={200}
+              height={4}
               options={{ showSpinner: false }}
-              height={3}
-              showOnShallow
+              showOnShallow={false}
             />
 
             {getLayout(<Component {...pageProps} />)}
