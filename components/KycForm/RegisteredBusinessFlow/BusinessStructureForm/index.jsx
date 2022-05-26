@@ -96,7 +96,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
     const credentials = Cookies.get("iPayT");
     const config = {
       method: "post",
-      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/kyc/biz-structure`,
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/kyc/businessStructure`,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${credentials}`,
@@ -213,7 +213,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
 
     const config = {
       method: "get",
-      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/kyc/biz-structure`,
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/kyc/businessStructure`,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${credentials}`,
