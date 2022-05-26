@@ -65,17 +65,9 @@ const FormikDateRangePicker = ({
                         }}
                         required={required}
                         InputLabelProps={{
-                          shrink: !(
-                            field !== undefined &&
-                            field.value !== undefined &&
-                            field.value !== null &&
-                            field.value.length <= 0
-                          ),
+                          shrink: !(field?.value?.length <= 0),
                           className:
-                            field !== undefined &&
-                            field.value !== undefined &&
-                            field.value !== null &&
-                            field.value.length <= 0
+                            field?.value?.length <= 0
                               ? classes.inputLabelNoShrink
                               : undefined,
                         }}
@@ -122,17 +114,9 @@ const FormikDateRangePicker = ({
                         }}
                         required={required}
                         InputLabelProps={{
-                          shrink: !(
-                            field !== undefined &&
-                            field.value !== undefined &&
-                            field.value !== null &&
-                            field.value.length <= 0
-                          ),
+                          shrink: !(field?.value?.length <= 0),
                           className:
-                            field !== undefined &&
-                            field.value !== undefined &&
-                            field.value !== null &&
-                            field.value.length <= 0
+                            field?.value?.length <= 0
                               ? classes.inputLabelNoShrink
                               : undefined,
                         }}
