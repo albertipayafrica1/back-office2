@@ -1,21 +1,21 @@
-import { Typography } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 
 import DashboardLayout from "../../../components/Layouts/Dashboard";
 import ProtectedRoute from "../../../components/ProtectedRoute";
 
 const KopeshaLoan = () => {
   return (
-    <Typography
-      variant="title6"
+    <Box
       sx={{
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         height: "100%",
+        width: "100%",
       }}
     >
-      Kopesha Loans is Coming Soon
-    </Typography>
+      <Typography variant="title6">Kopesha Loans is Coming Soon</Typography>
+    </Box>
   );
 };
 

@@ -33,7 +33,7 @@ const MyApp = (props) => {
             />
           </Head>
           <ThemeProvider theme={theme}>
-            <Paper>
+            <Paper sx={{ width: "100vw", height: "100vh" }}>
               <CssBaseline />
               <NextProgress
                 color={router.pathname === "/" ? "#F29103" : "#124AA1"}
@@ -61,7 +61,7 @@ const MyApp = (props) => {
             />
           </Head>
           <ThemeProvider theme={theme}>
-            <Paper>
+            <Paper sx={{ width: "100vw", height: "100vh" }}>
               <CssBaseline />
               <NextProgress
                 color={router.pathname === "/" ? "#F29103" : "#124AA1"}
