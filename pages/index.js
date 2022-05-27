@@ -14,7 +14,7 @@ import {
 
 import ListItemIcon from "@mui/material/ListItemIcon";
 import { makeStyles } from "@mui/styles";
-import backgroundImage from "../public/ipay-landing-background.png";
+import backgroundImage from "../public/IPAYLANDING.jpg";
 import WatchDemoDialog from "../components/WatchDemoDialog";
 import ContactSalesDialog from "../components/ContactSalesDialog";
 import SelectCountryDialog from "../components/SelectCountryDialog";
@@ -191,7 +191,7 @@ const Home = () => {
         <Image
           alt="backgroundimg"
           src={backgroundImage}
-          quality={65}
+          quality={64}
           layout="fill"
           objectFit="cover"
         />
