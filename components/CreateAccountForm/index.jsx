@@ -213,7 +213,7 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
             emailAlertHandler(true, values.firstName);
             setTimeout(() => {
               router.replace(
-                `/login?country=${countryCode}&status=newAccountCreated`
+                `/login?country=${formValues.countryOfOperation}&status=newAccountCreated`
               );
             }, 3000);
           } else {
