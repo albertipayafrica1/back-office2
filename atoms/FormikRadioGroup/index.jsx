@@ -38,14 +38,14 @@ const FormikRadioGroup = ({
                 {label}
               </FormLabel>
             )}
-            {options.map((option, index) => {
-              return (
-                <RadioGroup
-                  aria-labelledby="radio-buttons-group-label"
-                  name="radio-buttons-group"
-                  row
-                  key={index}
-                >
+
+            <RadioGroup
+              aria-labelledby="radio-buttons-group-label"
+              name="radio-buttons-group"
+              row={row}
+            >
+              {options.map((option, index) => {
+                return (
                   <FormControlLabel
                     value={option.value}
                     control={
@@ -66,9 +66,10 @@ const FormikRadioGroup = ({
                       <Typography variant="subtitle3">{option.key}</Typography>
                     }
                   />
-                </RadioGroup>
-              );
-            })}
+                );
+              })}
+            </RadioGroup>
+
             <FormHelperText sx={styles.helperText}>
               <ErrorMessage name={name} />
             </FormHelperText>

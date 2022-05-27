@@ -602,7 +602,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                         )}
                         <FormikControl
                           control="singleFileUpload"
-                          label="Colored Passport Size Photo of the Business Representative"
+                          label="Colored Passport Size Photo of the Representative"
                           name="businessRepresentative.passportSizePhoto"
                           multiple={false}
                           required

@@ -364,6 +364,8 @@ const BusinessOwnersForm = ({ handleNextStep }) => {
                               label="ShareHolder Type"
                               name={`ultimateBeneficialOwners[${index}].shareHolderType`}
                               options={shareHolderTypeOptions}
+                              required
+                              row
                             />
                           </Stack>
 
@@ -544,7 +546,7 @@ const BusinessOwnersForm = ({ handleNextStep }) => {
                           )}
 
                           <Stack
-                            direction={{ xs: "column", sm: "row" }}
+                            direction={{ xs: "column", md: "row" }}
                             spacing={3}
                           >
                             {formik.values.ultimateBeneficialOwners[index]
@@ -599,6 +601,7 @@ const BusinessOwnersForm = ({ handleNextStep }) => {
                           <Stack
                             direction={{ xs: "column", md: "row" }}
                             spacing={3}
+                            sx={{ pt: 2 }}
                           >
                             <FormikControl
                               control="input"
