@@ -14,7 +14,7 @@ export const styles = {
     flexDirection: "row",
   },
   radioButtonContainer: {
-    ml: 5,
+    ml: 3,
   },
 
   subtitle3: {
@@ -41,5 +41,8 @@ export const styles = {
   fatcaStatusContainer: {
     display: "flex",
     flexDirection: "column",
+  },
+  numberColor: {
+    color: (theme) => theme.colors.mono10,
   },
 };

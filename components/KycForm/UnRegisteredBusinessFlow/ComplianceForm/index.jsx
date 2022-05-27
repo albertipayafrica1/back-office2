@@ -206,13 +206,17 @@ const ComplianceForm = ({ handleNextStep }) => {
               <Form>
                 <ComplianceFormContainer topLabel="Foreign Account Tax Compliance Act (FATCA)">
                   <Box sx={styles.innerContainer}>
+                    <Typography variant="body1" sx={styles.numberColor}>
+                      1.
+                    </Typography>
                     <Box sx={styles.radioButtonContainer}>
                       <FormikControl
                         control="radio"
-                        label="1. Are you a U.S citizen?"
+                        label="Are you a U.S citizen?"
                         name="citizen"
                         options={ComplianceResponse}
                         required
+                        row
                         onChange={(e) => {
                           formik.setFieldValue("citizen", e.target.value);
                           if (e.target.value === "2") {
@@ -236,99 +240,134 @@ const ComplianceForm = ({ handleNextStep }) => {
                   {formik.values.citizen === "1" && (
                     <>
                       <Box sx={styles.innerContainer}>
+                        <Typography variant="body1" sx={styles.numberColor}>
+                          2.
+                        </Typography>
                         <Box sx={styles.radioButtonContainer}>
                           <FormikControl
                             control="radio"
-                            label="2. Are you a U.S resident?"
+                            label="Are you a U.S resident?"
                             name="resident"
                             options={ComplianceResponse}
                             required
+                            row
                           />
                         </Box>
                       </Box>
 
                       <Box sx={styles.innerContainer}>
+                        <Typography variant="body1" sx={styles.numberColor}>
+                          3.
+                        </Typography>
                         <Box sx={styles.radioButtonContainer}>
                           <FormikControl
                             control="radio"
-                            label="3. Are you holding a U.S. Permanent Resident Card (Green
+                            label="Are you holding a U.S. Permanent Resident Card (Green
                     Card)?"
                             name="greenCard"
                             options={ComplianceResponse}
                             required
+                            row
                           />
                         </Box>
                       </Box>
                       <Box sx={styles.innerContainer}>
+                        <Typography variant="body1" sx={styles.numberColor}>
+                          4.
+                        </Typography>
                         <Box sx={styles.radioButtonContainer}>
                           <FormikControl
                             control="radio"
-                            label="4. Were you born in the U.S?"
+                            label="Were you born in the U.S?"
                             name="born"
                             options={ComplianceResponse}
                             required
+                            row
                           />
                         </Box>
                       </Box>
                       <Box sx={styles.innerContainer}>
+                        <Typography variant="body1" sx={styles.numberColor}>
+                          5.
+                        </Typography>
                         <Box sx={styles.radioButtonContainer}>
                           <FormikControl
                             control="radio"
-                            label="5. Have you granted power of attorney or signatory authority to a person with a U.S. address?"
+                            label="Have you granted power of attorney or signatory authority to a person with a U.S. address?"
                             name="powerAuthority"
                             options={ComplianceResponse}
                             required
+                            row
                           />
                         </Box>
                       </Box>
                       <Box sx={styles.innerContainer}>
+                        <Typography variant="body1" sx={styles.numberColor}>
+                          6.
+                        </Typography>
                         <Box sx={styles.radioButtonContainer}>
                           <FormikControl
                             control="radio"
-                            label="6. Do you have a U.S. residential address?"
+                            label="Do you have a U.S. residential address?"
                             name="address"
                             options={ComplianceResponse}
                             required
+                            row
                           />
                         </Box>
                       </Box>
                       <Box sx={styles.innerContainer}>
+                        <Typography variant="body1" sx={styles.numberColor}>
+                          7.
+                        </Typography>
                         <Box sx={styles.radioButtonContainer}>
                           <FormikControl
                             control="radio"
-                            label="7. Do you have a correspondence, C/O or Hold mail address in
+                            label="Do you have a correspondence, C/O or Hold mail address in
                     the U.S.?"
                             name="mailAddress"
                             options={ComplianceResponse}
                             required
+                            row
                           />
                         </Box>
                       </Box>
                       <Box sx={styles.innerContainer}>
+                        <Typography variant="body1" sx={styles.numberColor}>
+                          8.
+                        </Typography>
                         <Box sx={styles.radioButtonContainer}>
                           <FormikControl
                             control="radio"
-                            label="8. Do you have a standing order to a U.S. Bank Account?"
+                            label="Do you have a standing order to a U.S. Bank Account?"
                             name="bankAccount"
                             options={ComplianceResponse}
                             required
+                            row
                           />
                         </Box>
                       </Box>
 
                       <Box sx={styles.innerContainer}>
+                        <Typography variant="body1" sx={styles.numberColor}>
+                          9.
+                        </Typography>
                         <Box sx={styles.radioButtonContainer}>
                           <FormikControl
                             control="radio"
-                            label="9. Do you have a U.S. telephone number?"
+                            label="Do you have a U.S. telephone number?"
                             name="telephone"
                             options={ComplianceResponse}
                             required
+                            row
                           />
                         </Box>
                       </Box>
                       <Box sx={styles.innerContainer}>
-                        <Box sx={styles.radioButtonContainer}>
+                        <Typography variant="body1" sx={styles.numberColor}>
+                          10.
+                        </Typography>
+                        <Box sx={{ ml: 1 }}>
                           <FormikControl
                             control="radio"
                             label="FATCA Status"
@@ -343,6 +382,7 @@ const ComplianceForm = ({ handleNextStep }) => {
                               formik.setFieldValue("explanation", []);
                             }}
                             required
+                            row
                           />
                         </Box>
                       </Box>
