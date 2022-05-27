@@ -73,38 +73,21 @@ const NotificationDrawer = ({
           <Typography sx={styles.notificationText}>NOTIFICATIONS</Typography>
           <ArrowRightAltIcon
             onClick={toggleNotificationDrawer}
-            sx={styles.arrorIcon}
+            sx={styles.arrowIcon}
           />
         </Box>
 
         <Divider sx={{ width: "100%" }} />
-        <Box
-          sx={{
-            maxHeight: "100%",
-            overflow: "hidden",
-            "&:hover": {
-              overflowY: `${data.length === 0 ? "hidden" : "scroll"}`,
-              "&::-webkit-scrollbar": {
-                width: "5px",
-                height: "30px",
-              },
-              "&::-webkit-scrollbar-track": {
-                boxShadow: `inset 0 0 6px rgba(0, 0, 0, 0.3)`,
-              },
-              "&::-webkit-scrollbar-thumb": {
-                backgroundColor: "white",
-                borderRadius: "10px",
-                outline: `1px solid slategrey`,
-              },
-            },
-          }}
-        >
-          {data.length === 0 ? (
+
+        {data.length === 0 ? (
+          <Box sx={{ maxHeight: "100%" }}>
             <Typography sx={styles.emptyNotificationText}>
               No new notifications
             </Typography>
-          ) : (
-            data.map((notification) => {
+          </Box>
+        ) : (
+          <Box sx={styles.bodyContainer}>
+            {data.map((notification) => {
               return (
                 <>
                   <Box
@@ -148,15 +131,15 @@ const NotificationDrawer = ({
                   <Divider sx={{ width: "100%" }} />
                 </>
               );
-            })
-          )}
+            })}
+          </Box>
+        )}
 
-          {data.length === 0 ? null : (
-            <Box style={styles.viewAllContainer}>
-              <Typography sx={styles.viewallText}> view all </Typography>
-            </Box>
-          )}
-        </Box>
+        {data.length === 0 ? null : (
+          <Box style={styles.viewAllContainer}>
+            <Typography sx={styles.viewAllText}> View All </Typography>
+          </Box>
+        )}
       </Box>
     </Slide>
   );

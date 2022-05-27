@@ -34,21 +34,19 @@ const TopAppBar = ({ handleDrawerToggle, testModeStatus }) => {
 
   const handleNotificationDrawer = () => {
     if (userDetailsComponent === true) {
-      setUserDetailsComponent(false)
+      setUserDetailsComponent(false);
     }
     setOpenNotificationDrawer(!openNotificationDrawer);
   };
 
   const toggleUserDetailsComponent = () => {
     if (openNotificationDrawer === true) {
-      setOpenNotificationDrawer(false)
+      setOpenNotificationDrawer(false);
     }
     setUserDetailsComponent(!userDetailsComponent);
   };
 
-  console.log(router, "router");
   const user = useSelector((state) => state.user.user);
-  console.log(user);
 
   return (
     <Box sx={{ backgroundColor: "yellow" }}>

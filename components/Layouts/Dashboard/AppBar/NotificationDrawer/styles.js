@@ -1,10 +1,8 @@
-import colors from "../../../../../styles/colors";
-
 export const notificationContainer = {
   width: 250,
   display: "flex",
   paddingBottom: "10px",
-  backgroundColor: colors.mono1,
+  backgroundColor: (theme) => theme.colors.mono1,
   right: "0px",
   position: "fixed",
   maxHeight: "80vh",
@@ -16,7 +14,25 @@ export const notificationContainer = {
   boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.25)",
 };
 
-export const bodyContainer = {};
+export const bodyContainer = {
+  maxHeight: "100%",
+  overflow: "hidden",
+  "&:hover": {
+    overflowY: "scroll",
+    "&::-webkit-scrollbar": {
+      width: "5px",
+      height: "30px",
+    },
+    "&::-webkit-scrollbar-track": {
+      boxShadow: `inset 0 0 6px rgba(0, 0, 0, 0.3)`,
+    },
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: "white",
+      borderRadius: "10px",
+      outline: `1px solid slategrey`,
+    },
+  },
+};
 
 export const notification = {
   width: "90%",
@@ -39,7 +55,7 @@ export const notificationContent = {
   paddingBottom: "10px",
 };
 
-export const arrorIcon = {
+export const arrowIcon = {
   color: "black",
   cursor: "pointer",
   marginLeft: "50px",
@@ -48,7 +64,7 @@ export const arrorIcon = {
 export const notificationText = {
   marginTop: "15px",
   marginRight: "50px",
-  color: colors.blue,
+  color: (theme) => theme.colors.blue,
   fontStyle: "normal",
   fontSize: "11px",
   lineHeight: "15px",
@@ -57,7 +73,7 @@ export const notificationText = {
 
 export const refundTitle = {
   marginTop: "16px",
-  color: colors.blue,
+  color: (theme) => theme.colors.blue,
   fontStyle: "normal",
   lineHeight: "15px",
   letterSpacing: "0.04em",
@@ -70,7 +86,7 @@ export const bodyText = {
   fontSize: "10px",
   lineHeight: "14px",
   letterSpacing: "0.04em",
-  color: colors.mono5,
+  color: (theme) => theme.colors.mono5,
 };
 
 export const date = {
@@ -91,15 +107,7 @@ export const discoverTitle = {
   fontSize: "11px",
   lineHeight: "14px",
   letterSpacing: "0.04em",
-  color: colors.mono5,
-};
-
-export const viewallText = {
-  color: colors.blue,
-  cursor: "pointer",
-  fontFamily: "Open Sans",
-  fontStyle: "normal",
-  fontSize: "11px",
+  color: (theme) => theme.colors.mono5,
 };
 
 export const notificationIcon = {
@@ -116,7 +124,7 @@ export const notificationContentContainer = {
 };
 
 export const emptyNotificationText = {
-  color: colors.orange,
+  color: (theme) => theme.colors.orange,
   marginTop: "45%",
   fontStyle: "normal",
   fontSize: "15px",
@@ -125,6 +133,17 @@ export const emptyNotificationText = {
 };
 
 export const viewAllContainer = {
-  float: "right",
+  width: "100%",
   padding: "20px",
+  display: "flex",
+  direction: "row",
+  justifyContent: "flex-end",
+};
+
+export const viewAllText = {
+  color: (theme) => theme.colors.blue,
+  cursor: "pointer",
+  fontFamily: "Open Sans",
+  fontStyle: "normal",
+  fontSize: "11px",
 };
