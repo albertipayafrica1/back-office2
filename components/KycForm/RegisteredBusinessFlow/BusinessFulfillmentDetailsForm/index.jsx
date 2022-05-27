@@ -204,9 +204,16 @@ const BusinessFulfillmentDetailsForm = ({ handleNextStep }) => {
                       required
                       row
                     />
-                    <Typography variant="subtitle3">
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        color: (theme) => theme.colors.mono10,
+                        paddingBottom: "10px",
+                      }}
+                    >
                       On average, how long after paying will your customers
                       typically receive their goods or services?
+                      <sup>*</sup>
                     </Typography>
 
                     <FormikControl

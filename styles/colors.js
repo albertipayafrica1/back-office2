@@ -8,6 +8,7 @@ export default {
   mono7: "#908E8E",
   mono8: "#C4C4C4",
   mono9: "#F6F6F6",
+  mono10: "#00000099",
   orange: "#F29103",
   pink: "#F9F4F4",
   errorRed: "#d32f2f",
