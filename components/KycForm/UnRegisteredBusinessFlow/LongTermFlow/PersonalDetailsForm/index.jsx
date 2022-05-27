@@ -423,7 +423,10 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                       </Stack>
                       {formik.values.businessRepresentative.documentType ===
                         "1" && (
-                        <Stack direction={{ xs: "column" }} spacing={3}>
+                        <Stack
+                          direction={{ xs: "column", md: "row" }}
+                          spacing={3}
+                        >
                           <FormikControl
                             control="singleFileUpload"
                             label="National Id  (front)"
@@ -454,9 +457,13 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                           />
                         </Stack>
                       )}
-                      {formik.values.businessRepresentative.documentType ===
-                        "2" && (
-                        <Stack direction={{ xs: "column" }} spacing={3}>
+
+                      <Stack
+                        direction={{ xs: "column", md: "row" }}
+                        spacing={3}
+                      >
+                        {formik.values.businessRepresentative.documentType ===
+                          "2" && (
                           <FormikControl
                             control="singleFileUpload"
                             label="Passport Copy"
@@ -471,9 +478,7 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                                 : null
                             }
                           />
-                        </Stack>
-                      )}
-                      <Stack direction={{ xs: "column" }} spacing={3}>
+                        )}
                         <FormikControl
                           control="singleFileUpload"
                           label="Colored Passport Size Photograph"
@@ -549,7 +554,7 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                         control="input"
                         variant="outlined"
                         name="plan.description"
-                        label="Business Description"
+                        label="Business Description (min 100 characters)"
                         type="text"
                         id="description"
                         multiline
