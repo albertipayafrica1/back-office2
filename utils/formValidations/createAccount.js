@@ -94,7 +94,7 @@ export const createAccount = yup.object().shape({
       return yup.string().required("Business Type is required");
     }
     return yup.string().when("signUpDuration", (duration) => {
-      if (duration === "1") {
+      if (duration === "2") {
         return yup.string().required("Business Type is required");
       }
       return yup.string();
