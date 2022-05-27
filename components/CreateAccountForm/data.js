@@ -6,11 +6,12 @@ export const country = [
 ];
 export const revenue = [
   { value: "1", key: "Havent started processing yet" },
-  { value: "2", key: "Less than $100000" },
-  { value: "3", key: "Between $100000 to $250000" },
-  { value: "4", key: "Between $250000 to $500000" },
-  { value: "5", key: "Between $500000 to $1000000" },
-  { value: "6", key: "More than $1000000" },
+  { value: "2", key: "$0 to $1,000" },
+  { value: "3", key: "$1,001 to $5,000" },
+  { value: "4", key: "$5,001 to $10,000" },
+  { value: "5", key: "$10,001 to $100,000" },
+  { value: "5", key: "$100,001 to $1,000,000" },
+  { value: "5", key: "More than $10,000,000" },
 ];
 export const registeredBusiness = [
   { value: "1", key: "Government Department" },
@@ -23,10 +24,10 @@ export const registeredBusiness = [
 ];
 export const unRegisteredBusiness = [
   { value: "1", key: "Education" },
-  { value: "2", key: "Fund Raising" },
   { value: "3", key: "Funeral" },
   { value: "4", key: "Medical" },
   { value: "5", key: "Wedding" },
+  { value: "2", key: "Others" },
 ];
 export const registration = [
   { value: "1", key: "Registered" },
@@ -57,11 +58,19 @@ export const kenyaIpayProducts = [
     value: "6",
     key: "iPay Billing - Pay Airtime, Water, Electricity, and Pay TV bills conveniently, or offer this service to earn sales commission.",
   },
+  {
+    value: "7",
+    key: "others",
+  },
 ];
 export const tanzaniaIpayProducts = [
   {
     value: "2",
     key: "eLipa Online - Accept mobile money or card payments online.",
+  },
+  {
+    value: "7",
+    key: "others",
   },
 ];
 export const ugandaIpayProducts = [
@@ -69,11 +78,19 @@ export const ugandaIpayProducts = [
     value: "2",
     key: "eLipa Online - Accept mobile money or card payments online.",
   },
+  {
+    value: "7",
+    key: "others",
+  },
 ];
 export const togoIpayProducts = [
   {
     value: "2",
     key: "eLipa Online - Accept mobile money or card payments online.",
+  },
+  {
+    value: "7",
+    key: "others",
   },
 ];
 export const aboutUs = [

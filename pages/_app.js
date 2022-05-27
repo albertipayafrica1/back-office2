@@ -23,61 +23,94 @@ const MyApp = (props) => {
 
   // incase we get any issues with rehydation, remove <Provide>
   return typeof window !== "undefined" ? (
-    <Provider store={store}>
-      <PersistGate persistor={store.persistor} loading={<div>Loading</div>}>
-        <CacheProvider value={emotionCache}>
-          <Head>
-            <meta
-              name="viewport"
-              content="initial-scale=1, width=device-width"
-            />
-          </Head>
-          <ThemeProvider theme={theme}>
-            <Paper sx={{ width: "100vw", height: "100vh" }}>
-              <CssBaseline />
-              <NextProgress
-                color={router.pathname === "/" ? "#F29103" : "#124AA1"}
-                startPosition={0.3}
-                stopDelayMs={200}
-                height={4}
-                options={{ showSpinner: false }}
-                showOnShallow={false}
+    <>
+      <Head>
+        <title>
+          {window.location.hostname === "app.ipayafrica.com"
+            ? "iPay :: Payments made Easy"
+            : "elipa :: Simply Convenient"}
+        </title>
+        <link
+          rel="icon"
+          href={
+            window.location.hostname === "app.ipayafrica.com"
+              ? "/favicon.ico"
+              : "/logo/favicon.ico"
+          }
+        />
+        {/* prevent zooming on Iphone  */}
+        <meta name="viewport" content="width=device-width" />
+        <meta
+          name="viewport"
+          content="width=device-width, minimum-scale=1.0, maximum-scale = 1.0, user-scalable = no"
+        />
+      </Head>
+      <Provider store={store}>
+        <PersistGate persistor={store.persistor} loading={<div>Loading</div>}>
+          <CacheProvider value={emotionCache}>
+            <Head>
+              <meta
+                name="viewport"
+                content="initial-scale=1, width=device-width"
               />
+            </Head>
+            <ThemeProvider theme={theme}>
+              <Paper sx={{ width: "100%", height: "100%", boxShadow: "none" }}>
+                <CssBaseline />
+                <NextProgress
+                  color={router.pathname === "/" ? "#F29103" : "#124AA1"}
+                  startPosition={0.3}
+                  stopDelayMs={200}
+                  height={4}
+                  options={{ showSpinner: false }}
+                  showOnShallow={false}
+                />
 
-              {getLayout(<Component {...pageProps} />)}
-            </Paper>
-          </ThemeProvider>
-        </CacheProvider>
-      </PersistGate>
-    </Provider>
+                {getLayout(<Component {...pageProps} />)}
+              </Paper>
+            </ThemeProvider>
+          </CacheProvider>
+        </PersistGate>
+      </Provider>
+    </>
   ) : (
-    <Provider store={store}>
-      <PersistGate persistor={store}>
-        <CacheProvider value={emotionCache}>
-          <Head>
-            <meta
-              name="viewport"
-              content="initial-scale=1, width=device-width"
-            />
-          </Head>
-          <ThemeProvider theme={theme}>
-            <Paper sx={{ width: "100vw", height: "100vh" }}>
-              <CssBaseline />
-              <NextProgress
-                color={router.pathname === "/" ? "#F29103" : "#124AA1"}
-                startPosition={0.3}
-                stopDelayMs={200}
-                height={4}
-                options={{ showSpinner: false }}
-                showOnShallow={false}
+    <>
+      <Head>
+        {/* prevent zooming on Iphone  */}
+        <meta name="viewport" content="width=device-width" />
+        <meta
+          name="viewport"
+          content="width=device-width, minimum-scale=1.0, maximum-scale = 1.0, user-scalable = no"
+        />
+      </Head>
+      <Provider store={store}>
+        <PersistGate persistor={store}>
+          <CacheProvider value={emotionCache}>
+            <Head>
+              <meta
+                name="viewport"
+                content="initial-scale=1, width=device-width"
               />
+            </Head>
+            <ThemeProvider theme={theme}>
+              <Paper sx={{ width: "100%", height: "100%", boxShadow: "none" }}>
+                <CssBaseline />
+                <NextProgress
+                  color={router.pathname === "/" ? "#F29103" : "#124AA1"}
+                  startPosition={0.3}
+                  stopDelayMs={200}
+                  height={4}
+                  options={{ showSpinner: false }}
+                  showOnShallow={false}
+                />
 
-              {getLayout(<Component {...pageProps} />)}
-            </Paper>
-          </ThemeProvider>
-        </CacheProvider>
-      </PersistGate>
-    </Provider>
+                {getLayout(<Component {...pageProps} />)}
+              </Paper>
+            </ThemeProvider>
+          </CacheProvider>
+        </PersistGate>
+      </Provider>
+    </>
   );
 };
 

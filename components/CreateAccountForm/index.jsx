@@ -532,7 +532,7 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
                       control="input"
                       variant="outlined"
                       name="revenue"
-                      label="Your monthly estimated revenue"
+                      label="Your monthly estimated turnover"
                       type="text"
                       select
                       selectItem={revenue}
@@ -555,11 +555,7 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
                           tanzaniaIpayProducts) ||
                         kenyaIpayProducts
                       }
-                      label={
-                        formik.values.countryOfOperation === "KE"
-                          ? "Choose iPay Products"
-                          : "Choose eLipa Products"
-                      }
+                      label="Choose Product(s)"
                       name="ipayProducts"
                       required
                     />
