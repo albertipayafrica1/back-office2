@@ -5,67 +5,60 @@ import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import * as styles from "./styles";
 
 const data = [
-  // {
-  //   id: 1,
-  //   type: "refund",
-  //   title: "You have a new Refund Confirmation Request",
-  //   body: "Transaction ID - QAD0JC7W3C KSH 100.00 MPESA",
-  //   date: "Today at 7:45 AM",
-  //   link: "",
-  //   icon: "/notificationmessage.svg",
-  // },
-  // {
-  //   id: 2,
-  //   type: "discover",
-  //   title: "Introducing Payment Links",
-  //   body: "You can now share payment links of your products on your social media platforms..",
-  //   link: "",
-  //   icon: "/newproduct.svg",
-  // },
-  // {
-  //   id: 3,
-  //   type: "refund",
-  //   title: "You have a new Refund Confirmation Request",
-  //   body: "Transaction ID - QAD0JC7W3C KSH 100.00 MPESA",
-  //   link: "",
-  //   date: "Today at 7:45 AM",
-  //   icon: "/notificationmessage.svg",
-  // },
-  // {
-  //   id: 2,
-  //   type: "discover",
-  //   title: "Introducing Payment Links",
-  //   body: "You can now share payment links of your products on your social media platforms..",
-  //   link: "",
-  //   icon: "/newproduct.svg",
-  // },
-  // {
-  //   id: 3,
-  //   type: "refund",
-  //   title: "You have a new Refund Confirmation Request",
-  //   body: "Transaction ID - QAD0JC7W3C KSH 100.00 MPESA",
-  //   link: "",
-  //   date: "Today at 7:45 AM",
-  //   icon: "/notificationmessage.svg",
-  // },
-  // {
-  //   id: 4,
-  //   type: "refund",
-  //   title: "You have a new Refund Confirmation Request",
-  //   body: "Transaction ID - QAD0JC7W3C KSH 100.00 MPESA",
-  //   link: "",
-  //   date: "Today at 7:45 AM",
-  //   icon: "/notificationmessage.svg",
-  // },
-  // {
-  //   id: 5,
-  //   type: "refund",
-  //   title: "You have a new Refund Confirmation Request",
-  //   body: "Transaction ID - QAD0JC7W3C KSH 100.00 MPESA",
-  //   link: "",
-  //   date: "Today at 7:45 AM",
-  //   icon: "/notificationmessage.svg",
-  // },
+  {
+    id: 1,
+    type: "refund",
+    title: "You have a new Refund Confirmation Request",
+    body: "Transaction ID - QAD0JC7W3C KSH 100.00 MPESA",
+    date: "Today at 7:45 AM",
+    link: "",
+  },
+  {
+    id: 2,
+    type: "discover",
+    title: "Introducing Payment Links",
+    body: "You can now share payment links of your products on your social media platforms..",
+    link: "",
+  },
+  {
+    id: 3,
+    type: "refund",
+    title: "You have a new Refund Confirmation Request",
+    body: "Transaction ID - QAD0JC7W3C KSH 100.00 MPESA",
+    link: "",
+    date: "Today at 7:45 AM",
+  },
+  {
+    id: 2,
+    type: "discover",
+    title: "Introducing Payment Links",
+    body: "You can now share payment links of your products on your social media platforms..",
+    link: "",
+  },
+  {
+    id: 3,
+    type: "refund",
+    title: "You have a new Refund Confirmation Request",
+    body: "Transaction ID - QAD0JC7W3C KSH 100.00 MPESA",
+    link: "",
+    date: "Today at 7:45 AM",
+  },
+  {
+    id: 4,
+    type: "refund",
+    title: "You have a new Refund Confirmation Request",
+    body: "Transaction ID - QAD0JC7W3C KSH 100.00 MPESA",
+    link: "",
+    date: "Today at 7:45 AM",
+  },
+  {
+    id: 5,
+    type: "refund",
+    title: "You have a new Refund Confirmation Request",
+    body: "Transaction ID - QAD0JC7W3C KSH 100.00 MPESA",
+    link: "",
+    date: "Today at 7:45 AM",
+  },
 ];
 
 const NotificationDrawer = ({
@@ -87,19 +80,22 @@ const NotificationDrawer = ({
         <Divider sx={{ width: "100%" }} />
         <Box
           sx={{
-            overflowY: `${data.length === 0 ? "hidden" : "scroll"}`,
             maxHeight: "100%",
-            "&::-webkit-scrollbar": {
-              width: "10px",
-              height: "30px",
-            },
-            "&::-webkit-scrollbar-track": {
-              boxShadow: `inset 0 0 6px rgba(0, 0, 0, 0.3)`,
-            },
-            "&::-webkit-scrollbar-thumb": {
-              backgroundColor: "white",
-              borderRadius: "10px",
-              outline: `1px solid slategrey`,
+            overflow: "hidden",
+            "&:hover": {
+              overflowY: `${data.length === 0 ? "hidden" : "scroll"}`,
+              "&::-webkit-scrollbar": {
+                width: "5px",
+                height: "30px",
+              },
+              "&::-webkit-scrollbar-track": {
+                boxShadow: `inset 0 0 6px rgba(0, 0, 0, 0.3)`,
+              },
+              "&::-webkit-scrollbar-thumb": {
+                backgroundColor: "white",
+                borderRadius: "10px",
+                outline: `1px solid slategrey`,
+              },
             },
           }}
         >
@@ -157,7 +153,6 @@ const NotificationDrawer = ({
 
           {data.length === 0 ? null : (
             <Box style={styles.viewAllContainer}>
-              <image src="" />
               <Typography sx={styles.viewallText}> view all </Typography>
             </Box>
           )}

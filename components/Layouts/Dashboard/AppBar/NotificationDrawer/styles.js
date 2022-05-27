@@ -16,6 +16,8 @@ export const notificationContainer = {
   boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.25)",
 };
 
+export const bodyContainer = {};
+
 export const notification = {
   width: "90%",
   display: "flex",
