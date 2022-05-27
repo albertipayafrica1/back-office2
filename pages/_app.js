@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 import Head from "next/head";
 import { ThemeProvider } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
+import { CssBaseline, Paper } from "@mui/material";
 import { CacheProvider } from "@emotion/react";
 import { PersistGate } from "redux-persist/integration/react";
 
@@ -33,17 +33,19 @@ const MyApp = (props) => {
             />
           </Head>
           <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <NextProgress
-              color={router.pathname === "/" ? "#F29103" : "#124AA1"}
-              startPosition={0.3}
-              stopDelayMs={200}
-              height={4}
-              options={{ showSpinner: false }}
-              showOnShallow={false}
-            />
+            <Paper>
+              <CssBaseline />
+              <NextProgress
+                color={router.pathname === "/" ? "#F29103" : "#124AA1"}
+                startPosition={0.3}
+                stopDelayMs={200}
+                height={4}
+                options={{ showSpinner: false }}
+                showOnShallow={false}
+              />
 
-            {getLayout(<Component {...pageProps} />)}
+              {getLayout(<Component {...pageProps} />)}
+            </Paper>
           </ThemeProvider>
         </CacheProvider>
       </PersistGate>
@@ -59,17 +61,19 @@ const MyApp = (props) => {
             />
           </Head>
           <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <NextProgress
-              color={router.pathname === "/" ? "#F29103" : "#124AA1"}
-              startPosition={0.3}
-              stopDelayMs={200}
-              height={4}
-              options={{ showSpinner: false }}
-              showOnShallow={false}
-            />
+            <Paper>
+              <CssBaseline />
+              <NextProgress
+                color={router.pathname === "/" ? "#F29103" : "#124AA1"}
+                startPosition={0.3}
+                stopDelayMs={200}
+                height={4}
+                options={{ showSpinner: false }}
+                showOnShallow={false}
+              />
 
-            {getLayout(<Component {...pageProps} />)}
+              {getLayout(<Component {...pageProps} />)}
+            </Paper>
           </ThemeProvider>
         </CacheProvider>
       </PersistGate>

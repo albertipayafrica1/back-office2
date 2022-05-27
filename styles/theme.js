@@ -5,6 +5,9 @@ import MuiTypography from "./MuiTypography";
 import MuiButton from "./MuiButton";
 
 const lightTheme = createTheme({
+  palette: {
+    type: "light",
+  },
   typography: {
     fontFamily: ["Roboto", "sans-serif"].join(","), // to be discussed
   },

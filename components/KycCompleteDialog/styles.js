@@ -16,4 +16,5 @@ export const title = {
   fontSize: "50px",
   color: (theme) => theme.colors.blue,
   mb: 8,
+  mt: 9,
 };
