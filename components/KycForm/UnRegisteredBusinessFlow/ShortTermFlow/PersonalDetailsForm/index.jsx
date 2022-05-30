@@ -282,8 +282,8 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                               options={telephoneCodes}
                               required
                               defaultValue={getTelephoneCountryCode(
-                                formValues.businessRepresentative
-                                  .telephoneCountryCode
+                                formValues?.businessRepresentative
+                                  ?.telephoneCountryCode
                               )}
                             />
                           </Box>

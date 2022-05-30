@@ -428,8 +428,8 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                               options={telephoneCodes}
                               required
                               defaultValue={getTelephoneCountryCode(
-                                formValues.businessRepresentative
-                                  .telephoneCountryCode
+                                formValues?.businessRepresentative
+                                  ?.telephoneCountryCode
                               )}
                             />
                           </Box>
@@ -739,8 +739,8 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                               options={telephoneCodes}
                               required
                               defaultValue={getTelephoneCountryCode(
-                                formValues.registeredBusinessDetails
-                                  .telephoneCountryCode
+                                formValues?.registeredBusinessDetails
+                                  ?.telephoneCountryCode
                               )}
                             />
                           </Box>

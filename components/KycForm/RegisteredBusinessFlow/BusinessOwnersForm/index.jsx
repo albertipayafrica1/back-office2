@@ -418,8 +418,8 @@ const BusinessOwnersForm = ({ handleNextStep }) => {
                                   options={telephoneCodes}
                                   required
                                   defaultValue={getTelephoneCountryCode(
-                                    formValues.ultimateBeneficialOwners[index]
-                                      .telephoneCountryCode
+                                    formValues?.ultimateBeneficialOwners[index]
+                                      ?.telephoneCountryCode
                                   )}
                                 />
                               </Box>
@@ -704,8 +704,9 @@ const BusinessOwnersForm = ({ handleNextStep }) => {
                                     options={telephoneCodes}
                                     required
                                     defaultValue={getTelephoneCountryCode(
-                                      formValues.ultimateBeneficialOwners[index]
-                                        .nextOfKin[index1].telephoneCountryCode
+                                      formValues?.ultimateBeneficialOwners[
+                                        index
+                                      ]?.nextOfKin[index1]?.telephoneCountryCode
                                     )}
                                   />
                                 </Box>
