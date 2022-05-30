@@ -20,6 +20,7 @@ import Loader from "../../../../atoms/Loader";
 
 import { businessStructure } from "../../../../utils/formValidations/kyc/registeredBusinessFlow/businessStructure";
 import { telephoneCodes } from "../../../../utils/data";
+import { getTelephoneCountryCode } from "../../../../utils/countryOfOperation";
 
 import {
   titleOptions,
@@ -426,11 +427,10 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                               use="telephoneCountryCode"
                               options={telephoneCodes}
                               required
-                              defaultValue={{
-                                value: "KE",
-                                label: "Kenya",
-                                key: "254",
-                              }}
+                              defaultValue={getTelephoneCountryCode(
+                                formValues.businessRepresentative
+                                  .telephoneCountryCode
+                              )}
                             />
                           </Box>
                           <FormikControl
@@ -738,11 +738,10 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                               use="telephoneCountryCode"
                               options={telephoneCodes}
                               required
-                              defaultValue={{
-                                value: "KE",
-                                label: "Kenya",
-                                key: "254",
-                              }}
+                              defaultValue={getTelephoneCountryCode(
+                                formValues.registeredBusinessDetails
+                                  .telephoneCountryCode
+                              )}
                             />
                           </Box>
                           <FormikControl

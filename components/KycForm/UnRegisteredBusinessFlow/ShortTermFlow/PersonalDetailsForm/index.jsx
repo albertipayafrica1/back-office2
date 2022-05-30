@@ -19,6 +19,7 @@ import Loader from "../../../../../atoms/Loader";
 
 import { personalDetails } from "../../../../../utils/formValidations/kyc/unRegisteredBusinessFlow/shortTermFlow/personalDetails";
 import { telephoneCodes } from "../../../../../utils/data";
+import { getTelephoneCountryCode } from "../../../../../utils/countryOfOperation";
 
 import { titleOptions, genderOptions, documentTypeOptions } from "./data";
 
@@ -280,11 +281,10 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                               use="telephoneCountryCode"
                               options={telephoneCodes}
                               required
-                              defaultValue={{
-                                value: "KE",
-                                label: "Kenya",
-                                key: "254",
-                              }}
+                              defaultValue={getTelephoneCountryCode(
+                                formValues.businessRepresentative
+                                  .telephoneCountryCode
+                              )}
                             />
                           </Box>
                           <FormikControl

@@ -20,6 +20,7 @@ import Loader from "../../../../atoms/Loader";
 
 import { businessOwners } from "../../../../utils/formValidations/kyc/registeredBusinessFlow/businessOwners";
 import { telephoneCodes } from "../../../../utils/data";
+import { getTelephoneCountryCode } from "../../../../utils/countryOfOperation";
 
 import {
   titleOptions,
@@ -416,11 +417,10 @@ const BusinessOwnersForm = ({ handleNextStep }) => {
                                   use="telephoneCountryCode"
                                   options={telephoneCodes}
                                   required
-                                  defaultValue={{
-                                    value: "KE",
-                                    label: "Kenya",
-                                    key: "254",
-                                  }}
+                                  defaultValue={getTelephoneCountryCode(
+                                    formValues.ultimateBeneficialOwners[index]
+                                      .telephoneCountryCode
+                                  )}
                                 />
                               </Box>
                               <FormikControl
@@ -703,11 +703,10 @@ const BusinessOwnersForm = ({ handleNextStep }) => {
                                     use="telephoneCountryCode"
                                     options={telephoneCodes}
                                     required
-                                    defaultValue={{
-                                      value: "KE",
-                                      label: "Kenya",
-                                      key: "254",
-                                    }}
+                                    defaultValue={getTelephoneCountryCode(
+                                      formValues.ultimateBeneficialOwners[index]
+                                        .nextOfKin[index1].telephoneCountryCode
+                                    )}
                                   />
                                 </Box>
                                 <FormikControl
