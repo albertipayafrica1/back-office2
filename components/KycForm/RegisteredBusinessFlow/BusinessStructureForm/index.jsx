@@ -358,6 +358,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                               selectItem={titleOptions}
                               id="title"
                               required
+                              disabled
                             />
                           </Box>
                           <FormikControl
@@ -368,6 +369,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                             type="text"
                             id="surname"
                             required
+                            disabled
                           />
                         </Stack>
                         <FormikControl
@@ -378,6 +380,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                           type="text"
                           id="firstName"
                           required
+                          disabled
                         />
                         <FormikControl
                           control="input"
@@ -386,6 +389,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                           variant="outlined"
                           type="text"
                           id="middleName"
+                          disabled
                         />
                       </Stack>
                       <Stack
@@ -421,6 +425,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                                 formValues?.businessRepresentative
                                   ?.telephoneCountryCode
                               )}
+                              disabled
                             />
                           </Box>
                           <FormikControl
@@ -433,6 +438,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                             required
                             haveTooltip
                             tooltipText="Enter Your Contact number without country code"
+                            disabled
                           />
                         </Stack>
                         <FormikControl
@@ -443,6 +449,17 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                           type="text"
                           id="email"
                           required
+                          disabled
+                        />
+                        <FormikControl
+                          control="input"
+                          variant="outlined"
+                          name="businessRepresentative.countryOfOperation"
+                          label="Country Of Operation"
+                          type="text"
+                          id="countryOfOperation"
+                          required
+                          disabled
                         />
                       </Stack>
 
@@ -472,16 +489,6 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                               val
                             );
                           }}
-                        />
-                        <FormikControl
-                          control="input"
-                          variant="outlined"
-                          name="businessRepresentative.countryOfOperation"
-                          label="Country Of Operation"
-                          type="text"
-                          id="countryOfOperation"
-                          required
-                          disabled
                         />
                       </Stack>
                       <Stack

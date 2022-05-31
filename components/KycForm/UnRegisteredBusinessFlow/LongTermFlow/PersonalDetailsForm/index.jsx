@@ -227,6 +227,7 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                               selectItem={titleOptions}
                               id="title"
                               required
+                              disabled
                             />
                           </Box>
                           <FormikControl
@@ -237,6 +238,7 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                             type="text"
                             id="surname"
                             required
+                            disabled
                           />
                         </Stack>
                         <FormikControl
@@ -247,6 +249,7 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                           type="text"
                           id="firstName"
                           required
+                          disabled
                         />
                         <FormikControl
                           control="input"
@@ -255,6 +258,7 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                           variant="outlined"
                           type="text"
                           id="middleName"
+                          disabled
                         />
                       </Stack>
                       <Stack
@@ -291,6 +295,7 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                                 formValues?.businessRepresentative
                                   ?.telephoneCountryCode
                               )}
+                              disabled
                             />
                           </Box>
                           <FormikControl
@@ -303,6 +308,7 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                             required
                             haveTooltip
                             tooltipText="Enter Your Contact number without country code"
+                            disabled
                           />
                         </Stack>
                         <FormikControl
@@ -313,6 +319,17 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                           type="text"
                           id="email"
                           required
+                          disabled
+                        />
+                        <FormikControl
+                          control="input"
+                          variant="outlined"
+                          name="businessRepresentative.countryOfOperation"
+                          label="Country Of Operation"
+                          type="text"
+                          id="countryOfOperation"
+                          required
+                          disabled
                         />
                       </Stack>
 
@@ -342,16 +359,6 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                               val
                             );
                           }}
-                        />
-                        <FormikControl
-                          control="input"
-                          variant="outlined"
-                          name="businessRepresentative.countryOfOperation"
-                          label="Country Of Operation"
-                          type="text"
-                          id="countryOfOperation"
-                          required
-                          disabled
                         />
                       </Stack>
                       <Stack
