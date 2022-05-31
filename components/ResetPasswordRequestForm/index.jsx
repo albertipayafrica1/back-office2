@@ -62,7 +62,6 @@ const ResetPasswordRequestForm = () => {
           });
           setLoading(false);
         } else {
-          console.log(response, "response0");
           setAlert({ type: "error", message: "Something Went Wrong" });
           setLoading(false);
         }
@@ -81,10 +80,8 @@ const ResetPasswordRequestForm = () => {
           } else {
             setAlert({ type: "error", message: error.response.data.response });
           }
-          console.log(error.response, "second if else");
         } else {
           setAlert({ type: "error", message: "Something Went Wrong" });
-          console.log(error, "third if else");
         }
         setLoading(false);
       });

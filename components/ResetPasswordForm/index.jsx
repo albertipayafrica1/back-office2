@@ -42,8 +42,6 @@ const ResetPasswordForm = () => {
     setLoading(true);
     setAlert({ type: "", message: "" });
 
-    console.log(values, "values");
-
     const config = {
       method: "post",
       url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/set-password`,
@@ -64,7 +62,6 @@ const ResetPasswordForm = () => {
           setLoading(false);
           router.replace(`/login?country=${query.country}`);
         } else {
-          console.log(response, "response0");
           setAlert({ type: "error", message: "Something Went Wrong" });
           setLoading(false);
         }
@@ -93,10 +90,8 @@ const ResetPasswordForm = () => {
               message: "Something Went Wrong",
             });
           }
-          console.log(error.response, "second if else");
         } else {
           setAlert({ type: "error", message: "Something Went Wrong" });
-          console.log(error, "third if else");
         }
         setLoading(false);
       });

@@ -100,7 +100,6 @@ const BusinessOwnersForm = ({ handleNextStep }) => {
     };
     axios(config)
       .then((response) => {
-        console.log(response, "response");
         if (response.data.success === true) {
           setAlert({
             type: "success",
@@ -110,7 +109,6 @@ const BusinessOwnersForm = ({ handleNextStep }) => {
           setLoading(false);
           handleNextStep();
         } else {
-          console.log(response, "response0");
           setAlert({ type: "error", message: "Something Went Wrong" });
           setLoading(false);
           formikHelpers.setSubmitting(false);
@@ -141,10 +139,8 @@ const BusinessOwnersForm = ({ handleNextStep }) => {
               message: "Something Went Wrong",
             });
           }
-          console.log(error.response, "second if else");
         } else {
           setAlert({ type: "error", message: "Something Went Wrong" });
-          console.log(error, "third if else");
         }
         formikHelpers.setSubmitting(false);
       });
@@ -166,12 +162,10 @@ const BusinessOwnersForm = ({ handleNextStep }) => {
     };
     axios(config)
       .then((response) => {
-        console.log(response, "response");
         if (response.data.success === true) {
           setRetrievalLoading(false);
           setFormValues(response.data.response);
         } else {
-          console.log(response, "response0");
           setAlert({ type: "error", message: "Something Went Wrong" });
           setRetrievalLoading(false);
         }
@@ -198,10 +192,8 @@ const BusinessOwnersForm = ({ handleNextStep }) => {
               message: "Something Went Wrong",
             });
           }
-          console.log(error.response, "second if else");
         } else {
           setAlert({ type: "error", message: "Something Went Wrong" });
-          console.log(error, "third if else");
         }
         setRetrievalLoading(false);
       });
@@ -220,7 +212,6 @@ const BusinessOwnersForm = ({ handleNextStep }) => {
           enableReinitialize
         >
           {(formik) => {
-            console.log(formik.errors, "fork");
             return (
               <Form>
                 <Stack spacing={8}>

@@ -217,7 +217,6 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
               );
             }, 3000);
           } else {
-            console.log(response, "response0");
             setLoading(false);
             setCaptchaToken("");
             setResetCaptcha(true);
@@ -228,7 +227,6 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
           }
         })
         .catch((error) => {
-          console.log(error.response, "response");
           setLoading(false);
           setCaptchaToken("");
           setResetCaptcha(true);
@@ -255,10 +253,8 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
                 message: error.response.data.response,
               });
             }
-            console.log(error.response, "second if else");
           } else {
             setAlert({ type: "error", message: "Something Went Wrong" });
-            console.log(error, "third if else");
           }
         });
     } else {
@@ -293,7 +289,6 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
         enableReinitialize
       >
         {(formik) => {
-          console.log(formik.errors, "fork");
           return (
             <Form>
               <Stack sx={styles.formContainer} spacing={8}>

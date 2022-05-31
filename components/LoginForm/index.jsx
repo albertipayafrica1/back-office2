@@ -60,7 +60,6 @@ const LoginForm = ({ country }) => {
           });
           router.replace(`/otp?country=${country}`);
         } else {
-          console.log(response, "response0");
           setAlert({ type: "error", message: "Something Went Wrong" });
           setLoading(false);
         }
@@ -79,10 +78,8 @@ const LoginForm = ({ country }) => {
           } else {
             setAlert({ type: "error", message: error.response.data.response });
           }
-          console.log(error.response, "second if else");
         } else {
           setAlert({ type: "error", message: "Something Went Wrong" });
-          console.log(error, "third if else");
         }
         setLoading(false);
       });

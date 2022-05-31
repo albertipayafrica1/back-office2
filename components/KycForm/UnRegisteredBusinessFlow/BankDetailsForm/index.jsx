@@ -60,7 +60,6 @@ const BankDetailsForm = ({ handleNextStep }) => {
     };
     axios(config)
       .then((response) => {
-        console.log(response, "response");
         if (response.data.success === true) {
           setAlert({
             type: "success",
@@ -69,7 +68,6 @@ const BankDetailsForm = ({ handleNextStep }) => {
           dispatch(fetchKycStatusSuccess(response.data.response.kycStatus));
           handleNextStep();
         } else {
-          console.log(response, "response0");
           setAlert({ type: "error", message: "Something Went Wrong" });
           setLoading(false);
           formikHelpers.setSubmitting(false);
@@ -100,10 +98,8 @@ const BankDetailsForm = ({ handleNextStep }) => {
               message: "Something Went Wrong",
             });
           }
-          console.log(error.response, "second if else");
         } else {
           setAlert({ type: "error", message: "Something Went Wrong" });
-          console.log(error, "third if else");
         }
         setLoading(false);
         formikHelpers.setSubmitting(false);
@@ -124,12 +120,10 @@ const BankDetailsForm = ({ handleNextStep }) => {
     };
     axios(config)
       .then((response) => {
-        console.log(response, "response");
         if (response.data.success === true) {
           setRetrievalLoading(false);
           setFormValues(response.data.response);
         } else {
-          console.log(response, "response0");
           setAlert({ type: "error", message: "Something Went Wrong" });
           setRetrievalLoading(false);
         }
@@ -156,10 +150,8 @@ const BankDetailsForm = ({ handleNextStep }) => {
               message: "Something Went Wrong",
             });
           }
-          console.log(error.response, "second if else");
         } else {
           setAlert({ type: "error", message: "Something Went Wrong" });
-          console.log(error, "third if else");
         }
         setRetrievalLoading(false);
       });

@@ -107,7 +107,6 @@ const BusinessStructureForm = ({ handleNextStep }) => {
     };
     axios(config)
       .then((response) => {
-        console.log(response, "response");
         if (response.data.success === true) {
           setAlert({
             type: "success",
@@ -117,7 +116,6 @@ const BusinessStructureForm = ({ handleNextStep }) => {
           setLoading(false);
           handleNextStep();
         } else {
-          console.log(response, "response0");
           setAlert({ type: "error", message: "Something Went Wrong" });
           setLoading(false);
           formikHelpers.setSubmitting(false);
@@ -148,10 +146,8 @@ const BusinessStructureForm = ({ handleNextStep }) => {
               message: "Something Went Wrong",
             });
           }
-          console.log(error.response, "second if else");
         } else {
           setAlert({ type: "error", message: "Something Went Wrong" });
-          console.log(error, "third if else");
         }
         formikHelpers.setSubmitting(false);
       });
@@ -223,7 +219,6 @@ const BusinessStructureForm = ({ handleNextStep }) => {
     };
     axios(config)
       .then((response) => {
-        console.log(response, "response");
         if (response.data.success === true) {
           setRetrievalLoading(false);
           setFormValues(response.data.response);
@@ -231,7 +226,6 @@ const BusinessStructureForm = ({ handleNextStep }) => {
             response.data.response.registeredBusinessDetails.businessCategory
           );
         } else {
-          console.log(response, "response0");
           setAlert({ type: "error", message: "Something Went Wrong" });
           setRetrievalLoading(false);
         }
@@ -258,17 +252,14 @@ const BusinessStructureForm = ({ handleNextStep }) => {
               message: "Something Went Wrong",
             });
           }
-          console.log(error.response, "second if else");
         } else {
           setAlert({ type: "error", message: "Something Went Wrong" });
-          console.log(error, "third if else");
         }
         setRetrievalLoading(false);
       });
   }, [businessCategoryOptions]);
 
   useEffect(() => {
-    console.log(businessCategoryValue, "useeef ran");
     if (
       businessCategoryValue === undefined ||
       businessCategoryValue === "" ||
@@ -340,7 +331,6 @@ const BusinessStructureForm = ({ handleNextStep }) => {
           enableReinitialize
         >
           {(formik) => {
-            console.log(formik.errors, "fork");
             return (
               <Form>
                 <Stack spacing={8}>

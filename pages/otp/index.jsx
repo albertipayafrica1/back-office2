@@ -57,7 +57,7 @@ const Otp = () => {
     setResendOtpSuccess(false);
     const joinedOtp = otp.join("");
     const credentials = Cookies.get("iPayT");
-    console.log(credentials);
+
     const otpObject = {
       otp: joinedOtp,
       login_otp_token: credentials,
@@ -75,7 +75,6 @@ const Otp = () => {
 
     axios(config)
       .then((response) => {
-        console.log(response, "otp response");
         if (
           response.data.success === true &&
           response.data.kycStatus !== undefined
@@ -127,7 +126,6 @@ const Otp = () => {
 
     axios(config)
       .then((response) => {
-        console.log(response, "otp response");
         if (response.data.success === true) {
           setResendOtpSuccess(true);
         } else {
@@ -135,8 +133,6 @@ const Otp = () => {
         }
       })
       .catch((err) => {
-        console.log(err, "erro");
-
         if (err.response) {
           setError(err.response.data.response);
         } else {

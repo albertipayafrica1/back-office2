@@ -13,7 +13,6 @@ const ResendOtp = ({ seconds, clearTimer, handleResendOtp }) => {
     handleResendOtp();
     if (counter > 0) return;
     sessionStorage.removeItem("timer");
-    console.log(counter);
     setCounter(seconds);
   };
 

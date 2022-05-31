@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 const ProtectedRoute = (gssp) => {
   return async (ctx) => {
     const { req } = ctx;
-    // console.log(req.headers, "request");
     if (!req.headers.cookie) {
       return {
         redirect: {

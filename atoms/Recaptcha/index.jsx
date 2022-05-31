@@ -10,8 +10,6 @@ import * as styles from "./styles";
 const Recaptcha = ({ captchaError, handleCaptchaToken, resetCaptcha }) => {
   const captchaRef = useRef();
 
-  console.log(captchaError, "CAPTCHA eRROR in recaptcha");
-
   useEffect(() => {
     captchaRef.current.reset();
   }, [resetCaptcha]);

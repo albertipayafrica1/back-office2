@@ -58,7 +58,6 @@ const PasswordExpired = () => {
       };
       axios(config)
         .then((response) => {
-          console.log(response, "response");
           if (response.data.success === true) {
             setSuccess({ status: true, message: response.data.response });
             Cookies.set("iPayT", "", { expires: -1 });
@@ -69,7 +68,6 @@ const PasswordExpired = () => {
           }
         })
         .catch((error) => {
-          console.log(error.response, "response");
           if (error.response) {
             if (error.response.data.response) {
               setErrors({

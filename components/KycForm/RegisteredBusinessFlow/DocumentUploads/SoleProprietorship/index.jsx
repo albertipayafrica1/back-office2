@@ -57,7 +57,6 @@ const SoleProprietorship = ({ handleNextStep }) => {
     };
     axios(config)
       .then((response) => {
-        console.log(response, "response");
         if (response.data.success === true) {
           setAlert({
             type: "success",
@@ -67,7 +66,6 @@ const SoleProprietorship = ({ handleNextStep }) => {
           dispatch(fetchKycStatusSuccess(response.data.response.kycStatus));
           handleNextStep();
         } else {
-          console.log(response, "response0");
           setAlert({ type: "error", message: "Something Went Wrong" });
           setLoading(false);
           formikHelpers.setSubmitting(false);
@@ -98,10 +96,8 @@ const SoleProprietorship = ({ handleNextStep }) => {
               message: "Something Went Wrong",
             });
           }
-          console.log(error.response, "second if else");
         } else {
           setAlert({ type: "error", message: "Something Went Wrong" });
-          console.log(error, "third if else");
         }
         formikHelpers.setSubmitting(false);
       });
@@ -121,12 +117,10 @@ const SoleProprietorship = ({ handleNextStep }) => {
     };
     axios(config)
       .then((response) => {
-        console.log(response, "response");
         if (response.data.success === true) {
           setRetrievalLoading(false);
           setFormValues(response.data.response);
         } else {
-          console.log(response, "response0");
           setAlert({ type: "error", message: "Something Went Wrong" });
           setRetrievalLoading(false);
         }
@@ -136,7 +130,6 @@ const SoleProprietorship = ({ handleNextStep }) => {
         if (error.response === undefined) {
           setAlert({ type: "error", message: "Something Went Wrong" });
         } else if (error.response.status === 401) {
-          // make a request to logout route here
           setAlert({ type: "error", message: error.response.data.response });
           setTimeout(() => {
             router.replace("/");
@@ -153,10 +146,8 @@ const SoleProprietorship = ({ handleNextStep }) => {
               message: "Something Went Wrong",
             });
           }
-          console.log(error.response, "second if else");
         } else {
           setAlert({ type: "error", message: "Something Went Wrong" });
-          console.log(error, "third if else");
         }
         setRetrievalLoading(false);
       });

@@ -9,7 +9,6 @@ function useFetch({ fetchData, onSuccess, onError, initParams }) {
       setLoading(true);
       try {
         const res = await fetchData(params); // make axios request inside fetch data
-        console.log(res, "res");
         if (!didCancel) {
           if (typeof onSuccess === "function") {
             onSuccess(res);

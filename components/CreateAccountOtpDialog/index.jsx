@@ -48,7 +48,6 @@ const CreateAccountOtpDialog = ({
 
     axios(config)
       .then((response) => {
-        console.log(response, "otp response");
         if (response.data.success === true) {
           setLoading(false);
           setClearTimer(true);
@@ -59,8 +58,6 @@ const CreateAccountOtpDialog = ({
         }
       })
       .catch((err) => {
-        console.log(err, "erro");
-
         if (err.response) {
           setError(err.response.data.response);
         } else {
@@ -104,7 +101,6 @@ const CreateAccountOtpDialog = ({
 
     axios(config)
       .then((response) => {
-        console.log(response, "otp response");
         if (response.data.success === true) {
           setResendOtpSuccess(true);
         } else {
@@ -112,8 +108,6 @@ const CreateAccountOtpDialog = ({
         }
       })
       .catch((err) => {
-        console.log(err, "erro");
-
         if (err.response) {
           setError(err.response.data.response);
         } else {

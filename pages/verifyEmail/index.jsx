@@ -50,7 +50,6 @@ export const getServerSideProps = async (context) => {
   };
   await axios(config)
     .then((response) => {
-      console.log(response.data.response, "resp");
       if (response.data.success === true) {
         message = response.data.response;
         success = true;
@@ -60,7 +59,6 @@ export const getServerSideProps = async (context) => {
       }
     })
     .catch((error) => {
-      console.log(error, "resp");
       if (error.response) {
         message = error.response.data.response;
         success = false;

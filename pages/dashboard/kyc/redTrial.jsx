@@ -43,7 +43,6 @@ export default Kyc;
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async (context) => {
     const { req } = context;
-    // console.log(store, "store");
     // await store.dispatch(fetchUsers());
     // const { user } = await store.getState();
 

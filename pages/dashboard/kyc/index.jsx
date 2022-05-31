@@ -12,7 +12,7 @@ import ProtectedRoute from "../../../components/ProtectedRoute";
 
 const Kyc = ({ data, error }) => {
   const kycData = useSelector((state) => state);
-  console.log(kycData, "data");
+
   if (error !== "") {
     return <ErrorBoundary error={error} />;
   }
@@ -66,9 +66,7 @@ export const getServerSideProps = ProtectedRoute(async (context) => {
       }
     })
     .catch((err) => {
-      // console.log(err, "error");
       if (err.response === undefined) {
-        console.log("first");
         error = "Something Went Wrong";
       } else if (err.response.status === 401) {
         return {
@@ -79,15 +77,11 @@ export const getServerSideProps = ProtectedRoute(async (context) => {
         };
       } else if (err.response) {
         if (err.response.data.response !== undefined) {
-          console.log("third1");
           error = error.response.data.response;
         } else {
-          console.log("third2");
           error = "Something Went Wrong, Reload to Retry";
-          console.log(error, "errrrr");
         }
       } else {
-        console.log("fourth");
         error = "Something Went Wrong";
       }
       return error;

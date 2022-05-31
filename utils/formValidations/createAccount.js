@@ -39,7 +39,6 @@ export const createAccount = yup.object().shape({
       return yup
         .string()
         .test("phoneNumber", "Kindly enter a valid contact number", (val) => {
-          console.log(telephoneCountryCode, "tcc");
           if (val === undefined || val === null || val === "") {
             return false;
           }
@@ -48,7 +47,6 @@ export const createAccount = yup.object().shape({
               val,
               telephoneCountryCode
             );
-            console.log(phoneUtil.getRegionCodeForNumber(number));
             return phoneUtil.isValidNumberForRegion(
               number,
               telephoneCountryCode
