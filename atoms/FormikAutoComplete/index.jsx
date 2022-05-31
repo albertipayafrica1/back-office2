@@ -53,6 +53,11 @@ const FormikAutoComplete = ({
 }) => {
   const classes = useStyles();
 
+  console.log(Object.keys(defaultValue).length === 0, "dv");
+
+  if (Object.keys(defaultValue).length === 0) {
+    return <></>;
+  }
   return (
     <FastField name={name}>
       {({ field, form }) => {
