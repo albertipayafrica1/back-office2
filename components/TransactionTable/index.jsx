@@ -2,7 +2,7 @@ import * as React from "react";
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-import { Box, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 
 import TransactionButton from "../../atoms/TransactionButton";
 
@@ -11,6 +11,7 @@ import Table from "../../atoms/Table";
 import * as styles from "./styles";
 import BalanceDialog from "../BalanceDialog";
 import FilterDialog from "../FilterDialog";
+import PageViewBox from "../../atoms/PageViewBox";
 
 const columns = [
   { id: "name", label: "Date", minWidth: 170 },
@@ -142,7 +143,7 @@ const TransactionTable = ({
   // take rows and columns from endpoints and have a loading state here i.e show loader when data is fetched
   return (
     <>
-      <Box sx={styles.tableContainer}>
+      <PageViewBox>
         <Stack
           justifyContent="space-between"
           alignItems="center"
@@ -185,7 +186,7 @@ const TransactionTable = ({
           </Stack>
         </Stack>
         <Table columns={columns} rows={rows} name={name} />
-      </Box>
+      </PageViewBox>
       <BalanceDialog
         name={name}
         open={openBalanceDialog}
