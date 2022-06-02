@@ -35,6 +35,28 @@ export default {
     },
     {
       props: {
+        variant: "title4",
+      },
+      style: {
+        fontWeight: 700,
+        fontSize: "16px",
+        lineHeight: "28px",
+        letterSpacing: "0.15px",
+      },
+    },
+    {
+      props: {
+        variant: "title3",
+      },
+      style: {
+        fontWeight: 600,
+        fontSize: "15px",
+        lineHeight: "20.43px",
+        letterSpacing: "0.15px",
+      },
+    },
+    {
+      props: {
         variant: "subtitle1",
       },
       style: {
@@ -90,6 +112,17 @@ export default {
     },
     {
       props: {
+        variant: "subtitle6",
+      },
+      style: {
+        fontSize: "13px",
+        lineHeight: "16px",
+        fontWeight: 600,
+        letterSpacing: "0.4px",
+      },
+    },
+    {
+      props: {
         variant: "body1",
       },
       style: {
@@ -133,7 +166,6 @@ export default {
         variant: "title7",
       },
       style: {
-        color: "#124AA1",
         fontWeight: 500,
         fontSize: "15px",
         lineHeight: "28px",
@@ -146,7 +178,6 @@ export default {
         variant: "title8",
       },
       style: {
-        color: "orange",
         padding: "10px",
         fontWeight: "400",
         fontSize: "15px",
@@ -160,7 +191,6 @@ export default {
         variant: "title9",
       },
       style: {
-        color: "#969696",
         padding: "10px",
         lineHeight: "37px",
         letterSpacing: "0.06em",
