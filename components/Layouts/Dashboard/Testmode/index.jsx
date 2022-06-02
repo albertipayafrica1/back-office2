@@ -9,7 +9,7 @@ const TestMode = ({ testModeStatus }) => {
   return (
     <Box
       onClick={() => router.push("/dashboard/kyc")}
-      sx={testModeStatus ? styles.textModeOn : styles.testModeOff}
+      sx={testModeStatus ? styles.testModeOn : styles.testModeOff}
     >
       <Box sx={{ mr: 2, mt: 1 }}>
         <Image src="/Information icon.svg" width="13" height="13" />

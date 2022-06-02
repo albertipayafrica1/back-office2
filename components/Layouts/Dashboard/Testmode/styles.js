@@ -17,7 +17,7 @@ export const testModeContainer = {
   backgroundColor: colors.orange,
 };
 
-export const textModeOn = {
+export const testModeOn = {
   position: "fixed",
   display: "flex",
   justifyContent: "center",

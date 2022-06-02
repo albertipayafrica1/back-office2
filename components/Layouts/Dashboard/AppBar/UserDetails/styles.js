@@ -1,5 +1,5 @@
 import { makeStyles } from "@mui/styles";
-import colors from "../../../../styles/colors";
+import colors from "../../../../../styles/colors";
 
 export const useStyles = makeStyles({
   root: {

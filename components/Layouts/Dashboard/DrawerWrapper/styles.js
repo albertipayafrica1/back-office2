@@ -1,59 +1,23 @@
 const drawerWidth = "250px";
 
-export const temporaryDrawer = {
-  display: { xs: "block", sm: "none" },
+export const testModeOnDrawer = {
   "& .MuiDrawer-paper": {
     boxSizing: "border-box",
     width: drawerWidth,
+    marginTop: "48px",
     boxShadow: "5px 0 5px -5px rgba(0, 0, 0, 0.25)",
     backgroundColor: (theme) => theme.colors.mono1,
-    "& .MuiBox-root": {
-      marginTop: "100px",
-    },
     overflow: "hidden",
-    "&:hover": {
-      overflowY: "scroll",
-      "&::-webkit-scrollbar": {
-        width: "5px",
-        height: "30px",
-      },
-      "&::-webkit-scrollbar-track": {
-        boxShadow: `inset 0 0 6px rgba(0, 0, 0, 0.3)`,
-      },
-      "&::-webkit-scrollbar-thumb": {
-        backgroundColor: "white",
-        borderRadius: "10px",
-        outline: `1px solid slategrey`,
-      },
-    },
   },
 };
-export const permanentDrawer = {
-  display: { xs: "none", sm: "block" },
+export const testModeOffDrawer = {
   "& .MuiDrawer-paper": {
     boxSizing: "border-box",
     width: drawerWidth,
+    marginTop: "0px",
     boxShadow: "5px 0 5px -5px rgba(0, 0, 0, 0.25)",
     backgroundColor: (theme) => theme.colors.mono1,
-    "& .MuiBox-root": {
-      marginTop: "100px",
-    },
     overflow: "hidden",
-    "&:hover": {
-      overflowY: "scroll",
-      "&::-webkit-scrollbar": {
-        width: "5px",
-        height: "30px",
-      },
-      "&::-webkit-scrollbar-track": {
-        boxShadow: `inset 0 0 6px rgba(0, 0, 0, 0.3)`,
-      },
-      "&::-webkit-scrollbar-thumb": {
-        backgroundColor: "white",
-        borderRadius: "10px",
-        outline: `1px solid slategrey`,
-      },
-    },
   },
 };
 
@@ -67,8 +31,26 @@ export const menuItemContainer = {
   display: "flex",
   flexDirection: "column",
   paddingBottom: "20px",
-  width: "80%",
+  width: "100%",
   marginTop: "10px",
+  maxHeight: "350px",
+
+  // overflowY: "hidden",
+  "&:hover": {
+    overflowY: "scroll",
+    "&::-webkit-scrollbar": {
+      width: "5px",
+      height: "30px",
+    },
+    "&::-webkit-scrollbar-track": {
+      boxShadow: `inset 0 0 6px rgba(0, 0, 0, 0.3)`,
+    },
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: "white",
+      borderRadius: "10px",
+      outline: `1px solid slategrey`,
+    },
+  },
 };
 
 export const linearProgress = {
@@ -217,7 +199,6 @@ export const percentageText = {
 
 export const testModeOn = {
   position: "relative",
-  marginTop: "30px",
   marginLeft: "36px",
   display: "flex",
   flexDirection: "column",

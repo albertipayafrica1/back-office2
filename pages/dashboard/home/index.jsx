@@ -24,8 +24,7 @@ const Home = () => {
           variant="subtitle2"
           sx={{ ml: 4, mb: 4, color: (theme) => theme.colors.mono12 }}
         >
-          {new Date().toLocaleDateString("en-us", { weekday: "long" })}
-          {","}
+          {new Date().toLocaleDateString("en-us", { weekday: "long" })},
           {new Date().toString().substring(3, 15)}
         </Typography>
       </Box>
