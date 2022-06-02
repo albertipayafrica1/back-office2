@@ -9,6 +9,7 @@ import {
   Button,
   LinearProgress,
   Divider,
+  Box,
 } from "@mui/material";
 
 import SelectCurrencies from "../SelectCurrencies";
@@ -23,102 +24,112 @@ const DrawerWrapper = ({ mobileOpen, handleDrawerToggle, testModeStatus }) => {
   const kycStatus = useSelector((state) => state.kycStatus.kycStatus);
   const user = useSelector((state) => state.user.user);
 
+  let drawerStyle = "";
+
+  switch (testModeStatus) {
+    case true:
+      drawerStyle = "testModeOnDrawer";
+      break;
+    case false:
+      drawerStyle = "testModeOffDrawer";
+      break;
+    default:
+      drawerStyle = "testModeOnDrawer";
+  }
+
   const drawer = (
-    <div>
-      <div style={testModeStatus ? styles.testModeOn : styles.testModeOff}>
-        <img src="/LOGO.svg" alt="logo" style={styles.logo} />
-        <Typography variant="title10" sx={styles.vendorIdText}>
-          {`Vendor ID: ${user.vid}`}
+    <Box sx={testModeStatus ? styles.testModeOn : styles.testModeOff}>
+      <img src="/LOGO.svg" alt="logo" style={styles.logo} />
+      <Typography variant="title10" sx={styles.vendorIdText}>
+        {`Vendor ID: ${user.vid}`}
+      </Typography>
+      <Box
+        sx={{
+          display: "flex",
+        }}
+      >
+        <Typography variant="title10" sx={styles.currencyText}>
+          Currency
         </Typography>
-        <div
-          style={{
-            display: "flex",
-          }}
-        >
-          <Typography variant="title10" sx={styles.currencyText}>
-            Currency
-          </Typography>
 
-          <SelectCurrencies />
-
-          <MuiToolTip
-            placement="right-start"
-            title="Switch to view transaction of selected currency" // this will change based on account status
-            style={styles.toolTipWithIcon}
-          >
-            <img src="/infoicon.svg" alt="info-logo" style={styles.infoIcon} />
-          </MuiToolTip>
-        </div>
-        <Divider sx={{ mt: 6, width: "80%" }} />
+        <SelectCurrencies />
 
         <MuiToolTip
           placement="right-start"
-          title="Click here to activate account"
-          style={styles.toolTipWithoutIcon}
-          withoutIcon
+          title="Switch to view transaction of selected currency" // this will change based on account status
+          style={styles.toolTipWithIcon}
         >
-          <div
-            style={styles.activateAccountContainer}
-            onClick={() => {
-              if (mobileOpen) {
-                handleDrawerToggle();
-              }
-              return router.push("/dashboard/kyc");
-            }}
-            role="button"
-            tabIndex={0}
-            onKeyDown={() => {}}
-          >
-            <Typography sx={styles.activateAccountText}>
-              Activate Account
-            </Typography>
-            <div style={styles.progressBarContainer}>
-              <LinearProgress
-                sx={styles.linearProgress}
-                variant="determinate"
-                value={
-                  kycStatus !== undefined && kycStatus.percentage !== undefined
-                    ? kycStatus.percentage
-                    : undefined
-                }
-              />
-              <Typography sx={styles.percentageText}>
-                {kycStatus !== undefined && kycStatus.percentage !== undefined
-                  ? `${kycStatus.percentage}% Complete`
-                  : undefined}
-              </Typography>
-            </div>
-          </div>
+          <img src="/infoicon.svg" alt="info-logo" style={styles.infoIcon} />
         </MuiToolTip>
-        <Divider sx={{ mt: 2, width: "80%" }} />
-        <div style={styles.menuItemContainer}>
-          {MenuItems.map((item, index) => {
-            return (
-              <Button
-                onClick={() => {
-                  if (mobileOpen) {
-                    handleDrawerToggle();
-                  }
-                  return router.push(`${item.url}`);
-                }}
-                sx={
-                  router.pathname === `${item.url}`
-                    ? styles.activeMenuItem
-                    : styles.menuItem
+      </Box>
+      <Divider sx={{ mt: 6, width: "80%" }} />
+
+      <MuiToolTip
+        placement="right-start"
+        title="Click here to activate account"
+        style={styles.toolTipWithoutIcon}
+        withoutIcon
+      >
+        <Box
+          sx={styles.activateAccountContainer}
+          onClick={() => {
+            if (mobileOpen) {
+              handleDrawerToggle();
+            }
+            return router.push("/dashboard/kyc");
+          }}
+          role="button"
+          tabIndex={0}
+          onKeyDown={() => {}}
+        >
+          <Typography sx={styles.activateAccountText}>
+            Activate Account
+          </Typography>
+          <Box sx={styles.progressBarContainer}>
+            <LinearProgress
+              sx={styles.linearProgress}
+              variant="determinate"
+              value={
+                kycStatus !== undefined && kycStatus.percentage !== undefined
+                  ? kycStatus.percentage
+                  : undefined
+              }
+            />
+            <Typography sx={styles.percentageText}>
+              {kycStatus !== undefined && kycStatus.percentage !== undefined
+                ? `${kycStatus.percentage}% Complete`
+                : undefined}
+            </Typography>
+          </Box>
+        </Box>
+      </MuiToolTip>
+      <Divider sx={{ mt: 2, width: "80%" }} />
+      <Box sx={styles.menuItemContainer}>
+        {MenuItems.map((item, index) => {
+          return (
+            <Button
+              onClick={() => {
+                if (mobileOpen) {
+                  handleDrawerToggle();
                 }
-                key={index}
-              >
-                {item.icon}
-                <Typography sx={styles.itemMenuText} key={index}>
-                  {" "}
-                  {item.name}
-                </Typography>
-              </Button>
-            );
-          })}
-        </div>
-      </div>
-    </div>
+                return router.push(`${item.url}`);
+              }}
+              sx={
+                router.pathname === `${item.url}`
+                  ? styles.activeMenuItem
+                  : styles.menuItem
+              }
+              key={index}
+            >
+              {item.icon}
+              <Typography sx={styles.itemMenuText} key={index}>
+                {item.name}
+              </Typography>
+            </Button>
+          );
+        })}
+      </Box>
+    </Box>
   );
 
   return (
@@ -131,13 +142,17 @@ const DrawerWrapper = ({ mobileOpen, handleDrawerToggle, testModeStatus }) => {
         ModalProps={{
           keepMounted: true,
         }}
-        sx={styles.temporaryDrawer}
+        sx={{ ...styles[drawerStyle], display: { xs: "block", sm: "none" } }}
       >
         {drawer}
       </Drawer>
 
       {/* Drawer for laptop */}
-      <Drawer variant="permanent" sx={styles.permanentDrawer} open>
+      <Drawer
+        variant="permanent"
+        sx={{ ...styles[drawerStyle], display: { xs: "none", sm: "block" } }}
+        open
+      >
         {drawer}
       </Drawer>
     </>

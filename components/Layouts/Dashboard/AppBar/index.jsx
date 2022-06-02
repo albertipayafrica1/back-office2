@@ -19,7 +19,7 @@ import NotificationDrawer from "./NotificationDrawer";
 
 import Search from "../../../../atoms/Search";
 
-import UserDetails from "../UserDetails";
+import UserDetails from "./UserDetails";
 import TestMode from "../Testmode";
 
 import { useStyles } from "./styles";
