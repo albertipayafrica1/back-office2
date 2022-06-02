@@ -19,7 +19,7 @@ const Transaction = () => {
   };
 
   return (
-    <Box sx={{ backgroundColor: "white" }}>
+    <Box sx={{ backgroundColor: "white", p: 10 }}>
       <Tabs tabTitle={tabTitle} positionStyles={positionStyles}>
         <TransactionTable name="payins" />
         <TransactionTable name="payouts" />
