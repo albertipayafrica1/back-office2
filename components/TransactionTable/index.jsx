@@ -5,13 +5,14 @@ import PropTypes from "prop-types";
 import { Stack } from "@mui/material";
 
 import TransactionButton from "../../atoms/TransactionButton";
-
 import Table from "../../atoms/Table";
+import PageViewBox from "../../atoms/PageViewBox";
 
-import * as styles from "./styles";
 import BalanceDialog from "../BalanceDialog";
 import FilterDialog from "../FilterDialog";
-import PageViewBox from "../../atoms/PageViewBox";
+import ExportDialog from "../ExportDialog";
+
+import * as styles from "./styles";
 
 const columns = [
   { id: "name", label: "Date", minWidth: 170 },
@@ -124,20 +125,20 @@ const rows = [
   },
 ];
 
-const TransactionTable = ({
-  name,
-  handleApplyFilter,
-  handleExport,
-  handleNewTransfer,
-}) => {
+const TransactionTable = ({ name, handleApplyFilter, handleNewTransfer }) => {
   const [openBalanceDialog, setOpenBalanceDialog] = useState(false);
   const [openFilterDialog, setOpenFilterDialog] = useState(false);
+  const [openExportDialog, setOpenExportDialog] = useState(false);
 
   const toggleBalanceDialog = () => {
     setOpenBalanceDialog((prevState) => !prevState);
   };
   const toggleFilterDialog = () => {
     setOpenFilterDialog((prevState) => !prevState);
+  };
+
+  const toggleExportDialog = () => {
+    setOpenExportDialog((prevState) => !prevState);
   };
   // based on name get table data in useeffect
   // take rows and columns from endpoints and have a loading state here i.e show loader when data is fetched
@@ -181,7 +182,7 @@ const TransactionTable = ({
             <TransactionButton
               text="Export"
               icon={<img src="/Export-icon.svg" alt="icon" />}
-              onClick={handleExport}
+              onClick={toggleExportDialog}
             />
           </Stack>
         </Stack>
@@ -197,19 +198,24 @@ const TransactionTable = ({
         open={openFilterDialog}
         toggleFilterDialog={toggleFilterDialog}
       />
+      <ExportDialog
+        name={name}
+        open={openExportDialog}
+        toggleExportDialog={toggleExportDialog}
+        columns={columns}
+        rows={rows}
+      />
     </>
   );
 };
 
 TransactionTable.defaultProps = {
   handleApplyFilter: () => {},
-  handleExport: () => {},
   handleNewTransfer: () => {},
 };
 
 TransactionTable.propTypes = {
   handleApplyFilter: PropTypes.func,
-  handleExport: PropTypes.func,
   handleNewTransfer: PropTypes.func,
   name: PropTypes.string.isRequired,
 };

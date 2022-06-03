@@ -123,6 +123,17 @@ export default {
     },
     {
       props: {
+        variant: "subtitle7",
+      },
+      style: {
+        fontSize: "11px",
+        lineHeight: "16px",
+        fontWeight: 600,
+        letterSpacing: "0.4px",
+      },
+    },
+    {
+      props: {
         variant: "body1",
       },
       style: {
