@@ -33,8 +33,19 @@ const Home = () => {
           direction="column"
           justifyContent="center"
           alignItems="center"
+          spacing={4}
           sx={{ p: 8 }}
         >
+          <Stack
+            direction={{ xs: "column", md: "row" }}
+            justifyContent="space-between"
+            alignItems="center"
+            spacing={4}
+            sx={{ width: "100%", height: "100%" }}
+          >
+            <Typography variant="subtitle6">Payins Summary</Typography>
+            <Typography variant="subtitle6">Today</Typography>
+          </Stack>
           <Stack
             direction={{ xs: "column", md: "row" }}
             justifyContent="center"
