@@ -125,12 +125,7 @@ const rows = [
   },
 ];
 
-const TransactionTable = ({
-  name,
-  handleApplyFilter,
-  handleExport,
-  handleNewTransfer,
-}) => {
+const TransactionTable = ({ name, handleApplyFilter, handleNewTransfer }) => {
   const [openBalanceDialog, setOpenBalanceDialog] = useState(false);
   const [openFilterDialog, setOpenFilterDialog] = useState(false);
   const [openExportDialog, setOpenExportDialog] = useState(false);
@@ -207,7 +202,8 @@ const TransactionTable = ({
         name={name}
         open={openExportDialog}
         toggleExportDialog={toggleExportDialog}
-        data={columns}
+        columns={columns}
+        rows={rows}
       />
     </>
   );
@@ -215,13 +211,11 @@ const TransactionTable = ({
 
 TransactionTable.defaultProps = {
   handleApplyFilter: () => {},
-  handleExport: () => {},
   handleNewTransfer: () => {},
 };
 
 TransactionTable.propTypes = {
   handleApplyFilter: PropTypes.func,
-  handleExport: PropTypes.func,
   handleNewTransfer: PropTypes.func,
   name: PropTypes.string.isRequired,
 };
