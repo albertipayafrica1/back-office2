@@ -183,6 +183,7 @@ const TransactionTable = ({ name, handleApplyFilter, handleNewTransfer }) => {
               text="Export"
               icon={<img src="/Export-icon.svg" alt="icon" />}
               onClick={toggleExportDialog}
+              activeState={openExportDialog}
             />
           </Stack>
         </Stack>
