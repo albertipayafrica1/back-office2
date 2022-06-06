@@ -177,6 +177,7 @@ const Wedding = ({ handleNextStep }) => {
                           ? formik.values.letterFromInstitution[0]
                           : null
                       }
+                      required
                     />
                   </Stack>
 

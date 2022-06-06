@@ -177,6 +177,7 @@ const Funeral = ({ handleNextStep }) => {
                           ? formik.values.burialPermit[0]
                           : null
                       }
+                      required
                     />
                   </Stack>
 

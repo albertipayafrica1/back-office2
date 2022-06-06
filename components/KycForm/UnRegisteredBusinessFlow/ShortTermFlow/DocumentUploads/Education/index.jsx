@@ -179,6 +179,7 @@ const Education = ({ handleNextStep }) => {
                           ? formik.values.feeStructure[0]
                           : null
                       }
+                      required
                     />
                     <FormikControl
                       control="singleFileUpload"
@@ -190,6 +191,7 @@ const Education = ({ handleNextStep }) => {
                           ? formik.values.admissionLetter[0]
                           : null
                       }
+                      required
                     />
                   </Stack>
 

@@ -178,6 +178,7 @@ const FundRaising = ({ handleNextStep }) => {
                           ? formik.values.coverLetter[0]
                           : null
                       }
+                      required
                     />
                   </Stack>
 

@@ -213,7 +213,7 @@ const HorizontalLinearStepper = ({ flow, companyType, duration }) => {
         {
           toolTip: true,
           toolTipText:
-            "(NOTE: - This is dependant of the Document Type entered- Upload file should not exceed 5MB- Accepted file formats are PNG, JPEG, JPG, PDF)",
+            "(NOTE: - Uploaded file should not exceed 5MB- Accepted file formats are PNG, JPEG, JPG, PDF)",
           label: "Document Upload",
         },
       ];
@@ -230,7 +230,7 @@ const HorizontalLinearStepper = ({ flow, companyType, duration }) => {
         {
           toolTip: true,
           toolTipText:
-            "(NOTE: - This is dependant of the Document Type entered- Upload file should not exceed 5MB- Accepted file formats should be PNG, JPEG, JPG, PDF)",
+            "(NOTE: - Uploaded file should not exceed 5MB- Accepted file formats are PNG, JPEG, JPG, PDF)",
           label: "Document Upload",
         },
       ];
