@@ -1,4 +1,3 @@
-import * as React from "react";
 import { useState } from "react";
 import PropTypes from "prop-types";
 
@@ -11,6 +10,7 @@ import PageViewBox from "../../atoms/PageViewBox";
 import BalanceDialog from "../BalanceDialog";
 import FilterDialog from "../FilterDialog";
 import ExportDialog from "../ExportDialog";
+import PayoutsNewTransfer from "../PayoutsNewTransfer";
 
 import * as styles from "./styles";
 
@@ -129,6 +129,7 @@ const TransactionTable = ({ name, handleApplyFilter, handleNewTransfer }) => {
   const [openBalanceDialog, setOpenBalanceDialog] = useState(false);
   const [openFilterDialog, setOpenFilterDialog] = useState(false);
   const [openExportDialog, setOpenExportDialog] = useState(false);
+  const [openNewTransfer, setOpenNewTransfer] = useState(false);
 
   const toggleBalanceDialog = () => {
     setOpenBalanceDialog((prevState) => !prevState);
@@ -136,12 +137,20 @@ const TransactionTable = ({ name, handleApplyFilter, handleNewTransfer }) => {
   const toggleFilterDialog = () => {
     setOpenFilterDialog((prevState) => !prevState);
   };
-
   const toggleExportDialog = () => {
     setOpenExportDialog((prevState) => !prevState);
   };
+  const toggleNewTransfer = () => {
+    setOpenNewTransfer((prevState) => !prevState);
+    console.log("called");
+  };
   // based on name get table data in useeffect
   // take rows and columns from endpoints and have a loading state here i.e show loader when data is fetched
+
+  if (openNewTransfer) {
+    return <PayoutsNewTransfer toggleNewTransfer={toggleNewTransfer} />;
+  }
+
   return (
     <>
       <PageViewBox>
@@ -156,7 +165,7 @@ const TransactionTable = ({ name, handleApplyFilter, handleNewTransfer }) => {
               <TransactionButton
                 text="New Transfer"
                 icon={<img src="/addIcon.svg" alt="icon" />}
-                onClick={handleNewTransfer}
+                onClick={toggleNewTransfer}
               />
             )}
           </Stack>
