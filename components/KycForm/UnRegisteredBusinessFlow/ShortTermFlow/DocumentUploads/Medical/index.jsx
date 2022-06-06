@@ -178,6 +178,7 @@ const Medical = ({ handleNextStep }) => {
                           ? formik.values.hospitalAdmissionForm[0]
                           : null
                       }
+                      required
                     />
                   </Stack>
 

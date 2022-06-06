@@ -142,7 +142,6 @@ const TransactionTable = ({ name, handleApplyFilter, handleNewTransfer }) => {
   };
   const toggleNewTransfer = () => {
     setOpenNewTransfer((prevState) => !prevState);
-    console.log("called");
   };
   // based on name get table data in useeffect
   // take rows and columns from endpoints and have a loading state here i.e show loader when data is fetched
