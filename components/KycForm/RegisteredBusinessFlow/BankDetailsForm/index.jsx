@@ -304,6 +304,34 @@ const BankDetailsForm = ({ handleNextStep }) => {
                         type="text"
                         id="primaryAccount.secondary"
                         required
+                        onChange={(e) => {
+                          formik.setFieldValue(
+                            "primaryAccount.secondary",
+                            e.target.value
+                          );
+                          formik.setFieldValue(
+                            "secondaryAccount.bankLocality",
+                            ""
+                          );
+                          formik.setFieldValue("secondaryAccount.bankName", "");
+                          formik.setFieldValue(
+                            "secondaryAccount.bankBranch",
+                            ""
+                          );
+                          formik.setFieldValue(
+                            "secondaryAccount.accountName",
+                            ""
+                          );
+                          formik.setFieldValue(
+                            "secondaryAccount.accountNumber",
+                            ""
+                          );
+                          formik.setFieldValue("secondaryAccount.currency", "");
+                          formik.setFieldValue(
+                            "secondaryAccount.swiftCode",
+                            ""
+                          );
+                        }}
                       />
                     </Stack>
                   </BankDetailsContainer>
@@ -389,7 +417,6 @@ const BankDetailsForm = ({ handleNextStep }) => {
                           <FormikControl
                             control="select"
                             label="Account Currency"
-                            placeholder="USD | KES | TZS"
                             select
                             selectItem={currency}
                             name="secondaryAccount.currency"
