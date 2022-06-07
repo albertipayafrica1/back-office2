@@ -11,3 +11,8 @@ export const currency = [
   { key: "TZS", value: "TZS" },
   { key: "CFA", value: "CFA" },
 ];
+
+export const secondary = [
+  { key: "Yes", value: "1" },
+  { key: "No", value: "2" },
+];
