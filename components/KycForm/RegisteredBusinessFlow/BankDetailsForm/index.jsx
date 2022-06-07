@@ -182,7 +182,7 @@ const BankDetailsForm = ({ handleNextStep }) => {
             try {
               validateYupSchema(value, bankDetails, true, value);
             } catch (err) {
-              return yupToFormErrors(err); //for rendering validation errors
+              return yupToFormErrors(err); // for rendering validation errors
             }
             return {};
           }}

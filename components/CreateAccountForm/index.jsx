@@ -70,6 +70,7 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
     registrationDetails: "",
     signUpDuration: "",
     businessType: "",
+    currencies: [],
     revenue: "",
     ipayProducts: [],
     aboutUs: query.rc === "RC000000" ? "1" : "2",
@@ -102,6 +103,7 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
     registrationDetails: "",
     signUpDuration: "",
     businessType: "",
+    currencies: [],
     revenue: "",
     ipayProducts: [],
     aboutUs: query.rc === "RC000000" ? "1" : "2",
@@ -522,6 +524,17 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
                           required
                         />
                       )}
+
+                    <FormikControl
+                      control="multiSelect"
+                      variant="outlined"
+                      name="currencies"
+                      label="Currency of operation"
+                      type="text"
+                      selectOptions={revenue}
+                      id="currencies"
+                      required
+                    />
 
                     <FormikControl
                       control="input"

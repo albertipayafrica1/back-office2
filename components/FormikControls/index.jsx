@@ -6,6 +6,7 @@ import FormikRadioGroup from "../../atoms/FormikRadioGroup";
 import FormikDatePicker from "../../atoms/FormikDatePicker";
 import FormikDateRangePicker from "../../atoms/FormikDateRangePicker";
 import FormikAutoComplete from "../../atoms/FormikAutoComplete";
+import FormikMultiSelect from "../../atoms/FormikMultiSelect";
 import FormikFileUploadField from "../DocumentUploadWithProgress";
 
 const FormikControl = ({ control, ...rest }) => {
@@ -26,9 +27,10 @@ const FormikControl = ({ control, ...rest }) => {
       return <FormikDatePicker {...rest} />;
     case "dateRangePicker":
       return <FormikDateRangePicker {...rest} />;
+    case "multiSelect":
+      return <FormikMultiSelect {...rest} />;
     case "singleFileUpload":
       return <FormikFileUploadField {...rest} />;
-
     default:
       return null;
   }

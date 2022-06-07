@@ -98,6 +98,10 @@ export const createAccount = yup.object().shape({
       return yup.string();
     });
   }),
+  currencies: yup
+    .array()
+    .min(1, "Select atleast 1 item")
+    .required("Select atleast 1 item"),
   revenue: yup.string().required("Kindly select your estimated revenue"),
   ipayProducts: yup
     .array()
