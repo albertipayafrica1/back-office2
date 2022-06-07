@@ -21,6 +21,7 @@ import CreateAccountFormDiv from "../../atoms/CreateAccountFormDiv";
 
 import Recaptcha from "../../atoms/Recaptcha";
 import MuiAlert from "../../atoms/MuiAlert";
+import Loader from "../../atoms/Loader";
 
 import {
   getCountryIconLink,
@@ -84,6 +85,8 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
   const [captchaToken, setCaptchaToken] = useState("");
   const [resetCaptcha, setResetCaptcha] = useState(false);
   const [captchaError, setCaptchaError] = useState("");
+  const [currencyOptions, setCurrencyOptions] = useState([]);
+  const [retrievalLoading, setRetrievalLoading] = useState(false);
 
   const handleCaptchaToken = (token) => {
     setCaptchaToken(token);
@@ -147,7 +150,51 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
 
     setCountryIconLink(getCountryIconLink(formValues.countryOfOperation));
 
-    return setCountryRegulator(countryOfOperationBank(query.country));
+    setCountryRegulator(countryOfOperationBank(query.country));
+
+    setRetrievalLoading(true);
+
+    const businessCategoryConfig = {
+      method: "get",
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/currencies/${formValues.countryOfOperation}`,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    };
+
+    const retrieveCurrencies = () => {
+      axios(businessCategoryConfig)
+        .then((response) => {
+          if (response.data.success === true) {
+            setCurrencyOptions(response.data.response);
+          } else {
+            setAlert({ type: "error", message: "Something Went Wrong" });
+          }
+        })
+        .catch((error) => {
+          if (error.response === undefined) {
+            setAlert({ type: "error", message: "Something Went Wrong" });
+          } else if (error.response) {
+            if (error.response.data.response !== undefined) {
+              setAlert({
+                type: "error",
+                message: error.response.data.response,
+              });
+            } else {
+              setAlert({
+                type: "error",
+                message: "Something Went Wrong",
+              });
+            }
+          } else {
+            setAlert({ type: "error", message: "Something Went Wrong" });
+          }
+          setRetrievalLoading(false);
+        });
+    };
+
+    return retrieveCurrencies();
   }, [formValues.countryOfOperation, query.country]);
 
   useEffect(() => {
@@ -448,6 +495,7 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
                           "countryOfOperation",
                           e.target.value
                         );
+                        formik.setFieldValue("currencies", []);
                         setFormValues({
                           ...formValues,
                           countryOfOperation: e.target.value,
@@ -524,17 +572,20 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
                           required
                         />
                       )}
-
-                    <FormikControl
-                      control="multiSelect"
-                      variant="outlined"
-                      name="currencies"
-                      label="Currency of operation"
-                      type="text"
-                      selectOptions={revenue}
-                      id="currencies"
-                      required
-                    />
+                    {retrievalLoading ? (
+                      <Loader />
+                    ) : (
+                      <FormikControl
+                        control="multiSelect"
+                        variant="outlined"
+                        name="currencies"
+                        label="Currency of operation"
+                        type="text"
+                        selectOptions={currencyOptions}
+                        id="currencies"
+                        required
+                      />
+                    )}
 
                     <FormikControl
                       control="input"
