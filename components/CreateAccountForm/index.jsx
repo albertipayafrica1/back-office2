@@ -163,8 +163,8 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
       withCredentials: true,
     };
 
-    const retrieveCurrencies = () => {
-      axios(businessCategoryConfig)
+    const retrieveCurrencies = async () => {
+      await axios(businessCategoryConfig)
         .then((response) => {
           if (response.data.success === true) {
             setCurrencyOptions(response.data.response);
