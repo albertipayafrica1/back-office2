@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 
 import {
@@ -34,10 +34,6 @@ const FormikMultiSelect = ({
 
   const [focused, setFocused] = useState(false);
 
-  useEffect(() => {
-    console.log(focused);
-  }, [focused]);
-
   return (
     <Field name={name}>
       {({ field, form }) => {
@@ -66,7 +62,14 @@ const FormikMultiSelect = ({
             <Select
               {...field}
               onChange={onChange !== null ? onChange : form.handleChange}
-              onBlur={onBlur !== null ? onBlur : form.handleBlur}
+              onBlur={
+                onBlur !== null
+                  ? onBlur
+                  : (e) => {
+                      setFocused(false);
+                      return form.handleBlur(e);
+                    }
+              }
               onFocus={() => setFocused(true)}
               labelId="demo-multiple-checkbox-label"
               id="demo-multiple-checkbox"
