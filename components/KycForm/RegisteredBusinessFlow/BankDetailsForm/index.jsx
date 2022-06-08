@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import PropTypes from "prop-types";
 
@@ -35,7 +35,7 @@ const initialValues = {
     accountNumber: "",
     currency: "",
     swiftCode: "",
-    secondary: "",
+    secondary: "2",
   },
   secondaryAccount: {
     bankLocality: "",
@@ -51,6 +51,9 @@ const initialValues = {
 const BankDetailsForm = ({ handleNextStep }) => {
   const router = useRouter();
   const dispatch = useDispatch();
+  const operationCurrencyOptions = useSelector(
+    (state) => state.currency.currencyOptions
+  );
 
   const [formValues, setFormValues] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -194,8 +197,9 @@ const BankDetailsForm = ({ handleNextStep }) => {
               <Form>
                 <Stack spacing={8}>
                   <Alert severity="info">
-                    <strong>Primary bank account. </strong>Funds in your primary
-                    currency are settled to this bank account
+                    <strong>Primary bank account. </strong>
+                    {`Funds received in your primary
+                    currency (${operationCurrencyOptions[0].key}) are settled to this bank account. If the currency of this account is not the same as the currency you receive funds in than current exchange rates shall apply.`}
                   </Alert>
                   <BankDetailsContainer topLabel="Primary Bank Account Details">
                     <Stack
@@ -297,6 +301,7 @@ const BankDetailsForm = ({ handleNextStep }) => {
                         control="select"
                         label="Do you want to add a secondary bank account?"
                         select
+                        disabled={operationCurrencyOptions.length === 1}
                         selectItem={secondary}
                         name="primaryAccount.secondary"
                         variant="outlined"
@@ -337,11 +342,12 @@ const BankDetailsForm = ({ handleNextStep }) => {
                   {formik.values.primaryAccount.secondary === "1" && (
                     <>
                       <Alert severity="info">
-                        <strong>Secondary bank account. </strong>Usd bank
-                        account is used to settle your USD funds. When USD
-                        account is not provided, all the USD funds are settled
-                        into your Primary bank account with current exchange
-                        rates
+                        <strong>Secondary bank account. </strong>
+                        {`This bank
+                        account is used to settle funds you received in your secondary currency (${operationCurrencyOptions[1].key}). When secondary
+                        account is not provided, the funds shall be settled
+                        to your primary bank account with current exchange
+                        rates.`}
                       </Alert>
                       <BankDetailsContainer topLabel="Secondary Bank Account Details">
                         <Stack
