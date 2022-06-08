@@ -22,12 +22,7 @@ import { businessStructure } from "../../../../utils/formValidations/kyc/registe
 import { telephoneCodes } from "../../../../utils/data";
 import { getTelephoneCountryCode } from "../../../../utils/countryOfOperation";
 
-import {
-  titleOptions,
-  genderOptions,
-  businessCurrencyOptions,
-  documentTypeOptions,
-} from "./data";
+import { titleOptions, genderOptions, documentTypeOptions } from "./data";
 
 import { fetchKycStatusSuccess } from "../../../../redux";
 
@@ -62,7 +57,6 @@ const initialValues = {
     businessTaxPin: "",
     businessTelephone: "",
     businessEmail: "",
-    businessCurrency: "",
     businessDescription: "",
   },
   businessLocation: {
@@ -764,17 +758,6 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                           type="text"
                           id="registeredBusinessDetails.businessEmail"
                           required
-                        />
-                        <FormikControl
-                          control="input"
-                          variant="outlined"
-                          name="registeredBusinessDetails.businessCurrency"
-                          label="Currency Business Operates"
-                          type="text"
-                          id="registeredBusinessDetails.businessCurrency"
-                          required
-                          select
-                          selectItem={businessCurrencyOptions}
                         />
                       </Stack>
                       <FormikControl
