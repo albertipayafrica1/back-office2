@@ -309,26 +309,36 @@ const BusinessOwnersForm = ({ handleNextStep }) => {
                             direction={{ xs: "column", md: "row" }}
                             spacing={3}
                           >
-                            <FormikControl
-                              control="select"
-                              variant="outlined"
-                              name={`ultimateBeneficialOwners[${index}].title`}
-                              label="Title"
-                              type="text"
-                              select
-                              selectItem={titleOptions}
-                              id={`ultimateBeneficialOwners[${index}].title`}
-                              required
-                            />
-                            <FormikControl
-                              control="input"
-                              label="Surname"
-                              name={`ultimateBeneficialOwners[${index}].surname`}
-                              variant="outlined"
-                              type="text"
-                              id={`ultimateBeneficialOwners[${index}].surname`}
-                              required
-                            />
+                            <Stack
+                              sx={{
+                                width: "100%",
+                              }}
+                              direction={{ xs: "row" }}
+                              spacing={3}
+                            >
+                              <Box sx={{ width: "150px" }}>
+                                <FormikControl
+                                  control="select"
+                                  variant="outlined"
+                                  name={`ultimateBeneficialOwners[${index}].title`}
+                                  label="Title"
+                                  type="text"
+                                  select
+                                  selectItem={titleOptions}
+                                  id={`ultimateBeneficialOwners[${index}].title`}
+                                  required
+                                />
+                              </Box>
+                              <FormikControl
+                                control="input"
+                                label="Surname"
+                                name={`ultimateBeneficialOwners[${index}].surname`}
+                                variant="outlined"
+                                type="text"
+                                id={`ultimateBeneficialOwners[${index}].surname`}
+                                required
+                              />
+                            </Stack>
                             <FormikControl
                               control="input"
                               label="First Name"

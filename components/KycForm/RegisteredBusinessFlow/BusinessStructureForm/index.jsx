@@ -397,7 +397,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                           direction={{ xs: "row" }}
                           spacing={3}
                         >
-                          <Box sx={{ width: "130px" }}>
+                          <Box sx={{ width: "150px" }}>
                             {/* <FormikControl
                               control="input"
                               name="businessRepresentative.telephoneCountryCode"
