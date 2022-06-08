@@ -1,5 +1,7 @@
 import PropTypes from "prop-types";
 
+import { useSelector } from "react-redux";
+
 import { Typography, Stack, Button } from "@mui/material";
 
 import Dialog from "../../atoms/Dialog";
@@ -7,6 +9,8 @@ import Dialog from "../../atoms/Dialog";
 import * as styles from "./styles";
 
 const BalanceDialog = ({ open, toggleBalanceDialog, name }) => {
+  const globalCurrency = useSelector((state) => state.currency.globalCurrency);
+
   return (
     <div>
       <Dialog
@@ -28,9 +32,8 @@ const BalanceDialog = ({ open, toggleBalanceDialog, name }) => {
             variant="title6"
             sx={{ color: (theme) => theme.colors.orange }}
           >
-            {/* get these values from store */}
-            <span style={{ color: "#000000" }}>KES</span>
-            <span> 120000.00</span>
+            <span style={{ color: "#000000" }}>{globalCurrency}</span>
+            <span> 0 </span>
           </Typography>
 
           <Button variant="orange" onClick={toggleBalanceDialog}>

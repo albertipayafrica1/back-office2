@@ -6,7 +6,7 @@ import { TabContext, TabList, TabPanel } from "@mui/lab";
 
 import * as styles from "./styles";
 
-const Tabs = ({ tabTitle, children, positionStyles }) => {
+const Tabs = ({ tabTitle, children, positionStyles, icons }) => {
   const [value, setValue] = useState("0");
 
   const handleChange = (event, newValue) => {
@@ -21,6 +21,8 @@ const Tabs = ({ tabTitle, children, positionStyles }) => {
             <TabList onChange={handleChange} aria-label="tabs" sx={styles.tabs}>
               {tabTitle.map((title, index) => (
                 <Tab
+                  icon={index < icons?.length ? icons[index] : null}
+                  iconPosition="start"
                   disableRipple
                   label={title}
                   value={index.toString()}
@@ -44,12 +46,14 @@ const Tabs = ({ tabTitle, children, positionStyles }) => {
 
 Tabs.defaultProps = {
   positionStyles: {},
+  icons: null,
 };
 
 Tabs.propTypes = {
   tabTitle: PropTypes.arrayOf(PropTypes.string).isRequired,
   children: PropTypes.node.isRequired,
   positionStyles: PropTypes.shape({}),
+  icons: PropTypes.arrayOf(PropTypes.node),
 };
 
 export default Tabs;
