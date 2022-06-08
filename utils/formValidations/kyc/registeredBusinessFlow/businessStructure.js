@@ -251,9 +251,6 @@ export const businessStructure = yup.object({
       .trim("Kindly remove spaces before/after the email")
       .email("Please Enter a valid Email")
       .required("Kindly Enter your business Email"),
-    businessCurrency: yup
-      .string()
-      .required("Kindly select your business currency"),
     businessDescription: yup
       .string()
       .test(

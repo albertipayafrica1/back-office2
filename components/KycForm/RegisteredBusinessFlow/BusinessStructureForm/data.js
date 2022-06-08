@@ -10,12 +10,6 @@ export const genderOptions = [
   { key: "Other", value: "3" },
 ];
 
-export const businessCurrencyOptions = [
-  { key: "USD", value: "1" },
-  { key: "KES", value: "2" },
-  { key: "USD & KES", value: "3" },
-];
-
 export const documentTypeOptions = [
   { key: "National Id", value: "1" },
   { key: "Passport", value: "2" },

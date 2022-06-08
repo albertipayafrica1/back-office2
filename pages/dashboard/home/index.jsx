@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { Typography, Stack, Box } from "@mui/material";
 import PageViewBox from "../../../atoms/PageViewBox";
 
@@ -7,6 +8,8 @@ import DashboardLayout from "../../../components/Layouts/Dashboard";
 import ProtectedRoute from "../../../components/ProtectedRoute";
 
 const Home = () => {
+  const globalCurrency = useSelector((state) => state.currency.globalCurrency);
+
   return (
     <Box sx={{ p: 10 }}>
       <Typography variant="title3" sx={{ ml: 4, mb: 4 }}>
@@ -60,12 +63,12 @@ const Home = () => {
             />
             <TransactionSummaryCard
               title="Total Amount"
-              body="KES 0"
+              body={`${globalCurrency} 0`}
               variant="pastelPink"
             />
             <TransactionSummaryCard
               title="Average Payin"
-              body="KES 0"
+              body={`${globalCurrency} 0`}
               variant="pastelBlue"
             />
             <TransactionSummaryCard
