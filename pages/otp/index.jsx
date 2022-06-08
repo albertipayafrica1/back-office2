@@ -18,6 +18,10 @@ import {
   fetchUserRequest,
   fetchUserSuccess,
   fetchUserFailure,
+  fetchOperationCurrenciesRequest,
+  fetchOperationCurrenciesSuccess,
+  fetchOperationCurrenciesFailure,
+  setGlobalCurrency,
 } from "../../redux";
 
 const Otp = () => {
@@ -51,6 +55,7 @@ const Otp = () => {
     e.preventDefault();
     dispatch(fetchKycStatusRequest());
     dispatch(fetchUserRequest());
+    dispatch(fetchOperationCurrenciesRequest());
     setClearTimer(true);
     setLoading(true);
     setError(null);
@@ -85,9 +90,11 @@ const Otp = () => {
           setClearTimer(true);
           dispatch(fetchUserSuccess(response.data.registrationDetails));
           dispatch(fetchKycStatusSuccess(response.data.kycStatus));
+          dispatch(fetchOperationCurrenciesSuccess(response.data.currencies));
           router.replace("/dashboard/kyc");
         } else {
           dispatch(fetchKycStatusFailure("Something Went Wrong"));
+          dispatch(fetchUserSuccess(response.data.registrationDetails));
           setError("Something Went Wrong");
           setClearTimer(true);
           setLoading(false);
@@ -98,10 +105,12 @@ const Otp = () => {
           setError(err.response.data.response);
           dispatch(fetchKycStatusFailure(err.response.data.response));
           dispatch(fetchUserFailure(err.response.data.response));
+          dispatch(fetchOperationCurrenciesFailure(err.response.data.response));
         } else {
           setError("Something went wrong");
           dispatch(fetchKycStatusFailure("Something went wrong"));
           dispatch(fetchUserFailure("Something went wrong"));
+          dispatch(fetchOperationCurrenciesFailure("Something went wrong"));
         }
         setClearTimer(true);
         setLoading(false);

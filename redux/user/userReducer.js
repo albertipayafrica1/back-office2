@@ -6,7 +6,18 @@ import {
 
 const initialState = {
   loading: false,
-  user: {},
+  user: {
+    firstName: "",
+    middleName: "",
+    surname: "",
+    phoneNumber: "",
+    email: "",
+    countryIso: "",
+    vid: "",
+    businessName: "",
+    role: "",
+    permissions: [{}],
+  },
   error: "",
 };
 

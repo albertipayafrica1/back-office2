@@ -1,17 +1,24 @@
-import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
 import { MenuItem, TextField } from "@mui/material";
+
+import { setGlobalCurrency } from "../../../../redux";
+
 import * as styles from "./styles";
 
-// this will be an Api call
-const Currency = [
-  { key: "KES", value: "1" },
-  { key: "USD", value: "2" },
-];
+const c = [{ key: "KES", value: "KES" }];
 
 const SelectCurrencies = () => {
-  const [value, setValue] = useState("1"); // this state will change when we start pulling data from the backend
-  const handleChange = (event) => {
-    setValue(event.target.value);
+  const currencyOptions = useSelector(
+    (state) => state?.currency?.currencyOptions
+  );
+  const selectedCurrency = useSelector(
+    (state) => state?.currency?.globalCurrency
+  );
+  const dispatch = useDispatch();
+
+  const handleChange = (e) => {
+    dispatch(setGlobalCurrency(e.target.value));
   };
 
   return (
@@ -22,13 +29,12 @@ const SelectCurrencies = () => {
         },
       }}
       onChange={handleChange}
-      disabled
       select
       size="xs"
       sx={styles.selectMenu}
-      value={value}
+      value={selectedCurrency}
     >
-      {Currency.map((item) => (
+      {currencyOptions.map((item) => (
         <MenuItem key={item.key} value={item.value} sx={{ fontSize: "12px" }}>
           {item.key}
         </MenuItem>

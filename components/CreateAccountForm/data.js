@@ -10,8 +10,8 @@ export const revenue = [
   { value: "3", key: "$1,001 to $5,000" },
   { value: "4", key: "$5,001 to $10,000" },
   { value: "5", key: "$10,001 to $100,000" },
-  { value: "5", key: "$100,001 to $1,000,000" },
-  { value: "5", key: "More than $10,000,000" },
+  { value: "6", key: "$100,001 to $1,000,000" },
+  { value: "7", key: "More than $10,000,000" },
 ];
 export const registeredBusiness = [
   { value: "1", key: "Government Department" },

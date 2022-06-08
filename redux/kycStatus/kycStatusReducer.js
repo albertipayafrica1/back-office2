@@ -6,7 +6,13 @@ import {
 
 const initialState = {
   loading: false,
-  kycStatus: {},
+  kycStatus: {
+    lastStep: 0,
+    totalSteps: 0,
+    percentage: 0,
+    status: false,
+    slug: "incomplete",
+  },
   error: "",
 };
 
