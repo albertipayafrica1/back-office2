@@ -177,17 +177,16 @@ const BankDetailsForm = ({ handleNextStep }) => {
     <>
       <Stack sx={styles.topContainer} spacing={1}>
         <Formik
-          // validationSchema={bankDetails}
           validate={(value) => {
             try {
               validateYupSchema(value, bankDetails, true, value);
             } catch (err) {
-              return yupToFormErrors(err); // for rendering validation errors
+              return yupToFormErrors(err);
             }
             return {};
           }}
           initialValues={formValues || initialValues}
-          onSubmit={handleSubmit} // pass this as props
+          onSubmit={handleSubmit}
           enableReinitialize
         >
           {(formik) => {
