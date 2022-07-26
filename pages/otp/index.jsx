@@ -70,7 +70,7 @@ const Otp = () => {
 
     const config = {
       method: "post",
-      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/otp-login`,
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/otp-login`,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${credentials}`,
@@ -82,20 +82,28 @@ const Otp = () => {
       .then((response) => {
         if (
           response.data.success === true &&
-          response.data.kycStatus !== undefined
+          response.data.response.kycStatus !== undefined
         ) {
-          Cookies.set("iPayT", response.data.token, {
+          Cookies.set("iPayT", response.data.response.token, {
             secure: true,
           });
           setClearTimer(true);
-          dispatch(fetchUserSuccess(response.data.registrationDetails));
-          dispatch(fetchKycStatusSuccess(response.data.kycStatus));
-          dispatch(fetchOperationCurrenciesSuccess(response.data.currencies));
+          dispatch(
+            fetchUserSuccess(response.data.response.registrationDetails)
+          );
+          dispatch(fetchKycStatusSuccess(response.data.response.kycStatus));
+          dispatch(
+            fetchOperationCurrenciesSuccess(response.data.response.currencies)
+          );
           router.replace("/dashboard/kyc");
         } else {
           dispatch(fetchKycStatusFailure("Something Went Wrong"));
-          dispatch(fetchUserSuccess(response.data.registrationDetails));
+          dispatch(
+            fetchUserSuccess(response.data.response.registrationDetails)
+          );
           setError("Something Went Wrong");
+          console.log("dsadsadsa");
+          console.log(response.data);
           setClearTimer(true);
           setLoading(false);
         }
@@ -125,7 +133,7 @@ const Otp = () => {
 
     const config = {
       method: "post",
-      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/resend-otp`,
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/resend-otp`,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${credentials}`,

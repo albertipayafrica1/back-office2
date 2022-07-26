@@ -2,14 +2,27 @@ import { makeStyles } from "@mui/styles";
 
 export const useStyles = makeStyles((theme) => ({
   inputLabelNoShrink: {
-    transform: "translate(14px, 12px) scale(1)",
-    fontSize: "12px",
+    transform: "translate(14px, 12px) scale(0.8)",
+    // fontSize: "8px",
+    fontWeight: 100,
+    opacity: 0.9,
+    fontFamily: "Roboto,sans-serif",
+    color: "black",
+  },
+  inputLabelShrink: {
+    // fontSize: "8px",
+    fontWeight: 100,
+    opacity: 0.9,
+    fontFamily: "Roboto,sans-serif",
+    color: "black",
   },
 }));
 
 export const useOutlinedInputStyles = makeStyles((theme) => ({
   root: {
-    "& $notchedOutline": {},
+    "& $notchedOutline": {
+      fontSize: "20px",
+    },
     "&:hover $notchedOutline": {
       borderColor: theme.colors.blue,
     },
@@ -30,9 +43,11 @@ export const checkBoxStyle = {
   },
   "& .MuiSvgIcon-root": {
     fontSize: 22,
-    backgroundColor: "white",
-    borderRadius: 10,
   },
 };
 
-export const selectStyle = { height: "40px", borderRadius: "7px" };
+export const selectStyle = {
+  height: "40px",
+  borderRadius: "7px",
+  fontSize: "12px",
+};

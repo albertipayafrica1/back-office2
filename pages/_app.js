@@ -114,9 +114,13 @@ const MyApp = (props) => {
   );
 };
 
+MyApp.defaultProps = {
+  emotionCache: undefined,
+};
+
 MyApp.propTypes = {
   Component: PropTypes.elementType.isRequired,
-  emotionCache: PropTypes.shape({}).isRequired,
+  emotionCache: PropTypes.shape({}),
   pageProps: PropTypes.shape({}).isRequired,
 };
 

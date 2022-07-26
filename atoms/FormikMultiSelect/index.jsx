@@ -53,7 +53,7 @@ const FormikMultiSelect = ({
                   ) &&
                     !focused)
                     ? classes.inputLabelNoShrink
-                    : null
+                    : classes.inputLabelShrink
                 }
               >
                 {label}

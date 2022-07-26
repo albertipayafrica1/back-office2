@@ -192,6 +192,10 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
           }
           setRetrievalLoading(false);
         });
+      setCurrencyOptions([
+        { value: "KES", key: "KES" },
+        { value: "USD", key: "USD" },
+      ]);
     };
 
     return retrieveCurrencies();
