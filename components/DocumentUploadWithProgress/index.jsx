@@ -17,7 +17,7 @@ import { styles } from "./styles";
 let currentId = 0;
 
 const getNewId = () => {
-  // we could use a fancier solution instead of a sequential ID :)
+  // we could use a fancier solution instead of a sequential ID
   currentId += 1;
   return currentId;
 };

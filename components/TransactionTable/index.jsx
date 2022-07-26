@@ -13,6 +13,7 @@ import ExportDialog from "../ExportDialog";
 import PayoutsNewTransfer from "../PayoutsNewTransfer";
 
 import * as styles from "./styles";
+import ManageSettlements from "../ManageSettlements";
 
 const columns = [
   { id: "name", label: "Date", minWidth: 170 },
@@ -130,6 +131,7 @@ const TransactionTable = ({ name, handleApplyFilter, handleNewTransfer }) => {
   const [openFilterDialog, setOpenFilterDialog] = useState(false);
   const [openExportDialog, setOpenExportDialog] = useState(false);
   const [openNewTransfer, setOpenNewTransfer] = useState(false);
+  const [openManageSettlements, setOpenManageSettlements] = useState(false);
 
   const toggleBalanceDialog = () => {
     setOpenBalanceDialog((prevState) => !prevState);
@@ -143,11 +145,20 @@ const TransactionTable = ({ name, handleApplyFilter, handleNewTransfer }) => {
   const toggleNewTransfer = () => {
     setOpenNewTransfer((prevState) => !prevState);
   };
+
+  const toggleManageSettlements = () => {
+    setOpenManageSettlements((prevState) => !prevState);
+  };
+
   // based on name get table data in useeffect
   // take rows and columns from endpoints and have a loading state here i.e show loader when data is fetched
 
   if (openNewTransfer) {
     return <PayoutsNewTransfer toggleNewTransfer={toggleNewTransfer} />;
+  } else if (openManageSettlements) {
+    return (
+      <ManageSettlements toggleManageSettlements={toggleManageSettlements} />
+    );
   }
 
   return (
@@ -160,11 +171,17 @@ const TransactionTable = ({ name, handleApplyFilter, handleNewTransfer }) => {
           sx={styles.whiteStack}
         >
           <Stack>
-            {name === "payouts" && (
+            {(name === "payouts" || name === "settlements") && (
               <TransactionButton
-                text="New Transfer"
+                text={
+                  name === "payouts" ? "New Transfer" : "Manage Settlements"
+                }
                 icon={<img src="/addIcon.svg" alt="icon" />}
-                onClick={toggleNewTransfer}
+                onClick={
+                  name === "payouts"
+                    ? toggleNewTransfer
+                    : toggleManageSettlements
+                }
               />
             )}
           </Stack>

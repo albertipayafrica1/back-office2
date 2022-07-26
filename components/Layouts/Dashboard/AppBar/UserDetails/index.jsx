@@ -49,13 +49,13 @@ const UserDetails = ({ status }) => {
     axios(config)
       .then((response) => {
         Cookies.set("iPayT", "", { expires: -1 });
-        router.push(`/login/?country=${"KE"}`);
+        router.push(`/auth/login/?country=${"KE"}`);
         setLoadingButton(false);
       })
       .catch((error) => {
         Cookies.set("iPayT", "", { expires: -1 });
         setLoadingButton(false);
-        router.push(`/login/?country=${"KE"}`);
+        router.push(`/auth/login/?country=${"KE"}`);
       });
   };
 
