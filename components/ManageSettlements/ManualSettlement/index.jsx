@@ -1,5 +1,7 @@
+import Header from "./Header";
+
 const ManualSettlement = () => {
-  return <div>AccountDetails</div>;
+  return <Header progress="10" />;
 };
 
 export default ManualSettlement;

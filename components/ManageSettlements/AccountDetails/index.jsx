@@ -86,9 +86,7 @@ const AccountDetails = () => {
                     variant="outlined"
                     type="text"
                     id="releaseLevel"
-                    required
                     sx={styles.textField}
-                    fastField={false}
                   />
                 </Box>
               </Stack>
