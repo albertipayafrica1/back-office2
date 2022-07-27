@@ -14,6 +14,7 @@ export default {
   orange: "#F29103",
   pink: "#F9F4F4",
   errorRed: "#d32f2f",
+  lightRed: "#E74C3C",
   successGreen: "#2E7D32",
   pastelGreen: "#B1FFBE",
   pinkshade2: "#EBE7E7",

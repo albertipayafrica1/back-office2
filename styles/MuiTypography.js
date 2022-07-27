@@ -134,6 +134,17 @@ export default {
     },
     {
       props: {
+        variant: "subtitle8",
+      },
+      style: {
+        fontSize: "11px",
+        lineHeight: "16px",
+        fontWeight: 400,
+        letterSpacing: "0.4px",
+      },
+    },
+    {
+      props: {
         variant: "body1",
       },
       style: {

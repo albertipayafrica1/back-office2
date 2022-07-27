@@ -7,9 +7,7 @@ import TransactionTable from "../../../components/TransactionTable";
 const Settlements = () => {
   return (
     <Box sx={{ p: 10 }}>
-      <Typography>
-        <TransactionTable name="settlements" />
-      </Typography>
+      <TransactionTable name="settlements" />
     </Box>
   );
 };

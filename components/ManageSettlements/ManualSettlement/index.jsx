@@ -1,5 +1,5 @@
 const ManualSettlement = () => {
-  return <div> AccountDetails</div>;
+  return <div>AccountDetails</div>;
 };
 
 export default ManualSettlement;

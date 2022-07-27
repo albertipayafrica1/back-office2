@@ -155,7 +155,8 @@ const TransactionTable = ({ name, handleApplyFilter, handleNewTransfer }) => {
 
   if (openNewTransfer) {
     return <PayoutsNewTransfer toggleNewTransfer={toggleNewTransfer} />;
-  } else if (openManageSettlements) {
+  }
+  if (openManageSettlements) {
     return (
       <ManageSettlements toggleManageSettlements={toggleManageSettlements} />
     );

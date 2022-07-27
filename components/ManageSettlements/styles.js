@@ -1,5 +1,5 @@
 export const iconStyles = {
-  fontSize: "20px",
+  fontSize: "15px",
 };
 
 export const positionStyles = {
@@ -8,5 +8,5 @@ export const positionStyles = {
   backgroundColor: (theme) => theme.colors.mono1,
   width: "100%",
   zIndex: 999,
-  height: "60px",
+  height: "75px",
 };

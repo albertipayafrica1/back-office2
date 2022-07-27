@@ -17,7 +17,11 @@ const Tabs = ({ tabTitle, children, positionStyles, icons }) => {
     <Box sx={{ width: "100%" }}>
       <TabContext value={value}>
         <Box sx={positionStyles}>
-          <Box sx={{ ml: { xs: 12, md: 20 } }}>
+          <Box
+            sx={{
+              ml: { xs: 12, md: 15 },
+            }}
+          >
             <TabList onChange={handleChange} aria-label="tabs" sx={styles.tabs}>
               {tabTitle.map((title, index) => (
                 <Tab

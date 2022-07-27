@@ -20,26 +20,20 @@ const ManageSettlements = () => {
     <WatchIcon sx={styles.iconStyles} />,
     <DetailsIcon sx={styles.iconStyles} />,
   ];
-  const tabTitle = [
-    "Account Details",
-    "Scheduled Settlements",
-    "Manual Settlements",
-  ];
+  const tabTitle = ["Account", "Scheduled", "Manual"];
 
   return (
-    <Box sx={{ p: 10 }}>
+    <Box sx={{ pt: 6 }}>
       <PageViewBox>
-        <Box sx={{ pt: 6 }}>
-          <Tabs
-            tabTitle={tabTitle}
-            positionStyles={styles.positionStyles}
-            icons={icons}
-          >
-            <AccountDetails />
-            <ScheduledSettlement />
-            <ManualSettlement />
-          </Tabs>
-        </Box>
+        <Tabs
+          tabTitle={tabTitle}
+          positionStyles={styles.positionStyles}
+          icons={icons}
+        >
+          <AccountDetails />
+          <ScheduledSettlement />
+          <ManualSettlement />
+        </Tabs>
       </PageViewBox>
     </Box>
   );
