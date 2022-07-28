@@ -7,7 +7,7 @@ export const radio = {
     },
   },
   "& .MuiSvgIcon-root ": {
-    fontSize: 22,
+    fontSize: 18,
     // backgroundColor: "white",
     borderRadius: 10,
   },

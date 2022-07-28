@@ -6,8 +6,7 @@ export const checkbox = {
     },
   },
   "& .MuiSvgIcon-root": {
-    fontSize: 22,
-    backgroundColor: "white",
+    fontSize: 18,
     borderRadius: 10,
   },
 };

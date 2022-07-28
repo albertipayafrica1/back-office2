@@ -4,4 +4,5 @@ export const whiteStack = {
   height: 100,
   background: "white",
   borderRadius: "5px",
+  flexWrap: "wrap",
 };

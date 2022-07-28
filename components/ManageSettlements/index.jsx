@@ -20,7 +20,11 @@ const ManageSettlements = () => {
     <WatchIcon sx={styles.iconStyles} />,
     <DetailsIcon sx={styles.iconStyles} />,
   ];
-  const tabTitle = ["Account", "Scheduled", "Manual"];
+  const tabTitle = [
+    "Account Details",
+    "Scheduled Settlement",
+    "Manual Settlement",
+  ];
 
   return (
     <Box sx={{ pt: 6 }}>

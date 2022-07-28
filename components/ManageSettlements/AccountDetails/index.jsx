@@ -87,6 +87,7 @@ const AccountDetails = () => {
                     type="text"
                     id="releaseLevel"
                     sx={styles.textField}
+                    disabled
                   />
                 </Box>
               </Stack>

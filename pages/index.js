@@ -73,7 +73,7 @@ const Home = () => {
   };
 
   const handleLogin = () => {
-    router.push(`login?country=${formData.selectWithRedirect}`);
+    router.push(`/auth/login?country=${formData.selectWithRedirect}`);
   };
 
   const toggleDemo = () => {

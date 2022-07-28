@@ -59,7 +59,7 @@ export const linearProgress = {
   color: "grey.500",
   backgroundColor: (theme) => theme.colors.mono1,
   mt: "10px",
-  border: "1px solid #C4C4C4",
+  border: (theme) => `1px solid ${theme.colors.mono8}`,
   boxSizing: "borderbox",
   borderRadius: "100px",
   "& .MuiLinearProgress-bar": {

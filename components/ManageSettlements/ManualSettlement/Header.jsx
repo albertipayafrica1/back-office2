@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { LinearProgress, Typography, Stack } from "@mui/material";
 
-const Header = ({ progress }) => {
+const Header = ({ progress, handleCancel }) => {
   return (
     <Stack>
       <Typography
@@ -20,15 +20,19 @@ const Header = ({ progress }) => {
           variant="determinate"
           value={parseInt(progress, 10)}
           sx={{
-            backgroundColor: (theme) => theme.colors.orange,
+            backgroundColor: (theme) => theme.colors.mono1,
             width: "100%",
-            borderRadius: "5px",
+            borderRadius: "100px",
+            "& .MuiLinearProgress-bar": {
+              backgroundColor: (theme) => theme.colors.orange,
+            },
+            border: (theme) => `1px solid ${theme.colors.mono8}`,
           }}
         />
         <Typography
           variant="subtitle8"
           sx={{ cursor: "pointer" }}
-          onClick={() => {}}
+          onClick={() => handleCancel()}
         >
           cancel
         </Typography>
@@ -39,5 +43,6 @@ const Header = ({ progress }) => {
 
 Header.propTypes = {
   progress: PropTypes.string.isRequired,
+  handleCancel: PropTypes.string.isRequired,
 };
 export default Header;
