@@ -62,7 +62,7 @@ const SettlementOptionsForm = ({ handleNext }) => {
                         text="Next"
                         icon={<img src="/doubletick.svg" alt="icon" />}
                         onClick={() => handleNext(formik.values)}
-                        activeState={true}
+                        activeState
                       />
                     </Box>
                   )}

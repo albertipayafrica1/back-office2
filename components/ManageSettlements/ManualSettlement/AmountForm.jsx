@@ -47,7 +47,7 @@ const AmountForm = ({ settlementOptions, handleSendMoney, handleBack }) => {
   const initialValues = { settlementOptions: ["1", "2"] };
   const partialAmountInitialValues = { partialAmount: "" };
 
-  const nativeCurrency = "KES"; //changes based on country (get it from store)
+  const nativeCurrency = "KES"; // changes based on country (get it from store)
 
   const [switchChecked, setSwitchChecked] = useState(false);
   const [amountToTransfer, setAmountToTransfer] = useState("");

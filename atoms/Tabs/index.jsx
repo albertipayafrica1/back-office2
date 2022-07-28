@@ -14,7 +14,7 @@ const Tabs = ({ tabTitle, children, positionStyles, icons }) => {
     setValue(newValue);
   };
 
-  let tabStyle = {
+  const tabStyle = {
     minWidth: 100,
     paddingLeft: 8,
     paddingRight: 8,

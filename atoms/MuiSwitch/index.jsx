@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
-import { useStyles } from "./styles";
-
 import { Switch } from "@mui/material";
+import { useStyles } from "./styles";
 
 const MuiSwitch = ({ checked, toggleSwitch, externalStyles, disabled }) => {
   const classes = useStyles({ ...externalStyles, checked });
