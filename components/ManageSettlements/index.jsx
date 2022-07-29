@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 
 import { Box } from "@mui/material";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
@@ -12,10 +12,11 @@ import AccountDetails from "./AccountDetails";
 import ScheduledSettlement from "./ScheduledSettlement";
 import ManualSettlement from "./ManualSettlement";
 import Footer from "./Footer";
+import Header from "./Header";
 
 import * as styles from "./styles";
 
-const ManageSettlements = () => {
+const ManageSettlements = ({ toggleManageSettlements }) => {
   const icons = [
     <CalendarTodayIcon sx={styles.iconStyles} />,
     <WatchIcon sx={styles.iconStyles} />,
@@ -29,6 +30,7 @@ const ManageSettlements = () => {
 
   return (
     <Box sx={{ pt: 6 }}>
+      <Header closeManageSettlements={toggleManageSettlements} />
       <PageViewBox>
         <Tabs
           tabTitle={tabTitle}
@@ -42,6 +44,10 @@ const ManageSettlements = () => {
       </PageViewBox>
     </Box>
   );
+};
+
+ManageSettlements.propTypes = {
+  toggleManageSettlements: PropTypes.func.isRequired,
 };
 
 export default ManageSettlements;
