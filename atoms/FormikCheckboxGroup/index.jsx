@@ -21,6 +21,9 @@ const FormikCheckboxGroup = ({
   onChange,
   onBlur,
   required,
+  row,
+  disabled,
+  externalStyles,
 }) => {
   return (
     <Field name={name}>
@@ -32,9 +35,13 @@ const FormikCheckboxGroup = ({
             )}
           >
             {label !== "" && <FormLabel required={required}>{label}</FormLabel>}
-            {options.map((option) => {
-              return (
-                <FormGroup key={option.value}>
+            <FormGroup
+              aria-labelledby="checkbox-group-label"
+              name="checkbox-group"
+              row={row}
+            >
+              {options.map((option) => {
+                return (
                   <FormControlLabel
                     value={option.value}
                     control={
@@ -48,16 +55,17 @@ const FormikCheckboxGroup = ({
                           onChange !== null ? onChange : form.handleChange
                         }
                         onBlur={onBlur !== null ? onBlur : form.handleBlur}
-                        sx={styles.checkbox}
+                        sx={styles.checkbox(externalStyles)}
+                        disabled={disabled}
                       />
                     }
                     label={
                       <Typography variant="subtitle3">{option.key}</Typography>
                     }
                   />
-                </FormGroup>
-              );
-            })}
+                );
+              })}
+            </FormGroup>
             <FormHelperText sx={styles.helperText}>
               <ErrorMessage name={name} />
             </FormHelperText>
@@ -74,6 +82,9 @@ FormikCheckboxGroup.defaultProps = {
   onChange: null,
   onBlur: null,
   required: false,
+  row: false,
+  disabled: false,
+  externalStyles: PropTypes.shape({}),
 };
 
 FormikCheckboxGroup.propTypes = {
@@ -86,6 +97,9 @@ FormikCheckboxGroup.propTypes = {
   ).isRequired,
   name: PropTypes.string.isRequired,
   required: PropTypes.bool,
+  row: PropTypes.bool,
+  disabled: PropTypes.bool,
+  externalStyles: PropTypes.shape({}),
 };
 
 export default FormikCheckboxGroup;

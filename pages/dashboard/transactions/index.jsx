@@ -1,9 +1,8 @@
 import { Box } from "@mui/material";
 
+import Tabs from "../../../atoms/Tabs";
 import DashboardLayout from "../../../components/Layouts/Dashboard";
 import ProtectedRoute from "../../../components/ProtectedRoute";
-
-import Tabs from "../../../atoms/Tabs";
 import TransactionTable from "../../../components/TransactionTable";
 
 const Transaction = () => {

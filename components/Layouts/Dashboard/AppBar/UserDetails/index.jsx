@@ -8,30 +8,25 @@ import PropTypes from "prop-types";
 import Cookies from "js-cookie";
 import axios from "axios";
 
-import { Box, Typography, Switch } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import SettingsIcon from "@mui/icons-material/Settings";
 
 import LoadingButton from "@mui/lab/LoadingButton";
 
+import MuiSwitch from "../../../../../atoms/MuiSwitch";
+
 import * as styles from "./styles";
-import { useStyles } from "./styles";
 
 const UserDetails = ({ status }) => {
-  const classes = useStyles();
-  // const [checked, setChecked] = useState(true);
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(true);
   const [loadingButton, setLoadingButton] = useState(false);
   const router = useRouter();
   const user = useSelector((state) => state.user.user);
 
-  // const toggleMode = (event) => {
-  //   setChecked(event.target.checked);
-  // };
-
-  const toggleMode = (event) => {
-    setChecked(false);
+  const toggleMode = () => {
+    // setChecked((prevState) => !prevState);
   };
 
   const handleLogout = () => {
@@ -49,13 +44,13 @@ const UserDetails = ({ status }) => {
     axios(config)
       .then((response) => {
         Cookies.set("iPayT", "", { expires: -1 });
-        router.push(`/login/?country=${"KE"}`);
+        router.push(`/auth/login/?country=${"KE"}`);
         setLoadingButton(false);
       })
       .catch((error) => {
         Cookies.set("iPayT", "", { expires: -1 });
         setLoadingButton(false);
-        router.push(`/login/?country=${"KE"}`);
+        router.push(`/auth/login/?country=${"KE"}`);
       });
   };
 
@@ -89,17 +84,12 @@ const UserDetails = ({ status }) => {
 
       <Box sx={styles.modeSwitchContainer}>
         <Typography style={styles.modeText}>Mode</Typography>
-        <Switch
-          size="medium"
+        <MuiSwitch
           checked={checked}
-          onChange={toggleMode}
-          inputProps={{ "aria-label": "controlled" }}
-          classes={{
-            root: classes.root,
-            switchBase: classes.switchBase,
-            thumb: classes.thumb,
-            track: classes.track,
-            checked: classes.checked,
+          toggleSwitch={toggleMode}
+          externalStyles={{
+            beforeContent: "Test",
+            afterContent: "Live",
           }}
         />
       </Box>

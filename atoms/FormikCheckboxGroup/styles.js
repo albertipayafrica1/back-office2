@@ -1,15 +1,20 @@
-export const checkbox = {
-  color: "#c4c4c4",
-  "&.MuiCheckbox-root": {
-    "&.Mui-checked": {
-      color: (theme) => theme.colors.orange,
+export const checkbox = (externalStyles) => {
+  return {
+    color: (theme) => {
+      return externalStyles.borderColor || theme.colors.mono8;
     },
-  },
-  "& .MuiSvgIcon-root": {
-    fontSize: 22,
-    backgroundColor: "white",
-    borderRadius: 10,
-  },
+    "&.MuiCheckbox-root": {
+      "&.Mui-checked": {
+        color: (theme) => {
+          return externalStyles.checkboxColor || theme.colors.orange;
+        },
+      },
+    },
+    "& .MuiSvgIcon-root": {
+      fontSize: 18,
+      borderRadius: 10,
+    },
+  };
 };
 
 export const helperText = {

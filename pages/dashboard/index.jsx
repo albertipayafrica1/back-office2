@@ -1,5 +1,5 @@
 import React from "react";
-import CreateAccountOtpDialog from "../../components/CreateAccountOtpDialog";
+import CreateAccountOtpDialog from "../../components/Auth/CreateAccountOtpDialog";
 import Search from "../../atoms/Search";
 import FilterDialog from "../../components/FilterDialog";
 import Stepper from "../../components/Stepper";

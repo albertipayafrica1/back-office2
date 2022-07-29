@@ -68,12 +68,12 @@ const Home = () => {
 
   const handleCreateAccount = () => {
     router.push(
-      `/createAccount?country=${formData.selectWithRedirect}&rc=RC000000`
+      `/auth/createAccount?country=${formData.selectWithRedirect}&rc=RC000000`
     );
   };
 
   const handleLogin = () => {
-    router.push(`login?country=${formData.selectWithRedirect}`);
+    router.push(`/auth/login?country=${formData.selectWithRedirect}`);
   };
 
   const toggleDemo = () => {

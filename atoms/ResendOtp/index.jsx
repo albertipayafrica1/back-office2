@@ -47,7 +47,7 @@ const ResendOtp = ({ seconds, clearTimer, handleResendOtp }) => {
 
   return (
     <Stack direction="row" alignItems="center">
-      <Typography variant="body2"> Didnt Receive OTP ? </Typography>{" "}
+      <Typography variant="body2"> Didn&apos;t Receive OTP ? </Typography>{" "}
       <Button
         sx={styles.resendOtpButton}
         onClick={handleResendOtpButton}

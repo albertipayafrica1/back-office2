@@ -1,21 +1,14 @@
-import { Typography } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 
 import DashboardLayout from "../../../components/Layouts/Dashboard";
 import ProtectedRoute from "../../../components/ProtectedRoute";
+import TransactionTable from "../../../components/TransactionTable";
 
 const Settlements = () => {
   return (
-    <Typography
-      variant="title6"
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100%",
-      }}
-    >
-      Settlements is Coming Soon
-    </Typography>
+    <Box sx={{ p: 10 }}>
+      <TransactionTable name="settlements" />
+    </Box>
   );
 };
 

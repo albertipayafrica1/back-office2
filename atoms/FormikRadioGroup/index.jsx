@@ -23,6 +23,8 @@ const FormikRadioGroup = ({
   onBlur,
   row,
   required,
+  disabled,
+  externalStyles,
 }) => {
   return (
     <Field name={name}>
@@ -58,8 +60,9 @@ const FormikRadioGroup = ({
                           onChange !== null ? onChange : form.handleChange
                         }
                         onBlur={onBlur !== null ? onBlur : form.handleBlur}
-                        sx={styles.radio}
+                        sx={styles.radio(externalStyles)}
                         key={index}
+                        disabled={disabled}
                       />
                     }
                     label={
@@ -85,6 +88,8 @@ FormikRadioGroup.defaultProps = {
   onBlur: null,
   required: false,
   row: false,
+  disabled: false,
+  externalStyles: {},
 };
 
 FormikRadioGroup.propTypes = {
@@ -97,6 +102,8 @@ FormikRadioGroup.propTypes = {
   onBlur: PropTypes.func,
   row: PropTypes.bool,
   required: PropTypes.bool,
+  disabled: PropTypes.bool,
+  externalStyles: PropTypes.shape({}),
 };
 
 export default FormikRadioGroup;
