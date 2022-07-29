@@ -11,6 +11,7 @@ import Tabs from "../../atoms/Tabs";
 import AccountDetails from "./AccountDetails";
 import ScheduledSettlement from "./ScheduledSettlement";
 import ManualSettlement from "./ManualSettlement";
+import Footer from "./Footer";
 
 import * as styles from "./styles";
 
@@ -34,9 +35,9 @@ const ManageSettlements = () => {
           positionStyles={styles.positionStyles}
           icons={icons}
         >
-          <AccountDetails />
-          <ScheduledSettlement />
-          <ManualSettlement />
+          <AccountDetails footer={<Footer />} />
+          <ScheduledSettlement footer={<Footer />} />
+          <ManualSettlement footer={<Footer />} />
         </Tabs>
       </PageViewBox>
     </Box>

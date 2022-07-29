@@ -1,13 +1,16 @@
 import { useState } from "react";
 
+import PropTypes from "prop-types";
+
 import { Stack } from "@mui/material";
+
 import Header from "./Header";
 import SettlementOptionsForm from "./SettlementOptionsForm";
 import AmountForm from "./AmountForm";
 import ConfirmActionDialog from "./ConfirmActionDialog";
 import InitiationConfirmationDialog from "./InitiationConfirmationDialog";
 
-const ManualSettlement = () => {
+const ManualSettlement = ({ footer }) => {
   const [selectedSettlementOptions, setSelectedSettlementOptions] = useState(
     {}
   );
@@ -70,6 +73,7 @@ const ManualSettlement = () => {
           settlementOptions={selectedSettlementOptions}
         />
       )}
+      {footer}
       <ConfirmActionDialog
         open={openConfirmActionDialog}
         toggleConfirmActionDialog={toggleConfirmActionDialog}
@@ -88,6 +92,10 @@ const ManualSettlement = () => {
       />
     </Stack>
   );
+};
+
+ManualSettlement.propTypes = {
+  footer: PropTypes.node.isRequired,
 };
 
 export default ManualSettlement;

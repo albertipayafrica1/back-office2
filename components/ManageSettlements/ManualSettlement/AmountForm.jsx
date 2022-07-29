@@ -1,5 +1,4 @@
 // Todo
-// write amount validation (should be a string and less than payin amount)
 // make a check with forex when amount changes or currency not equal to bank account currency or currency not equal to native currency
 // add loader on forex part
 
@@ -11,7 +10,7 @@ import PropTypes from "prop-types";
 import { Typography, Stack, Box, useMediaQuery } from "@mui/material";
 import ArrowBack from "@mui/icons-material/ArrowBackIosNew";
 
-import { Formik, Form, yupToFormErrors, validateYupSchema } from "formik";
+import { Formik, Form } from "formik";
 import FormikControl from "../../FormikControls/index";
 
 import TransactionButton from "../../../atoms/TransactionButton";
@@ -97,9 +96,6 @@ const AmountForm = ({ settlementOptions, handleSendMoney, handleBack }) => {
         </Formik>
       </Stack>
       <Stack sx={{ pl: 10 }} spacing={8}>
-        {/* {settlementOptions.transferVolume === "2" && 
-        } */}
-
         {settlementOptions.transferVolume === "1" && (
           <Typography variant="subtitle6">
             You are about to transfer the Full amount in your{" "}
