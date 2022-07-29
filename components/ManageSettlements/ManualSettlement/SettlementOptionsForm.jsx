@@ -9,6 +9,8 @@ import TransactionButton from "../../../atoms/TransactionButton";
 
 import { transferMode, transferVolume } from "./data";
 
+import * as styles from "./styles";
+
 const SettlementOptionsForm = ({ handleNext }) => {
   const initialValues = { transferMode: "", transferVolume: "" };
   return (
@@ -33,6 +35,7 @@ const SettlementOptionsForm = ({ handleNext }) => {
                       label=""
                       options={transferMode}
                       required
+                      externalStyles={styles.radioExternalStyles}
                     />
                   </Box>
                 </Stack>
@@ -51,6 +54,7 @@ const SettlementOptionsForm = ({ handleNext }) => {
                         label=""
                         options={transferVolume}
                         required
+                        externalStyles={styles.radioExternalStyles}
                       />
                     </Box>
                   </Stack>

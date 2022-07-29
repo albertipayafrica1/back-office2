@@ -8,10 +8,10 @@ import { useSelector } from "react-redux";
 
 import PropTypes from "prop-types";
 
-import { Typography, Stack, Box } from "@mui/material";
+import { Typography, Stack, Box, useMediaQuery } from "@mui/material";
 import ArrowBack from "@mui/icons-material/ArrowBackIosNew";
 
-import { Formik, Form } from "formik";
+import { Formik, Form, yupToFormErrors, validateYupSchema } from "formik";
 import FormikControl from "../../FormikControls/index";
 
 import TransactionButton from "../../../atoms/TransactionButton";
@@ -19,7 +19,10 @@ import MuiSwitch from "../../../atoms/MuiSwitch";
 
 import { transferMode, transferVolume } from "./data";
 
+import { amountChecker } from "../../../utils/formValidations/manualSettlement/amountChecker";
 import colors from "../../../styles/colors";
+
+import * as styles from "./styles";
 
 const shapeSettlementOptions = (settlementOptions) => {
   let transferModeKey = "";
@@ -48,12 +51,15 @@ const AmountForm = ({ settlementOptions, handleSendMoney, handleBack }) => {
   const partialAmountInitialValues = { partialAmount: "" };
 
   const nativeCurrency = "KES"; // changes based on country (get it from store)
+  const payInBalance = "1000"; // get payin balance
 
   const [switchChecked, setSwitchChecked] = useState(false);
   const [amountToTransfer, setAmountToTransfer] = useState("");
   const selectedCurrency = useSelector(
     (state) => state?.currency?.globalCurrency
   );
+  const matches = useMediaQuery("(min-width:600px)");
+
   const toggleSwitch = () => {
     setSwitchChecked((prevState) => !prevState);
   };
@@ -64,7 +70,7 @@ const AmountForm = ({ settlementOptions, handleSendMoney, handleBack }) => {
     }
   }, []);
 
-  useEffect(() => {}, [amountToTransfer]); // forex conversion
+  // useEffect(() => {}, [amountToTransfer]); // forex conversion
 
   return (
     <>
@@ -83,6 +89,7 @@ const AmountForm = ({ settlementOptions, handleSendMoney, handleBack }) => {
                   name="settlementOptions"
                   row
                   disabled
+                  externalStyles={styles.checkboxExternalStyles}
                 />
               </Form>
             );
@@ -117,6 +124,7 @@ const AmountForm = ({ settlementOptions, handleSendMoney, handleBack }) => {
                 )
               </Typography>
               <Formik
+                validationSchema={amountChecker(payInBalance)}
                 initialValues={partialAmountInitialValues}
                 enableReinitialize
               >
@@ -196,15 +204,16 @@ const AmountForm = ({ settlementOptions, handleSendMoney, handleBack }) => {
           </Typography>
         )}
         {switchChecked && (
-          <Box sx={{ pt: 6, width: "15%" }}>
+          <Box sx={{ pt: 6, width: `${matches ? "15%" : "50%"}` }}>
             <TransactionButton
               text="Send money"
               icon={<img src="/doubletick.svg" alt="icon" />}
-              onClick={() => {
-                handleSendMoney();
-              }}
+              onClick={() => handleSendMoney(amountToTransfer)}
               activeState
-              disabled={amountToTransfer === ""}
+              disabled={
+                amountToTransfer === "" ||
+                parseInt(amountToTransfer, 10) > parseInt(payInBalance, 10)
+              }
             />
           </Box>
         )}

@@ -13,8 +13,6 @@ import ProtectedRoute from "../../../components/ProtectedRoute";
 const Kyc = ({ data, error }) => {
   const kycData = useSelector((state) => state);
 
-  console.log(error);
-
   if (error !== "") {
     return <ErrorBoundary error={error} />;
   }
@@ -68,7 +66,6 @@ export const getServerSideProps = ProtectedRoute(async (context) => {
       }
     })
     .catch((err) => {
-      console.log(err);
       if (err.response === undefined) {
         error = "Something Went Wrong";
       } else if (err.response.status === 401) {

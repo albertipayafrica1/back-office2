@@ -102,8 +102,7 @@ const Otp = () => {
             fetchUserSuccess(response.data.response.registrationDetails)
           );
           setError("Something Went Wrong");
-          console.log("dsadsadsa");
-          console.log(response.data);
+
           setClearTimer(true);
           setLoading(false);
         }

@@ -23,6 +23,7 @@ const FormikCheckboxGroup = ({
   required,
   row,
   disabled,
+  externalStyles,
 }) => {
   return (
     <Field name={name}>
@@ -54,7 +55,7 @@ const FormikCheckboxGroup = ({
                           onChange !== null ? onChange : form.handleChange
                         }
                         onBlur={onBlur !== null ? onBlur : form.handleBlur}
-                        sx={styles.checkbox}
+                        sx={styles.checkbox(externalStyles)}
                         disabled={disabled}
                       />
                     }
@@ -83,6 +84,7 @@ FormikCheckboxGroup.defaultProps = {
   required: false,
   row: false,
   disabled: false,
+  externalStyles: PropTypes.shape({}),
 };
 
 FormikCheckboxGroup.propTypes = {
@@ -97,6 +99,7 @@ FormikCheckboxGroup.propTypes = {
   required: PropTypes.bool,
   row: PropTypes.bool,
   disabled: PropTypes.bool,
+  externalStyles: PropTypes.shape({}),
 };
 
 export default FormikCheckboxGroup;
