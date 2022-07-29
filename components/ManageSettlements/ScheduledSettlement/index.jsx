@@ -121,7 +121,13 @@ const ScheduledSettlement = ({ footer }) => {
                       onChange={(e) => {
                         formik.setFieldValue("duration", e.target.value);
                         if (e.target.value === "1") {
-                          formik.setFieldValue("day", []);
+                          formik.setFieldValue("day", [
+                            "1",
+                            "2",
+                            "3",
+                            "4",
+                            "5",
+                          ]);
                         } else {
                           formik.setFieldValue("day", "");
                         }
