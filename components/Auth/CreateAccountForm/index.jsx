@@ -156,7 +156,7 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
 
     const businessCategoryConfig = {
       method: "get",
-      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/currencies/${formValues.countryOfOperation}`,
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/utils/currencies/${formValues.countryOfOperation}`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -171,6 +171,7 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
           } else {
             setAlert({ type: "error", message: "Something Went Wrong" });
           }
+          setRetrievalLoading(false);
         })
         .catch((error) => {
           if (error.response === undefined) {
@@ -192,10 +193,6 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
           }
           setRetrievalLoading(false);
         });
-      setCurrencyOptions([
-        { value: "KES", key: "KES" },
-        { value: "USD", key: "USD" },
-      ]);
     };
 
     return retrieveCurrencies();
@@ -254,7 +251,10 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
       const config = {
         method: "post",
         url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/register`,
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
         data: JSON.stringify(values),
         withCredentials: true,
       };
