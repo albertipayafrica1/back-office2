@@ -6,6 +6,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 import { Stack, Box, Typography, Button } from "@mui/material";
+import DownloadIcon from "@mui/icons-material/Download";
 
 import { Formik, Form } from "formik";
 
@@ -96,13 +97,70 @@ const BulkTransfer = () => {
 
   return (
     <>
-      <Stack sx={{ p: 8 }} spacing={5}>
+      <Stack sx={{ p: 8 }} spacing={8}>
         <Typography
           variant="subtitle5"
           sx={{ color: (theme) => theme.colors.blue }}
         >
-          2. Bulk Transfer
+          Upload CSV File To Initiate Bulk Payout Transfers
         </Typography>
+
+        <Typography variant="subtitle5">Requirements</Typography>
+        <Stack>
+          <Typography variant="subtitle5">
+            1. Mobile number must be in the format 254XXXXXXXXX
+          </Typography>
+          <Typography variant="subtitle5">
+            2. Amount cannot contain commas or decimal places
+          </Typography>
+          <Typography variant="subtitle5">
+            3. Amount must range from KES 100 - KES 300,000
+          </Typography>
+          <Typography variant="subtitle5">
+            4. Reference numbers must be unique for each MPESA / Airtel Money /
+            MPESA Till transaction
+          </Typography>
+          <Typography variant="subtitle5">
+            5. Only CSV file format will be accepted. File cannot contain blank
+            fields. Follow CSV samples provided below.
+          </Typography>
+          <Typography variant="subtitle5">
+            6. Please note, you can make up to 3 payout transactions to one
+            particular Mobile Money or Pesalink account, per day.
+          </Typography>
+        </Stack>
+
+        <Stack>
+          <Stack
+            direction="row"
+            alignItems="center"
+            sx={{ cursor: "pointer" }}
+            onClick={() => {}}
+          >
+            <DownloadIcon sx={{ color: (theme) => theme.colors.orange }} />
+            <Typography
+              variant="subtitle5"
+              sx={{ color: (theme) => theme.colors.blue }}
+            >
+              Download sample PesaLink CSV
+            </Typography>
+          </Stack>
+          <Stack
+            direction="row"
+            alignItems="center"
+            sx={{ cursor: "pointer" }}
+            onClick={() => {}}
+          >
+            <DownloadIcon sx={{ color: (theme) => theme.colors.orange }} />
+            <Typography
+              variant="subtitle5"
+              sx={{ color: (theme) => theme.colors.blue }}
+            >
+              Download sample MPESA / Airtel Money / MPESA Paybill / MPESA Till
+              / iPay Merchant CSV
+            </Typography>
+          </Stack>
+        </Stack>
 
         <Stack
           direction="row"
@@ -115,15 +173,6 @@ const BulkTransfer = () => {
           >
             Upload Csv
           </Typography>
-          <Box sx={{ cursor: "pointer" }} onClick={() => {}}>
-            <img src="/Download-Arrow.svg" alt="download" />
-            <Typography
-              variant="subtitle5"
-              sx={{ color: (theme) => theme.colors.blue, pl: 1 }}
-            >
-              Download Template
-            </Typography>
-          </Box>
         </Stack>
         <Formik
           validationSchema={bulkTransfer}
@@ -134,7 +183,7 @@ const BulkTransfer = () => {
           {(formik) => {
             return (
               <Form>
-                <Stack sx={{ width: "300px" }} spacing={5}>
+                <Stack spacing={5}>
                   <FormikControl
                     control="singleFileUpload"
                     label="Bulk Transfer csv file"
@@ -148,27 +197,18 @@ const BulkTransfer = () => {
                     }
                   />
 
-                  <Stack direction="row" spacing={3}>
-                    <Button
-                      variant="orange"
-                      sx={{ height: "50px" }}
-                      type="submit"
-                      disabled={
-                        formik.values.bulkTransferFile.length === 0 ||
-                        formik.isSubmitting
-                      }
-                      withoutIconMedia
-                    >
-                      Initiate Transfer
-                    </Button>
-
-                    <TransactionButton
-                      text="Reset Details"
-                      onClick={() => {
-                        return formik.resetForm();
-                      }}
-                    />
-                  </Stack>
+                  <Button
+                    variant="orange"
+                    sx={{ height: "50px" }}
+                    type="submit"
+                    disabled={
+                      formik.values.bulkTransferFile.length === 0 ||
+                      formik.isSubmitting
+                    }
+                    withoutIconMedia
+                  >
+                    Next
+                  </Button>
                 </Stack>
               </Form>
             );

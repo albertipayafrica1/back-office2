@@ -7,7 +7,6 @@ import Cookies from "js-cookie";
 
 import { Stack, Box, Typography, IconButton, Button } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 import { Formik, Form } from "formik";
 
@@ -17,31 +16,29 @@ import Loader from "../../../atoms/Loader";
 import MuiAlert from "../../../atoms/MuiAlert";
 import TransactionButton from "../../../atoms/TransactionButton";
 
-import { singleTransfer } from "../../../utils/formValidations/payoutsNewTransfer/singleTransfer";
+import { billPayment } from "../../../utils/formValidations/payoutsNewTransfer/billPayment";
+import { getTelephoneCountryCode } from "../../../utils/countryOfOperation";
+import { telephoneCodes } from "../../../utils/data";
 
 import * as styles from "./styles";
-import { payoutModeOptions } from "./data";
+import { billTypeOptions, providerOptions } from "./data";
 
 const initialValues = {
-  payoutMode: "",
-  accountId: "",
-  merchantRef: "",
-  narration: "",
+  billType: "",
+  provider: "",
+  telephoneCountryCode: "KE",
+  mobileNumber: "",
+  accountNumber: "",
   amount: "",
 };
 
 const SingleTransfer = ({ toggleNewTransfer }) => {
   const router = useRouter();
 
-  const [formValues, setFormValues] = useState(null);
+  const [formValues, setFormValues] = useState();
   const [loading, setLoading] = useState(false);
   const [retrievalLoading, setRetrievalLoading] = useState(false);
   const [alert, setAlert] = useState({ type: "", message: "" });
-  const [savingAccountDetails, setSavingAccountDetails] = useState(false);
-
-  const handleSaveAccountDetails = () => {
-    setSavingAccountDetails(true);
-  };
 
   const handleSubmit = (values, formikHelpers) => {
     // setLoading(true);
@@ -162,29 +159,15 @@ const SingleTransfer = ({ toggleNewTransfer }) => {
   return (
     <>
       <Stack sx={{ p: 8 }} spacing={3}>
-        <Stack
-          direction="row"
-          alignItems="center"
-          justifyContent="space-between"
-        >
-          <Typography
-            variant="subtitle5"
-            sx={{ color: (theme) => theme.colors.blue }}
-          >
-            1. Single Transfer
-          </Typography>
-          <IconButton aria-label="back" onClick={toggleNewTransfer}>
-            <ArrowForwardIcon />
-          </IconButton>
-        </Stack>
         <Typography
           variant="subtitle5"
-          sx={{ color: (theme) => theme.colors.orange, pb: 3 }}
+          sx={{ color: (theme) => theme.colors.blue, pb: 8 }}
         >
-          Enter Transfer Details
+          Buy Airtime, Pay your TV and Utility Bills
         </Typography>
+
         <Formik
-          validationSchema={singleTransfer}
+          validationSchema={billPayment}
           initialValues={formValues || initialValues}
           onSubmit={handleSubmit}
           enableReinitialize
@@ -197,12 +180,12 @@ const SingleTransfer = ({ toggleNewTransfer }) => {
                     <FormikControl
                       control="input"
                       variant="outlined"
-                      name="payoutMode"
-                      label="Payout Mode"
+                      name="billType"
+                      label="Bill Type"
                       type="text"
                       select
-                      selectItem={payoutModeOptions}
-                      id="paymentChannel"
+                      selectItem={billTypeOptions}
+                      id="billType"
                       shrink
                       placeholder=""
                       required
@@ -211,39 +194,56 @@ const SingleTransfer = ({ toggleNewTransfer }) => {
 
                   <FormikControl
                     control="input"
-                    label="Account Id"
-                    name="accountId"
+                    label="Provider"
+                    name="provider"
                     variant="outlined"
                     type="text"
-                    id="accountId"
+                    select
+                    selectItem={providerOptions}
+                    id="provider"
                     shrink
                     placeholder=""
                     required
                   />
+                  <Stack direction="row" spacing={2}>
+                    <Box sx={{ maxWidth: "200px" }}>
+                      <FormikControl
+                        control="autocomplete"
+                        name="telephoneCountryCode"
+                        label="Code"
+                        use="telephoneCountryCode"
+                        options={telephoneCodes}
+                        required
+                        defaultValue={getTelephoneCountryCode("KE")}
+                      />
+                    </Box>
+                    <FormikControl
+                      control="input"
+                      variant="outlined"
+                      name="mobileNumber"
+                      label="Mobile Number"
+                      type="text"
+                      id="mobileNumber"
+                      shrink
+                      placeholder="xxxxxxxxx"
+                      required
+                    />
+                  </Stack>
 
-                  <FormikControl
-                    control="input"
-                    variant="outlined"
-                    name="merchantRef"
-                    label="Merchant Reference"
-                    type="text"
-                    id="merchantRef"
-                    shrink
-                    placeholder=""
-                    required
-                  />
-
-                  <FormikControl
-                    control="input"
-                    variant="outlined"
-                    name="narration"
-                    label="Narration"
-                    type="text"
-                    id="narration"
-                    shrink
-                    placeholder=""
-                    required
-                  />
+                  {formik.values.billType !== "" &&
+                    formik.values.billType !== "1" && (
+                      <FormikControl
+                        control="input"
+                        variant="outlined"
+                        name="accountNumber"
+                        label="Account Number"
+                        type="text"
+                        id="accountNumber"
+                        shrink
+                        placeholder="Enter Account Number"
+                        required
+                      />
+                    )}
 
                   <FormikControl
                     control="input"
@@ -253,34 +253,19 @@ const SingleTransfer = ({ toggleNewTransfer }) => {
                     type="text"
                     id="amount"
                     shrink
-                    placeholder=""
+                    placeholder="0"
                     required
                   />
-                  {savingAccountDetails ? (
-                    <Loader spaceAround="xs" />
-                  ) : (
-                    <Typography
-                      variant="subtitle5"
-                      sx={{
-                        color: (theme) => theme.colors.blue,
-                        cursor: "pointer",
-                        p: 3,
-                      }}
-                      onClick={handleSaveAccountDetails}
-                    >
-                      Save account details?
-                    </Typography>
-                  )}
 
                   <Stack direction="row" spacing={3}>
                     <Button
                       variant="orange"
-                      sx={{ height: "50px", width: "300px" }}
+                      sx={{ height: "50px", width: "200px" }}
                       type="submit"
                       disabled={formik.isValid === false || formik.isSubmitting}
                       withoutIconMedia
                     >
-                      Initiate Transfer
+                      Pay Bill
                     </Button>
 
                     <TransactionButton

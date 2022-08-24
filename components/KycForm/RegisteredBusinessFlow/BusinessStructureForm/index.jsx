@@ -152,7 +152,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
     const credentials = Cookies.get("iPayT");
     const businessCategoryConfig = {
       method: "get",
-      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/categories`,
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/utils/business-categories`,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${credentials}`,
@@ -267,7 +267,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
 
     const businessSubCategoryConfig = {
       method: "get",
-      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/categories/${businessCategoryValue}`,
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/utils/business-subcategories/${businessCategoryValue}`,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${credentials}`,
