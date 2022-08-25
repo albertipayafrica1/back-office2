@@ -14,6 +14,7 @@ import {
 
 import SelectCurrencies from "../SelectCurrencies";
 
+import SettingMenu from "./SettingMenu";
 import MuiToolTip from "../../../../atoms/MuiToolTip";
 
 import { MenuItems } from "../data";
@@ -105,6 +106,7 @@ const DrawerWrapper = ({ mobileOpen, handleDrawerToggle, testModeStatus }) => {
       </MuiToolTip>
       <Divider sx={{ mt: 2, width: "80%" }} />
       <Box sx={styles.menuItemContainer}>
+        <SettingMenu />
         {MenuItems.map((item, index) => {
           return (
             <Button
