@@ -132,7 +132,7 @@ const Otp = () => {
 
     const config = {
       method: "post",
-      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/resend-otp`,
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/otp-resend`,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${credentials}`,

@@ -21,7 +21,7 @@ const SingleFileUploadWithProgress = ({
 
   const uploadFile = async (fileToUpload, onProgress) => {
     // const url = "https://api.cloudinary.com/v1_1/demo/image/upload";
-    const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/kyc/document-upload`;
+    const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/document-upload`;
     const key = "docs_upload_example_us_preset";
 
     setServerError("");
@@ -62,11 +62,11 @@ const SingleFileUploadWithProgress = ({
     };
 
     const formData = new FormData();
-    let truncatedFieldName = fieldName;
-    const indexOFDot = fieldName.lastIndexOf(".");
-    if (indexOFDot !== undefined || indexOFDot !== null) {
-      truncatedFieldName = fieldName.substring(indexOFDot + 1);
-    }
+    const truncatedFieldName = fieldName;
+    // const indexOFDot = fieldName.lastIndexOf(".");
+    // if (indexOFDot !== undefined || indexOFDot !== null) {
+    //   truncatedFieldName = fieldName.substring(indexOFDot + 1);
+    // }
     formData.append(truncatedFieldName, fileToUpload);
     formData.append("upload_preset", key);
 

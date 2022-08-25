@@ -93,7 +93,7 @@ const CreateAccountOtpDialog = ({
 
     const config = {
       method: "post",
-      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/resend-otp`,
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/otp-resend`,
       headers: {
         "Content-Type": "application/json",
       },

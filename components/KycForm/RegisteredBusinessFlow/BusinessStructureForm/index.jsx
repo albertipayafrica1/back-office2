@@ -126,6 +126,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
             router.replace("/");
           }, 2000);
         } else if (error.response.status === 406) {
+          console.log(...error.response.data.response);
           formikHelpers.setErrors({ ...error.response.data.response });
           setAlert({ type: "error", message: "Kindly Resolve Form Errors" });
         } else if (error.response) {
@@ -325,6 +326,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
           enableReinitialize
         >
           {(formik) => {
+            console.log(formik.values);
             return (
               <Form>
                 <Stack spacing={8}>

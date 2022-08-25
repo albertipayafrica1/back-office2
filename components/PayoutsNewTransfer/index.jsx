@@ -8,6 +8,7 @@ import PageViewBox from "../../atoms/PageViewBox";
 import SingleTransfer from "./SingleTransfer";
 import BulkTransfer from "./BulkTransfer";
 import BillPayment from "./BillPayment";
+import InternalTransfer from "./InternalTransfer";
 
 const PayoutsNewTransfer = ({ toggleNewTransfer }) => {
   const tabTitle = [
@@ -33,7 +34,7 @@ const PayoutsNewTransfer = ({ toggleNewTransfer }) => {
         <Tabs tabTitle={tabTitle} positionStyles={positionStyles}>
           <SingleTransfer toggleNewTransfer={toggleNewTransfer} />
           <BulkTransfer />
-          <SingleTransfer toggleNewTransfer={toggleNewTransfer} />
+          <InternalTransfer toggleNewTransfer={toggleNewTransfer} />
           <BillPayment />
           <SingleTransfer toggleNewTransfer={toggleNewTransfer} />
         </Tabs>
