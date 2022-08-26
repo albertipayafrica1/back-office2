@@ -14,10 +14,10 @@ import {
 
 import SelectCurrencies from "../SelectCurrencies";
 
-import SettingMenu from "./SettingMenu";
+import MenuList from "./MenuList";
 import MuiToolTip from "../../../../atoms/MuiToolTip";
 
-import { MenuItems } from "../data";
+import { menuItems, settingsMenuListItems } from "./data";
 import * as styles from "./styles";
 
 const DrawerWrapper = ({ mobileOpen, handleDrawerToggle, testModeStatus }) => {
@@ -106,8 +106,7 @@ const DrawerWrapper = ({ mobileOpen, handleDrawerToggle, testModeStatus }) => {
       </MuiToolTip>
       <Divider sx={{ mt: 2, width: "80%" }} />
       <Box sx={styles.menuItemContainer}>
-        <SettingMenu />
-        {MenuItems.map((item, index) => {
+        {menuItems.map((item) => {
           return (
             <Button
               onClick={() => {
@@ -121,15 +120,16 @@ const DrawerWrapper = ({ mobileOpen, handleDrawerToggle, testModeStatus }) => {
                   ? styles.activeMenuItem
                   : styles.menuItem
               }
-              key={index}
+              key={item.id}
             >
               {item.icon}
-              <Typography sx={styles.itemMenuText} key={index}>
+              <Typography sx={styles.itemMenuText} key={item.id}>
                 {item.name}
               </Typography>
             </Button>
           );
         })}
+        <MenuList itemList={settingsMenuListItems} />
       </Box>
     </Box>
   );

@@ -6,8 +6,11 @@ import TransitEnterexitIcon from "@mui/icons-material/TransitEnterexit";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import AddCardIcon from "@mui/icons-material/AddCard";
+import SocialDistanceIcon from "@mui/icons-material/SocialDistance";
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
+import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 
-export const MenuItems = [
+export const menuItems = [
   {
     id: 1,
     url: "/dashboard/home",
@@ -54,11 +57,23 @@ export const MenuItems = [
     name: "iPay Lite",
     icon: <ShoppingCartIcon />,
   },
-
-  {
-    id: 8,
-    url: "/dashboard/settings",
-    name: "Settings",
-    icon: <SettingsIcon />,
-  },
 ];
+
+export const settingsMenuListItems = {
+  name: "Settings",
+  icon: <SettingsIcon />,
+  dropDown: [
+    {
+      id: 1,
+      name: "Users",
+      url: "/dashboard/settings/users",
+      icon: <ManageAccountsIcon />,
+    },
+    {
+      id: 2,
+      icon: <AutoAwesomeIcon />,
+      name: "Appearance",
+      url: "/dashboard/settings/appearance",
+    },
+  ],
+};

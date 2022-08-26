@@ -106,6 +106,38 @@ export const itemMenuText = {
   letterSpacing: "0.02em",
 };
 
+export const listItem = {
+  borderRadius: "5px",
+  width: "165px",
+  height: "38px",
+  mt: 2,
+  color: "#000000",
+  "&:hover": {
+    color: "white",
+    backgroundColor: (theme) => theme.colors.blue,
+  },
+  "&.MuiButton-root": {
+    display: "flex",
+    justifyContent: "flex-start",
+  },
+};
+
+export const activeListItem = {
+  borderRadius: "5px",
+  width: "165px",
+  height: "38px",
+  mt: 2,
+  color: "white",
+  backgroundColor: (theme) => theme.colors.blue,
+  "&:hover": {
+    backgroundColor: (theme) => theme.colors.blue,
+  },
+  "&.MuiButton-root": {
+    display: "flex",
+    justifyContent: "flex-start",
+  },
+};
+
 export const menuItem = {
   borderRadius: "5px",
   width: "165px",
