@@ -49,7 +49,7 @@ const ResetPasswordRequestForm = () => {
     const config = {
       method: "post",
       url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/forgot-password`,
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "Device-Channel": "web" },
       data: JSON.stringify(values),
       withCredentials: true,
     };

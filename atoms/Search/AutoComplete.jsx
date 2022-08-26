@@ -8,6 +8,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import useStyles from "./styles";
 
 const AutoComplete = ({ uniKey, children, onInputValueChange }) => {
+  console.log(children);
   const input = useRef();
   const classes = useStyles();
 

@@ -52,6 +52,7 @@ const PasswordExpired = () => {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${credentials}`,
+          "Device-Channel": "web",
         },
         data: JSON.stringify(body),
         withCredentials: true,

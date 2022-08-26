@@ -54,6 +54,7 @@ export const getServerSideProps = ProtectedRoute(async (context) => {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${req.cookies.iPayT}`,
+      "Device-Channel": "web",
     },
     withCredentials: true,
   };

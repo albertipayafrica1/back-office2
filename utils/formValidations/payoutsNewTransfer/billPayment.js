@@ -57,7 +57,6 @@ export const billPayment = yup.object({
   amount: yup
     .string()
     .test("amount", "Kindly enter a valid amount", (val) => {
-      console.log(val);
       if (val === undefined || val === null || val === "") {
         return false;
       }

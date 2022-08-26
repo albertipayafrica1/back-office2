@@ -74,6 +74,7 @@ const Otp = () => {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${credentials}`,
+        "Device-Channel": "web",
       },
       data: JSON.stringify(otpObject),
     };
@@ -136,6 +137,7 @@ const Otp = () => {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${credentials}`,
+        "Device-Channel": "web",
       },
     };
 

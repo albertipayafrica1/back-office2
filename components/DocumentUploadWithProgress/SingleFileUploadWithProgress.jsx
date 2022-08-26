@@ -58,6 +58,7 @@ const SingleFileUploadWithProgress = ({
       },
       headers: {
         Authorization: `Bearer ${credentials}`,
+        "Device-Channel": "web",
       },
     };
 

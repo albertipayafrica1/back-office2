@@ -60,7 +60,6 @@ const ScheduledSettlement = ({ footer }) => {
       <Stack sx={{ pl: 10, pr: 10, pb: 10 }} spacing={8}>
         <Formik initialValues={formValues || initialValues} enableReinitialize>
           {(formik) => {
-            console.log(formik.values);
             return (
               <Form>
                 <Stack spacing={3}>

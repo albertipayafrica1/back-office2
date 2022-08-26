@@ -48,7 +48,7 @@ const LoginForm = ({ country }) => {
     const config = {
       method: "post",
       url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/login`,
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "Device-Channel": "web" },
       data: JSON.stringify(values),
       withCredentials: true,
     };

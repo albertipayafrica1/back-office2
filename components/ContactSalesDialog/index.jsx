@@ -33,6 +33,7 @@ const ContactSales = ({ toggleSales, open }) => {
       url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/contact-sales`,
       headers: {
         "Content-Type": "application/json",
+        "Device-Channel": "web",
       },
       data: values,
     };

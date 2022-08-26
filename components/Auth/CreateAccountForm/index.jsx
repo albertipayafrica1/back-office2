@@ -254,6 +254,7 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
+          "Device-Channel": "web",
         },
         data: JSON.stringify(values),
         withCredentials: true,

@@ -95,6 +95,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${credentials}`,
+        "Device-Channel": "web",
       },
       data: JSON.stringify(values),
       withCredentials: true,
@@ -126,7 +127,6 @@ const BusinessStructureForm = ({ handleNextStep }) => {
             router.replace("/");
           }, 2000);
         } else if (error.response.status === 406) {
-          console.log(...error.response.data.response);
           formikHelpers.setErrors({ ...error.response.data.response });
           setAlert({ type: "error", message: "Kindly Resolve Form Errors" });
         } else if (error.response) {
@@ -209,6 +209,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${credentials}`,
+        "Device-Channel": "web",
       },
       withCredentials: true,
     };
@@ -326,7 +327,6 @@ const BusinessStructureForm = ({ handleNextStep }) => {
           enableReinitialize
         >
           {(formik) => {
-            console.log(formik.values);
             return (
               <Form>
                 <Stack spacing={8}>

@@ -44,7 +44,7 @@ export const getServerSideProps = async (context) => {
   const config = {
     method: "post",
     url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/email-verification`,
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", "Device-Channel": "web" },
     data: body,
     withCredentials: true,
   };

@@ -51,6 +51,7 @@ const SoleProprietorship = ({ handleNextStep }) => {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${credentials}`,
+        "Device-Channel": "web",
       },
       data: JSON.stringify(values),
       withCredentials: true,
@@ -112,6 +113,7 @@ const SoleProprietorship = ({ handleNextStep }) => {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${credentials}`,
+        "Device-Channel": "web",
       },
       withCredentials: true,
     };
