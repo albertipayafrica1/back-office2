@@ -27,30 +27,32 @@ export const logo = {
   marginTop: "40px",
 };
 
-export const menuItemContainer = {
-  display: "flex",
-  flexDirection: "column",
-  paddingBottom: "20px",
-  width: "100%",
-  marginTop: "10px",
-  maxHeight: "350px",
+export const menuItemContainer = (mobileOpen) => {
+  return {
+    display: "flex",
+    flexDirection: "column",
+    paddingBottom: "20px",
+    width: "100%",
+    marginTop: "10px",
+    maxHeight: "350px",
 
-  // overflowY: "hidden",
-  "&:hover": {
-    overflowY: "scroll",
-    "&::-webkit-scrollbar": {
-      width: "5px",
-      height: "30px",
+    // overflowY: "hidden",
+    "&:hover": {
+      overflowY: "scroll",
+      "&::-webkit-scrollbar": {
+        width: "5px",
+        height: "30px",
+      },
+      "&::-webkit-scrollbar-track": {
+        boxShadow: `inset 0 0 6px rgba(0, 0, 0, 0.3)`,
+      },
+      "&::-webkit-scrollbar-thumb": {
+        backgroundColor: "white",
+        borderRadius: "10px",
+        outline: `1px solid slategrey`,
+      },
     },
-    "&::-webkit-scrollbar-track": {
-      boxShadow: `inset 0 0 6px rgba(0, 0, 0, 0.3)`,
-    },
-    "&::-webkit-scrollbar-thumb": {
-      backgroundColor: "white",
-      borderRadius: "10px",
-      outline: `1px solid slategrey`,
-    },
-  },
+  };
 };
 
 export const linearProgress = {

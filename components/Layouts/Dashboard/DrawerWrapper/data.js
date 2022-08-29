@@ -6,7 +6,6 @@ import TransitEnterexitIcon from "@mui/icons-material/TransitEnterexit";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import AddCardIcon from "@mui/icons-material/AddCard";
-import SocialDistanceIcon from "@mui/icons-material/SocialDistance";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 

@@ -58,8 +58,9 @@ const FileUploadField = ({ name, multiple, label, required, givenFile }) => {
     setFiles((curr) =>
       curr.map((fw) => {
         if (fw.file === file && returnedFileDetails !== undefined) {
-          const truncatedFieldName = name;
-          // const indexOFDot = name.lastIndexOf(".");
+          const truncatedFieldName = name.replace(/\[.*?\]/g, "");
+
+          //  const indexOFDot = name.lastIndexOf(".");
           // if (indexOFDot !== undefined || indexOFDot !== null) {
           //   truncatedFieldName = name.substring(indexOFDot + 1);
           // }
@@ -68,6 +69,7 @@ const FileUploadField = ({ name, multiple, label, required, givenFile }) => {
             url: returnedFileDetails.url,
             modifiedName: returnedFileDetails.modifiedName,
             fieldName: truncatedFieldName,
+            referenceId: returnedFileDetails.referenceId,
           };
         }
         return fw;

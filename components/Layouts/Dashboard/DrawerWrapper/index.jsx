@@ -105,7 +105,7 @@ const DrawerWrapper = ({ mobileOpen, handleDrawerToggle, testModeStatus }) => {
         </Box>
       </MuiToolTip>
       <Divider sx={{ mt: 2, width: "80%" }} />
-      <Box sx={styles.menuItemContainer}>
+      <Box sx={styles.menuItemContainer(mobileOpen)}>
         {menuItems.map((item) => {
           return (
             <Button
