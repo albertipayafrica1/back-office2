@@ -10,10 +10,10 @@ import PageViewBox from "../../atoms/PageViewBox";
 import BalanceDialog from "../BalanceDialog";
 import FilterDialog from "../FilterDialog";
 import ExportDialog from "../ExportDialog";
-import PayoutsNewTransfer from "../PayoutsNewTransfer";
+import PayoutsNewTransfer from "../Transactions/PayoutsNewTransfer";
 
 import * as styles from "./styles";
-import ManageSettlements from "../ManageSettlements";
+import ManageSettlements from "../Settlements/ManageSettlements";
 
 const columns = [
   { id: "name", label: "Date", minWidth: 170 },

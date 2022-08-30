@@ -7,7 +7,7 @@ import FormikDatePicker from "../../atoms/FormikDatePicker";
 import FormikDateRangePicker from "../../atoms/FormikDateRangePicker";
 import FormikAutoComplete from "../../atoms/FormikAutoComplete";
 import FormikMultiSelect from "../../atoms/FormikMultiSelect";
-import FormikFileUploadField from "../DocumentUploadWithProgress";
+import FormikFileUploadField from "../../atoms/DocumentUploadWithProgress";
 
 const FormikControl = ({ control, ...rest }) => {
   switch (control) {

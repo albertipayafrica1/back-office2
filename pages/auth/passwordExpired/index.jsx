@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import Cookies from "js-cookie";
 
-import Carousel from "../../../components/Carousel";
+import Carousel from "../../../components/Auth/Carousel";
 import PasswordExpiredForm from "../../../components/Auth/PasswordExpiredForm";
 import Auth from "../../../components/Layouts/Auth";
 

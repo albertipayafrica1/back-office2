@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import Cookies from "js-cookie";
 
-import Carousel from "../../../components/Carousel";
+import Carousel from "../../../components/Auth/Carousel";
 import OTPInput from "../../../components/Auth/OTPInput";
 import Auth from "../../../components/Layouts/Auth";
 import ProtectedRoute from "../../../components/ProtectedRoute";

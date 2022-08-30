@@ -15,9 +15,9 @@ import {
 import ListItemIcon from "@mui/material/ListItemIcon";
 import { makeStyles } from "@mui/styles";
 import backgroundImage from "../public/IPAYLANDING.jpg";
-import WatchDemoDialog from "../components/WatchDemoDialog";
-import ContactSalesDialog from "../components/ContactSalesDialog";
-import SelectCountryDialog from "../components/SelectCountryDialog";
+import WatchDemoDialog from "../components/LandingPage/WatchDemoDialog";
+import ContactSalesDialog from "../components/LandingPage/ContactSalesDialog";
+import SelectCountryDialog from "../components/LandingPage/SelectCountryDialog";
 import { getCountryIconLinkLandingPage } from "../utils/countryOfOperation";
 
 import { Country } from "../data";

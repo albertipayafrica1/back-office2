@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 import { countryOfOperation } from "../../../utils/countryOfOperation";
 
-import Carousel from "../../../components/Carousel";
+import Carousel from "../../../components/Auth/Carousel";
 import CreateAccountForm from "../../../components/Auth/CreateAccountForm";
 import Auth from "../../../components/Layouts/Auth";
 

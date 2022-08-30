@@ -12,7 +12,7 @@ import {
   Box,
 } from "@mui/material";
 
-import SelectCurrencies from "../SelectCurrencies";
+import GlobalCurrencySelector from "./GlobalCurrencySelector";
 
 import MenuList from "./MenuList";
 import MuiToolTip from "../../../../atoms/MuiToolTip";
@@ -53,7 +53,7 @@ const DrawerWrapper = ({ mobileOpen, handleDrawerToggle, testModeStatus }) => {
           Currency
         </Typography>
 
-        <SelectCurrencies />
+        <GlobalCurrencySelector />
 
         <MuiToolTip
           placement="right-start"
