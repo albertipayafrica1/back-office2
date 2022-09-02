@@ -293,14 +293,14 @@ const PrivateLimitedCompany = ({ handleNextStep }) => {
                     size="large"
                     sx={styles.submitButton}
                     disabled={
-                      formik.values.pinCertificate.length === 0 ||
-                      formik.values.certificateOfRegistration.length === 0 ||
+                      formik.values.pinCertificate?.length === 0 ||
+                      formik.values.certificateOfRegistration?.length === 0 ||
                       formik.values.memorandumAndArticlesOfAssociation
-                        .length === 0 ||
+                        ?.length === 0 ||
                       formik.values.businessPermit?.length === 0 ||
-                      formik.values.boardResolutionLetter.length === 0 ||
-                      formik.values.companyStatusReport.length === 0 ||
-                      formik.values.aml.length === 0 ||
+                      formik.values.boardResolutionLetter?.length === 0 ||
+                      formik.values.companyStatusReport?.length === 0 ||
+                      formik.values.aml?.length === 0 ||
                       formik.isSubmitting
                     }
                   >

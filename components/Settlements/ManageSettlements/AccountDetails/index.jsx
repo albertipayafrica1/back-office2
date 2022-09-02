@@ -2,7 +2,15 @@ import { useSelector } from "react-redux";
 
 import PropTypes from "prop-types";
 
-import { Typography, Stack, Box, useMediaQuery } from "@mui/material";
+import {
+  Typography,
+  Stack,
+  Box,
+  useMediaQuery,
+  IconButton,
+  Icon,
+} from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
 
 import { Formik, Form } from "formik";
 import FormikControl from "../../../FormikControls/index";
@@ -22,12 +30,26 @@ const AccountDetails = ({ footer }) => {
           <Form>
             <Stack spacing={8} sx={{ p: 10 }}>
               <Stack spacing={6}>
-                <Typography
-                  variant="subtitle5"
-                  sx={{ color: (theme) => theme.colors.blue }}
+                <Stack
+                  direction="row"
+                  justifyContent="space-between"
+                  alignItems="center"
                 >
-                  1. Settlement Channel ({globalCurrency})
-                </Typography>
+                  <Typography
+                    variant="subtitle5"
+                    sx={{ color: (theme) => theme.colors.blue }}
+                  >
+                    1. Settlement Channel ({globalCurrency})
+                  </Typography>
+                  <IconButton onClick={() => {}}>
+                    <EditIcon
+                      sx={{
+                        color: (theme) => theme.colors.blue,
+                        fontSize: "20px",
+                      }}
+                    />
+                  </IconButton>
+                </Stack>
                 <Stack
                   direction={{ xs: "column", md: "row" }}
                   spacing={{ xs: 8, md: 3 }}
