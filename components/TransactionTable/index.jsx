@@ -16,52 +16,52 @@ import * as styles from "./styles";
 import ManageSettlements from "../Settlements/ManageSettlements";
 
 const columns = [
-  { id: "name", label: "Date", minWidth: 170 },
-  { id: "code", label: "ISO\u00a0Code", minWidth: 100 },
+  { id: "receivingdatetime", label: "Date", minWidth: 170 },
+  // { id: "code", label: "ISO\u00a0Code", minWidth: 100 },
   {
-    id: "population",
+    id: "fname",
     label: "Customer",
     minWidth: 170,
     align: "right",
     format: (value) => value.toLocaleString("en-US"),
   },
   {
-    id: "size",
+    id: "channeltype",
     label: "Channel",
     minWidth: 170,
     align: "right",
     format: (value) => value.toLocaleString("en-US"),
   },
   {
-    id: "density1",
+    id: "txncode",
     label: "Transaction\u00a0Id",
     minWidth: 170,
     align: "right",
     format: (value) => value.toFixed(2),
   },
   {
-    id: "densdity2",
+    id: "sendernumber",
     label: "Category",
     minWidth: 170,
     align: "right",
     format: (value) => value.toFixed(2),
   },
   {
-    id: "denssity3",
+    id: "txnamt",
     label: "Amount",
     minWidth: 170,
     align: "right",
     format: (value) => value.toFixed(2),
   },
   {
-    id: "densidty4",
+    id: "",
     label: "Status",
     minWidth: 170,
     align: "right",
     format: (value) => value.toFixed(2),
   },
   {
-    id: "densidty5",
+    id: "",
     label: "Details",
     minWidth: 170,
     align: "right",
@@ -69,64 +69,69 @@ const columns = [
   },
 ];
 
-const rows = [
-  {
-    name: "India",
-    code: "Icsdcdsxcsdc1",
-    population: 1324171354,
-    density: 3287263,
-  },
-  {
-    name: "India",
-    code: "Icsdcdsxcsdc2",
-    population: 1324171354,
-    density: 3287263,
-  },
-  {
-    name: "India",
-    code: "Icsdcdsxcsdc3",
-    population: 1324171354,
-    density: 3287263,
-  },
-  {
-    name: "India",
-    code: "Icsdcdsxcsdc4",
-    population: 1324171354,
-    density: 3287263,
-  },
-  {
-    name: "India",
-    code: "Icsdcdsxcsdc5",
-    population: 1324171354,
-    density: 3287263,
-  },
-  {
-    name: "India",
-    code: "Icsdcdsxcsdc6",
-    population: 1324171354,
-    density: 3287263,
-  },
-  {
-    name: "India",
-    code: "Icsdcdsxcsdc7",
-    population: 1324171354,
-    density: 3287263,
-  },
-  {
-    name: "India",
-    code: "Icsdcdsxcsdc8",
-    population: 1324171354,
-    density: 3287263,
-  },
-  {
-    name: "India",
-    code: "Icsdcdsxcsdc9",
-    population: 1324171354,
-    density: 3287263,
-  },
-];
+// const rows = [
+//   {
+//     name: "India",
+//     code: "Icsdcdsxcsdc1",
+//     population: 1324171354,
+//     density: 3287263,
+//   },
+//   {
+//     name: "India",
+//     code: "Icsdcdsxcsdc2",
+//     population: 1324171354,
+//     density: 3287263,
+//   },
+//   {
+//     name: "India",
+//     code: "Icsdcdsxcsdc3",
+//     population: 1324171354,
+//     density: 3287263,
+//   },
+//   {
+//     name: "India",
+//     code: "Icsdcdsxcsdc4",
+//     population: 1324171354,
+//     density: 3287263,
+//   },
+//   {
+//     name: "India",
+//     code: "Icsdcdsxcsdc5",
+//     population: 1324171354,
+//     density: 3287263,
+//   },
+//   {
+//     name: "India",
+//     code: "Icsdcdsxcsdc6",
+//     population: 1324171354,
+//     density: 3287263,
+//   },
+//   {
+//     name: "India",
+//     code: "Icsdcdsxcsdc7",
+//     population: 1324171354,
+//     density: 3287263,
+//   },
+//   {
+//     name: "India",
+//     code: "Icsdcdsxcsdc8",
+//     population: 1324171354,
+//     density: 3287263,
+//   },
+//   {
+//     name: "India",
+//     code: "Icsdcdsxcsdc9",
+//     population: 1324171354,
+//     density: 3287263,
+//   },
+// ];
 
-const TransactionTable = ({ name, handleApplyFilter, handleNewTransfer }) => {
+const TransactionTable = ({
+  name,
+  rows,
+  handleApplyFilter,
+  handleNewTransfer,
+}) => {
   const [openBalanceDialog, setOpenBalanceDialog] = useState(false);
   const [openFilterDialog, setOpenFilterDialog] = useState(false);
   const [openExportDialog, setOpenExportDialog] = useState(false);
@@ -245,6 +250,7 @@ TransactionTable.propTypes = {
   handleApplyFilter: PropTypes.func,
   handleNewTransfer: PropTypes.func,
   name: PropTypes.string.isRequired,
+  rows: PropTypes.arrayOf({}).isRequired,
 };
 
 export default TransactionTable;

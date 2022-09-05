@@ -42,7 +42,7 @@ const MuiTable = ({ columns, rows }) => {
                 <TableCell
                   key={column.id}
                   align={column.align}
-                  style={{ width: 200 }}
+                  // style={{ width: 200 }}
                   // style={{ minWidth: column.minWidth }}
                   sx={{ color: (theme) => theme.colors.blue }}
                 >
@@ -69,7 +69,11 @@ const MuiTable = ({ columns, rows }) => {
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (
-                        <TableCell key={column.id} align={column.align}>
+                        <TableCell
+                          key={column.id}
+                          align={column.align}
+                          // sx={{ color: "blue" }}
+                        >
                           {column.format && typeof value === "number"
                             ? column.format(value)
                             : value}
