@@ -69,69 +69,16 @@ const columns = [
   },
 ];
 
-// const rows = [
-//   {
-//     name: "India",
-//     code: "Icsdcdsxcsdc1",
-//     population: 1324171354,
-//     density: 3287263,
-//   },
-//   {
-//     name: "India",
-//     code: "Icsdcdsxcsdc2",
-//     population: 1324171354,
-//     density: 3287263,
-//   },
-//   {
-//     name: "India",
-//     code: "Icsdcdsxcsdc3",
-//     population: 1324171354,
-//     density: 3287263,
-//   },
-//   {
-//     name: "India",
-//     code: "Icsdcdsxcsdc4",
-//     population: 1324171354,
-//     density: 3287263,
-//   },
-//   {
-//     name: "India",
-//     code: "Icsdcdsxcsdc5",
-//     population: 1324171354,
-//     density: 3287263,
-//   },
-//   {
-//     name: "India",
-//     code: "Icsdcdsxcsdc6",
-//     population: 1324171354,
-//     density: 3287263,
-//   },
-//   {
-//     name: "India",
-//     code: "Icsdcdsxcsdc7",
-//     population: 1324171354,
-//     density: 3287263,
-//   },
-//   {
-//     name: "India",
-//     code: "Icsdcdsxcsdc8",
-//     population: 1324171354,
-//     density: 3287263,
-//   },
-//   {
-//     name: "India",
-//     code: "Icsdcdsxcsdc9",
-//     population: 1324171354,
-//     density: 3287263,
-//   },
-// ];
-
 const TransactionTable = ({
   name,
   rows,
   handleApplyFilter,
   handleNewTransfer,
 }) => {
+  let givenRows = rows;
+  if (rows === null || rows === undefined) {
+    givenRows = [];
+  }
   const [openBalanceDialog, setOpenBalanceDialog] = useState(false);
   const [openFilterDialog, setOpenFilterDialog] = useState(false);
   const [openExportDialog, setOpenExportDialog] = useState(false);
@@ -218,7 +165,7 @@ const TransactionTable = ({
             />
           </Stack>
         </Stack>
-        <Table columns={columns} rows={rows} name={name} />
+        <Table columns={columns} rows={givenRows} name={name} />
       </PageViewBox>
       <BalanceDialog
         name={name}

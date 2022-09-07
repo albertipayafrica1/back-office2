@@ -18,7 +18,7 @@ export const menuItems = [
   },
   {
     id: 2,
-    url: "/dashboard/transactions",
+    url: "/dashboard/transactions/payins",
     name: "Transactions",
     icon: <TransitEnterexitIcon />,
   },
