@@ -22,49 +22,49 @@ const columns = [
     id: "fname",
     label: "Customer",
     minWidth: 170,
-    align: "right",
+    align: "center",
     format: (value) => value.toLocaleString("en-US"),
   },
   {
     id: "channeltype",
     label: "Channel",
     minWidth: 170,
-    align: "right",
+    align: "center",
     format: (value) => value.toLocaleString("en-US"),
   },
   {
     id: "txncode",
     label: "Transaction\u00a0Id",
     minWidth: 170,
-    align: "right",
+    align: "center",
     format: (value) => value.toFixed(2),
   },
   {
     id: "sendernumber",
     label: "Category",
     minWidth: 170,
-    align: "right",
+    align: "center",
     format: (value) => value.toFixed(2),
   },
   {
     id: "txnamt",
     label: "Amount",
     minWidth: 170,
-    align: "right",
+    align: "center",
     format: (value) => value.toFixed(2),
   },
   {
     id: "",
     label: "Status",
     minWidth: 170,
-    align: "right",
+    align: "center",
     format: (value) => value.toFixed(2),
   },
   {
     id: "",
     label: "Details",
     minWidth: 170,
-    align: "right",
+    align: "center",
     format: (value) => value.toFixed(2),
   },
 ];
@@ -72,6 +72,8 @@ const columns = [
 const TransactionTable = ({
   name,
   rows,
+  loading,
+  currentPage,
   handleApplyFilter,
   handleNewTransfer,
 }) => {
@@ -165,7 +167,13 @@ const TransactionTable = ({
             />
           </Stack>
         </Stack>
-        <Table columns={columns} rows={givenRows} name={name} />
+        <Table
+          columns={columns}
+          rows={givenRows}
+          name={name}
+          loading={loading}
+          currentPage={currentPage}
+        />
       </PageViewBox>
       <BalanceDialog
         name={name}
@@ -191,6 +199,8 @@ const TransactionTable = ({
 TransactionTable.defaultProps = {
   handleApplyFilter: () => {},
   handleNewTransfer: () => {},
+  loading: false,
+  currentPage: 0,
 };
 
 TransactionTable.propTypes = {
@@ -198,6 +208,8 @@ TransactionTable.propTypes = {
   handleNewTransfer: PropTypes.func,
   name: PropTypes.string.isRequired,
   rows: PropTypes.arrayOf({}).isRequired,
+  loading: PropTypes.bool,
+  currentPage: PropTypes.number,
 };
 
 export default TransactionTable;

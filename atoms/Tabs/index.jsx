@@ -23,7 +23,16 @@ const Tabs = ({
   const handleChange = (event, newValue) => {
     setValue(newValue);
     if (routeOnChange) {
-      router.push(`/dashboard/transactions/${tabTitle[newValue]}`);
+      router.push(
+        {
+          pathname: `${router.pathname}`,
+          query: { pid: tabTitle[newValue], page: 0 },
+        },
+        undefined,
+        {
+          shallow: true,
+        }
+      );
     }
   };
 

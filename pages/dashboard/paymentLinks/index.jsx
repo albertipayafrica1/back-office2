@@ -2,21 +2,10 @@ import { Typography } from "@mui/material";
 
 import DashboardLayout from "../../../components/Layouts/Dashboard";
 import ProtectedRoute from "../../../components/ProtectedRoute";
+import CreatePaymentLink from "../../../components/PaymentLinks/CreatePaymentLink";
 
 const PaymentLinks = () => {
-  return (
-    <Typography
-      variant="title6"
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100%",
-      }}
-    >
-      Payment Links is Coming Soon
-    </Typography>
-  );
+  return <CreatePaymentLink />;
 };
 
 export default PaymentLinks;

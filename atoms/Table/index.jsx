@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 
 import {
@@ -10,13 +11,28 @@ import {
   TableHead,
   TablePagination,
   TableRow,
+  Skeleton,
+  Box,
 } from "@mui/material";
 
-const MuiTable = ({ columns, rows }) => {
-  const [page, setPage] = useState(0);
+const MuiTable = ({ columns, rows, loading, currentPage }) => {
+  const [page, setPage] = useState(currentPage);
   const [rowsPerPage, setRowsPerPage] = useState(7);
+  const router = useRouter();
+
+  console.log(router);
 
   const handleChangePage = (event, newPage) => {
+    router.push(
+      {
+        pathname: `${router.pathname}`,
+        query: { pid: router.query.pid, page: newPage },
+      },
+      undefined,
+      {
+        shallow: true,
+      }
+    );
     setPage(newPage);
   };
 
@@ -54,29 +70,36 @@ const MuiTable = ({ columns, rows }) => {
           <TableBody>
             {rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
+              .map((row, index) => {
                 return (
                   <TableRow
                     hover
                     tabIndex={-1}
-                    key={row.code}
+                    key={index}
                     sx={{
                       "&:nth-of-type(odd)": {
                         backgroundColor: (theme) => theme.colors.mono9,
                       },
                     }}
                   >
-                    {columns.map((column) => {
+                    {columns.map((column, index1) => {
                       const value = row[column.id];
+
                       return (
                         <TableCell
-                          key={column.id}
+                          key={index1}
                           align={column.align}
                           // sx={{ color: "blue" }}
                         >
-                          {column.format && typeof value === "number"
-                            ? column.format(value)
-                            : value}
+                          {loading && (
+                            <Box sx={{ width: "100%" }} key={index1}>
+                              <Skeleton sx={{ width: "100%" }} />
+                            </Box>
+                          )}
+                          {!loading &&
+                            (column.format && typeof value === "number"
+                              ? column.format(value)
+                              : value)}
                         </TableCell>
                       );
                     })}
@@ -108,9 +131,16 @@ const MuiTable = ({ columns, rows }) => {
   );
 };
 
+MuiTable.defaultProps = {
+  currentPage: 0,
+  loading: false,
+};
+
 MuiTable.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   rows: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  currentPage: PropTypes.number,
+  loading: PropTypes.bool,
 };
 
 export default MuiTable;
