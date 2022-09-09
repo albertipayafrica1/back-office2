@@ -9,8 +9,3 @@ export const recurringPaymentOptions = [
 export const noExpiryOptions = [
   { key: "Link should not expire", value: "true" },
 ];
-
-export const paymentReminderOptions = [
-  { key: "everyday", value: "1" },
-  { key: "every 30 days", value: "2" },
-];

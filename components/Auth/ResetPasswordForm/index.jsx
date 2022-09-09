@@ -18,7 +18,7 @@ import {
   getCountryIconLink,
   countryOfOperationBank,
 } from "../../../utils/countryOfOperation";
-import { resetPassword } from "../../../utils/formValidations/resetPassword";
+import { resetPassword } from "../../../utils/formValidations/auth/resetPassword";
 
 import * as styles from "./styles";
 

@@ -20,7 +20,7 @@ import {
   getCountryIconLink,
   countryOfOperationBank,
 } from "../../../utils/countryOfOperation";
-import { login } from "../../../utils/formValidations/login";
+import { login } from "../../../utils/formValidations/auth/login";
 
 import * as styles from "./styles";
 

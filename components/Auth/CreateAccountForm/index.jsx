@@ -28,7 +28,7 @@ import {
   countryOfOperationBank,
   getTelephoneCountryCode,
 } from "../../../utils/countryOfOperation";
-import { createAccount } from "../../../utils/formValidations/createAccount";
+import { createAccount } from "../../../utils/formValidations/auth/createAccount";
 import { telephoneCodes } from "../../../utils/data";
 import * as styles from "./styles";
 

@@ -11,6 +11,7 @@ const TransactionButton = ({
   activeState,
   withoutIconMedia,
   disabled,
+  ...rest
 }) => {
   const matches = useMediaQuery("(min-width:900px)");
   const matchesSmall = useMediaQuery("(min-width:600px)");
@@ -23,6 +24,7 @@ const TransactionButton = ({
           sx={activeState ? styles.activeButton : styles.button}
           onClick={onClick}
           size="small"
+          {...rest}
           disabled={disabled}
         >
           <Stack
@@ -39,7 +41,7 @@ const TransactionButton = ({
     }
 
     return (
-      <Box onClick={onClick} tabIndex={0} onKeyDown={() => {}}>
+      <Box onClick={onClick} tabIndex={0} onKeyDown={() => {}} {...rest}>
         {icon !== undefined ? icon : text}
       </Box>
     );
@@ -51,6 +53,7 @@ const TransactionButton = ({
       onClick={onClick}
       size="small"
       disabled={disabled}
+      {...rest}
     >
       <Stack
         direction="row"

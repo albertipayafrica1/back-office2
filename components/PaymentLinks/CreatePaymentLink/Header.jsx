@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Stack, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
-const Header = ({ closeCreatePaymentLink }) => {
+const Header = ({ toggleCreatePaymentLink }) => {
   return (
     <Stack
       direction="row"
@@ -14,14 +14,14 @@ const Header = ({ closeCreatePaymentLink }) => {
       <Typography variant="subtitle4">Create payment Link</Typography>
       <CloseIcon
         sx={{ fontSize: "20px", cursor: "pointer" }}
-        onClick={closeCreatePaymentLink}
+        onClick={toggleCreatePaymentLink}
       />
     </Stack>
   );
 };
 
 Header.propTypes = {
-  closeCreatePaymentLink: PropTypes.func.isRequired,
+  toggleCreatePaymentLink: PropTypes.func.isRequired,
 };
 
 export default Header;
