@@ -35,6 +35,7 @@ const initialValues = {
   currency: "",
   amount: "",
   changeAmount: [],
+  minAmount: "",
   paymentDescription: "",
   recurringPayment: [],
   orderId: "",
@@ -218,7 +219,29 @@ const CreatePaymentLink = ({ toggleCreatePaymentLink }) => {
                           name="changeAmount"
                           row
                           externalStyles={styles.checkboxExternalStyles}
+                          onChange={(e) => {
+                            if (e.target.checked) {
+                              formik.setFieldValue("changeAmount", ["true"]);
+                            } else {
+                              formik.setFieldValue("changeAmount", ["false"]);
+                            }
+                            formik.setFieldValue("minAmount", "");
+                          }}
                         />
+                        {(formik.values.changeAmount[0] === "true" ||
+                          formik.values.changeAmount[0] !== undefined) && (
+                          <FormikControl
+                            control="input"
+                            label="Set Minimum Amount"
+                            placholder="0"
+                            name="minAmount"
+                            variant="outlined"
+                            type="number"
+                            id="amount"
+                            required
+                            shrink
+                          />
+                        )}
                         <FormikControl
                           control="input"
                           variant="outlined"
@@ -347,14 +370,14 @@ const CreatePaymentLink = ({ toggleCreatePaymentLink }) => {
                             } else {
                               formik.setFieldValue("noExpiry", ["false"]);
                             }
-                            formik.setFieldValue("linkExpirationDate", "");
+                            formik.setFieldValue("linkExpirationDate", null);
                           }}
                         />
                         {(formik.values.noExpiry[0] === "false" ||
                           formik.values.noExpiry[0] === undefined) && (
                           <FormikControl
                             control="datePicker"
-                            label="Date Of Link Expiry"
+                            label="Set Expiry Date"
                             name="linkExpirationDate"
                             required
                             minDate={new Date()}
