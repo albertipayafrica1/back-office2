@@ -19,23 +19,22 @@ export const createPaymentLink = yup.object({
     })
     .required("Amount is required"),
   changeAmount: yup.array().min(0),
-  // minAmount: yup.string().when("changeAmount", (changeAmount) => {
-  //   if (changeAmount.length === 0) {
-  //     return yup
-  //       .string()
-  //       .test("minAmount", "Kindly enter a valid minimum amount", (val) => {
-  //         if (val === undefined || val === null || val === "") {
-  //           return false;
-  //         }
-  //         const parsedValue = parseInt(val, 10);
-  //         if (parsedValue <= 0) {
-  //           return false;
-  //         }
-  //         return true;
-  //       });
-  //   }
-  //   return true;
-  // }),
+  minAmount: yup
+    .string()
+    .test("minAmount", "Kindly enter a valid minimum amount", function (val) {
+      if (this.options.context.changeAmount.length > 0) {
+        if (val === undefined || val === null || val === "") {
+          return false;
+        }
+        const parsedValue = parseInt(val, 10);
+        if (parsedValue <= 0) {
+          return false;
+        }
+        return true;
+      }
+      return true;
+    }),
+
   paymentDescription: yup
     .string()
     .test("len", "your description less than 20 characters", (val) => {

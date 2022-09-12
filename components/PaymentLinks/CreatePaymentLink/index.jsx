@@ -9,7 +9,7 @@ import Cookies from "js-cookie";
 
 import { Box, Stack, useMediaQuery } from "@mui/material";
 
-import { Formik, Form } from "formik";
+import { Formik, Form, yupToFormErrors, validateYupSchema } from "formik";
 
 import FormikControl from "../../FormikControls/index";
 
@@ -184,12 +184,20 @@ const CreatePaymentLink = ({ toggleCreatePaymentLink }) => {
           <Stack spacing={5} sx={{ pt: 10 }}>
             <Header toggleCreatePaymentLink={toggleCreatePaymentLink} />
             <Formik
+              validate={(value) => {
+                try {
+                  validateYupSchema(value, createPaymentLink, true, value);
+                } catch (err) {
+                  return yupToFormErrors(err);
+                }
+                return {};
+              }}
               initialValues={initialValues || formValues}
-              validationSchema={createPaymentLink}
               enableReinitialize
               onSubmit={handleSubmit}
             >
               {(formik) => {
+                console.log(formik.errors);
                 return (
                   <Box
                     sx={
@@ -223,7 +231,7 @@ const CreatePaymentLink = ({ toggleCreatePaymentLink }) => {
                             if (e.target.checked) {
                               formik.setFieldValue("changeAmount", ["true"]);
                             } else {
-                              formik.setFieldValue("changeAmount", ["false"]);
+                              formik.setFieldValue("changeAmount", []);
                             }
                             formik.setFieldValue("minAmount", "");
                           }}
@@ -266,9 +274,7 @@ const CreatePaymentLink = ({ toggleCreatePaymentLink }) => {
                                 "true",
                               ]);
                             } else {
-                              formik.setFieldValue("recurringPayment", [
-                                "false",
-                              ]);
+                              formik.setFieldValue("recurringPayment", []);
                             }
                             formik.setFieldValue("orderId", "");
                           }}
@@ -368,7 +374,7 @@ const CreatePaymentLink = ({ toggleCreatePaymentLink }) => {
                             if (e.target.checked) {
                               formik.setFieldValue("noExpiry", ["true"]);
                             } else {
-                              formik.setFieldValue("noExpiry", ["false"]);
+                              formik.setFieldValue("noExpiry", []);
                             }
                             formik.setFieldValue("linkExpirationDate", null);
                           }}
