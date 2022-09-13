@@ -244,7 +244,7 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
 
       // return;
       //   if (errors.captcha !== "" && verifiedCaptchaToken === false) {
-      //     console.log("enterd if");
+      //     console.log("entered if");
       //     return;
       //   }
 
