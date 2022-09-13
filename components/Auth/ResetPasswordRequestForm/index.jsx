@@ -42,7 +42,7 @@ const ResetPasswordRequestForm = () => {
     setCountryRegulator(countryOfOperationBank(query.country));
   }, []);
 
-  const handleSubmit = (values) => {
+  const handleSubmit = (values, formikHelpers) => {
     setLoading(true);
     setAlert({ type: "", message: "" });
 
@@ -71,6 +71,9 @@ const ResetPasswordRequestForm = () => {
           setAlert({ type: "error", message: "Something Went Wrong" });
         } else if (error.response.status === 401) {
           setAlert({ type: "error", message: error.response.data.response });
+        } else if (error.response.status === 406) {
+          formikHelpers.setErrors({ ...error.response.data.response });
+          setAlert({ type: "error", message: "Kindly Resolve Form Errors" });
         } else if (error.response) {
           if (error.response.data.response !== undefined) {
             setAlert({
