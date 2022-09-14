@@ -14,19 +14,60 @@ import {
   Skeleton,
   Box,
 } from "@mui/material";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
-const MuiTable = ({ columns, rows, loading, currentPage }) => {
-  const [page, setPage] = useState(currentPage);
-  const [rowsPerPage, setRowsPerPage] = useState(7);
+const transactions = (column, row) => {
+  const value = row[column.id];
+
+  if (column.label === "Details") {
+    return <MoreHorizIcon />;
+  }
+  if (column.label === "Status") {
+    if (value === 1) {
+      return (
+        <Box sx={{ color: (theme) => theme.colors.successGreen }}>Success</Box>
+      );
+    }
+    return <Box sx={{ color: (theme) => theme.colors.errorRed }}>Failed</Box>;
+  }
+
+  return column.format && typeof value === "number" ? (
+    <Box>{column.format(value)}</Box>
+  ) : (
+    <Box>{value}</Box>
+  );
+};
+
+const rowSwitcher = (column, value, name) => {
+  switch (name) {
+    case "payins":
+      return transactions(column, value);
+    case "payouts":
+      return transactions(column, value);
+    case "billing":
+      return transactions(column, value);
+    default:
+      return transactions(column, value);
+  }
+};
+
+const MuiTable = ({
+  columns,
+  rows,
+  loading,
+  currentPage,
+  name,
+  totalPages,
+}) => {
+  const [page, setPage] = useState(parseInt(currentPage, 10));
+  const [rowsPerPage, setRowsPerPage] = useState(10);
   const router = useRouter();
-
-  console.log(router);
 
   const handleChangePage = (event, newPage) => {
     router.push(
       {
         pathname: `${router.pathname}`,
-        query: { pid: router.query.pid, page: newPage },
+        query: { pid: router.query.pid, page: `${newPage}` },
       },
       undefined,
       {
@@ -83,23 +124,20 @@ const MuiTable = ({ columns, rows, loading, currentPage }) => {
                     }}
                   >
                     {columns.map((column, index1) => {
-                      const value = row[column.id];
-
                       return (
                         <TableCell
-                          key={index1}
+                          key={column.id}
                           align={column.align}
-                          // sx={{ color: "blue" }}
+                          sx={column?.formatting}
+                          onClick={column?.onClick}
                         >
-                          {loading && (
-                            <Box sx={{ width: "100%" }} key={index1}>
+                          {loading ? (
+                            <Box sx={{ width: "100%" }} key={column.id}>
                               <Skeleton sx={{ width: "100%" }} />
                             </Box>
+                          ) : (
+                            rowSwitcher(column, row, name)
                           )}
-                          {!loading &&
-                            (column.format && typeof value === "number"
-                              ? column.format(value)
-                              : value)}
                         </TableCell>
                       );
                     })}
@@ -112,7 +150,7 @@ const MuiTable = ({ columns, rows, loading, currentPage }) => {
       <TablePagination
         rowsPerPageOptions={[]}
         component="div"
-        count={rows.length}
+        count={totalPages}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}
@@ -141,6 +179,8 @@ MuiTable.propTypes = {
   rows: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   currentPage: PropTypes.number,
   loading: PropTypes.bool,
+  totalPages: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
 };
 
 export default MuiTable;

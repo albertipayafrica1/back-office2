@@ -12,7 +12,7 @@ import axios from "axios";
 import Tabs from "../../../atoms/Tabs";
 import DashboardLayout from "../../../components/Layouts/Dashboard";
 import ProtectedRoute from "../../../components/ProtectedRoute";
-import TransactionTable from "../../../components/TransactionTable";
+import TransactionTable from "../../../components/Transactions/TransactionTable";
 
 const Transaction = () => {
   const router = useRouter();
@@ -65,7 +65,7 @@ const Transaction = () => {
         setLoading(false);
         return error;
       });
-  }, [router.query.pid]);
+  }, [router.query]);
 
   const tabTitle = ["payins", "payouts", "billing"];
 
@@ -78,9 +78,9 @@ const Transaction = () => {
     height: "60px",
   };
 
-  if (error) {
-    return <div>{error}</div>;
-  }
+  // if (error) {
+  //   return <div>{error}</div>;
+  // }
 
   return (
     <Box sx={{ p: 10 }}>
@@ -94,19 +94,19 @@ const Transaction = () => {
           name="payins"
           rows={data}
           loading={loading}
-          currentPage={router.query.page}
+          currentPage={parseInt(router.query.page, 10)}
         />
         <TransactionTable
           name="payouts"
           rows={data}
           loading={loading}
-          currentPage={router.query.page}
+          currentPage={parseInt(router.query.page, 10)}
         />
         <TransactionTable
           name="billing"
           rows={data}
           loading={loading}
-          currentPage={router.query.page}
+          currentPage={parseInt(router.query.page, 10)}
         />
       </Tabs>
     </Box>

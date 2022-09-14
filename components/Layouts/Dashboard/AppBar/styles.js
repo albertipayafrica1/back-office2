@@ -42,7 +42,7 @@ export const searchContainer = {
 };
 
 export const userDetailsContainer = {
-  width: { xs: "50%", md: "300px", lg: "300px" },
+  width: { xs: "50%", md: "300px", lg: "400px" },
   marginLeft: { xs: "0px", md: "200px", lg: "200px" },
   alignItems: "center",
   justifyContent: "flex-end",

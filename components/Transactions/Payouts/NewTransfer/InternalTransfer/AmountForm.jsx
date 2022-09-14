@@ -11,27 +11,21 @@ import { Typography, Stack, Box, useMediaQuery } from "@mui/material";
 import ArrowBack from "@mui/icons-material/ArrowBackIosNew";
 
 import { Formik, Form } from "formik";
-import FormikControl from "../../../FormikControls/index";
+import FormikControl from "../../../../FormikControls/index";
 
-import TransactionButton from "../../../../atoms/TransactionButton";
-import MuiSwitch from "../../../../atoms/MuiSwitch";
+import TransactionButton from "../../../../../atoms/TransactionButton";
+import MuiSwitch from "../../../../../atoms/MuiSwitch";
 
 import { transferMode, transferVolume } from "./data";
 
-import { amountChecker } from "../../../../utils/formValidations/settlements/manualSettlement/amountChecker";
-import colors from "../../../../styles/colors";
+import { amountChecker } from "../../../../../utils/formValidations/settlements/manualSettlement/amountChecker";
+import colors from "../../../../../styles/colors";
 
 import * as styles from "./styles";
 
 const shapeSettlementOptions = (settlementOptions) => {
-  let transferModeKey = "";
+  const transferModeKey = transferMode[0].key;
   let transferVolumeKey = "";
-
-  if (settlementOptions.transferMode === "1") {
-    transferModeKey = transferMode[0].key;
-  } else {
-    transferModeKey = transferMode[1].key;
-  }
 
   if (settlementOptions.transferVolume === "1") {
     transferVolumeKey = transferVolume[0].key;
@@ -50,7 +44,7 @@ const AmountForm = ({ settlementOptions, handleSendMoney, handleBack }) => {
   const partialAmountInitialValues = { partialAmount: "" };
 
   const nativeCurrency = "KES"; // changes based on country (get it from store)
-  const payInBalance = "1000"; // get payin balance
+  const payoutBalance = "1000"; // get payout balance
 
   const [switchChecked, setSwitchChecked] = useState(false);
   const [amountToTransfer, setAmountToTransfer] = useState("");
@@ -70,6 +64,14 @@ const AmountForm = ({ settlementOptions, handleSendMoney, handleBack }) => {
   }, []);
 
   // useEffect(() => {}, [amountToTransfer]); // forex conversion
+
+  if (selectedCurrency !== nativeCurrency) {
+    return (
+      <Typography variant="subtitle6">
+        To top up your Payin Account, kindly select {nativeCurrency} to proceed
+      </Typography>
+    );
+  }
 
   return (
     <>
@@ -98,9 +100,7 @@ const AmountForm = ({ settlementOptions, handleSendMoney, handleBack }) => {
       <Stack sx={{ pl: 10 }} spacing={8}>
         {settlementOptions.transferVolume === "1" && (
           <Typography variant="subtitle6">
-            You are about to transfer the Full amount in your{" "}
-            {settlementOptions.transferMode === "2" ? "Payin" : "Settlement"}{" "}
-            account:{" "}
+            You are about to transfer the Full amount in your Payin account{" "}
             <span style={{ color: colors.orange }}>{selectedCurrency}</span>{" "}
             {amountToTransfer}
           </Typography>
@@ -109,7 +109,7 @@ const AmountForm = ({ settlementOptions, handleSendMoney, handleBack }) => {
         {settlementOptions.transferVolume === "2" && (
           <>
             <Typography variant="subtitle6">
-              Your Payin Account balance is:{" "}
+              Your Payout Account balance is:{" "}
               <span style={{ color: colors.orange }}>{selectedCurrency}</span>{" "}
               23,000.00
             </Typography>
@@ -120,7 +120,7 @@ const AmountForm = ({ settlementOptions, handleSendMoney, handleBack }) => {
                 )
               </Typography>
               <Formik
-                validationSchema={amountChecker(payInBalance)}
+                validationSchema={amountChecker(payoutBalance)}
                 initialValues={partialAmountInitialValues}
                 enableReinitialize
               >
@@ -147,44 +147,10 @@ const AmountForm = ({ settlementOptions, handleSendMoney, handleBack }) => {
             </Stack>
           </>
         )}
-        {settlementOptions.transferMode === "2" &&
-          settlementOptions.transferVolume === "1" &&
-          selectedCurrency !== nativeCurrency && (
-            <Typography variant="subtitle6">
-              To top up your Payout Account, transferable amount MUST be in{" "}
-              {nativeCurrency}
-            </Typography>
-          )}
-        {selectedCurrency !== nativeCurrency && amountToTransfer !== "" && (
-          <>
-            <Typography
-              variant="subtitle6"
-              sx={{ color: (theme) => theme.colors.blue }}
-            >
-              FOREIGN EXCHANGE RATE
-            </Typography>
-            <Typography variant="subtitle6">
-              1 {selectedCurrency} to {nativeCurrency} = 117.10
-            </Typography>
-            <Typography variant="subtitle6">
-              Exchange{" "}
-              <span style={{ color: colors.orange }}>{selectedCurrency}</span>{" "}
-              {amountToTransfer} for
-              <span style={{ color: colors.orange }}>
-                {" "}
-                {nativeCurrency}
-              </span>{" "}
-              4,098,500.00
-            </Typography>
-          </>
-        )}
 
         <Stack direction="row" spacing={10} alignItems="center">
           <Typography variant="subtitle6">
-            Initiate{" "}
-            {settlementOptions.transferMode === "1"
-              ? "Advanced Settlement"
-              : "Internal Transfer"}
+            Initiate Internal Transfer
           </Typography>
           <MuiSwitch
             checked={switchChecked}
@@ -196,7 +162,7 @@ const AmountForm = ({ settlementOptions, handleSendMoney, handleBack }) => {
           <Typography variant="subtitle6">
             You are about to transfer{" "}
             <span style={{ color: colors.orange }}>{selectedCurrency}</span>{" "}
-            {amountToTransfer} from your Payin account
+            {amountToTransfer} from your payout account
           </Typography>
         )}
         {switchChecked && (
@@ -208,7 +174,7 @@ const AmountForm = ({ settlementOptions, handleSendMoney, handleBack }) => {
               activeState
               disabled={
                 amountToTransfer === "" ||
-                parseInt(amountToTransfer, 10) > parseInt(payInBalance, 10)
+                parseInt(amountToTransfer, 10) > parseInt(payoutBalance, 10)
               }
             />
           </Box>

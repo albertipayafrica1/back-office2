@@ -61,7 +61,7 @@ export const billPayment = yup.object({
         return false;
       }
       const parsedValue = parseInt(val, 10);
-      if (parsedValue <= 0) {
+      if (parsedValue <= 0 || Number.isNaN(parsedValue)) {
         return false;
       }
       return true;

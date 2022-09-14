@@ -18,20 +18,20 @@ export const menuItems = [
   },
   {
     id: 2,
-    url: "/dashboard/transactions/payins",
+    url: "/dashboard/transactions/payins?page=0",
     name: "Transactions",
     icon: <TransitEnterexitIcon />,
   },
   {
     id: 3,
-    url: "/dashboard/settlements",
+    url: "/dashboard/settlements?page=0",
     name: "Settlements",
     icon: <AddCardIcon />,
   },
 
   {
     id: 4,
-    url: "/dashboard/paymentLinks",
+    url: "/dashboard/paymentLinks?page=0",
     name: "Payment Links",
     icon: <LinkIcon />,
   },

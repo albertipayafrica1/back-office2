@@ -182,7 +182,6 @@ export default Otp;
 
 export const getServerSideProps = ProtectedRoute((context) => {
   const { req } = context;
-  // console.log(req.headers.cookie, "cookie on header");
   const { country } = context.query;
 
   if (
