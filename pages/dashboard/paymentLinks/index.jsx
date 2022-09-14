@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 
 import DashboardLayout from "../../../components/Layouts/Dashboard";
 import ProtectedRoute from "../../../components/ProtectedRoute";
-import PaymentLinksTable from "../../../components/PaymentLinks/PaymentLinksTable";
+import PaymentLinksTable from "../../../components/PaymentLinks/PaymentLinksTable/index";
 
 const PaymentLinks = () => (
   <Box sx={{ p: 10 }}>
