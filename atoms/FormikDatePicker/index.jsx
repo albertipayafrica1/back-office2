@@ -21,6 +21,8 @@ const FormikDatePicker = ({
   onBlur,
   required,
   label,
+  maxDateOption,
+  minDate,
   ...restProps
 }) => {
   const classes = useStyles();
@@ -40,7 +42,8 @@ const FormikDatePicker = ({
                 <DesktopDatePicker
                   {...field}
                   {...restProps}
-                  maxDate={new Date()}
+                  minDate={minDate}
+                  maxDate={maxDateOption ? null : new Date()}
                   inputFormat="dd/MM/yyyy"
                   InputProps={{
                     classes: { root: classes.root },
@@ -119,6 +122,8 @@ const FormikDatePicker = ({
 FormikDatePicker.defaultProps = {
   onChange: null,
   onBlur: null,
+  maxDateOption: null,
+  minDate: null,
 };
 
 FormikDatePicker.propTypes = {
@@ -127,6 +132,8 @@ FormikDatePicker.propTypes = {
   onBlur: PropTypes.func,
   name: PropTypes.string.isRequired,
   required: PropTypes.bool.isRequired,
+  maxDateOption: PropTypes.bool,
+  minDate: PropTypes.instanceOf(Date),
 };
 
 export default FormikDatePicker;

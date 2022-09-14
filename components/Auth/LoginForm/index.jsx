@@ -20,7 +20,7 @@ import {
   getCountryIconLink,
   countryOfOperationBank,
 } from "../../../utils/countryOfOperation";
-import { login } from "../../../utils/formValidations/login";
+import { login } from "../../../utils/formValidations/auth/login";
 
 import * as styles from "./styles";
 
@@ -41,14 +41,14 @@ const LoginForm = ({ country }) => {
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState({ type: "", message: "" });
 
-  const handleSubmit = (values) => {
+  const handleSubmit = (values, formikHelpers) => {
     setLoading(true);
     setAlert({ type: "", message: "" });
 
     const config = {
       method: "post",
       url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/login`,
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "Device-Channel": "web" },
       data: JSON.stringify(values),
       withCredentials: true,
     };
@@ -69,6 +69,9 @@ const LoginForm = ({ country }) => {
           setAlert({ type: "error", message: "Something Went Wrong" });
         } else if (error.response.status === 401) {
           setAlert({ type: "error", message: error.response.data.response });
+        } else if (error.response.status === 406) {
+          formikHelpers.setErrors({ ...error.response.data.response });
+          setAlert({ type: "error", message: "Kindly Resolve Form Errors" });
         } else if (error.response) {
           if (error.response.data.response !== undefined) {
             setAlert({

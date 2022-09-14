@@ -2,12 +2,12 @@ import { Typography, Box } from "@mui/material";
 
 import DashboardLayout from "../../../components/Layouts/Dashboard";
 import ProtectedRoute from "../../../components/ProtectedRoute";
-import TransactionTable from "../../../components/TransactionTable";
+import SettlementsTable from "../../../components/Settlements/SettlementsTable";
 
 const Settlements = () => {
   return (
     <Box sx={{ p: 10 }}>
-      <TransactionTable name="settlements" />
+      <SettlementsTable name="settlements" />
     </Box>
   );
 };

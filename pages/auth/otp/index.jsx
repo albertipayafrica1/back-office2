@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import Cookies from "js-cookie";
 
-import Carousel from "../../../components/Carousel";
+import Carousel from "../../../components/Auth/Carousel";
 import OTPInput from "../../../components/Auth/OTPInput";
 import Auth from "../../../components/Layouts/Auth";
 import ProtectedRoute from "../../../components/ProtectedRoute";
@@ -74,6 +74,7 @@ const Otp = () => {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${credentials}`,
+        "Device-Channel": "web",
       },
       data: JSON.stringify(otpObject),
     };
@@ -132,10 +133,11 @@ const Otp = () => {
 
     const config = {
       method: "post",
-      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/resend-otp`,
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/otp-resend`,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${credentials}`,
+        "Device-Channel": "web",
       },
     };
 
@@ -180,7 +182,6 @@ export default Otp;
 
 export const getServerSideProps = ProtectedRoute((context) => {
   const { req } = context;
-  // console.log(req.headers.cookie, "cookie on header");
   const { country } = context.query;
 
   if (

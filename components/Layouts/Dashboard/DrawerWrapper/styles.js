@@ -27,30 +27,32 @@ export const logo = {
   marginTop: "40px",
 };
 
-export const menuItemContainer = {
-  display: "flex",
-  flexDirection: "column",
-  paddingBottom: "20px",
-  width: "100%",
-  marginTop: "10px",
-  maxHeight: "350px",
+export const menuItemContainer = (mobileOpen) => {
+  return {
+    display: "flex",
+    flexDirection: "column",
+    paddingBottom: "20px",
+    width: "100%",
+    marginTop: "10px",
+    maxHeight: "350px",
 
-  // overflowY: "hidden",
-  "&:hover": {
-    overflowY: "scroll",
-    "&::-webkit-scrollbar": {
-      width: "5px",
-      height: "30px",
+    // overflowY: "hidden",
+    "&:hover": {
+      overflowY: "scroll",
+      "&::-webkit-scrollbar": {
+        width: "5px",
+        height: "30px",
+      },
+      "&::-webkit-scrollbar-track": {
+        boxShadow: `inset 0 0 6px rgba(0, 0, 0, 0.3)`,
+      },
+      "&::-webkit-scrollbar-thumb": {
+        backgroundColor: "white",
+        borderRadius: "10px",
+        outline: `1px solid slategrey`,
+      },
     },
-    "&::-webkit-scrollbar-track": {
-      boxShadow: `inset 0 0 6px rgba(0, 0, 0, 0.3)`,
-    },
-    "&::-webkit-scrollbar-thumb": {
-      backgroundColor: "white",
-      borderRadius: "10px",
-      outline: `1px solid slategrey`,
-    },
-  },
+  };
 };
 
 export const linearProgress = {
@@ -104,6 +106,38 @@ export const itemMenuText = {
   ml: "10px",
   lineHeight: "16px",
   letterSpacing: "0.02em",
+};
+
+export const listItem = {
+  borderRadius: "5px",
+  width: "165px",
+  height: "38px",
+  mt: 2,
+  color: "#000000",
+  "&:hover": {
+    color: "white",
+    backgroundColor: (theme) => theme.colors.blue,
+  },
+  "&.MuiButton-root": {
+    display: "flex",
+    justifyContent: "flex-start",
+  },
+};
+
+export const activeListItem = {
+  borderRadius: "5px",
+  width: "165px",
+  height: "38px",
+  mt: 2,
+  color: "white",
+  backgroundColor: (theme) => theme.colors.blue,
+  "&:hover": {
+    backgroundColor: (theme) => theme.colors.blue,
+  },
+  "&.MuiButton-root": {
+    display: "flex",
+    justifyContent: "flex-start",
+  },
 };
 
 export const menuItem = {

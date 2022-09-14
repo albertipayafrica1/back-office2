@@ -1,18 +1,15 @@
 import PropTypes from "prop-types";
-import { useSelector } from "react-redux";
 import axios from "axios";
 
 import { Box } from "@mui/material";
 
 import ErrorBoundary from "../../../atoms/ErrorBoundary";
 
-import HorizontalLinearStepper from "../../../components/Stepper";
+import HorizontalLinearStepper from "../../../components/Kyc/Stepper";
 import DashboardLayout from "../../../components/Layouts/Dashboard";
 import ProtectedRoute from "../../../components/ProtectedRoute";
 
 const Kyc = ({ data, error }) => {
-  const kycData = useSelector((state) => state);
-
   if (error !== "") {
     return <ErrorBoundary error={error} />;
   }
@@ -54,6 +51,7 @@ export const getServerSideProps = ProtectedRoute(async (context) => {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${req.cookies.iPayT}`,
+      "Device-Channel": "web",
     },
     withCredentials: true,
   };

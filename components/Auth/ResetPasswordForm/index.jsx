@@ -18,7 +18,7 @@ import {
   getCountryIconLink,
   countryOfOperationBank,
 } from "../../../utils/countryOfOperation";
-import { resetPassword } from "../../../utils/formValidations/resetPassword";
+import { resetPassword } from "../../../utils/formValidations/auth/resetPassword";
 
 import * as styles from "./styles";
 
@@ -47,6 +47,7 @@ const ResetPasswordForm = () => {
       url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/set-password`,
       headers: {
         "Content-Type": "application/json",
+        "Device-Channel": "web",
         Authorization: `Bearer ${query.token}`,
       },
       data: JSON.stringify(values),

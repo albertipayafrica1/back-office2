@@ -12,11 +12,12 @@ import {
   Box,
 } from "@mui/material";
 
-import SelectCurrencies from "../SelectCurrencies";
+import GlobalCurrencySelector from "./GlobalCurrencySelector";
 
+import MenuList from "./MenuList";
 import MuiToolTip from "../../../../atoms/MuiToolTip";
 
-import { MenuItems } from "../data";
+import { menuItems, settingsMenuListItems } from "./data";
 import * as styles from "./styles";
 
 const DrawerWrapper = ({ mobileOpen, handleDrawerToggle, testModeStatus }) => {
@@ -52,7 +53,7 @@ const DrawerWrapper = ({ mobileOpen, handleDrawerToggle, testModeStatus }) => {
           Currency
         </Typography>
 
-        <SelectCurrencies />
+        <GlobalCurrencySelector />
 
         <MuiToolTip
           placement="right-start"
@@ -104,8 +105,8 @@ const DrawerWrapper = ({ mobileOpen, handleDrawerToggle, testModeStatus }) => {
         </Box>
       </MuiToolTip>
       <Divider sx={{ mt: 2, width: "80%" }} />
-      <Box sx={styles.menuItemContainer}>
-        {MenuItems.map((item, index) => {
+      <Box sx={styles.menuItemContainer(mobileOpen)}>
+        {menuItems.map((item) => {
           return (
             <Button
               onClick={() => {
@@ -119,15 +120,16 @@ const DrawerWrapper = ({ mobileOpen, handleDrawerToggle, testModeStatus }) => {
                   ? styles.activeMenuItem
                   : styles.menuItem
               }
-              key={index}
+              key={item.id}
             >
               {item.icon}
-              <Typography sx={styles.itemMenuText} key={index}>
+              <Typography sx={styles.itemMenuText} key={item.id}>
                 {item.name}
               </Typography>
             </Button>
           );
         })}
+        <MenuList itemList={settingsMenuListItems} />
       </Box>
     </Box>
   );

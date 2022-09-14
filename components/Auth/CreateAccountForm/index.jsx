@@ -28,7 +28,7 @@ import {
   countryOfOperationBank,
   getTelephoneCountryCode,
 } from "../../../utils/countryOfOperation";
-import { createAccount } from "../../../utils/formValidations/createAccount";
+import { createAccount } from "../../../utils/formValidations/auth/createAccount";
 import { telephoneCodes } from "../../../utils/data";
 import * as styles from "./styles";
 
@@ -244,7 +244,7 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
 
       // return;
       //   if (errors.captcha !== "" && verifiedCaptchaToken === false) {
-      //     console.log("enterd if");
+      //     console.log("entered if");
       //     return;
       //   }
 
@@ -254,6 +254,7 @@ const CreateAccountForm = ({ countryCode, rc, emailAlertHandler }) => {
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
+          "Device-Channel": "web",
         },
         data: JSON.stringify(values),
         withCredentials: true,

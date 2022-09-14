@@ -1,23 +1,14 @@
-import { Typography } from "@mui/material";
+import { Box } from "@mui/material";
 
 import DashboardLayout from "../../../components/Layouts/Dashboard";
 import ProtectedRoute from "../../../components/ProtectedRoute";
+import PaymentLinksTable from "../../../components/PaymentLinks/PaymentLinksTable";
 
-const PaymentLinks = () => {
-  return (
-    <Typography
-      variant="title6"
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100%",
-      }}
-    >
-      Payment Links is Coming Soon
-    </Typography>
-  );
-};
+const PaymentLinks = () => (
+  <Box sx={{ p: 10 }}>
+    <PaymentLinksTable />;
+  </Box>
+);
 
 export default PaymentLinks;
 

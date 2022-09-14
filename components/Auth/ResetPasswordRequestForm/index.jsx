@@ -18,7 +18,7 @@ import {
   getCountryIconLink,
   countryOfOperationBank,
 } from "../../../utils/countryOfOperation";
-import { resetPasswordRequest } from "../../../utils/formValidations/resetPasswordRequest";
+import { resetPasswordRequest } from "../../../utils/formValidations/auth/resetPasswordRequest";
 
 import * as styles from "./styles";
 
@@ -42,14 +42,14 @@ const ResetPasswordRequestForm = () => {
     setCountryRegulator(countryOfOperationBank(query.country));
   }, []);
 
-  const handleSubmit = (values) => {
+  const handleSubmit = (values, formikHelpers) => {
     setLoading(true);
     setAlert({ type: "", message: "" });
 
     const config = {
       method: "post",
       url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/forgot-password`,
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "Device-Channel": "web" },
       data: JSON.stringify(values),
       withCredentials: true,
     };
@@ -71,6 +71,9 @@ const ResetPasswordRequestForm = () => {
           setAlert({ type: "error", message: "Something Went Wrong" });
         } else if (error.response.status === 401) {
           setAlert({ type: "error", message: error.response.data.response });
+        } else if (error.response.status === 406) {
+          formikHelpers.setErrors({ ...error.response.data.response });
+          setAlert({ type: "error", message: "Kindly Resolve Form Errors" });
         } else if (error.response) {
           if (error.response.data.response !== undefined) {
             setAlert({

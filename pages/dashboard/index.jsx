@@ -1,9 +1,6 @@
 import React from "react";
 import CreateAccountOtpDialog from "../../components/Auth/CreateAccountOtpDialog";
-import Search from "../../atoms/Search";
-import FilterDialog from "../../components/FilterDialog";
-import Stepper from "../../components/Stepper";
-import KycCompleteDialog from "../../components/KycCompleteDialog";
+
 import ProtectedRoute from "../../components/ProtectedRoute";
 
 const index = () => {
@@ -14,19 +11,13 @@ const index = () => {
     left: 50,
   };
   return (
-    // <div>
-    //   <CreateAccountOtpDialog
-    //     open
-    //     backDropVisible
-    //     paperPropsStyling={paperPropsStyling}
-    //   />
-    // </div>
-    <>
-      <Search />
-      <FilterDialog />
-      <KycCompleteDialog open />
-      {/* <Stepper flow="registered" /> */}
-    </>
+    <div>
+      <CreateAccountOtpDialog
+        open
+        backDropVisible
+        paperPropsStyling={paperPropsStyling}
+      />
+    </div>
   );
 };
 

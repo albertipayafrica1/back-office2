@@ -11,6 +11,7 @@ import {
   IconButton,
   Typography,
   Badge,
+  Stack,
 } from "@mui/material";
 
 import MenuIcon from "@mui/icons-material/Menu";
@@ -72,7 +73,7 @@ const TopAppBar = ({ handleDrawerToggle, testModeStatus }) => {
 
             <img src="/LOGO.svg" alt="logo" style={styles.logo} />
 
-            <Box sx={styles.searchUserDetailsContainer}>
+            <Stack sx={styles.searchUserDetailsContainer}>
               <Box sx={styles.searchContainer}>
                 {router.pathname !== "/dashboard/kyc" && <Search />}
               </Box>
@@ -95,16 +96,18 @@ const TopAppBar = ({ handleDrawerToggle, testModeStatus }) => {
                 <Typography sx={styles.HelpText}>
                   {`Hello, ${user.firstName}`}
                 </Typography>
-                <Box
+                <Stack
+                  direction="row"
+                  alignItems="center"
                   onClick={toggleUserDetailsComponent}
                   sx={styles.userIconContainer}
                 >
                   <Image src="/usericon.svg" width={16.15} height={16.15} />
 
                   <Image src="/down arrow.svg" width="8.88px" height="8.88px" />
-                </Box>
+                </Stack>
               </Box>
-            </Box>
+            </Stack>
             <UserDetails status={userDetailsComponent} />
           </Box>
         </Toolbar>

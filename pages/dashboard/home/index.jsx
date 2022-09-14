@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { Typography, Stack, Box } from "@mui/material";
-import PageViewBox from "../../../atoms/PageViewBox";
 
+import PageViewBox from "../../../atoms/PageViewBox";
 import TransactionSummaryCard from "../../../atoms/TransactionSummaryCard";
 
 import DashboardLayout from "../../../components/Layouts/Dashboard";

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Cookies from "js-cookie";
 
 import axios from "axios";
-import Carousel from "../../../components/Carousel";
+import Carousel from "../../../components/Auth/Carousel";
 import LoginForm from "../../../components/Auth/LoginForm";
 import Auth from "../../../components/Layouts/Auth";
 

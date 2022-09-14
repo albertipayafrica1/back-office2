@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 
 import { Box, Tab, useMediaQuery } from "@mui/material";
@@ -6,12 +7,33 @@ import { TabContext, TabList, TabPanel } from "@mui/lab";
 
 import * as styles from "./styles";
 
-const Tabs = ({ tabTitle, children, positionStyles, icons }) => {
-  const [value, setValue] = useState("0");
+const Tabs = ({
+  tabTitle,
+  children,
+  positionStyles,
+  icons,
+  activeTab,
+  routeOnChange,
+}) => {
+  const [value, setValue] = useState(activeTab);
   const matches = useMediaQuery("(min-width:930px)");
+
+  const router = useRouter();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    if (routeOnChange) {
+      router.push(
+        {
+          pathname: `${router.pathname}`,
+          query: { pid: tabTitle[newValue], page: 0 },
+        },
+        undefined,
+        {
+          shallow: true,
+        }
+      );
+    }
   };
 
   const tabStyle = {
@@ -78,6 +100,8 @@ const Tabs = ({ tabTitle, children, positionStyles, icons }) => {
 Tabs.defaultProps = {
   positionStyles: {},
   icons: null,
+  activeTab: "0",
+  routeOnChange: false,
 };
 
 Tabs.propTypes = {
@@ -85,6 +109,8 @@ Tabs.propTypes = {
   children: PropTypes.node.isRequired,
   positionStyles: PropTypes.shape({}),
   icons: PropTypes.arrayOf(PropTypes.node),
+  activeTab: PropTypes.string,
+  routeOnChange: PropTypes.bool,
 };
 
 export default Tabs;

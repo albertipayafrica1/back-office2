@@ -1,4 +1,4 @@
-import Carousel from "../../../components/Carousel";
+import Carousel from "../../../components/Auth/Carousel";
 import ResetPasswordRequestForm from "../../../components/Auth/ResetPasswordRequestForm";
 import Auth from "../../../components/Layouts/Auth";
 

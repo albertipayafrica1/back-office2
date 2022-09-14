@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 
 import {
@@ -10,13 +11,69 @@ import {
   TableHead,
   TablePagination,
   TableRow,
+  Skeleton,
+  Box,
 } from "@mui/material";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
-const MuiTable = ({ columns, rows }) => {
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(7);
+const transactions = (column, row) => {
+  const value = row[column.id];
+
+  if (column.label === "Details") {
+    return <MoreHorizIcon />;
+  }
+  if (column.label === "Status") {
+    if (value === 1) {
+      return (
+        <Box sx={{ color: (theme) => theme.colors.successGreen }}>Success</Box>
+      );
+    }
+    return <Box sx={{ color: (theme) => theme.colors.errorRed }}>Failed</Box>;
+  }
+
+  return column.format && typeof value === "number" ? (
+    <Box>{column.format(value)}</Box>
+  ) : (
+    <Box>{value}</Box>
+  );
+};
+
+const rowSwitcher = (column, value, name) => {
+  switch (name) {
+    case "payins":
+      return transactions(column, value);
+    case "payouts":
+      return transactions(column, value);
+    case "billing":
+      return transactions(column, value);
+    default:
+      return transactions(column, value);
+  }
+};
+
+const MuiTable = ({
+  columns,
+  rows,
+  loading,
+  currentPage,
+  name,
+  totalPages,
+}) => {
+  const [page, setPage] = useState(parseInt(currentPage, 10));
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const router = useRouter();
 
   const handleChangePage = (event, newPage) => {
+    router.push(
+      {
+        pathname: `${router.pathname}`,
+        query: { pid: router.query.pid, page: `${newPage}` },
+      },
+      undefined,
+      {
+        shallow: true,
+      }
+    );
     setPage(newPage);
   };
 
@@ -42,7 +99,7 @@ const MuiTable = ({ columns, rows }) => {
                 <TableCell
                   key={column.id}
                   align={column.align}
-                  style={{ width: 200 }}
+                  // style={{ width: 200 }}
                   // style={{ minWidth: column.minWidth }}
                   sx={{ color: (theme) => theme.colors.blue }}
                 >
@@ -54,25 +111,33 @@ const MuiTable = ({ columns, rows }) => {
           <TableBody>
             {rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
+              .map((row, index) => {
                 return (
                   <TableRow
                     hover
                     tabIndex={-1}
-                    key={row.code}
+                    key={index}
                     sx={{
                       "&:nth-of-type(odd)": {
                         backgroundColor: (theme) => theme.colors.mono9,
                       },
                     }}
                   >
-                    {columns.map((column) => {
-                      const value = row[column.id];
+                    {columns.map((column, index1) => {
                       return (
-                        <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === "number"
-                            ? column.format(value)
-                            : value}
+                        <TableCell
+                          key={column.id}
+                          align={column.align}
+                          sx={column?.formatting}
+                          onClick={column?.onClick}
+                        >
+                          {loading ? (
+                            <Box sx={{ width: "100%" }} key={column.id}>
+                              <Skeleton sx={{ width: "100%" }} />
+                            </Box>
+                          ) : (
+                            rowSwitcher(column, row, name)
+                          )}
                         </TableCell>
                       );
                     })}
@@ -85,7 +150,7 @@ const MuiTable = ({ columns, rows }) => {
       <TablePagination
         rowsPerPageOptions={[]}
         component="div"
-        count={rows.length}
+        count={totalPages}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}
@@ -104,9 +169,18 @@ const MuiTable = ({ columns, rows }) => {
   );
 };
 
+MuiTable.defaultProps = {
+  currentPage: 0,
+  loading: false,
+};
+
 MuiTable.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   rows: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  currentPage: PropTypes.number,
+  loading: PropTypes.bool,
+  totalPages: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
 };
 
 export default MuiTable;

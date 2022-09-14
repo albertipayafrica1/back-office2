@@ -38,6 +38,7 @@ const UserDetails = ({ status }) => {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${credentials} `,
+        "Device-Channel": "web",
       },
       withCredentials: true,
     };
