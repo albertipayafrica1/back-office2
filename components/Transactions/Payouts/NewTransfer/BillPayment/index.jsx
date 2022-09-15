@@ -16,7 +16,7 @@ import Loader from "../../../../../atoms/Loader";
 import MuiAlert from "../../../../../atoms/MuiAlert";
 import TransactionButton from "../../../../../atoms/TransactionButton";
 
-import { billPayment } from "../../../../../utils/formValidations/payoutsNewTransfer/billPayment";
+import { billPayment } from "../../../../../utils/formValidations/transactions/payouts/newTransfer/billPayment";
 import { getTelephoneCountryCode } from "../../../../../utils/countryOfOperation";
 import { telephoneCodes } from "../../../../../utils/data";
 

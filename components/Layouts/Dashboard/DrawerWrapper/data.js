@@ -8,6 +8,7 @@ import BarChartIcon from "@mui/icons-material/BarChart";
 import AddCardIcon from "@mui/icons-material/AddCard";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
+import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
 
 export const menuItems = [
   {
@@ -37,17 +38,17 @@ export const menuItems = [
   },
 
   {
+    id: 6,
+    url: "/dashboard/subAccounts?page=0",
+    name: "SubAccounts",
+    icon: <SupervisorAccountIcon />,
+  },
+
+  {
     id: 5,
     url: "/dashboard/reports",
     name: "Reports",
     icon: <BarChartIcon />,
-  },
-
-  {
-    id: 6,
-    url: "/dashboard/kopeshaLoans",
-    name: "KopeshaLoans",
-    icon: <MonetizationOnIcon />,
   },
 
   {

@@ -17,7 +17,7 @@ import Loader from "../../../../../atoms/Loader";
 import MuiAlert from "../../../../../atoms/MuiAlert";
 import TransactionButton from "../../../../../atoms/TransactionButton";
 
-import { singleTransfer } from "../../../../../utils/formValidations/payoutsNewTransfer/singleTransfer";
+import { singleTransfer } from "../../../../../utils/formValidations/transactions/payouts/newTransfer/singleTransfer";
 
 import * as styles from "./styles";
 import { payoutModeOptions } from "./data";
