@@ -77,7 +77,7 @@ const Tabs = ({
                       flexWrap: "wrap",
                     },
                   }}
-                  key={index + "aa"}
+                  key={`${index}aa`}
                   label={<span style={labelStyle}>{title}</span>}
                   classes={tabClass}
                   style={tabStyle}

@@ -46,18 +46,14 @@ const FormikDateRangePicker = ({
                       <TextField
                         {...startProps}
                         helperText={
-                          Boolean(getIn(form.errors, name))
-                            ? form.errors[name][0]
-                            : ""
+                          getIn(form.errors, name) ? form.errors[name][0] : ""
                         }
                         error={Boolean(getIn(form.errors, name))}
                         label={
                           <Typography
                             variant="subtitle3"
                             className={
-                              Boolean(getIn(form.errors, name))
-                                ? classes.error
-                                : ""
+                              getIn(form.errors, name) ? classes.error : ""
                             }
                           >
                             {labelStart}
@@ -98,18 +94,14 @@ const FormikDateRangePicker = ({
                       <TextField
                         {...endProps}
                         helperText={
-                          Boolean(getIn(form.errors, name))
-                            ? form.errors[name][1]
-                            : ""
+                          getIn(form.errors, name) ? form.errors[name][1] : ""
                         }
                         error={Boolean(getIn(form.errors, name))}
                         label={
                           <Typography
                             variant="subtitle3"
                             className={
-                              Boolean(getIn(form.errors, name))
-                                ? classes.error
-                                : ""
+                              getIn(form.errors, name) ? classes.error : ""
                             }
                           >
                             {labelEnd}

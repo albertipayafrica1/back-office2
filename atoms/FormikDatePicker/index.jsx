@@ -61,12 +61,10 @@ const FormikDatePicker = ({
                         <Typography
                           variant="subtitle3"
                           className={
-                            Boolean(
-                              getIn(form.touched, name) &&
-                                getIn(form.errors, name)
-                            )
+                            getIn(form.touched, name) &&
+                            getIn(form.errors, name)
                               ? classes.error
-                              : {}
+                              : ""
                           }
                         >
                           {label}

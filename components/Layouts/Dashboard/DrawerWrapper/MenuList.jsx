@@ -18,7 +18,7 @@ import * as styles from "./styles";
 
 const MenuList = ({ itemList }) => {
   const router = useRouter();
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const handleClick = () => {
     setOpen((prevState) => !prevState);

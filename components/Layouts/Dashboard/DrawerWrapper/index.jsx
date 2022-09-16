@@ -106,7 +106,7 @@ const DrawerWrapper = ({ mobileOpen, handleDrawerToggle, testModeStatus }) => {
         </Box>
       </MuiToolTip>
       <Divider sx={{ mt: 2, width: "80%" }} />
-      <Box sx={styles.menuItemContainer(mobileOpen)}>
+      <Box sx={styles.menuItemContainer(window.innerHeight)}>
         {menuItems.map((item) => {
           return (
             <Link href={`${item.url}`} key={item.id}>
