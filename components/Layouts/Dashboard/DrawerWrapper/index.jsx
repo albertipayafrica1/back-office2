@@ -1,5 +1,6 @@
-import PropTypes from "prop-types";
 import { useRouter } from "next/router";
+import Link from "next/link";
+import PropTypes from "prop-types";
 
 import { useSelector } from "react-redux";
 
@@ -108,25 +109,26 @@ const DrawerWrapper = ({ mobileOpen, handleDrawerToggle, testModeStatus }) => {
       <Box sx={styles.menuItemContainer(mobileOpen)}>
         {menuItems.map((item) => {
           return (
-            <Button
-              onClick={() => {
-                if (mobileOpen) {
-                  handleDrawerToggle();
+            <Link href={`${item.url}`}>
+              <Button
+                onClick={() => {
+                  if (mobileOpen) {
+                    handleDrawerToggle();
+                  }
+                }}
+                sx={
+                  router.pathname === `${item.url}`
+                    ? styles.activeMenuItem
+                    : styles.menuItem
                 }
-                return router.push(`${item.url}`);
-              }}
-              sx={
-                router.pathname === `${item.url}`
-                  ? styles.activeMenuItem
-                  : styles.menuItem
-              }
-              key={item.id}
-            >
-              {item.icon}
-              <Typography sx={styles.itemMenuText} key={item.id}>
-                {item.name}
-              </Typography>
-            </Button>
+                key={item.id}
+              >
+                {item.icon}
+                <Typography sx={styles.itemMenuText} key={item.id}>
+                  {item.name}
+                </Typography>
+              </Button>
+            </Link>
           );
         })}
         <MenuList itemList={settingsMenuListItems} />
