@@ -25,8 +25,8 @@ const AddSubAccounts = ({ toggleAddSubAccounts }) => {
           positionStyles={styles.positionStyles}
           icons={icons}
         >
-          <POS />
-          <POS />
+          <POS closeAddSubAccounts={toggleAddSubAccounts} />
+          <POS closeAddSubAccounts={toggleAddSubAccounts} />
         </Tabs>
       </PageViewBox>
     </Box>

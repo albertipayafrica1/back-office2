@@ -33,7 +33,7 @@ const initialValues = {
   callbackUrl: "",
   securityKey: "xxx",
 };
-const AddSubAccount = ({ toggleAddSubAccount }) => {
+const Pos = ({ closeAddSubAccounts }) => {
   const matches = useMediaQuery("(min-width:800px)");
   const router = useRouter();
 
@@ -177,7 +177,6 @@ const AddSubAccount = ({ toggleAddSubAccount }) => {
           onSubmit={handleSubmit}
         >
           {(formik) => {
-            console.log(formik.errors);
             return (
               <Box
                 sx={
@@ -351,7 +350,7 @@ const AddSubAccount = ({ toggleAddSubAccount }) => {
                         text="Cancel"
                         onClick={() => {
                           formik.resetForm();
-                          return toggleAddSubAccount;
+                          return closeAddSubAccounts();
                         }}
                       />
                     </Stack>
@@ -370,8 +369,8 @@ const AddSubAccount = ({ toggleAddSubAccount }) => {
   );
 };
 
-AddSubAccount.propTypes = {
-  toggleAddSubAccount: PropTypes.func.isRequired,
+Pos.propTypes = {
+  closeAddSubAccounts: PropTypes.func.isRequired,
 };
 
-export default AddSubAccount;
+export default Pos;

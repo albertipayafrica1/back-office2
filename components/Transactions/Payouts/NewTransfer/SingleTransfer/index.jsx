@@ -278,7 +278,6 @@ const SingleTransfer = ({ toggleNewTransfer }) => {
                       sx={{ height: "50px", width: "300px" }}
                       type="submit"
                       disabled={formik.isValid === false || formik.isSubmitting}
-                      withoutIconMedia
                     >
                       Initiate Transfer
                     </Button>

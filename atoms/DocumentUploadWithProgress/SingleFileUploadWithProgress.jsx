@@ -64,7 +64,7 @@ const SingleFileUploadWithProgress = ({
 
     const formData = new FormData();
     const truncatedFieldName = fieldName.replace(/\[.*?\]/g, "");
-    console.log(fieldName.match(/[(.*?)]/));
+    // console.log(fieldName.match(/[(.*?)]/));
     // const indexOFDot = fieldName.indexOf("[0]");
     // console.log(fieldName.replace("[0]", ""));
 

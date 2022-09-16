@@ -263,7 +263,6 @@ const SingleTransfer = ({ toggleNewTransfer }) => {
                       sx={{ height: "50px", width: "200px" }}
                       type="submit"
                       disabled={formik.isValid === false || formik.isSubmitting}
-                      withoutIconMedia
                     >
                       Pay Bill
                     </Button>

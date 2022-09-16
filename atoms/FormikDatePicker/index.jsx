@@ -64,7 +64,9 @@ const FormikDatePicker = ({
                             Boolean(
                               getIn(form.touched, name) &&
                                 getIn(form.errors, name)
-                            ) && classes.error
+                            )
+                              ? classes.error
+                              : {}
                           }
                         >
                           {label}

@@ -7,7 +7,7 @@ const Header = ({ closeManageSettlements }) => {
   return (
     <Stack
       direction="row"
-      alignItem="center"
+      alignItems="center"
       justifyContent="space-between"
       sx={{ pl: 6, pb: 6, pr: 6 }}
     >

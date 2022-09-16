@@ -109,7 +109,7 @@ const DrawerWrapper = ({ mobileOpen, handleDrawerToggle, testModeStatus }) => {
       <Box sx={styles.menuItemContainer(mobileOpen)}>
         {menuItems.map((item) => {
           return (
-            <Link href={`${item.url}`}>
+            <Link href={`${item.url}`} key={item.id}>
               <Button
                 onClick={() => {
                   if (mobileOpen) {
@@ -117,16 +117,13 @@ const DrawerWrapper = ({ mobileOpen, handleDrawerToggle, testModeStatus }) => {
                   }
                 }}
                 sx={
-                  router.pathname === `${item.url}`
+                  router.pathname.includes(`${item.routeToMatch}`)
                     ? styles.activeMenuItem
                     : styles.menuItem
                 }
-                key={item.id}
               >
                 {item.icon}
-                <Typography sx={styles.itemMenuText} key={item.id}>
-                  {item.name}
-                </Typography>
+                <Typography sx={styles.itemMenuText}>{item.name}</Typography>
               </Button>
             </Link>
           );

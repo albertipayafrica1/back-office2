@@ -46,15 +46,18 @@ const FormikDateRangePicker = ({
                       <TextField
                         {...startProps}
                         helperText={
-                          Boolean(getIn(form.errors, name)) &&
-                          form.errors[name][0]
+                          Boolean(getIn(form.errors, name))
+                            ? form.errors[name][0]
+                            : ""
                         }
                         error={Boolean(getIn(form.errors, name))}
                         label={
                           <Typography
                             variant="subtitle3"
                             className={
-                              Boolean(getIn(form.errors, name)) && classes.error
+                              Boolean(getIn(form.errors, name))
+                                ? classes.error
+                                : ""
                             }
                           >
                             {labelStart}
@@ -95,15 +98,18 @@ const FormikDateRangePicker = ({
                       <TextField
                         {...endProps}
                         helperText={
-                          Boolean(getIn(form.errors, name)) &&
-                          form.errors[name][1]
+                          Boolean(getIn(form.errors, name))
+                            ? form.errors[name][1]
+                            : ""
                         }
                         error={Boolean(getIn(form.errors, name))}
                         label={
                           <Typography
                             variant="subtitle3"
                             className={
-                              Boolean(getIn(form.errors, name)) && classes.error
+                              Boolean(getIn(form.errors, name))
+                                ? classes.error
+                                : ""
                             }
                           >
                             {labelEnd}
@@ -155,6 +161,7 @@ const FormikDateRangePicker = ({
 FormikDateRangePicker.defaultProps = {
   onChange: null,
   onBlur: null,
+  required: false,
 };
 
 FormikDateRangePicker.propTypes = {
@@ -163,6 +170,6 @@ FormikDateRangePicker.propTypes = {
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
   name: PropTypes.string.isRequired,
-  required: PropTypes.bool.isRequired,
+  required: PropTypes.bool,
 };
 export default FormikDateRangePicker;

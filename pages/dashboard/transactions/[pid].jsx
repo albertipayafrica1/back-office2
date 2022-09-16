@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
 import { useRouter } from "next/router";
-import PropTypes from "prop-types";
 
 import Cookies from "js-cookie";
 

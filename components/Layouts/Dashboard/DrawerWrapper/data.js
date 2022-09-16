@@ -14,18 +14,21 @@ export const menuItems = [
   {
     id: 1,
     url: "/dashboard/home",
+    routeToMatch: "/dashboard/home",
     name: "Dashboard",
     icon: <DashboardIcon />,
   },
   {
     id: 2,
     url: "/dashboard/transactions/payins?page=0",
+    routeToMatch: "/dashboard/transactions",
     name: "Transactions",
     icon: <TransitEnterexitIcon />,
   },
   {
     id: 3,
     url: "/dashboard/settlements?page=0",
+    routeToMatch: "/dashboard/settlements",
     name: "Settlements",
     icon: <AddCardIcon />,
   },
@@ -33,6 +36,7 @@ export const menuItems = [
   {
     id: 4,
     url: "/dashboard/paymentLinks?page=0",
+    routeToMatch: "/dashboard/paymentLinks/payins",
     name: "Payment Links",
     icon: <LinkIcon />,
   },
@@ -40,6 +44,7 @@ export const menuItems = [
   {
     id: 6,
     url: "/dashboard/subAccounts?page=0",
+    routeToMatch: "/dashboard/subAccounts",
     name: "SubAccounts",
     icon: <SupervisorAccountIcon />,
   },
@@ -47,6 +52,7 @@ export const menuItems = [
   {
     id: 5,
     url: "/dashboard/reports",
+    routeToMatch: "/dashboard/reports",
     name: "Reports",
     icon: <BarChartIcon />,
   },
@@ -54,6 +60,7 @@ export const menuItems = [
   {
     id: 7,
     url: "/dashboard/iPayLite",
+    routeToMatch: "/dashboard/iPayLite",
     name: "iPay Lite",
     icon: <ShoppingCartIcon />,
   },
@@ -67,6 +74,7 @@ export const settingsMenuListItems = {
       id: 1,
       name: "Users",
       url: "/dashboard/settings/users",
+      routeToMatch: "/dashboard/settings/users",
       icon: <ManageAccountsIcon />,
     },
     {
@@ -74,6 +82,7 @@ export const settingsMenuListItems = {
       icon: <AutoAwesomeIcon />,
       name: "Appearance",
       url: "/dashboard/settings/appearance",
+      routeToMatch: "/dashboard/settings/appearance",
     },
   ],
 };

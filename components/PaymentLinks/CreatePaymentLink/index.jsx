@@ -197,7 +197,6 @@ const CreatePaymentLink = ({ toggleCreatePaymentLink }) => {
               onSubmit={handleSubmit}
             >
               {(formik) => {
-                console.log(formik.errors);
                 return (
                   <Box
                     sx={

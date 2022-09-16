@@ -18,7 +18,7 @@ const InternalTransfer = () => {
   const [settlementOptionsFormActive, setSettlementOptionsFormActive] =
     useState(true);
   const [amountFormActive, setAmountFormActive] = useState(false);
-  const [amountToTransfer, setAmountToTransfer] = useState(false);
+  const [amountToTransfer, setAmountToTransfer] = useState("");
   const [openConfirmActionDialog, setOpenConfirmActionDialog] = useState(false);
   const [
     openInitiationConfirmationDialog,

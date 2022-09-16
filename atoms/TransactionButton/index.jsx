@@ -72,11 +72,13 @@ TransactionButton.defaultProps = {
   activeState: false,
   withoutIconMedia: false,
   disabled: false,
+  icon: null,
+  onClick: () => {},
 };
 TransactionButton.propTypes = {
-  icon: PropTypes.node.isRequired,
+  icon: PropTypes.node,
   text: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   activeState: PropTypes.bool,
   withoutIconMedia: PropTypes.bool,
   disabled: PropTypes.bool,

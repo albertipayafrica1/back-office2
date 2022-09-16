@@ -93,11 +93,12 @@ const MuiTable = ({
             },
           }}
         >
+          {/* {change keys to column.id when all columns get their id} */}
           <TableHead>
             <TableRow>
               {columns.map((column) => (
                 <TableCell
-                  key={column.id}
+                  key={column.label}
                   align={column.align}
                   // style={{ width: 200 }}
                   // style={{ minWidth: column.minWidth }}
@@ -126,13 +127,13 @@ const MuiTable = ({
                     {columns.map((column, index1) => {
                       return (
                         <TableCell
-                          key={column.id}
+                          key={column.label}
                           align={column.align}
                           sx={column?.formatting}
                           onClick={column?.onClick}
                         >
                           {loading ? (
-                            <Box sx={{ width: "100%" }} key={column.id}>
+                            <Box sx={{ width: "100%" }}>
                               <Skeleton sx={{ width: "100%" }} />
                             </Box>
                           ) : (
