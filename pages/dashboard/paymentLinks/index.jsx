@@ -19,7 +19,7 @@ const PaymentLinks = () => {
 
   useEffect(() => {
     setLoading(true);
-    // setData([]);
+    // setData([])
     const config = {
       method: "get",
       url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/transactions/${router.query.pid}`,
