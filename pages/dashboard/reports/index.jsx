@@ -1,5 +1,6 @@
 import { Typography } from "@mui/material";
 
+import DetailsDialog from "../../../components/DetailsDialog";
 import DashboardLayout from "../../../components/Layouts/Dashboard";
 import ProtectedRoute from "../../../components/ProtectedRoute";
 
@@ -15,6 +16,7 @@ const Reports = () => {
       }}
     >
       Reports is Coming Soon
+      <DetailsDialog open="true" name="settlements" />
     </Typography>
   );
 };
