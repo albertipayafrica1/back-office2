@@ -9,7 +9,7 @@ import { Box } from "@mui/material";
 
 import DashboardLayout from "../../../components/Layouts/Dashboard";
 import ProtectedRoute from "../../../components/ProtectedRoute";
-import PaymentLinksTable from "../../../components/PaymentLinks/PaymentLinksTable/index";
+import PaymentLinksTable from "../../../components/PaymentLinks/PaymentLinksTable";
 
 const PaymentLinks = () => {
   const router = useRouter();
@@ -76,7 +76,6 @@ const PaymentLinks = () => {
         loading={loading}
         currentPage={parseInt(router.query.page, 10)}
       />
-      ;
     </Box>
   );
 };
