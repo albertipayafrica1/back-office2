@@ -9,7 +9,7 @@ import { Box } from "@mui/material";
 
 import DashboardLayout from "../../../components/Layouts/Dashboard";
 import ProtectedRoute from "../../../components/ProtectedRoute";
-import PaymentLinksTable from "../../../components/PaymentLinks/PaymentLinksTable";
+// import PaymentLinksTable from "../../../components/PaymentLinks/PaymentLinksTable/index";
 
 const PaymentLinks = () => {
   const router = useRouter();
@@ -19,7 +19,7 @@ const PaymentLinks = () => {
 
   useEffect(() => {
     setLoading(true);
-    // setData([])
+    // setData([]);
     const config = {
       method: "get",
       url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/transactions/${router.query.pid}`,
@@ -70,12 +70,13 @@ const PaymentLinks = () => {
 
   return (
     <Box sx={{ p: 10 }}>
-      <PaymentLinksTable
+      {/* <PaymentLinksTable
         name="paymentLinks"
         rows={data}
         loading={loading}
         currentPage={parseInt(router.query.page, 10)}
-      />
+      /> */}
+      ss
     </Box>
   );
 };
