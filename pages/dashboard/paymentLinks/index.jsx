@@ -76,7 +76,6 @@ const PaymentLinks = () => {
         loading={loading}
         currentPage={parseInt(router.query.page, 10)}
       /> */}
-      ss
     </Box>
   );
 };

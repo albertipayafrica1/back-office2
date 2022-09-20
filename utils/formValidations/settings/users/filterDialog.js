@@ -2,7 +2,6 @@ import * as yup from "yup";
 import { differenceInMinutes } from "date-fns";
 
 export const filterDialog = yup.object().shape({
-  linkId: yup.string("Link id must be a string"),
   email: yup
     .string()
     .strict()
@@ -14,7 +13,7 @@ export const filterDialog = yup.object().shape({
       /^((\\+[0-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
       "Enter a valid phone number"
     ),
-  lastDays: yup.string("Last No. Of Days must be a string"),
+  role: yup.string("role must be a string"),
   description: yup.string("description must be a string"),
   status: yup.string("Status must be a string"),
   amount: yup.string().test("amount", "Kindly enter a valid amount", (val) => {
