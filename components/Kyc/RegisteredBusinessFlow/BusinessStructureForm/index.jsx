@@ -766,7 +766,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                         control="input"
                         variant="outlined"
                         name="registeredBusinessDetails.businessDescription"
-                        label="Business Description (min 100 characters)"
+                        label="Business Description (min 50 characters)"
                         type="text"
                         id="registeredBusinessDetails.businessDescription"
                         required
@@ -842,7 +842,7 @@ const BusinessStructureForm = ({ handleNextStep }) => {
                           label="Business Website Link"
                           type="text"
                           id="businessLocation.websiteLink"
-                          required
+                          d
                         />
                       </Stack>
                       <Stack
