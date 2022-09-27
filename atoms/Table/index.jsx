@@ -18,9 +18,15 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
 const transactions = (column, row) => {
   const value = row[column.id];
-
+  const clicker = column.onClick;
   if (column.label === "Details") {
-    return <MoreHorizIcon />;
+    return (
+      <MoreHorizIcon
+        onClick={(e) => {
+          return clicker(row);
+        }}
+      />
+    );
   }
   if (column.label === "Status") {
     if (value === 1) {

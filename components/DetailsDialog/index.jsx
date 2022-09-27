@@ -20,60 +20,60 @@ import ExportDialog from "../ExportDialog";
 
 import * as styles from "./styles";
 
-const data = [
-  {
-    name: "dffsd",
-    date: "fdfd",
-    name1: "dffsdfdsfdssdfdsfsdfds",
-    date1: "fdfd",
-    name2: "dffsd",
-    date2: "fdfd",
-    name3: "dffsd",
-    date3: "fdfd",
-    name4: "dffsdfdsfdssdfdsfsdfds",
-    date4: "fdfd",
-    name5: "dffsd",
-    date5: "fdfd",
-  },
-  {
-    name: "dffsd",
-    date: "fdfd",
-    name1: "dffsdfdsfdssdfdsfsdfds",
-    date1: "fdfd",
-    name2: "dffsd",
-    date2: "fdfd",
-    name3: "dffsd",
-    date3: "fdfd",
-    name4: "dffsdfdsfdssdfdsfsdfds",
-    date4: "fdfd",
-    name5: "dffsd",
-    date5: "fdfd",
-  },
-  {
-    name1: "dffsd",
-    date1: "fdfd",
-    name2: "dffsdfdsfdssdfdsfsdfds",
-    date2: "fdfd",
-    name3: "dffsd",
-    date3: "fdfd",
-  },
-  {
-    name: "dffsd",
-    date: "fdfd",
-    name1: "dffsdfdsfdssdfdsfsdfds",
-    date1: "fdfd",
-    name2: "dffsd",
-    date2: "fdfd",
-    name3: "dffsd",
-    date3: "fdfd",
-    name4: "dffsdfdsfdssdfdsfsdfds",
-    date4: "fdfd",
-    name5: "dffsd",
-    date5: "fdfd",
-  },
-];
+// const data = [
+//   {
+//     name: "dffsd",
+//     date: "fdfd",
+//     name1: "dffsdfdsfdssdfdsfsdfds",
+//     date1: "fdfd",
+//     name2: "dffsd",
+//     date2: "fdfd",
+//     name3: "dffsd",
+//     date3: "fdfd",
+//     name4: "dffsdfdsfdssdfdsfsdfds",
+//     date4: "fdfd",
+//     name5: "dffsd",
+//     date5: "fdfd",
+//   },
+//   {
+//     name: "dffsd",
+//     date: "fdfd",
+//     name1: "dffsdfdsfdssdfdsfsdfds",
+//     date1: "fdfd",
+//     name2: "dffsd",
+//     date2: "fdfd",
+//     name3: "dffsd",
+//     date3: "fdfd",
+//     name4: "dffsdfdsfdssdfdsfsdfds",
+//     date4: "fdfd",
+//     name5: "dffsd",
+//     date5: "fdfd",
+//   },
+//   {
+//     name1: "dffsd",
+//     date1: "fdfd",
+//     name2: "dffsdfdsfdssdfdsfsdfds",
+//     date2: "fdfd",
+//     name3: "dffsd",
+//     date3: "fdfd",
+//   },
+//   {
+//     name: "dffsd",
+//     date: "fdfd",
+//     name1: "dffsdfdsfdssdfdsfsdfds",
+//     date1: "fdfd",
+//     name2: "dffsd",
+//     date2: "fdfd",
+//     name3: "dffsd",
+//     date3: "fdfd",
+//     name4: "dffsdfdsfdssdfdsfsdfds",
+//     date4: "fdfd",
+//     name5: "dffsd",
+//     date5: "fdfd",
+//   },
+// ];
 
-const DetailsDialog = ({ open, toggleDetailsDialog, name }) => {
+const DetailsDialog = ({ open, toggleDetailsDialog, name, data }) => {
   const [openExportDialog, setOpenExportDialog] = useState(false);
 
   const toggleExportDialog = () => {
@@ -118,13 +118,14 @@ const DetailsDialog = ({ open, toggleDetailsDialog, name }) => {
         <Grid container spacing={4} sx={{ width: "100%" }}>
           {data.map((item, index) => {
             return (
-              <Grid item xs={12} md={4} key={index}>
+              <Grid item xs={12} md={6} key={index}>
                 <Box
                   sx={{
                     border: "2px solid",
                     p: 3,
                     borderColor: (theme) => theme.colors.mono9,
                     borderRadius: "2px",
+                    md: 6,
                   }}
                 >
                   <Typography
@@ -133,7 +134,7 @@ const DetailsDialog = ({ open, toggleDetailsDialog, name }) => {
                       color: (theme) => theme.colors.mono5,
                     }}
                   >
-                    1. Settlement Details
+                    {name} Details
                   </Typography>
 
                   <Table sx={{ ml: 5 }}>
@@ -153,12 +154,22 @@ const DetailsDialog = ({ open, toggleDetailsDialog, name }) => {
                               fontWeight: 500,
                               textTransform: "capitalize",
                             }}
-                          >{`${key}:`}</Typography>
+                          >{`${key}: `}</Typography>
                         </TableCell>
-                        <TableCell align="left" sx={{ p: 0, m: 0 }}>
+                        <TableCell
+                          align="left"
+                          sx={{
+                            p: 0,
+                            m: 0,
+                          }}
+                        >
                           <Typography
-                            sx={{ fontSize: "12px", fontWeight: 300 }}
+                            sx={{
+                              fontSize: "12px",
+                              fontWeight: 300,
+                            }}
                           >
+                            {" "}
                             {value}
                           </Typography>
                         </TableCell>
@@ -172,8 +183,10 @@ const DetailsDialog = ({ open, toggleDetailsDialog, name }) => {
         </Grid>
         <Stack direction="row" justifyContent="flex-end">
           <Typography
-            sx={{ color: (theme) => theme.colors.orange }}
-            onCLick={toggleDetailsDialog}
+            sx={{ color: (theme) => theme.colors.orange, cursor: "pointer" }}
+            onClick={() => {
+              toggleDetailsDialog();
+            }}
           >
             Back
           </Typography>
@@ -194,5 +207,6 @@ DetailsDialog.propTypes = {
   open: PropTypes.bool.isRequired,
   toggleDetailsDialog: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
+  data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 export default DetailsDialog;

@@ -14,20 +14,25 @@ import BillingFilterDialog from "../Billing/FilterDialog";
 import ExportDialog from "../../ExportDialog";
 import PayoutsNewTransfer from "../Payouts/NewTransfer";
 
+import DetailsDialog from "../../DetailsDialog";
+
 import * as styles from "./styles";
 
 import { tableColumnSwitcher } from "./data";
+import { Co2Sharp } from "@mui/icons-material";
 
 const TransactionTable = ({ name, rows, loading, currentPage }) => {
   let givenRows = rows;
   if (rows === null || rows === undefined) {
     givenRows = [];
   }
-  const columns = tableColumnSwitcher(name);
+
   const [openBalanceDialog, setOpenBalanceDialog] = useState(false);
   const [openFilterDialog, setOpenFilterDialog] = useState(false);
   const [openExportDialog, setOpenExportDialog] = useState(false);
   const [openNewTransfer, setOpenNewTransfer] = useState(false);
+  const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
+  const [detailsData, setDetailsData] = useState([]);
 
   const toggleBalanceDialog = () => {
     setOpenBalanceDialog((prevState) => !prevState);
@@ -41,6 +46,20 @@ const TransactionTable = ({ name, rows, loading, currentPage }) => {
   const toggleNewTransfer = () => {
     setOpenNewTransfer((prevState) => !prevState);
   };
+
+  const toggleDetailsDialog = (rowDetails) => {
+    if (rowDetails !== undefined && rowDetails.type === "click") {
+      return;
+    }
+    if (rowDetails !== undefined && rowDetails !== null) {
+      detailsData.pop();
+      detailsData.push(rowDetails);
+      setDetailsData([...detailsData]);
+    }
+    setOpenDetailsDialog((prevState) => !prevState);
+  };
+
+  const columns = tableColumnSwitcher(name, toggleDetailsDialog);
 
   if (openNewTransfer) {
     return <PayoutsNewTransfer toggleNewTransfer={toggleNewTransfer} />;
@@ -133,6 +152,13 @@ const TransactionTable = ({ name, rows, loading, currentPage }) => {
         toggleExportDialog={toggleExportDialog}
         columns={columns}
         rows={rows}
+      />
+
+      <DetailsDialog
+        open={openDetailsDialog}
+        name="transactions"
+        data={detailsData}
+        toggleDetailsDialog={toggleDetailsDialog}
       />
     </>
   );

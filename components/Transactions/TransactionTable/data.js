@@ -1,4 +1,4 @@
-const payinsColumns = [
+const payinsColumns = (detailsOnClick) => [
   { id: "receivingdatetime", label: "Date", minWidth: 170 },
   // { id: "code", label: "ISO\u00a0Code", minWidth: 100 },
   {
@@ -50,10 +50,11 @@ const payinsColumns = [
     align: "center",
     format: (value) => value.toFixed(2),
     formatting: { cursor: "pointer" },
+    onClick: detailsOnClick,
   },
 ];
 
-const payoutsColumns = [
+const payoutsColumns = (detailsOnClick) => [
   { id: "dttime", label: "Date", minWidth: 170 },
   // { id: "code", label: "ISO\u00a0Code", minWidth: 100 },
   {
@@ -104,10 +105,11 @@ const payoutsColumns = [
     align: "center",
     format: (value) => value.toFixed(2),
     formatting: { cursor: "pointer" },
+    onClick: detailsOnClick,
   },
 ];
 
-const billingColumns = [
+const billingColumns = (detailsOnClick) => [
   { id: "dttime", label: "Date", minWidth: 170 },
   // { id: "code", label: "ISO\u00a0Code", minWidth: 100 },
   {
@@ -159,18 +161,19 @@ const billingColumns = [
     align: "center",
     format: (value) => value.toFixed(2),
     formatting: { cursor: "pointer" },
+    onClick: detailsOnClick,
   },
 ];
 
-export const tableColumnSwitcher = (name) => {
+export const tableColumnSwitcher = (name, detailsOnClick) => {
   switch (name) {
     case "payins":
-      return payinsColumns;
+      return payinsColumns(detailsOnClick);
     case "payouts":
-      return payoutsColumns;
+      return payoutsColumns(detailsOnClick);
     case "billing":
-      return billingColumns;
+      return billingColumns(detailsOnClick);
     default:
-      return payinsColumns;
+      return payinsColumns(detailsOnClick);
   }
 };
