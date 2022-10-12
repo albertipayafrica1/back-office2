@@ -22,7 +22,7 @@ const Settlements = () => {
     // setData([]);
     const config = {
       method: "get",
-      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/transactions/${router.query.pid}`,
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/settlements/details`,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${Cookies.get("iPayT")}`,

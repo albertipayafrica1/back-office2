@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import { Stack } from "@mui/material";
 
+import { Co2Sharp } from "@mui/icons-material";
 import TransactionButton from "../../../atoms/TransactionButton";
 import Table from "../../../atoms/Table";
 import PageViewBox from "../../../atoms/PageViewBox";
@@ -19,7 +20,6 @@ import DetailsDialog from "../../DetailsDialog";
 import * as styles from "./styles";
 
 import { tableColumnSwitcher } from "./data";
-import { Co2Sharp } from "@mui/icons-material";
 
 const TransactionTable = ({ name, rows, loading, currentPage }) => {
   let givenRows = rows;

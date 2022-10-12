@@ -20,6 +20,199 @@ import ExportDialog from "../ExportDialog";
 
 import * as styles from "./styles";
 
+// payins sample data
+const data0 = [
+  {
+    title: "Transaction Details",
+    data: {
+      date: null,
+      transactionId: "",
+      vendorId: "",
+      category: "",
+      amount: "",
+      status: "",
+      commision: "",
+      platform: "",
+      operation: "",
+      payinType: "",
+    },
+  },
+  {
+    title: "Order Details",
+    data: {
+      orderId: "",
+      amount: "",
+      timePlaced: "",
+    },
+  },
+  {
+    title: "Customer Information",
+    data: {
+      name: "",
+      telephone: "",
+      email: "",
+    },
+  },
+  {
+    title: "Channel Information",
+    data: {
+      channel: "",
+      receiptNumber: "",
+      timeCompleted: "",
+    },
+  },
+  {
+    title: "Device Information",
+    data: {
+      device: "",
+      ipAddress: "",
+    },
+  },
+];
+
+// payouts
+
+const data1 = [
+  {
+    title: "Transaction Details",
+    data: {
+      date: null,
+      accountId: "",
+      transactionId: "",
+      vendorId: "",
+      category: "",
+      amount: "",
+      status: "",
+      commision: "",
+      platform: "",
+      operation: "",
+    },
+  },
+  {
+    title: "Reference Details",
+    data: {
+      merchantRef: "",
+      narration: "",
+      amount: "",
+      timePlaced: "",
+    },
+  },
+];
+
+// billing
+const data3 = [
+  {
+    title: "Transaction Details",
+    data: {
+      date: null,
+      account: "",
+      transactionId: "",
+      vendorId: "",
+      biller: "",
+      amount: "",
+      status: "",
+      earnings: "",
+      operation: "",
+    },
+  },
+  {
+    title: "Biller Information",
+    data: {
+      billerName: "",
+      billerCategory: "",
+      billerReference: "",
+      timeCompleted: "",
+    },
+  },
+];
+
+// settlements
+const data4 = [
+  {
+    title: "Settlement Details",
+    data: {
+      date: null,
+      transactionId: "",
+      vendorId: "",
+      settlementType: "",
+      settlementChannel: "",
+      amountComputed: "",
+      amountRemitted: "",
+      transferCharge: "",
+      status: "",
+      operation: "",
+    },
+  },
+  {
+    title: "Merchant Account Details",
+    data: {
+      merchantName: "",
+      vendorId: "",
+      email: "",
+      currency: "",
+    },
+  },
+  {
+    title: "Channel Information",
+    data: {
+      channel: "",
+      receiptNumber: "",
+      timeCompleted: "",
+    },
+  },
+];
+
+// link details
+const data5 = [
+  {
+    title: "Link Details",
+    data: {
+      dateCreated: null,
+      linkId: "",
+      orderId: "",
+      vendorId: "",
+      amount: "",
+      status: "",
+      description: "",
+      link: "",
+    },
+  },
+  {
+    title: "Customer Information",
+    data: {
+      name: "",
+      mobilePhone: "",
+      email: "",
+    },
+  },
+];
+
+// subaccount
+
+const data6 = [
+  {
+    title: "Sub Account Details",
+    data: {
+      subAccountId: "",
+      subAccountName: "",
+      accountMode: "",
+      vendorId: "",
+      email: "",
+      phoneNumber: "",
+      helpline: "",
+      reference: "",
+      dateCreated: "",
+    },
+  },
+  {
+    title: "Integration Details",
+    data: {
+      callbackUrl: "",
+      securityKey: "",
+    },
+  },
+];
+
 // const data = [
 //   {
 //     name: "dffsd",
@@ -134,11 +327,11 @@ const DetailsDialog = ({ open, toggleDetailsDialog, name, data }) => {
                       color: (theme) => theme.colors.mono5,
                     }}
                   >
-                    {name} Details
+                    {index + 1}.{item.title} Details
                   </Typography>
 
                   <Table sx={{ ml: 5 }}>
-                    {Object.entries(item).map(([key, value]) => (
+                    {Object.entries(item.data).map(([key, value]) => (
                       <TableRow
                         sx={{
                           [`& .${tableCellClasses.root}`]: {
