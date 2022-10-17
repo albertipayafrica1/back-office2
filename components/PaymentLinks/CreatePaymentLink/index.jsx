@@ -65,7 +65,7 @@ const CreatePaymentLink = ({ toggleCreatePaymentLink }) => {
     const credentials = Cookies.get("iPayT");
     const config = {
       method: "post",
-      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/paymentLink/generate`,
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/paymentLink/create`,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${credentials}`,
@@ -79,7 +79,7 @@ const CreatePaymentLink = ({ toggleCreatePaymentLink }) => {
         if (response.data.success === true) {
           setAlert({
             type: "success",
-            message: "Business Structure Details Updated Successfully!",
+            message: "Payment Link created Successfully!",
           });
         } else {
           setAlert({ type: "error", message: "Something Went Wrong" });
@@ -126,7 +126,7 @@ const CreatePaymentLink = ({ toggleCreatePaymentLink }) => {
 
     const config = {
       method: "get",
-      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/paymentLink/generate`,
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/paymentLink/create`,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${credentials}`,
