@@ -71,8 +71,8 @@ pipelines:
             - export VERSION_NUMBER=1.0.0
             - export DEPLOYMENT_ENV=production
             - export BUILD_ID=$BITBUCKET_BRANCH_$BITBUCKET_COMMIT_$BITBUCKET_BUILD_NUMBER
-            - echo ${NEXT_PUBLIC_BASE_PROD_URL}
-            - docker build --build-arg  NEXT_PUBLIC_API_BASE_URL=${NEXT_PUBLIC_API_BASE_URL_MASTER} --build-arg  NEXT_PUBLIC_CAPTCHA_KEY=${NEXT_PUBLIC_CAPTCHA_KEY} -t  "${IMAGE_NAME}:${BUILD_ID}" .
+            - echo ${NEXT_PUBLIC_API_BASE_URL_PROD}
+            - docker build --build-arg  NEXT_PUBLIC_API_BASE_URL=${NEXT_PUBLIC_API_BASE_URL_PROD} --build-arg  NEXT_PUBLIC_CAPTCHA_KEY=${NEXT_PUBLIC_CAPTCHA_KEY} -t  "${IMAGE_NAME}:${BUILD_ID}" .
             - docker push "${IMAGE_NAME}:${BUILD_ID}"
             - docker tag "${IMAGE_NAME}:${BUILD_ID}" "${IMAGE_NAME}:${DEPLOYMENT_ENV}_${VERSION_NUMBER}"
             - docker push "${IMAGE_NAME}:${DEPLOYMENT_ENV}_${VERSION_NUMBER}"
