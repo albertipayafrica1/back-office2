@@ -8,23 +8,27 @@ import BarChartIcon from "@mui/icons-material/BarChart";
 import AddCardIcon from "@mui/icons-material/AddCard";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
+import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
 
 export const menuItems = [
   {
     id: 1,
     url: "/dashboard/home",
+    routeToMatch: "/dashboard/home",
     name: "Dashboard",
     icon: <DashboardIcon />,
   },
   {
     id: 2,
     url: "/dashboard/transactions/payins?page=0",
+    routeToMatch: "/dashboard/transactions",
     name: "Transactions",
     icon: <TransitEnterexitIcon />,
   },
   {
     id: 3,
     url: "/dashboard/settlements?page=0",
+    routeToMatch: "/dashboard/settlements",
     name: "Settlements",
     icon: <AddCardIcon />,
   },
@@ -32,27 +36,31 @@ export const menuItems = [
   {
     id: 4,
     url: "/dashboard/paymentLinks?page=0",
+    routeToMatch: "/dashboard/paymentLinks/payins",
     name: "Payment Links",
     icon: <LinkIcon />,
   },
 
   {
+    id: 6,
+    url: "/dashboard/subAccounts?page=0",
+    routeToMatch: "/dashboard/subAccounts",
+    name: "SubAccounts",
+    icon: <SupervisorAccountIcon />,
+  },
+
+  {
     id: 5,
     url: "/dashboard/reports",
+    routeToMatch: "/dashboard/reports",
     name: "Reports",
     icon: <BarChartIcon />,
   },
 
   {
-    id: 6,
-    url: "/dashboard/kopeshaLoans",
-    name: "KopeshaLoans",
-    icon: <MonetizationOnIcon />,
-  },
-
-  {
     id: 7,
     url: "/dashboard/iPayLite",
+    routeToMatch: "/dashboard/iPayLite",
     name: "iPay Lite",
     icon: <ShoppingCartIcon />,
   },
@@ -66,6 +74,7 @@ export const settingsMenuListItems = {
       id: 1,
       name: "Users",
       url: "/dashboard/settings/users",
+      routeToMatch: "/dashboard/settings/users",
       icon: <ManageAccountsIcon />,
     },
     {
@@ -73,6 +82,7 @@ export const settingsMenuListItems = {
       icon: <AutoAwesomeIcon />,
       name: "Appearance",
       url: "/dashboard/settings/appearance",
+      routeToMatch: "/dashboard/settings/appearance",
     },
   ],
 };

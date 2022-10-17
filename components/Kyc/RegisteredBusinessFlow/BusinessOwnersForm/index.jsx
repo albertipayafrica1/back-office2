@@ -102,12 +102,8 @@ const BusinessOwnersForm = ({ handleNextStep }) => {
     axios(config)
       .then((response) => {
         if (response.data.success === true) {
-          setAlert({
-            type: "success",
-            message: "Business Structure Details Updated Successfully!",
-          });
-          dispatch(fetchKycStatusSuccess(response.data.response.kycStatus));
           setLoading(false);
+          dispatch(fetchKycStatusSuccess(response.data.response.kycStatus));
           handleNextStep();
         } else {
           setAlert({ type: "error", message: "Something Went Wrong" });
@@ -305,8 +301,9 @@ const BusinessOwnersForm = ({ handleNextStep }) => {
                     <>
                       <CreateAccountFormDiv
                         topLabel={`Ultimate Beneficial Owner ${index + 1}`}
+                        key={index}
                       >
-                        <Stack direction="column" spacing={2}>
+                        <Stack direction="column" spacing={2} key={index}>
                           <Stack
                             direction={{ xs: "column", md: "row" }}
                             spacing={3}

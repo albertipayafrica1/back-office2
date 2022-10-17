@@ -1,6 +1,6 @@
 export const paperPropsStyling = {
   position: "absolute",
-  width: "400px",
+  width: "1000px",
 };
 
 export const dialogTitleStyling = {

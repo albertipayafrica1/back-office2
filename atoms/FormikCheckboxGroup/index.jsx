@@ -84,7 +84,7 @@ FormikCheckboxGroup.defaultProps = {
   required: false,
   row: false,
   disabled: false,
-  externalStyles: PropTypes.shape({}),
+  externalStyles: {},
 };
 
 FormikCheckboxGroup.propTypes = {

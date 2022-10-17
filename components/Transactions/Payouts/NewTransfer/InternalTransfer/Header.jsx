@@ -43,6 +43,6 @@ const Header = ({ progress, handleCancel }) => {
 
 Header.propTypes = {
   progress: PropTypes.string.isRequired,
-  handleCancel: PropTypes.string.isRequired,
+  handleCancel: PropTypes.func.isRequired,
 };
 export default Header;

@@ -42,6 +42,7 @@ const FormikMultiSelect = ({
             error={Boolean(
               getIn(form.touched, name) && getIn(form.errors, name)
             )}
+            sx={{ width: "100%" }}
           >
             {label !== "" && (
               <InputLabel

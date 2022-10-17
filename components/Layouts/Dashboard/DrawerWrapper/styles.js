@@ -1,3 +1,5 @@
+import { Calculate } from "@mui/icons-material";
+
 const drawerWidth = "250px";
 
 export const testModeOnDrawer = {
@@ -27,16 +29,41 @@ export const logo = {
   marginTop: "40px",
 };
 
-export const menuItemContainer = (mobileOpen) => {
+export const menuItemContainer = (windowHeight) => {
+  let mh = windowHeight - 200;
+  if (windowHeight < 730) {
+    mh = windowHeight - 320;
+    return {
+      display: "flex",
+      flexDirection: "column",
+      paddingBottom: "20px",
+      width: "100%",
+      marginTop: "10px",
+      maxHeight: `${mh}px`,
+      overflowY: "scroll",
+      "&::-webkit-scrollbar": {
+        width: "5px",
+        height: "30px",
+      },
+      "&::-webkit-scrollbar-track": {
+        boxShadow: `inset 0 0 6px rgba(0, 0, 0, 0.3)`,
+      },
+      "&::-webkit-scrollbar-thumb": {
+        backgroundColor: "white",
+        borderRadius: "10px",
+        outline: `1px solid slategrey`,
+      },
+    };
+  }
+
   return {
     display: "flex",
     flexDirection: "column",
     paddingBottom: "20px",
     width: "100%",
     marginTop: "10px",
-    maxHeight: "350px",
+    maxHeight: `${mh}px`,
 
-    // overflowY: "hidden",
     "&:hover": {
       overflowY: "scroll",
       "&::-webkit-scrollbar": {

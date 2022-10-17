@@ -16,7 +16,7 @@ import Loader from "../../../../../atoms/Loader";
 import MuiAlert from "../../../../../atoms/MuiAlert";
 import TransactionButton from "../../../../../atoms/TransactionButton";
 
-import { bulkTransfer } from "../../../../../utils/formValidations/payoutsNewTransfer/bulkTransfer";
+import { bulkTransfer } from "../../../../../utils/formValidations/transactions/payouts/newTransfer/bulkTransfer";
 
 import * as styles from "./styles";
 

@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 import Head from "next/head";
@@ -12,14 +13,44 @@ import theme from "../styles/theme";
 import createEmotionCache from "../config/createEmotionCache";
 import { wrapper } from "../redux/store";
 
+import IdleTimer from "../utils/idleTimer";
+
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
 const MyApp = (props) => {
+  // const [isTimeout, setIsTimeout] = useState(false);
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   const getLayout = Component.getLayout || ((page) => page);
   const store = useStore((state) => state);
   const router = useRouter();
+
+  // make hoc and wrap logic for only protected routes
+
+  // useEffect(() => {
+  //   console.log("rean");
+  //   const timer = new IdleTimer({
+  //     timeout: 10, //sessionTimes out in 30 minutes of inactivity
+  //     onTimeout: () => {
+  //       setIsTimeout(true);
+  //     },
+  //     onExpired: () => {
+  //       setIsTimeout(true);
+  //     },
+  //   });
+  //   return () => {
+  //     timer.cleanUp();
+  //   };
+  // }, []);
+
+  // if (
+  //   isTimeout === true &&
+  //   (!router.pathname.includes("auth") ||
+  //     !router.pathname.includes("127.0.0.1:3000") ||
+  //     !router.pathname.includes("127.0.0.1:3000"))
+  // ) {
+  //   return router.replace("/auth/login?country=ke&sessionTimeout=true");
+  // }
 
   // incase we get any issues with rehydation, remove <Provide>
   return typeof window !== "undefined" ? (

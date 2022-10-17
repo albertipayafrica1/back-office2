@@ -1,0 +1,78 @@
+definitions:
+  services:
+    docker:
+      memory: 2048
+
+pipelines:
+  branches:
+    dev:
+      - step:
+          name: Deploy to staging
+          deployment: staging
+          image:
+            name: 202492758425.dkr.ecr.eu-west-1.amazonaws.com/ipay/awscli:latest
+            aws:
+              access-key: $AWS_ACCESS_KEY_ID
+              secret-key: $AWS_SECRET_ACCESS_KEY
+          services:
+            - docker
+          caches:
+            - docker
+          script:
+            - eval $(aws ecr get-login --region ${AWS_DEFAULT_REGION} --no-include-email)
+            - export VERSION_NUMBER=1.0.0
+            - export DEPLOYMENT_ENV=staging
+            - export BUILD_ID=$BITBUCKET_BRANCH_$BITBUCKET_COMMIT_$BITBUCKET_BUILD_NUMBER
+            - echo ${NEXT_PUBLIC_API_BASE_URL}
+            - docker build --build-arg  NEXT_PUBLIC_API_BASE_URL=${NEXT_PUBLIC_API_BASE_URL_STAG} --build-arg  NEXT_PUBLIC_CAPTCHA_KEY=${NEXT_PUBLIC_CAPTCHA_KEY} -t  "${IMAGE_NAME}:${BUILD_ID}" .
+            - docker push "${IMAGE_NAME}:${BUILD_ID}"
+            - docker tag "${IMAGE_NAME}:${BUILD_ID}" "${IMAGE_NAME}:${DEPLOYMENT_ENV}_${VERSION_NUMBER}"
+            - docker push "${IMAGE_NAME}:${DEPLOYMENT_ENV}_${VERSION_NUMBER}"
+
+    staging:
+      - step:
+          name: Deploy to staging
+          deployment: staging
+          image:
+            name: 202492758425.dkr.ecr.eu-west-1.amazonaws.com/ipay/awscli:latest
+            aws:
+              access-key: $AWS_ACCESS_KEY_ID
+              secret-key: $AWS_SECRET_ACCESS_KEY
+          services:
+            - docker
+          caches:
+            - docker
+          script:
+            - eval $(aws ecr get-login --region ${AWS_DEFAULT_REGION} --no-include-email)
+            - export VERSION_NUMBER=1.0.0
+            - export DEPLOYMENT_ENV=staging
+            - echo ${NEXT_PUBLIC_API_BASE_URL_STAG}
+            - export BUILD_ID=$BITBUCKET_BRANCH_$BITBUCKET_COMMIT_$BITBUCKET_BUILD_NUMBER
+            - docker build --build-arg  NEXT_PUBLIC_API_BASE_URL=${NEXT_PUBLIC_API_BASE_URL_STAG} --build-arg  NEXT_PUBLIC_CAPTCHA_KEY=${NEXT_PUBLIC_CAPTCHA_KEY} -t  "${IMAGE_NAME}:${BUILD_ID}" .
+            - docker push "${IMAGE_NAME}:${BUILD_ID}"
+            - docker tag "${IMAGE_NAME}:${BUILD_ID}" "${IMAGE_NAME}:${DEPLOYMENT_ENV}_${VERSION_NUMBER}"
+            - docker push "${IMAGE_NAME}:${DEPLOYMENT_ENV}_${VERSION_NUMBER}"
+            - deploy-ecs -b apis -s checkoutinterface -e ${DEPLOYMENT_ENV} -i ${BUILD_ID} -r "arn:aws:iam::202492758425:role/CheckoutStagingRole"
+    master:
+      - step:
+          name: Deploy to production
+          deployment: production
+          image:
+            name: 202492758425.dkr.ecr.eu-west-1.amazonaws.com/ipay/awscli:latest
+            aws:
+              access-key: $AWS_ACCESS_KEY_ID
+              secret-key: $AWS_SECRET_ACCESS_KEY
+          services:
+            - docker
+          caches:
+            - docker
+          script:
+            - eval $(aws ecr get-login --region ${AWS_DEFAULT_REGION} --no-include-email)
+            - export VERSION_NUMBER=1.0.0
+            - export DEPLOYMENT_ENV=production
+            - export BUILD_ID=$BITBUCKET_BRANCH_$BITBUCKET_COMMIT_$BITBUCKET_BUILD_NUMBER
+            - echo ${NEXT_PUBLIC_API_BASE_URL_PROD}
+            - docker build --build-arg  NEXT_PUBLIC_API_BASE_URL=${NEXT_PUBLIC_API_BASE_URL_PROD} --build-arg  NEXT_PUBLIC_CAPTCHA_KEY=${NEXT_PUBLIC_CAPTCHA_KEY} -t  "${IMAGE_NAME}:${BUILD_ID}" .
+            - docker push "${IMAGE_NAME}:${BUILD_ID}"
+            - docker tag "${IMAGE_NAME}:${BUILD_ID}" "${IMAGE_NAME}:${DEPLOYMENT_ENV}_${VERSION_NUMBER}"
+            - docker push "${IMAGE_NAME}:${DEPLOYMENT_ENV}_${VERSION_NUMBER}"

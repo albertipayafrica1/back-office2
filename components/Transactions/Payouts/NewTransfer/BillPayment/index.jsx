@@ -16,7 +16,7 @@ import Loader from "../../../../../atoms/Loader";
 import MuiAlert from "../../../../../atoms/MuiAlert";
 import TransactionButton from "../../../../../atoms/TransactionButton";
 
-import { billPayment } from "../../../../../utils/formValidations/payoutsNewTransfer/billPayment";
+import { billPayment } from "../../../../../utils/formValidations/transactions/payouts/newTransfer/billPayment";
 import { getTelephoneCountryCode } from "../../../../../utils/countryOfOperation";
 import { telephoneCodes } from "../../../../../utils/data";
 
@@ -263,7 +263,6 @@ const SingleTransfer = ({ toggleNewTransfer }) => {
                       sx={{ height: "50px", width: "200px" }}
                       type="submit"
                       disabled={formik.isValid === false || formik.isSubmitting}
-                      withoutIconMedia
                     >
                       Pay Bill
                     </Button>

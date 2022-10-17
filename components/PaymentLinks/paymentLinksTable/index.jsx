@@ -7,7 +7,6 @@ import TransactionButton from "../../../atoms/TransactionButton";
 import Table from "../../../atoms/Table";
 import PageViewBox from "../../../atoms/PageViewBox";
 
-import BalanceDialog from "../../BalanceDialog";
 import FilterDialog from "../FilterDialog";
 import ExportDialog from "../../ExportDialog";
 

@@ -1,4 +1,5 @@
 import * as yup from "yup";
+import { differenceInMinutes } from "date-fns";
 
 export const filterDialog = yup.object().shape({
   linkId: yup.string("Link id must be a string"),
@@ -31,5 +32,8 @@ export const filterDialog = yup.object().shape({
   dateCreated: yup
     .array()
     .of(yup.date("Select a valid date").nullable().typeError("Invalid Date"))
-    .min(2, "You must have a start and an end date"),
+    .min(2, "You must have a start and an end date")
+    .test("dateCreated", "enter a correct date range", (val) => {
+      return differenceInMinutes(val[1], val[0]) >= 0;
+    }),
 });

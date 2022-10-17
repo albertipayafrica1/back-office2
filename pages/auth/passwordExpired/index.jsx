@@ -9,7 +9,7 @@ import PasswordExpiredForm from "../../../components/Auth/PasswordExpiredForm";
 import Auth from "../../../components/Layouts/Auth";
 
 import useForm from "../../../hooks/useForm";
-import { resetPassword } from "../../../utils/formValidations/resetPassword";
+import { resetPassword } from "../../../utils/formValidations/auth/resetPassword";
 
 axios.defaults.withCredentials = true;
 

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
 import { useRouter } from "next/router";
-import PropTypes from "prop-types";
 
 import Cookies from "js-cookie";
 
@@ -37,6 +36,7 @@ const Transaction = () => {
     axios(config)
       .then((response) => {
         if (response.data.success === true) {
+          console.log(response.data.response, "ddsfds");
           setData(response.data.response.data);
         } else {
           setError("Something Went Wrong");
@@ -119,20 +119,20 @@ Transaction.getLayout = function getLayout(page) {
   return <DashboardLayout>{page}</DashboardLayout>;
 };
 
-export const getServerSideProps = ProtectedRoute(async (context) => {
-  const { req, query } = context;
+// export const getServerSideProps = ProtectedRoute(async (context) => {
+//   const { req, query } = context;
 
-  if (
-    query.pid !== "payins" &&
-    query.pid !== "payouts" &&
-    query.pid !== "billing"
-  ) {
-    return {
-      notFound: true,
-    };
-  }
+//   if (
+//     query.pid !== "payins" &&
+//     query.pid !== "payouts" &&
+//     query.pid !== "billing"
+//   ) {
+//     return {
+//       notFound: true,
+//     };
+//   }
 
-  return {
-    props: {},
-  };
-});
+//   return {
+//     props: {},
+//   };
+// });
