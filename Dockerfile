@@ -35,22 +35,6 @@ COPY --from=build --chown=application:user_group /build/i18n.json ./i18n.json
 RUN npm install next
 
 
-
-
-# FROM node:16-alpine 
-
-# RUN addgroup -g 1001 -S user_group
-# RUN adduser -S application -u 1001
-# RUN mkdir -p /usr/app/
-# WORKDIR /usr/app
-# COPY --from=BUILD_IMAGE --chown=application:user_group /usr/app/.env.production ./
-# COPY --from=BUILD_IMAGE --chown=application:user_group /usr/app/package.json /usr/app/package-lock.json ./
-# COPY --from=BUILD_IMAGE --chown=application:user_group /usr/app/node_modules ./node_modules
-# COPY --from=BUILD_IMAGE --chown=application:user_group /usr/app/public ./public
-# COPY --from=BUILD_IMAGE --chown=application:user_group /usr/app/.next ./.next
-# COPY --from=BUILD_IMAGE --chown=application:user_group /usr/app/i18n.json ./i18n.json
-# RUN npm install next
-
 EXPOSE 3000
 
 CMD [ "npm", "run", "start" ]
