@@ -52,7 +52,7 @@ pipelines:
             - docker push "${IMAGE_NAME}:${BUILD_ID}"
             - docker tag "${IMAGE_NAME}:${BUILD_ID}" "${IMAGE_NAME}:${DEPLOYMENT_ENV}_${VERSION_NUMBER}"
             - docker push "${IMAGE_NAME}:${DEPLOYMENT_ENV}_${VERSION_NUMBER}"
-            - deploy-ecs -b apis -s checkoutinterface -e ${DEPLOYMENT_ENV} -i ${BUILD_ID} -r "arn:aws:iam::202492758425:role/CheckoutStagingRole"
+            - deploy-ecs -b apis -s backofficev4 -e ${DEPLOYMENT_ENV} -i ${BUILD_ID} -r "arn:aws:iam::202492758425:role/Backofficev4StagingRole"
     master:
       - step:
           name: Deploy to production
