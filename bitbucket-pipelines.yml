@@ -1,7 +1,10 @@
 definitions:
   services:
     docker:
-      memory: 2048
+      memory: 1024
+      docker-with-large-memory:
+        memory: 3072
+        type: docker
 
 pipelines:
   branches:
@@ -31,6 +34,7 @@ pipelines:
 
     staging:
       - step:
+          size: 2x
           name: Deploy to staging
           deployment: staging
           image:
@@ -39,9 +43,9 @@ pipelines:
               access-key: $AWS_ACCESS_KEY_ID
               secret-key: $AWS_SECRET_ACCESS_KEY
           services:
-            - docker
+            - [docker-with-large-memory]
           caches:
-            - docker
+            - [docker-with-large-memory]
           script:
             - eval $(aws ecr get-login --region ${AWS_DEFAULT_REGION} --no-include-email)
             - export VERSION_NUMBER=1.0.0
