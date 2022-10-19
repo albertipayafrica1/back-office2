@@ -583,7 +583,6 @@ const PersonalDetailsForm = ({ handleNextStep }) => {
                     variant="contained"
                     type="submit"
                     size="large"
-                    sx={styles.saveAndNextButton}
                     disabled={!formik.isValid}
                   >
                     Save & Next

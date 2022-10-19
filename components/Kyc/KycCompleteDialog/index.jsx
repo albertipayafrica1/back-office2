@@ -27,7 +27,7 @@ const KycCompleteDialog = ({ open }) => {
           <Typography sx={styles.title}>Thank you</Typography>
         </Box>
         <Box>
-          <Typography variant="title6" sx={styles.completeButton}>
+          <Typography variant="title6">
             Your submission has been received.
           </Typography>
         </Box>

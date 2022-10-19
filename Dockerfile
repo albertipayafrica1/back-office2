@@ -31,7 +31,7 @@ COPY --from=build --chown=application:user_group /build/package*.json ./
 COPY --from=build --chown=application:user_group /build/node_modules ./node_modules
 COPY --from=build --chown=application:user_group /build/public ./public
 COPY --from=build --chown=application:user_group /build/.next ./.next
-COPY --from=build --chown=application:user_group /build/i18n.json ./i18n.json
+# COPY --from=build --chown=application:user_group /build/i18n.json ./i18n.json
 RUN npm install next
 
 
