@@ -1,10 +1,7 @@
 definitions:
   services:
     docker:
-      memory: 1024
-      docker-with-large-memory:
-        memory: 3072
-        type: docker
+      memory: 3072
 
 pipelines:
   branches:
@@ -43,9 +40,9 @@ pipelines:
               access-key: $AWS_ACCESS_KEY_ID
               secret-key: $AWS_SECRET_ACCESS_KEY
           services:
-            - [docker-with-large-memory]
+            - docker
           caches:
-            - [docker-with-large-memory]
+            - docker
           script:
             - eval $(aws ecr get-login --region ${AWS_DEFAULT_REGION} --no-include-email)
             - export VERSION_NUMBER=1.0.0
