@@ -255,7 +255,7 @@ const CreatePaymentLink = () => {
                           />
                           <FormikControl
                             control="input"
-                            label={`Amount In KES`}
+                            label="Amount In KES"
                             placholder="0"
                             name="amount"
                             variant="outlined"
