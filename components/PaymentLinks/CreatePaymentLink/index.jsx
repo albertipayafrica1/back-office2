@@ -81,6 +81,7 @@ const CreatePaymentLink = ({ toggleCreatePaymentLink }) => {
             type: "success",
             message: "Payment Link created Successfully!",
           });
+          window.location.reload();
         } else {
           setAlert({ type: "error", message: "Something Went Wrong" });
         }
@@ -139,6 +140,8 @@ const CreatePaymentLink = ({ toggleCreatePaymentLink }) => {
         if (response.data.success === true) {
           setRetrievalLoading(false);
           setFormValues(response.data.response);
+          console.log(response.data.response, "dddddblablabla");
+          setFormValues(response.data.response);
         } else {
           setAlert({ type: "error", message: "Something Went Wrong" });
           setRetrievalLoading(false);
@@ -192,11 +195,12 @@ const CreatePaymentLink = ({ toggleCreatePaymentLink }) => {
                 }
                 return {};
               }}
-              initialValues={initialValues || formValues}
+              initialValues={formValues || initialValues}
               enableReinitialize
               onSubmit={handleSubmit}
             >
               {(formik) => {
+                console.log(formik.values, "fffffff");
                 return (
                   <Box
                     sx={

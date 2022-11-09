@@ -36,7 +36,6 @@ const Transaction = () => {
     axios(config)
       .then((response) => {
         if (response.data.success === true) {
-          console.log(response.data.response, "ddsfds");
           setData(response.data.response.data);
         } else {
           setError("Something Went Wrong");

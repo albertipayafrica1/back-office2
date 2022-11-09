@@ -34,7 +34,7 @@ const Settlements = () => {
     axios(config)
       .then((response) => {
         if (response.data.success === true) {
-          setData(response.data.response.data);
+          setData(response.data.response);
         } else {
           setError("Something Went Wrong");
         }

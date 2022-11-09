@@ -9,7 +9,7 @@ import { Box } from "@mui/material";
 
 import DashboardLayout from "../../../components/Layouts/Dashboard";
 import ProtectedRoute from "../../../components/ProtectedRoute";
-// import PaymentLinksTable from "../../../components/PaymentLinks/PaymentLinksTable";
+import PaymentLinksTable from "../../../components/PaymentLinks/PaymentLinksTable";
 
 const PaymentLinks = () => {
   const router = useRouter();
@@ -70,12 +70,12 @@ const PaymentLinks = () => {
 
   return (
     <Box sx={{ p: 10 }}>
-      {/* <PaymentLinksTable
+      <PaymentLinksTable
         name="paymentLinks"
         rows={data}
         loading={loading}
         currentPage={parseInt(router.query.page, 10)}
-      /> */}
+      />
     </Box>
   );
 };
