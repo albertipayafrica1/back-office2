@@ -33,6 +33,7 @@ const FilterDialog = ({ open, toggleFilterDialog }) => {
 
   const handleSubmit = (values) => {
     toggleFilterDialog();
+    console.log(values, "vv");
     router.push(
       {
         pathname: `${router.pathname}`,
@@ -46,7 +47,7 @@ const FilterDialog = ({ open, toggleFilterDialog }) => {
           status: values.status,
           amount: values.amount,
           orderId: values.orderId,
-          dateCreated: values.dateCreated,
+          dateCreated: values.dateCreated[0] + values.dateCreated[1],
         },
       },
       undefined,
@@ -92,11 +93,11 @@ const FilterDialog = ({ open, toggleFilterDialog }) => {
                     >
                       <FormikControl
                         control="input"
-                        label="Transaction Id"
-                        name="transactionId"
+                        label="Link Id"
+                        name="linkId"
                         variant="outlined"
                         type="text"
-                        id="transactionId"
+                        id="linkId"
                         shrink
                         placeholder=""
                       />
@@ -121,7 +122,7 @@ const FilterDialog = ({ open, toggleFilterDialog }) => {
                         variant="outlined"
                         name="telephone"
                         label="Telephone"
-                        type="text"
+                        type="number"
                         id="telephone"
                         shrink
                         placeholder=""

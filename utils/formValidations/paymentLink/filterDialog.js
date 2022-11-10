@@ -34,6 +34,9 @@ export const filterDialog = yup.object().shape({
     .of(yup.date("Select a valid date").nullable().typeError("Invalid Date"))
     .min(2, "You must have a start and an end date")
     .test("dateCreated", "enter a correct date range", (val) => {
+      if (val[1] === null && val[0] === null) {
+        return true;
+      }
       return differenceInMinutes(val[1], val[0]) >= 0;
     }),
 });

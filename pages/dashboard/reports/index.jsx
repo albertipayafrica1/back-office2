@@ -16,7 +16,6 @@ const Reports = () => {
       }}
     >
       Reports is Coming Soon
-      <DetailsDialog open="true" name="settlements" />
     </Typography>
   );
 };
