@@ -1,0 +1,46 @@
+export const userColumns = [
+  { id: "", label: "User", minWidth: 170 },
+  {
+    id: "",
+    label: "Role",
+    minWidth: 170,
+    align: "center",
+    format: (value) => value.toLocaleString("en-US"),
+  },
+  {
+    id: "",
+    label: "Details",
+    minWidth: 170,
+    align: "center",
+    format: (value) => value.toLocaleString("en-US"),
+  },
+  {
+    id: "",
+    label: "Ip",
+    minWidth: 170,
+    align: "center",
+    format: (value) => value.toFixed(2),
+  },
+  {
+    id: "",
+    label: "User Agent",
+    minWidth: 170,
+    align: "center",
+    format: (value) => value.toFixed(2),
+  },
+  {
+    id: "",
+    label: "Time",
+    minWidth: 170,
+    align: "center",
+    format: (value) => value.toFixed(2),
+  },
+  {
+    id: "",
+    label: "Actions",
+    minWidth: 170,
+    align: "center",
+    format: (value) => value.toFixed(2),
+    formatting: { cursor: "pointer" },
+  },
+];

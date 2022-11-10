@@ -9,6 +9,7 @@ import AddCardIcon from "@mui/icons-material/AddCard";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
+import ScreenSearchDesktopIcon from "@mui/icons-material/ScreenSearchDesktop";
 
 export const menuItems = [
   {
@@ -73,7 +74,7 @@ export const settingsMenuListItems = {
     {
       id: 1,
       name: "Users",
-      url: "/dashboard/settings/users",
+      url: "/dashboard/settings/users?page=0",
       routeToMatch: "/dashboard/settings/users",
       icon: <ManageAccountsIcon />,
     },
@@ -83,6 +84,13 @@ export const settingsMenuListItems = {
       name: "Appearance",
       url: "/dashboard/settings/appearance",
       routeToMatch: "/dashboard/settings/appearance",
+    },
+    {
+      id: 3,
+      icon: <ScreenSearchDesktopIcon />,
+      name: "Audit Trail",
+      url: "/dashboard/settings/auditTrail?page=0",
+      routeToMatch: "/dashboard/settings/auditTrail",
     },
   ],
 };
