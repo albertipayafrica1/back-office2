@@ -78,6 +78,7 @@ const BusinessOwnersForm = ({ handleNextStep }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
+  const companyRef = useSelector((state) => state.user.user.companyRef);
 
   const [formValues, setFormValues] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -90,7 +91,7 @@ const BusinessOwnersForm = ({ handleNextStep }) => {
     const credentials = Cookies.get("iPayT");
     const config = {
       method: "post",
-      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/kyc/businessOwners`,
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/kyc/${companyRef}/businessOwners`,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${credentials}`,
@@ -150,7 +151,7 @@ const BusinessOwnersForm = ({ handleNextStep }) => {
 
     const config = {
       method: "get",
-      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/kyc/businessOwners`,
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/kyc/${companyRef}/businessOwners`,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${credentials}`,

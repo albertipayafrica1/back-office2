@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 import { Grid, LinearProgress, Typography } from "@mui/material";
 
+import { useSelector } from "react-redux";
+
 import axios from "axios";
 import Cookies from "js-cookie";
 import UploadError from "./UploadError";
@@ -20,8 +22,9 @@ const SingleFileUploadWithProgress = ({
   const [documentUrl, setDocumentUrl] = useState("");
 
   const uploadFile = async (fileToUpload, onProgress) => {
-    // const url = "https://api.cloudinary.com/v1_1/demo/image/upload";
-    const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/kyc/document-upload`;
+    const companyRef = useSelector((state) => state.user.user.companyRef);
+
+    const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/kyc/${companyRef}/document-upload`;
     const key = "docs_upload_example_us_preset";
 
     setServerError("");

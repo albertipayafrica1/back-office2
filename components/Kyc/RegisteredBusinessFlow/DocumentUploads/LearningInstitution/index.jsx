@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import PropTypes from "prop-types";
 
@@ -38,6 +38,7 @@ const initialValues = {
 const LearningInstitution = ({ handleNextStep }) => {
   const router = useRouter();
   const dispatch = useDispatch();
+  const companyRef = useSelector((state) => state.user.user.companyRef);
 
   const [formValues, setFormValues] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -50,7 +51,7 @@ const LearningInstitution = ({ handleNextStep }) => {
     const credentials = Cookies.get("iPayT");
     const config = {
       method: "post",
-      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/kyc/business-docs`,
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/kyc/${companyRef}/business-docs`,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${credentials}`,
@@ -111,7 +112,7 @@ const LearningInstitution = ({ handleNextStep }) => {
     const credentials = Cookies.get("iPayT");
     const config = {
       method: "get",
-      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/kyc/business-docs`,
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/kyc/${companyRef}/business-docs`,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${credentials}`,
