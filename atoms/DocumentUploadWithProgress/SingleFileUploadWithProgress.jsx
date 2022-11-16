@@ -20,10 +20,9 @@ const SingleFileUploadWithProgress = ({
   const [progress, setProgress] = useState(0);
   const [serverError, setServerError] = useState("");
   const [documentUrl, setDocumentUrl] = useState("");
+  const companyRef = useSelector((state) => state.user.user.companyRef);
 
   const uploadFile = async (fileToUpload, onProgress) => {
-    const companyRef = useSelector((state) => state.user.user.companyRef);
-
     const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/kyc/${companyRef}/document-upload`;
     const key = "docs_upload_example_us_preset";
 

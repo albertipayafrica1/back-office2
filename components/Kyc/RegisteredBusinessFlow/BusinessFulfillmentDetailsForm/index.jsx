@@ -50,9 +50,10 @@ const BusinessFulfillmentDetailsForm = ({ handleNextStep }) => {
     setLoading(true);
     setAlert({ type: "", message: "" });
     const credentials = Cookies.get("iPayT");
+    console.log("here");
     const config = {
       method: "post",
-      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/kyc/${companyRef}fulfillment-details`,
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/kyc/${companyRef}/fulfillment-details`,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${credentials}`,
