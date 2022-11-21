@@ -170,6 +170,7 @@ const SoleProprietorship = ({ handleNextStep }) => {
           enableReinitialize
         >
           {(formik) => {
+            console.log(formik.values, "formik values");
             return (
               <Form>
                 <SoleProprietorshipContainer topLabel="Sole Proprietorship">

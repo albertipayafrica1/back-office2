@@ -15,6 +15,7 @@ import {
   Box,
 } from "@mui/material";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import DownloadIcon from "@mui/icons-material/Download";
 
 const transactions = (column, row) => {
   const value = row[column.label.toLowerCase()];
@@ -44,6 +45,27 @@ const transactions = (column, row) => {
   );
 };
 
+const reports = (column, row) => {
+  const value = row[column.id];
+  const clicker = column.onClick;
+  if (column.id === "download") {
+    return (
+      <DownloadIcon
+        onClick={(e) => {
+          return clicker(row);
+        }}
+        sx={{ cursor: "pointer" }}
+      />
+    );
+  }
+
+  return column.format && typeof value === "number" ? (
+    <Box>{column.format(value)}</Box>
+  ) : (
+    <Box>{value}</Box>
+  );
+};
+
 const rowSwitcher = (column, value, name) => {
   switch (name) {
     case "payins":
@@ -52,6 +74,10 @@ const rowSwitcher = (column, value, name) => {
       return transactions(column, value);
     case "billing":
       return transactions(column, value);
+    case "payinsReports":
+      return reports(column, value);
+    case "payoutsReports":
+      return reports(column, value);
     default:
       return transactions(column, value);
   }

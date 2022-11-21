@@ -24,4 +24,5 @@ export default {
   TypanBlue: "#1D2D9C",
   blue: "#124AA1",
   pastelBlue: "#C5ECFF",
+  lightGray: "#F6F6F6",
 };
