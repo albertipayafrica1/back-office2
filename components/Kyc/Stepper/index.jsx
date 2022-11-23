@@ -294,7 +294,7 @@ const HorizontalLinearStepper = ({ flow, companyType, duration }) => {
       <div>
         {activeStep === steps.length ? (
           <div>
-            {kycStatus.slug !== undefined && kycStatus.slug === "review" ? (
+            {kycStatus.slug !== undefined && kycStatus.slug === "REVIEW" ? (
               <KycCompleteDialog open />
             ) : (
               <Typography className={styles.instructions}>
