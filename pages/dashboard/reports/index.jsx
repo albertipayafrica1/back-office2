@@ -83,8 +83,8 @@ const Reports = () => {
         pathname: `${router.pathname}`,
         query: {
           page: 0,
-          fromDate: values.dateRange[0] + "",
-          toDate: values.dateRange[1] + "",
+          fromDate: `${values.dateRange[0]}`,
+          toDate: `${values.dateRange[1]}`,
         },
       },
       undefined,
@@ -97,7 +97,7 @@ const Reports = () => {
   useEffect(() => {
     setLoading(true);
 
-    let toChangeRowData = rowData;
+    const toChangeRowData = rowData;
     toChangeRowData[0].fromDate = router.query?.fromDate;
     toChangeRowData[1].fromDate = router.query?.fromDate;
     toChangeRowData[0].toDate = router.query?.toDate;

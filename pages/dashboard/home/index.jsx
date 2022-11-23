@@ -3,9 +3,11 @@ import { Typography, Stack, Box } from "@mui/material";
 
 import PageViewBox from "../../../atoms/PageViewBox";
 import TransactionSummaryCard from "../../../atoms/TransactionSummaryCard";
+import DoughnutChart from "../../../atoms/DoughnutChart";
 
 import DashboardLayout from "../../../components/Layouts/Dashboard";
 import ProtectedRoute from "../../../components/ProtectedRoute";
+import AreaChart from "../../../atoms/AreaChart";
 
 const Home = () => {
   const globalCurrency = useSelector((state) => state.currency.globalCurrency);
@@ -77,6 +79,30 @@ const Home = () => {
               variant="pastelOrange"
             />
           </Stack>
+        </Stack>
+        <Stack sx={{ p: 8 }} spacing={4}>
+          <Typography variant="subtitle6">Weekly Transactions Trend</Typography>
+          <PageViewBox>
+            <Stack
+              sx={{ pt: 8, pb: 8 }}
+              justifyContent="center"
+              alignItems="center"
+            >
+              <AreaChart />
+            </Stack>
+          </PageViewBox>
+        </Stack>
+        <Stack sx={{ p: 8 }} spacing={4}>
+          <Typography variant="subtitle6">Channels Summary</Typography>
+          <PageViewBox>
+            <Stack
+              alignItems="center"
+              justifyContent="center"
+              sx={{ pt: 15, pb: 8 }}
+            >
+              <DoughnutChart />
+            </Stack>
+          </PageViewBox>
         </Stack>
       </PageViewBox>
     </Box>
