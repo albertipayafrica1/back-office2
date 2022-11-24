@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 
@@ -16,11 +16,17 @@ const Tabs = ({
   routeOnChange,
 }) => {
   const [value, setValue] = useState(activeTab);
+  console.log(activeTab, "act");
   const matches = useMediaQuery("(min-width:930px)");
 
   const router = useRouter();
 
+  useEffect(() => {
+    setValue(activeTab);
+  }, [activeTab]);
+
   const handleChange = (event, newValue) => {
+    console.log(newValue, "newvalue");
     setValue(newValue);
     if (routeOnChange) {
       router.push(

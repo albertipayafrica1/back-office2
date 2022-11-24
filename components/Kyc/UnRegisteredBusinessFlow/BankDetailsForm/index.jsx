@@ -19,20 +19,22 @@ import MuiAlert from "../../../../atoms/MuiAlert";
 import Loader from "../../../../atoms/Loader";
 
 import { currency, bankLocation } from "./data";
-import { bankDetails } from "../../../../utils/formValidations/kyc/registeredBusinessFlow/bankDetails";
+import { bankDetails } from "../../../../utils/formValidations/kyc/unRegisteredBusinessFlow/bankDetails";
 
 import { fetchKycStatusSuccess } from "../../../../redux";
 
 import { styles } from "./styles";
 
 const initialValues = {
-  bankLocality: "",
-  bankName: "",
-  bankBranch: "",
-  accountName: "",
-  accountNumber: "",
-  currency: "",
-  swiftCode: "",
+  primaryAccount: {
+    bankLocality: "",
+    bankName: "",
+    bankBranch: "",
+    accountName: "",
+    accountNumber: "",
+    currency: "",
+    swiftCode: "",
+  },
 };
 
 const BankDetailsForm = ({ handleNextStep }) => {
@@ -184,24 +186,23 @@ const BankDetailsForm = ({ handleNextStep }) => {
                     <FormikControl
                       control="select"
                       label="Bank Locality"
-                      name="bankLocality"
+                      name="primaryAccount.bankLocality"
                       select
                       selectItem={bankLocation}
                       variant="outlined"
-                      id=" bank Locality"
+                      id="primaryAccount.bankLocality"
                       required
                     />
-
                     <FormikControl
                       control="input"
                       label="Bank Name"
                       placeholder="Merchant Bank Name"
-                      name="bankName"
+                      name="primaryAccount.bankName"
                       variant="outlined"
                       type="text"
-                      id="bankName"
+                      id="primaryAccount.bankName"
                       required
-                    />
+                    />{" "}
                   </Stack>
                   <Stack
                     direction={{ xs: "column", sm: "row" }}
@@ -212,10 +213,10 @@ const BankDetailsForm = ({ handleNextStep }) => {
                       control="input"
                       label="Bank Branch"
                       placeholder="Merchant Bank Branch"
-                      name="bankBranch"
+                      name="primaryAccount.bankBranch"
                       variant="outlined"
                       type="text"
-                      id="banckBranch"
+                      id="primaryAccount.banckBranch"
                       required
                     />
 
@@ -223,10 +224,10 @@ const BankDetailsForm = ({ handleNextStep }) => {
                       control="input"
                       label="Account Name"
                       placeholder="Bank Account Name"
-                      name="accountName"
+                      name="primaryAccount.accountName"
                       variant="outlined"
                       type="text"
-                      id="accountName"
+                      id="primaryAccount.accountName"
                       required
                     />
                   </Stack>
@@ -239,23 +240,22 @@ const BankDetailsForm = ({ handleNextStep }) => {
                       control="input"
                       label="Account Number"
                       placeholder="Bank Account Number"
-                      name="accountNumber"
+                      name="primaryAccount.accountNumber"
                       variant="outlined"
                       type="text"
-                      id="accountNumber"
+                      id="primaryAccount.accountNumber"
                       required
                     />
 
                     <FormikControl
                       control="select"
                       label="Account Currency"
-                      placeholder="USD | KES | TZS"
                       select
                       selectItem={currency}
-                      name="currency"
+                      name="primaryAccount.currency"
                       variant="outlined"
                       type="text"
-                      id="accountCurrency"
+                      id="primaryAccount.currency"
                       required
                     />
                   </Stack>
@@ -267,10 +267,10 @@ const BankDetailsForm = ({ handleNextStep }) => {
                     <FormikControl
                       control="input"
                       label="IBAN / SWIFT Code"
-                      name="swiftCode"
+                      name="primaryAccount.swiftCode"
                       variant="outlined"
                       type="text"
-                      id="swiftCode"
+                      id="primaryAccount.swiftCode"
                       required
                     />
                   </Stack>

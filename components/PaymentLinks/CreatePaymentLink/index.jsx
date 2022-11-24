@@ -54,7 +54,7 @@ const CreatePaymentLink = ({ toggleCreatePaymentLink }) => {
   const matches = useMediaQuery("(min-width:800px)");
   const router = useRouter();
 
-  const [formValues, setFormValues] = useState(null);
+  const [formValues, setFormValues] = useState(initialValues);
   const [loading, setLoading] = useState(false);
   const [retrievalLoading, setRetrievalLoading] = useState(false);
   const [alert, setAlert] = useState({ type: "", message: "" });
@@ -122,58 +122,57 @@ const CreatePaymentLink = ({ toggleCreatePaymentLink }) => {
   };
 
   useEffect(() => {
-    setRetrievalLoading(true);
-    const credentials = Cookies.get("iPayT");
-
-    const config = {
-      method: "get",
-      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/paymentLink/create`,
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${credentials}`,
-        "Device-Channel": "web",
-      },
-      withCredentials: true,
-    };
-    axios(config)
-      .then((response) => {
-        if (response.data.success === true) {
-          setRetrievalLoading(false);
-          setFormValues(response.data.response);
-          console.log(response.data.response, "dddddblablabla");
-          setFormValues(response.data.response);
-        } else {
-          setAlert({ type: "error", message: "Something Went Wrong" });
-          setRetrievalLoading(false);
-        }
-      })
-      .catch((error) => {
-        setRetrievalLoading(false);
-        if (error.response === undefined) {
-          setAlert({ type: "error", message: "Something Went Wrong" });
-        } else if (error.response.status === 401) {
-          // make a request to logout route here
-          setAlert({ type: "error", message: error.response.data.response });
-          setTimeout(() => {
-            router.replace("/");
-          }, 2000);
-        } else if (error.response) {
-          if (error.response.data.response !== undefined) {
-            setAlert({
-              type: "error",
-              message: error.response.data.response,
-            });
-          } else {
-            setAlert({
-              type: "error",
-              message: "Something Went Wrong",
-            });
-          }
-        } else {
-          setAlert({ type: "error", message: "Something Went Wrong" });
-        }
-        setRetrievalLoading(false);
-      });
+    // setRetrievalLoading(true);
+    // const credentials = Cookies.get("iPayT");
+    // const config = {
+    //   method: "get",
+    //   url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/paymentLink/create`,
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     Authorization: `Bearer ${credentials}`,
+    //     "Device-Channel": "web",
+    //   },
+    //   withCredentials: true,
+    // };
+    // axios(config)
+    //   .then((response) => {
+    //     if (response.data.success === true) {
+    //       setRetrievalLoading(false);
+    //       setFormValues(response.data.response);
+    //       console.log(response.data.response, "dddddblablabla");
+    //       setFormValues(response.data.response);
+    //     } else {
+    //       setAlert({ type: "error", message: "Something Went Wrong" });
+    //       setRetrievalLoading(false);
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     setRetrievalLoading(false);
+    //     if (error.response === undefined) {
+    //       setAlert({ type: "error", message: "Something Went Wrong" });
+    //     } else if (error.response.status === 401) {
+    //       // make a request to logout route here
+    //       setAlert({ type: "error", message: error.response.data.response });
+    //       setTimeout(() => {
+    //         router.replace("/");
+    //       }, 2000);
+    //     } else if (error.response) {
+    //       if (error.response.data.response !== undefined) {
+    //         setAlert({
+    //           type: "error",
+    //           message: error.response.data.response,
+    //         });
+    //       } else {
+    //         setAlert({
+    //           type: "error",
+    //           message: "Something Went Wrong",
+    //         });
+    //       }
+    //     } else {
+    //       setAlert({ type: "error", message: "Something Went Wrong" });
+    //     }
+    //     setRetrievalLoading(false);
+    //   });
   }, []);
 
   if (retrievalLoading) {
@@ -382,8 +381,8 @@ const CreatePaymentLink = ({ toggleCreatePaymentLink }) => {
                             formik.setFieldValue("linkExpirationDate", null);
                           }}
                         />
-                        {(formik.values.noExpiry[0] === "false" ||
-                          formik.values.noExpiry[0] === undefined) && (
+                        {(formik.values?.noExpiry[0] === "false" ||
+                          formik.values?.noExpiry[0] === undefined) && (
                           <FormikControl
                             control="datePicker"
                             label="Set Expiry Date"

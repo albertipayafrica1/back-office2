@@ -5,14 +5,14 @@ import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import * as styles from "./styles";
 
 const data = [
-  // {
-  //   id: 1,
-  //   type: "refund",
-  //   title: "You have a new Refund Confirmation Request",
-  //   body: "Transaction ID - QAD0JC7W3C KSH 100.00 MPESA",
-  //   date: "Today at 7:45 AM",
-  //   link: "",
-  // },
+  {
+    id: 1,
+    type: "refund",
+    title: "You have a new Refund Confirmation Request",
+    body: "Transaction ID - QAD0JC7W3C KSH 100.00 MPESA",
+    date: "Today at 7:45 AM",
+    link: "",
+  },
   // {
   //   id: 2,
   //   type: "discover",

@@ -19,7 +19,7 @@ const Transaction = () => {
   const [data, setData] = useState();
   const [error, setError] = useState();
 
-  const tabTitle = ["payins", "payouts", "billing"];
+  const tabTitle = ["confirmations", "refunds"];
 
   useEffect(() => {
     setLoading(true);
@@ -100,12 +100,6 @@ const Transaction = () => {
           loading={loading}
           currentPage={parseInt(router.query.page, 10)}
         />
-        <TransactionTable
-          name="billing"
-          rows={data}
-          loading={loading}
-          currentPage={parseInt(router.query.page, 10)}
-        />
       </Tabs>
     </Box>
   );
@@ -120,11 +114,7 @@ Transaction.getLayout = function getLayout(page) {
 export const getServerSideProps = ProtectedRoute(async (context) => {
   const { req, query } = context;
 
-  if (
-    query.pid !== "payins" &&
-    query.pid !== "payouts" &&
-    query.pid !== "billing"
-  ) {
+  if (query.pid !== "confirmations" && query.pid !== "refunds") {
     return {
       notFound: true,
     };
