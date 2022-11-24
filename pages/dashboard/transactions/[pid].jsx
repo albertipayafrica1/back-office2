@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
 
 import Cookies from "js-cookie";
 
@@ -18,6 +19,7 @@ const Transaction = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState();
   const [error, setError] = useState();
+  const companyRef = useSelector((state) => state.user.user.companyRef);
 
   const tabTitle = ["payins", "payouts", "billing"];
 
@@ -26,7 +28,7 @@ const Transaction = () => {
     // setData([]);
     const config = {
       method: "get",
-      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/transactions/${router.query.pid}`,
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/transactions/${companyRef}/${router.query.pid}/?page=${router.query.page}`,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${Cookies.get("iPayT")}`,
