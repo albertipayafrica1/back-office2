@@ -14,7 +14,6 @@ export const filterDialog = yup.object().shape({
       }
       return differenceInMinutes(new Date(val[1]), new Date(val[0])) >= 0;
     }),
-  lastDays: yup.string("Last No. Of Days must be a string"),
   status: yup.string("Status must be a string"),
   settlementType: yup.string("Settlement Type must be a string"),
 });

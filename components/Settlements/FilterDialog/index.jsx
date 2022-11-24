@@ -23,7 +23,6 @@ const FilterDialog = ({ open, toggleFilterDialog }) => {
     transactionId: "",
     settlmentChannel: "",
     dateRange: [null, null],
-    lastDays: "",
     status: "",
     settlementType: "",
   };
@@ -38,7 +37,6 @@ const FilterDialog = ({ open, toggleFilterDialog }) => {
           transactionId: values.transactionId,
           settlmentChannel: values.settlementChannel,
           dateRange: values.dateRange,
-          lastDays: values.lastDays,
           status: values.status,
           settlementType: values.settlementType,
         },
@@ -120,18 +118,6 @@ const FilterDialog = ({ open, toggleFilterDialog }) => {
                         onChange={(val) => {
                           formik.setFieldValue("dateRange", val);
                         }}
-                      />
-                      <FormikControl
-                        control="input"
-                        variant="outlined"
-                        name="lastDays"
-                        label="Last No. Of Days"
-                        type="text"
-                        select
-                        selectItem={paymentChannelOptions}
-                        id="lastDays"
-                        shrink
-                        placeholder=""
                       />
                     </Stack>
                     <Stack

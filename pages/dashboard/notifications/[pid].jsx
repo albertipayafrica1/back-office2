@@ -9,17 +9,19 @@ import { Box } from "@mui/material";
 import axios from "axios";
 
 import Tabs from "../../../atoms/Tabs";
+import PageViewBox from "../../../atoms/PageViewBox";
 import DashboardLayout from "../../../components/Layouts/Dashboard";
 import ProtectedRoute from "../../../components/ProtectedRoute";
-import TransactionTable from "../../../components/Transactions/TransactionTable";
+import NotificationsTable from "../../../components/Notifications/Confirmations";
+import Discover from "../../../components/Notifications/Discover";
 
-const Transaction = () => {
+const Notifications = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState();
   const [error, setError] = useState();
 
-  const tabTitle = ["confirmations", "refunds"];
+  const tabTitle = ["confirmations", "discover"];
 
   useEffect(() => {
     setLoading(true);
@@ -82,39 +84,36 @@ const Transaction = () => {
   // }
   return (
     <Box sx={{ p: 10 }}>
-      <Tabs
-        tabTitle={tabTitle}
-        positionStyles={positionStyles}
-        activeTab={tabTitle.indexOf(router.query.pid).toString()}
-        routeOnChange
-      >
-        <TransactionTable
-          name="payins"
-          rows={data}
-          loading={loading}
-          currentPage={parseInt(router.query.page, 10)}
-        />
-        <TransactionTable
-          name="payouts"
-          rows={data}
-          loading={loading}
-          currentPage={parseInt(router.query.page, 10)}
-        />
-      </Tabs>
+      <PageViewBox>
+        <Tabs
+          tabTitle={tabTitle}
+          positionStyles={positionStyles}
+          activeTab={tabTitle.indexOf(router.query.pid).toString()}
+          routeOnChange
+        >
+          <NotificationsTable
+            name="payins"
+            rows={data}
+            loading={loading}
+            currentPage={parseInt(router.query.page, 10)}
+          />
+          <Discover data={["1", "2"]} />
+        </Tabs>
+      </PageViewBox>
     </Box>
   );
 };
 
-export default Transaction;
+export default Notifications;
 
-Transaction.getLayout = function getLayout(page) {
+Notifications.getLayout = function getLayout(page) {
   return <DashboardLayout>{page}</DashboardLayout>;
 };
 
 export const getServerSideProps = ProtectedRoute(async (context) => {
   const { req, query } = context;
 
-  if (query.pid !== "confirmations" && query.pid !== "refunds") {
+  if (query.pid !== "confirmations" && query.pid !== "discover") {
     return {
       notFound: true,
     };

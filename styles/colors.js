@@ -11,6 +11,7 @@ export default {
   mono10: "#00000099",
   mono11: "#9B9B9B",
   mono12: "#9E9E9E",
+  mono13: "#6B6B6B",
   orange: "#F29103",
   pink: "#F9F4F4",
   errorRed: "#d32f2f",
