@@ -6,6 +6,10 @@ import Cookies from "js-cookie";
 
 import { Box } from "@mui/material";
 
+import LightbulbIcon from "@mui/icons-material/Lightbulb";
+
+import MailIcon from "@mui/icons-material/Mail";
+
 import axios from "axios";
 
 import Tabs from "../../../atoms/Tabs";
@@ -15,6 +19,8 @@ import ProtectedRoute from "../../../components/ProtectedRoute";
 import NotificationsTable from "../../../components/Notifications/Confirmations";
 import Discover from "../../../components/Notifications/Discover";
 
+import * as styles from "./styles";
+
 const Notifications = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -22,6 +28,11 @@ const Notifications = () => {
   const [error, setError] = useState();
 
   const tabTitle = ["confirmations", "discover"];
+
+  const icons = [
+    <MailIcon sx={styles.iconStyles} />,
+    <LightbulbIcon sx={styles.iconStyles} />,
+  ];
 
   useEffect(() => {
     setLoading(true);
@@ -90,6 +101,7 @@ const Notifications = () => {
           positionStyles={positionStyles}
           activeTab={tabTitle.indexOf(router.query.pid).toString()}
           routeOnChange
+          icons={icons}
         >
           <NotificationsTable
             name="payins"
