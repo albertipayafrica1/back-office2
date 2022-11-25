@@ -310,6 +310,7 @@ const DetailsDialog = ({ open, toggleDetailsDialog, name, data }) => {
         </Stack>
         <Grid container spacing={4} sx={{ width: "100%" }}>
           {data.map((item, index) => {
+            console.log(item, "item");
             return (
               <Grid item xs={12} md={6} key={index}>
                 <Box

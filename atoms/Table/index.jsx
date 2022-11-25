@@ -18,7 +18,7 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import DownloadIcon from "@mui/icons-material/Download";
 
 const transactions = (column, row) => {
-  const value = row[column.label.toLowerCase()];
+  const value = row[column.id];
   const clicker = column.onClick;
   if (column.label === "Details") {
     return (
@@ -169,7 +169,7 @@ const MuiTable = ({
                               <Skeleton sx={{ width: "100%" }} />
                             </Box>
                           ) : (
-                            rowSwitcher(column, row, name)
+                            rowSwitcher(column, row?.attributes || row, name)
                           )}
                         </TableCell>
                       );
