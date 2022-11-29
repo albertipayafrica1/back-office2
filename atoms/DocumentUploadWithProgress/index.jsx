@@ -145,7 +145,7 @@ const FileUploadField = ({ name, multiple, label, required, givenFile }) => {
                     ? givenFile.file.path
                     : label}
                 </Typography>
-                <Image
+                <img
                   src="/cloud-computing.svg"
                   alt="cloud computing"
                   width="20"

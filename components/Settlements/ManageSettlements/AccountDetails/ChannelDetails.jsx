@@ -36,7 +36,7 @@ const getChannelArrays = (name) => {
   return bankInputs;
 };
 
-const ChannelDetails = ({ name }) => {
+const ChannelDetails = ({ name, disabled }) => {
   const inputs = getChannelArrays(name);
 
   return (
@@ -51,7 +51,8 @@ const ChannelDetails = ({ name }) => {
             type="text"
             id={input.name}
             sx={styles.textField}
-            disabled
+            disabled={disabled}
+            fastField={false}
           />
         </Grid>
       ))}
@@ -59,8 +60,13 @@ const ChannelDetails = ({ name }) => {
   );
 };
 
+ChannelDetails.defaultProps = {
+  disabled: true,
+};
+
 ChannelDetails.propTypes = {
   name: PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
 };
 
 export default ChannelDetails;

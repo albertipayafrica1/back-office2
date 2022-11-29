@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { Field, ErrorMessage, getIn, FastField } from "formik";
 import PropTypes from "prop-types";
@@ -38,9 +38,12 @@ const FormikCustomInput = ({
   onBlur,
   fastField,
   shrink,
+  disabled,
+  autoFocus,
   ...restProps
 }) => {
   const [visibility, setVisibility] = useState(false);
+
   const classes = useStyles();
 
   // const CssTextField = withStyles((theme) => ({
@@ -96,6 +99,8 @@ const FormikCustomInput = ({
               fullWidth
               multiline={multiline}
               select={select}
+              disabled={disabled}
+              autoFocus={autoFocus}
               sx={{
                 "& label": {
                   "&.Mui-focused": {
@@ -194,6 +199,7 @@ const FormikCustomInput = ({
   return (
     <FastField name={name}>
       {({ field, form }) => {
+        console.log(name, "renrenderd");
         return (
           <TextField
             {...field}
@@ -215,6 +221,8 @@ const FormikCustomInput = ({
             fullWidth
             multiline={multiline}
             select={select}
+            disabled={disabled}
+            autoFocus={autoFocus}
             sx={{
               "& label": {
                 "&.Mui-focused": {
@@ -325,6 +333,8 @@ FormikCustomInput.defaultProps = {
   fastField: true,
   shrink: false,
   type: "text",
+  disabled: false,
+  autoFocus: false,
 };
 
 FormikCustomInput.propTypes = {
@@ -345,6 +355,8 @@ FormikCustomInput.propTypes = {
   selectItem: PropTypes.arrayOf(PropTypes.shape({})),
   fastField: PropTypes.bool,
   shrink: PropTypes.bool,
+  disabled: PropTypes.bool,
+  autoFocus: PropTypes.bool,
 };
 
 export default FormikCustomInput;
