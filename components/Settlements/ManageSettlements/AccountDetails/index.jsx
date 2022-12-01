@@ -156,7 +156,7 @@ const AccountDetails = ({ footer }) => {
                     </Stack>
                     <Stack sx={{ pt: 4, width: `${matches ? "15%" : "50%"}` }}>
                       <TransactionButton
-                        text={"Cancel Editing"}
+                        text="Cancel Editing"
                         icon={<CancelIcon sx={{ fontSize: "15px" }} />}
                         onClick={() => {
                           editModeHandler(formik);

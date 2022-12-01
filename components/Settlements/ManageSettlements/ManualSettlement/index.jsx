@@ -45,6 +45,7 @@ const ManualSettlement = ({ footer }) => {
     setOpenInitiationConfirmationDialog((prevState) => !prevState);
   };
   const handleSendMoney = (amount) => {
+    console.log(amount, selectedSettlementOptions, "dd");
     setProgress("66.66");
     setAmountToTransfer(amount);
     toggleConfirmActionDialog();

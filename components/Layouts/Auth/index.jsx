@@ -17,13 +17,9 @@ const Account = ({ left, right, loading, alert, nameOnAlert }) => {
             <Box className={classes.alert}>
               <Typography variant="subtitle3" className={classes.whiteText}>
                 {"Hi "}
-                <span variant="subtitle3" className={classes.blueText}>
-                  {nameOnAlert}
-                </span>
-                <span variant="subtitle4" className={classes.whiteText}>
-                  {" Almost there! "}
-                </span>
-                <span variant="subtitle3" className={classes.whiteText}>
+                <span className={classes.blueText}>{nameOnAlert}</span>
+                <span className={classes.whiteText}>{" Almost there! "}</span>
+                <span className={classes.whiteText}>
                   Check your email address for verification
                 </span>
               </Typography>

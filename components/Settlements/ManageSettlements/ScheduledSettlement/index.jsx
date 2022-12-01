@@ -1,7 +1,12 @@
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 
 import PropTypes from "prop-types";
+
+import Cookies from "js-cookie";
+
+import axios from "axios";
 
 import { Typography, Stack, Box, useMediaQuery } from "@mui/material";
 import EditIcon from "@mui/icons-material/EditOutlined";
@@ -23,6 +28,9 @@ import * as styles from "./styles";
 import Loader from "../../../../atoms/Loader";
 
 const ScheduledSettlement = ({ footer }) => {
+  // const router = useRouter();
+  const [data, setData] = useState();
+  const [error, setError] = useState();
   const initialValues = { duration: "", day: [], advance: [] };
   const [formValues, setFormValues] = useState({
     duration: "",
@@ -32,6 +40,7 @@ const ScheduledSettlement = ({ footer }) => {
   const [editMode, setEditMode] = useState(false);
   const [loading, setLoading] = useState(false);
   const matches = useMediaQuery("(min-width:600px)");
+  const companyRef = useSelector((state) => state.user.user.companyRef);
   const selectedCurrency = useSelector(
     (state) => state?.currency?.globalCurrency
   );
@@ -45,11 +54,53 @@ const ScheduledSettlement = ({ footer }) => {
     setEditMode(false);
   };
 
-  useEffect(() => {
-    setLoading(true);
-    setFormValues({ duration: "", day: [], advance: [] }); // use this to fetch formvalues from server
-    setLoading(false);
-  }, [editMode]);
+  // useEffect(() => {
+  //   setLoading(true);
+  //   // setData([]);
+  //   const config = {
+  //     method: "get",
+  //     url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/settlements/manage/${companyRef}/schedule?cur=${selectedCurrency}`,
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${Cookies.get("iPayT")}`,
+  //       "Device-Channel": "web",
+  //     },
+  //     withCredentials: true,
+  //   };
+
+  //   axios(config)
+  //     .then((response) => {
+  //       console.log(response, "res");
+  //       if (response.data.success === true) {
+  //         setFormValues(response.data.response.data); // use this to fetch formvalues from server
+  //       } else {
+  //         setError("Something Went Wrong");
+  //       }
+  //       setLoading(false);
+  //     })
+  //     .catch((err) => {
+  //       if (err.response === undefined) {
+  //         setError("Something Went Wrong");
+  //       } else if (err.response.status === 401) {
+  //         return {
+  //           redirect: {
+  //             permanent: false,
+  //             destination: `/`,
+  //           },
+  //         };
+  //       } else if (err.response) {
+  //         if (err.response.data.response !== undefined) {
+  //           setError(err.response.data.response);
+  //         } else {
+  //           setError("Something Went Wrong, Reload to Retry");
+  //         }
+  //       } else {
+  //         setError("Something Went Wrong");
+  //       }
+  //       setLoading(false);
+  //       return error;
+  //     });
+  // }, [editMode]);
 
   if (loading) {
     return <Loader />;
@@ -60,6 +111,7 @@ const ScheduledSettlement = ({ footer }) => {
       <Stack sx={{ pl: 10, pr: 10, pb: 10 }} spacing={8}>
         <Formik initialValues={formValues || initialValues} enableReinitialize>
           {(formik) => {
+            console.log(formik.values, "fm");
             return (
               <Form>
                 <Stack spacing={3}>

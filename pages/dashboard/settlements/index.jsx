@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 
 import Cookies from "js-cookie";
@@ -17,12 +18,17 @@ const Settlements = () => {
   const [data, setData] = useState();
   const [error, setError] = useState();
 
+  const companyRef = useSelector((state) => state.user.user.companyRef);
+  const selectedCurrency = useSelector(
+    (state) => state?.currency?.globalCurrency
+  );
+
   useEffect(() => {
     setLoading(true);
     // setData([]);
     const config = {
       method: "get",
-      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/settlements/details`,
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/settlements/${companyRef}/details?page=1&cur=${selectedCurrency}`,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${Cookies.get("iPayT")}`,
@@ -33,8 +39,9 @@ const Settlements = () => {
 
     axios(config)
       .then((response) => {
+        console.log(response, "res");
         if (response.data.success === true) {
-          setData(response.data.response);
+          setData(response.data.response.data);
         } else {
           setError("Something Went Wrong");
         }
