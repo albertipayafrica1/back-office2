@@ -31,6 +31,7 @@ const FormikControl = ({ control, ...rest }) => {
       return <FormikMultiSelect {...rest} />;
     case "singleFileUpload":
       return <FormikFileUploadField {...rest} />;
+      
     default:
       return null;
   }
