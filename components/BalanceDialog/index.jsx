@@ -8,7 +8,7 @@ import Dialog from "../../atoms/Dialog";
 
 import * as styles from "./styles";
 
-const BalanceDialog = ({ open, toggleBalanceDialog, name }) => {
+const BalanceDialog = ({ open, toggleBalanceDialog, name, balance }) => {
   const globalCurrency = useSelector((state) => state.currency.globalCurrency);
 
   return (
@@ -33,7 +33,9 @@ const BalanceDialog = ({ open, toggleBalanceDialog, name }) => {
             sx={{ color: (theme) => theme.colors.orange }}
           >
             <span style={{ color: "#000000" }}>{globalCurrency}</span>
-            <span> 0 </span>
+            <span style={{ marginLeft: "20px" }}>
+              {balance && balance.balance}
+            </span>
           </Typography>
 
           <Button variant="orange" onClick={toggleBalanceDialog}>
@@ -48,6 +50,7 @@ const BalanceDialog = ({ open, toggleBalanceDialog, name }) => {
 BalanceDialog.propTypes = {
   open: PropTypes.bool.isRequired,
   toggleBalanceDialog: PropTypes.func.isRequired,
+  balance: PropTypes.arrayOf({}).isRequired,
   name: PropTypes.string.isRequired,
 };
 export default BalanceDialog;

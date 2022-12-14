@@ -22,6 +22,7 @@ const ManageSettlements = ({ toggleManageSettlements }) => {
     <WatchIcon sx={styles.iconStyles} />,
     <DetailsIcon sx={styles.iconStyles} />,
   ];
+
   const tabTitle = [
     "Account Details",
     "Scheduled Settlement",
