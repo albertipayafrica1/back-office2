@@ -15,7 +15,7 @@ import AddSubAccounts from "../AddSubAccounts";
 
 import { subAccountColumns } from "./data";
 
-const SubAccountsTable = ({ name, rows, loading, currentPage }) => {
+const SubAccountsTable = ({ name, rows, loading, currentPage, setData }) => {
   let givenRows = rows;
   if (rows === null || rows === undefined) {
     givenRows = [];
@@ -88,6 +88,7 @@ const SubAccountsTable = ({ name, rows, loading, currentPage }) => {
         />
       </PageViewBox>
       <FilterDialog
+        setData={setData}
         name={name}
         open={openFilterDialog}
         toggleFilterDialog={toggleFilterDialog}
@@ -112,6 +113,7 @@ SubAccountsTable.propTypes = {
   rows: PropTypes.arrayOf({}).isRequired,
   loading: PropTypes.bool,
   currentPage: PropTypes.number,
+  setData: PropTypes.func.isRequired,
 };
 
 export default SubAccountsTable;

@@ -1,6 +1,13 @@
 import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 
+import axios from "axios";
+import Cookies from "js-cookie";
+
+import { useSelector } from "react-redux";
+
+import { useState } from "react";
+
 import { Typography, Stack, Box, useMediaQuery } from "@mui/material";
 
 import { Form, Formik } from "formik";
@@ -13,11 +20,18 @@ import { filterDialog } from "../../../utils/formValidations/subAccounts/filterD
 
 import * as styles from "./styles";
 
-const FilterDialog = ({ open, toggleFilterDialog }) => {
+const FilterDialog = ({ open, toggleFilterDialog, setData }) => {
   const matchesWidth = useMediaQuery("(min-width:900px)");
+
   const matchesHeight = useMediaQuery("(min-height:649px)");
 
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [err, setError] = useState();
+  const [retrievalLoading, setRetrievalLoading] = useState(false);
+  const [alert, setAlert] = useState({ type: "", message: "" });
+
+  const companyRef = useSelector((state) => state.user.user.companyRef);
 
   const initialValues = {
     subAccountId: "",
@@ -28,7 +42,7 @@ const FilterDialog = ({ open, toggleFilterDialog }) => {
     reference: "",
   };
 
-  const handleSubmit = (values) => {
+  const handleSubmit = (values, formikHelpers) => {
     toggleFilterDialog();
     router.push(
       {
@@ -48,6 +62,80 @@ const FilterDialog = ({ open, toggleFilterDialog }) => {
         shallow: true,
       }
     );
+
+    const {
+      subAccountId,
+      subAccountMode,
+      dateRange,
+      email,
+      telephone,
+      reference,
+    } = router.query;
+
+    console.log("QUERY PARAM::", subAccountId);
+
+    setLoading(true);
+    setAlert({ type: "", message: "" });
+    const credentials = Cookies.get("iPayT");
+    const config = {
+      method: "get",
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/subs/${companyRef}/filter/?subAccountId=${values.subAccountId}&subAccountMode=${values.subAccountMode}&dateRange=${values.dateRange}&email=${values.email}&phoneNumber=${values.telephone}&reference=${values.reference}`,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${credentials}`,
+        "Device-Channel": "web",
+      },
+      data: JSON.stringify(values),
+      withCredentials: true,
+    };
+
+    axios(config)
+      .then((response) => {
+        if (response.data.success === true) {
+          setData(response.data.response.data);
+        } else {
+          setError("Something Went Wrong");
+        }
+        formikHelpers.setSubmitting(false);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setLoading(false);
+        formikHelpers.setSubmitting(false);
+
+        if (error.response === undefined) {
+          setAlert({ type: "error", message: "Something Went Wrong" });
+        } else if (error.response.status === 401) {
+          // make a request to logout route here
+          setAlert({
+            type: "error",
+            message: error.response.data.response,
+          });
+          setTimeout(() => {
+            router.replace("/");
+          }, 2000);
+        } else if (error.response.status === 406) {
+          formikHelpers.setErrors({ ...error.response.data.response });
+          setAlert({
+            type: "error",
+            message: "Kindly Resolve Form Errors",
+          });
+        } else if (error.response) {
+          if (error.response.data.response !== undefined) {
+            setAlert({
+              type: "error",
+              message: error.response.data.response,
+            });
+          } else {
+            setAlert({
+              type: "error",
+              message: "Something Went Wrong",
+            });
+          }
+        } else {
+          setAlert({ type: "error", message: "Something Went Wrong" });
+        }
+      });
   };
 
   return (
@@ -208,5 +296,6 @@ const FilterDialog = ({ open, toggleFilterDialog }) => {
 FilterDialog.propTypes = {
   open: PropTypes.bool.isRequired,
   toggleFilterDialog: PropTypes.func.isRequired,
+  setData: PropTypes.func.isRequired,
 };
 export default FilterDialog;

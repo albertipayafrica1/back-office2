@@ -6,6 +6,8 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import Cookies from "js-cookie";
 
+import { useSelector } from "react-redux";
+
 import { Box, Stack, useMediaQuery, Typography } from "@mui/material";
 
 import { Formik, Form, yupToFormErrors, validateYupSchema } from "formik";
@@ -31,11 +33,14 @@ const initialValues = {
   helpline: "",
   reference: "",
   callbackUrl: "",
+  mode: "pos",
   securityKey: "xxx",
 };
 const Pos = ({ closeAddSubAccounts }) => {
   const matches = useMediaQuery("(min-width:800px)");
   const router = useRouter();
+
+  const companyRef = useSelector((state) => state.user.user.companyRef);
 
   const [formValues, setFormValues] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -48,7 +53,7 @@ const Pos = ({ closeAddSubAccounts }) => {
     const credentials = Cookies.get("iPayT");
     const config = {
       method: "post",
-      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/paymentLink/generate`,
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/subs/${companyRef}/create`,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${credentials}`,
@@ -109,7 +114,7 @@ const Pos = ({ closeAddSubAccounts }) => {
 
     const config = {
       method: "get",
-      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/paymentLink/generate`,
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/subs/bdf4bbc8-f019-46e1-8a35-081510d6b9a3/create`,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${credentials}`,

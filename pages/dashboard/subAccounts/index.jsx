@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 import Cookies from "js-cookie";
-
 import axios from "axios";
+
+import { useSelector } from "react-redux";
 
 import { Box } from "@mui/material";
 
@@ -16,13 +17,14 @@ const SubAccounts = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState();
   const [error, setError] = useState();
+  const companyRef = useSelector((state) => state.user.user.companyRef);
 
   useEffect(() => {
     setLoading(true);
     // setData([]);
     const config = {
       method: "get",
-      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/transactions/${router.query.pid}`,
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/subs/${companyRef}/all/`,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${Cookies.get("iPayT")}`,
@@ -34,7 +36,19 @@ const SubAccounts = () => {
     axios(config)
       .then((response) => {
         if (response.data.success === true) {
-          setData(response.data.response.data);
+          const result = response.data.response.data.map((acc) => {
+            return {
+              subAccountId: acc.attributes.subAccountId,
+              mode: acc.attributes.subAccountMode,
+              email: acc.attributes.email,
+              phoneNumber: acc.attributes.phoneNumber,
+              reference: acc.attributes.reference,
+              date: acc.attributes.createdAt,
+              "edit/delete": "Edit/Delete",
+            };
+          });
+
+          setData(result);
         } else {
           setError("Something Went Wrong");
         }
@@ -62,7 +76,7 @@ const SubAccounts = () => {
         setLoading(false);
         return error;
       });
-  }, [router.query]);
+  });
 
   // if (error) {
   //   return <div>{error}</div>;
@@ -71,6 +85,7 @@ const SubAccounts = () => {
   return (
     <Box sx={{ p: 10 }}>
       <SubAccountsTable
+        setData={setData}
         name="subAccounts"
         rows={data}
         loading={loading}
