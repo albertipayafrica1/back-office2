@@ -19,8 +19,6 @@ import ProtectedRoute from "../../../components/ProtectedRoute";
 import NotificationsTable from "../../../components/Notifications/Confirmations";
 import Discover from "../../../components/Notifications/Discover";
 
-import * as styles from "./styles";
-
 const Notifications = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -30,8 +28,8 @@ const Notifications = () => {
   const tabTitle = ["confirmations", "discover"];
 
   const icons = [
-    <MailIcon sx={styles.iconStyles} />,
-    <LightbulbIcon sx={styles.iconStyles} />,
+    <MailIcon sx={{ fontSize: "15px" }} />,
+    <LightbulbIcon sx={{ fontSize: "15px" }} />,
   ];
 
   useEffect(() => {
