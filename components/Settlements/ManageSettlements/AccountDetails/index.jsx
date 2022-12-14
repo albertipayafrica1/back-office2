@@ -4,6 +4,10 @@ import { useSelector } from "react-redux";
 
 import PropTypes from "prop-types";
 
+import Cookies from "js-cookie";
+
+import axios from "axios";
+
 import {
   Typography,
   Stack,
@@ -17,6 +21,7 @@ import SaveIcon from "@mui/icons-material/Save";
 import CancelIcon from "@mui/icons-material/CancelOutlined";
 
 import { Formik, Form } from "formik";
+import { da } from "date-fns/locale";
 import FormikControl from "../../../FormikControls/index";
 
 import MuiToolTip from "../../../../atoms/MuiToolTip";
@@ -30,7 +35,113 @@ const AccountDetails = ({ footer }) => {
   const [editMode, setEditMode] = useState(false);
   const globalCurrency = useSelector((state) => state.currency.globalCurrency);
   const matches = useMediaQuery("(min-width:600px)");
-  const initialValues = { payMeVia: "" };
+
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState();
+
+  const [accountDetails, setAccountDetails] = useState();
+
+  const [error, setError] = useState();
+  const initialValues = { payMeVia: "RTGS" };
+
+  const companyRef = useSelector((state) => state.user.user.companyRef);
+
+  // function get channel details
+
+  const getChannelDetails = () => {
+    const config = {
+      method: "get",
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/settlements/manage/${companyRef}/account-details`,
+      data: JSON.stringify(initialValues),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${Cookies.get("iPayT")}`,
+        "Device-Channel": "web",
+      },
+      withCredentials: true,
+    };
+
+    axios(config)
+      .then((response) => {
+        console.log("This is the account details");
+        if (response.data.success === true) {
+          setData(response.data.response);
+        } else {
+          setError("Something Went Wrong");
+        }
+        setLoading(false);
+      })
+      .catch((err) => {
+        if (err.response === undefined) {
+          setError("Something Went Wrong");
+        } else if (err.response.status === 401) {
+          return {
+            redirect: {
+              permanent: false,
+              destination: `/`,
+            },
+          };
+        } else if (err.response) {
+          if (err.response.data.response !== undefined) {
+            setError(err.response.data.response);
+          } else {
+            setError("Something Went Wrong, Reload to Retry");
+          }
+        } else {
+          setError("Something Went Wrong");
+        }
+        setLoading(false);
+        return error;
+      });
+  };
+
+  useEffect(() => {
+    setLoading(true);
+    getChannelDetails();
+    const config = {
+      method: "get",
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/settlements/${companyRef}/channels`,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${Cookies.get("iPayT")}`,
+        "Device-Channel": "web",
+      },
+      withCredentials: true,
+    };
+
+    axios(config)
+      .then((response) => {
+        console.log(response.data.response);
+        if (response.data.success === true) {
+          setData(response.data.response);
+        } else {
+          setError("Something Went Wrong");
+        }
+        setLoading(false);
+      })
+      .catch((err) => {
+        if (err.response === undefined) {
+          setError("Something Went Wrong");
+        } else if (err.response.status === 401) {
+          return {
+            redirect: {
+              permanent: false,
+              destination: `/`,
+            },
+          };
+        } else if (err.response) {
+          if (err.response.data.response !== undefined) {
+            setError(err.response.data.response);
+          } else {
+            setError("Something Went Wrong, Reload to Retry");
+          }
+        } else {
+          setError("Something Went Wrong");
+        }
+        setLoading(false);
+        return error;
+      });
+  }, []);
 
   const editModeHandler = (formik) => {
     console.log(formik, "editmode");
@@ -39,6 +150,7 @@ const AccountDetails = ({ footer }) => {
     // formik.unregisterField("payMeVia");
     // formik.setTouched("payMeVia");
   };
+
   return (
     <Formik initialValues={initialValues} enableReinitialize validateOnBlur>
       {(formik) => {
@@ -82,7 +194,7 @@ const AccountDetails = ({ footer }) => {
                     <FormikControl
                       control="select"
                       select
-                      selectItem={[]}
+                      selectItem={data && data}
                       label="Pay me Via"
                       name="payMeVia"
                       variant="outlined"

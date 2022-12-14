@@ -16,14 +16,62 @@ const Settlements = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState();
+  const [balance, setBalance] = useState();
   const [error, setError] = useState();
 
   const companyRef = useSelector((state) => state.user.user.companyRef);
+
   const selectedCurrency = useSelector(
     (state) => state?.currency?.globalCurrency
   );
 
+  const Balance = () => {
+    const config = {
+      method: "get",
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/settlements/${companyRef}/balance`,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${Cookies.get("iPayT")}`,
+        "Device-Channel": "web",
+      },
+      withCredentials: true,
+    };
+
+    axios(config)
+      .then((response) => {
+        if (response.data.success === true) {
+          setBalance(response.data.response);
+        } else {
+          setError("Something Went Wrong");
+        }
+        setLoading(false);
+      })
+      .catch((err) => {
+        if (err.response === undefined) {
+          setError("Something Went Wrong");
+        } else if (err.response.status === 401) {
+          return {
+            redirect: {
+              permanent: false,
+              destination: `/`,
+            },
+          };
+        } else if (err.response) {
+          if (err.response.data.response !== undefined) {
+            setError(err.response.data.response);
+          } else {
+            setError("Something Went Wrong, Reload to Retry");
+          }
+        } else {
+          setError("Something Went Wrong");
+        }
+        setLoading(false);
+        return error;
+      });
+  };
+
   useEffect(() => {
+    Balance();
     setLoading(true);
     // setData([]);
     const config = {
@@ -79,6 +127,7 @@ const Settlements = () => {
       <SettlementsTable
         name="settlements"
         rows={data}
+        balance={balance}
         loading={loading}
         currentPage={parseInt(router.query.page, 10)}
       />
