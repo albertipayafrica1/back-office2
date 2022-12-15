@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
+import { useSelector } from "react-redux";
+
 import Cookies from "js-cookie";
 
 import axios from "axios";
@@ -9,7 +11,7 @@ import { Box } from "@mui/material";
 
 import DashboardLayout from "../../../components/Layouts/Dashboard";
 import ProtectedRoute from "../../../components/ProtectedRoute";
-import PaymentLinksTable from "../../../components/PaymentLinks/PaymentLinksTable";
+import PaymentLinksTable from "../../../components/PaymentLinks/paymentLinksTable/index";
 
 const PaymentLinks = () => {
   const router = useRouter();
@@ -17,12 +19,14 @@ const PaymentLinks = () => {
   const [data, setData] = useState();
   const [error, setError] = useState();
 
+  const companyRef = useSelector((state) => state.user.user.companyRef);
+
   useEffect(() => {
     setLoading(true);
     // setData([]);
     const config = {
       method: "get",
-      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/transactions/${router.query.pid}`,
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/paymentlink/${companyRef}/payments-links`,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${Cookies.get("iPayT")}`,

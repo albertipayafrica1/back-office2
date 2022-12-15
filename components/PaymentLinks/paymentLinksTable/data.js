@@ -1,37 +1,37 @@
 export const settlementColumns = [
-  { id: "", label: "Date", minWidth: 170 },
+  { id: "created_at", label: "Date Created", minWidth: 170 },
   // { id: "code", label: "ISO\u00a0Code", minWidth: 100 },
   {
-    id: "",
-    label: "Channel",
+    id: "link_id",
+    label: "Link ID",
     minWidth: 170,
     align: "center",
     format: (value) => value.toLocaleString("en-US"),
   },
   {
-    id: "",
-    label: "Type",
+    id: "order_id",
+    label: "Order ID",
     minWidth: 170,
     align: "center",
     format: (value) => value.toLocaleString("en-US"),
   },
   {
-    id: "",
-    label: "Transfer Charge",
+    id: "description",
+    label: "Description",
     minWidth: 170,
     align: "center",
     format: (value) => value.toFixed(2),
   },
   {
-    id: "",
+    id: "amount",
     label: "Amount",
     minWidth: 170,
     align: "center",
     format: (value) => value.toFixed(2),
   },
   {
-    id: "",
-    label: "Commission",
+    id: "pay_link",
+    label: "Payment Link",
     minWidth: 170,
     align: "center",
     format: (value) => value.toFixed(2),
@@ -52,5 +52,3 @@ export const settlementColumns = [
     formatting: { cursor: "pointer" },
   },
 ];
-
-const payoutsColumns = [];

@@ -69,7 +69,7 @@ const AmountForm = ({ settlementOptions, handleSendMoney, handleBack }) => {
     }
   }, []);
 
-  // useEffect(() => {}, [amountToTransfer]); // forex conversion
+  // useEffect(() => {}, [amountToTransfer]); // forex conversions
 
   return (
     <>

@@ -16,7 +16,7 @@ import ManageSettlements from "../ManageSettlements";
 
 import { settlementColumns } from "./data";
 
-const SettlementsTable = ({ name, rows, loading, currentPage }) => {
+const SettlementsTable = ({ name, rows, loading, currentPage, balance }) => {
   let givenRows = rows;
   if (rows === null || rows === undefined) {
     givenRows = [];
@@ -46,6 +46,8 @@ const SettlementsTable = ({ name, rows, loading, currentPage }) => {
       <ManageSettlements toggleManageSettlements={toggleManageSettlements} />
     );
   }
+
+  console.log(balance);
 
   return (
     <>
@@ -101,6 +103,7 @@ const SettlementsTable = ({ name, rows, loading, currentPage }) => {
       </PageViewBox>
       <BalanceDialog
         name={name}
+        balance={balance}
         open={openBalanceDialog}
         toggleBalanceDialog={toggleBalanceDialog}
       />
@@ -127,6 +130,7 @@ SettlementsTable.defaultProps = {
 SettlementsTable.propTypes = {
   name: PropTypes.string.isRequired,
   rows: PropTypes.arrayOf({}).isRequired,
+  balance: PropTypes.arrayOf({}).isRequired,
   loading: PropTypes.bool,
   currentPage: PropTypes.number,
 };
