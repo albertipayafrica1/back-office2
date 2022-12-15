@@ -88,6 +88,9 @@ const Otp = () => {
           Cookies.set("iPayT", response.data.response.token, {
             secure: true,
           });
+          Cookies.set("companyRef", response.data.response.registrationDetails.companyRef, {
+            secure: true,
+          });
           setClearTimer(true);
           dispatch(
             fetchUserSuccess(response.data.response.registrationDetails)

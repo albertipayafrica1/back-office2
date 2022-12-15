@@ -23,15 +23,17 @@ import Header from "./Header";
 import { telephoneCodes } from "../../../../utils/data";
 import { getTelephoneCountryCode } from "../../../../utils/countryOfOperation";
 import { createUser } from "../../../../utils/formValidations/settings/users/createUser";
-import { privilegesOptions, roleOptions } from "./data";
+import { privilegesOptions, roleOptions ,titleOptions} from "./data";
 
 const initialValues = {
-  fullName: "",
+  title:"",
+  firstName: "",
+  surame: "",
   email: "",
   telephoneCountryCode: "KE",
   contactNumber: "",
-  role: "",
-  privileges: [],
+  roleId: "",
+  permissions: [],
 };
 const CreatePaymentLink = ({ toggleCreateUser }) => {
   const matches = useMediaQuery("(min-width:800px)");
@@ -192,13 +194,35 @@ const CreatePaymentLink = ({ toggleCreateUser }) => {
                     <Form>
                       <Stack spacing={3}>
                         <FormikControl
+                            control="select"
+                            variant="outlined"
+                            name="roleId"
+                            label="Title"
+                            type="text"
+                            select
+                            selectItem={titleOptions}
+                            id="roleId"
+                            required
+                        />
+                        <FormikControl
+                            control="input"
+                            label="First Name"
+                            placholder="John"
+                            name="firstName"
+                            variant="outlined"
+                            type="text"
+                            id="firstName"
+                            required
+                            shrink
+                        />
+                        <FormikControl
                           control="input"
-                          label="FullName"
-                          placholder="John Doe"
-                          name="fullName"
+                          label="Surname"
+                          placholder="Doe"
+                          name="surname"
                           variant="outlined"
                           type="text"
-                          id="fullName"
+                          id="surname"
                           required
                           shrink
                         />
@@ -252,22 +276,22 @@ const CreatePaymentLink = ({ toggleCreateUser }) => {
                         <FormikControl
                           control="select"
                           variant="outlined"
-                          name="role"
+                          name="roleId"
                           label="Assign role"
                           type="text"
                           select
                           selectItem={roleOptions}
-                          id="role"
+                          id="roleId"
                           required
                         />
                         <FormikControl
                           control="multiSelect"
                           variant="outlined"
-                          name="privileges"
+                          name="permissions"
                           label="Assign Privileges"
                           type="text"
                           selectOptions={privilegesOptions}
-                          id="privileges"
+                          id="permissions"
                           required
                         />
 
