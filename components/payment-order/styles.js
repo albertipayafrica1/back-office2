@@ -1,5 +1,3 @@
-import { fontWeight } from "@mui/system";
-
 export const title = {
   color: (theme) => theme.colors.blue,
   marginX: "3rem",

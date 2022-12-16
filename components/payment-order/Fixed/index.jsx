@@ -24,8 +24,8 @@ const index = () => {
   console.log(sid);
   // awaiting intergrations
   return (
-    <Container maxWidth="sm" sx={{ mx: "auto", height: "100%", py: "2rem" }}>
-      <Paper elevation={3} sx={{ height: "100%" }}>
+    <Container maxWidth="sm" sx={{ mx: "auto", height: "100vh", py: "2rem",my:"auto" }}>
+      <Paper elevation={2} sx={{  my:"auto" }}>
         <Stack py="1rem" direction="column" gap={2}>
           <Typography textAlign="center" sx={styles.title}>
             Edge City Communications limited has requested payment for order
