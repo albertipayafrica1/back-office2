@@ -1,6 +1,5 @@
 export const privilegesOptions = [
-  { key: "Allow user to create a post",
-    value: "Allow user to create a post" },
+  { key: "Allow user to create a post", value: "Allow user to create a post" },
   {
     key: "Allow customer to change amount",
     value: "Allow customer to change amount",

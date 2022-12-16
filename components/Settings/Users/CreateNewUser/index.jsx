@@ -23,12 +23,12 @@ import Header from "./Header";
 import { telephoneCodes } from "../../../../utils/data";
 import { getTelephoneCountryCode } from "../../../../utils/countryOfOperation";
 import { createUser } from "../../../../utils/formValidations/settings/users/createUser";
-import { privilegesOptions, roleOptions ,titleOptions} from "./data";
+import { privilegesOptions, roleOptions, titleOptions } from "./data";
 
 const initialValues = {
-  title:"",
+  title: "",
   firstName: "",
-  surame: "",
+  surname: "",
   email: "",
   telephoneCountryCode: "KE",
   contactNumber: "",
@@ -43,14 +43,19 @@ const CreatePaymentLink = ({ toggleCreateUser }) => {
   const [loading, setLoading] = useState(false);
   const [retrievalLoading, setRetrievalLoading] = useState(false);
   const [alert, setAlert] = useState({ type: "", message: "" });
+  const companyRef = useSelector((state) => state.user.user.companyRef);
 
   const handleSubmit = (values, formikHelpers) => {
+    console.log("companyRef::::::",companyRef)
+    console.log(values);
     setLoading(true);
     setAlert({ type: "", message: "" });
     const credentials = Cookies.get("iPayT");
+
+
     const config = {
       method: "post",
-      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/createUser`,
+      url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/users/${companyRef}/create`,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${credentials}`,
@@ -59,6 +64,7 @@ const CreatePaymentLink = ({ toggleCreateUser }) => {
       data: JSON.stringify(values),
       withCredentials: true,
     };
+
     axios(config)
       .then((response) => {
         if (response.data.success === true) {
@@ -194,26 +200,26 @@ const CreatePaymentLink = ({ toggleCreateUser }) => {
                     <Form>
                       <Stack spacing={3}>
                         <FormikControl
-                            control="select"
-                            variant="outlined"
-                            name="roleId"
-                            label="Title"
-                            type="text"
-                            select
-                            selectItem={titleOptions}
-                            id="roleId"
-                            required
+                          control="select"
+                          variant="outlined"
+                          name="title"
+                          label="Title"
+                          type="text"
+                          select
+                          selectItem={titleOptions}
+                          id="title"
+                          required
                         />
                         <FormikControl
-                            control="input"
-                            label="First Name"
-                            placholder="John"
-                            name="firstName"
-                            variant="outlined"
-                            type="text"
-                            id="firstName"
-                            required
-                            shrink
+                          control="input"
+                          label="First Name"
+                          placholder="John"
+                          name="firstName"
+                          variant="outlined"
+                          type="text"
+                          id="firstName"
+                          required
+                          shrink
                         />
                         <FormikControl
                           control="input"

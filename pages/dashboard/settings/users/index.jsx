@@ -10,12 +10,14 @@ import { Typography, Box } from "@mui/material";
 import DashboardLayout from "../../../../components/Layouts/Dashboard";
 import ProtectedRoute from "../../../../components/ProtectedRoute";
 import UsersTable from "../../../../components/Settings/Users/UsersTable";
+import {useSelector} from "react-redux";
 
 const Users = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState();
   const [error, setError] = useState();
+  const companyRef = useSelector((state) => state.user.user.companyRef);
 
   useEffect(() => {
     setLoading(true);

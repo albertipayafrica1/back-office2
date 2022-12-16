@@ -4,9 +4,13 @@ const phoneUtil =
   require("google-libphonenumber").PhoneNumberUtil.getInstance();
 
 export const createUser = yup.object({
-  fullName: yup
-    .string("Full Name is required")
-    .required("Full Name is required"),
+  title: yup.string().required("Title is required"),
+  firstName: yup
+    .string("First name Name is required")
+    .required("First name Name is required"),
+  surname: yup
+    .string("Surname Name is required")
+    .required("Surname Name is required"),
   email: yup
     .string()
     .strict()
@@ -44,7 +48,7 @@ export const createUser = yup.object({
       }
       return true;
     }),
-  role: yup.string().required("Role is required"),
+  roleId: yup.string().required("Role is required"),
   privileges: yup
     .array()
     .test("privileges", "privileges must be strings", (val) => {
