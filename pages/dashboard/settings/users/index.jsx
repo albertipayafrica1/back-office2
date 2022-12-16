@@ -7,10 +7,10 @@ import axios from "axios";
 
 import { Typography, Box } from "@mui/material";
 
+import { useSelector } from "react-redux";
 import DashboardLayout from "../../../../components/Layouts/Dashboard";
 import ProtectedRoute from "../../../../components/ProtectedRoute";
 import UsersTable from "../../../../components/Settings/Users/UsersTable";
-import {useSelector} from "react-redux";
 
 const Users = () => {
   const router = useRouter();

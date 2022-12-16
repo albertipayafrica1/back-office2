@@ -46,12 +46,11 @@ const CreatePaymentLink = ({ toggleCreateUser }) => {
   const companyRef = useSelector((state) => state.user.user.companyRef);
 
   const handleSubmit = (values, formikHelpers) => {
-    console.log("companyRef::::::",companyRef)
+    console.log("companyRef::::::", companyRef);
     console.log(values);
     setLoading(true);
     setAlert({ type: "", message: "" });
     const credentials = Cookies.get("iPayT");
-
 
     const config = {
       method: "post",
