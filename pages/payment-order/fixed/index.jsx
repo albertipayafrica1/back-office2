@@ -1,4 +1,3 @@
-import React from "react";
 import Fixed from "../../../components/payment-order/Fixed";
 
 const index = () => {
